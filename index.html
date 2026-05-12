@@ -72,7 +72,7 @@ body {
 .hotspot.nav-bazi { left: 200px; top: 655px; width: 100px; height: 50px; }
 .hotspot.nav-me { left: 300px; top: 655px; width: 102px; height: 50px; }
 
-/* 共用頁 */
+/* 共用頁面 */
 .sub-page {
   min-height: 100vh;
   padding: 20px 16px 88px;
@@ -286,7 +286,7 @@ select {
   position: absolute;
   left: 18px;
   top: 18px;
-  z-index: 30;
+  z-index: 120;
   min-width: 118px;
   height: 44px;
   border: 1.5px solid rgba(255, 232, 160, .9);
@@ -309,7 +309,7 @@ select {
   position: absolute;
   left: 42px;
   bottom: 36px;
-  z-index: 28;
+  z-index: 130;
   width: 318px;
   height: 70px;
   border: none;
@@ -335,281 +335,427 @@ select {
   transform: scale(.98);
 }
 
-.money-overlay {
+.money-start:disabled {
+  opacity: .72;
+  cursor: not-allowed;
+}
+
+/* 畫面震動 */
+.money-screen.shake {
+  animation: screenShake .48s ease-in-out 2;
+}
+
+@keyframes screenShake {
+  0% { transform: translate(0,0); }
+  15% { transform: translate(-4px,2px); }
+  30% { transform: translate(4px,-2px); }
+  45% { transform: translate(-3px,-2px); }
+  60% { transform: translate(3px,2px); }
+  75% { transform: translate(-2px,1px); }
+  100% { transform: translate(0,0); }
+}
+
+/* 天空裂開金光 */
+.sky-crack {
   position: absolute;
-  inset: 0;
+  left: 50%;
+  top: 0;
+  width: 360px;
+  height: 190px;
+  transform: translateX(-50%);
+  z-index: 30;
+  opacity: 0;
   pointer-events: none;
-  opacity: 0;
-  z-index: 20;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255,255,225,.98) 0%, rgba(255,210,76,.68) 28%, rgba(255,150,20,.22) 58%, transparent 72%);
+  clip-path: polygon(48% 0%, 52% 0%, 58% 34%, 53% 34%, 64% 86%, 50% 45%, 36% 86%, 47% 34%, 42% 34%);
 }
 
-.money-screen.active .money-overlay {
-  opacity: 1;
+.money-screen.heaven-open .sky-crack {
+  animation: skyCrackShow 1.4s ease forwards;
 }
 
-.burst-light {
+@keyframes skyCrackShow {
+  0% { opacity: 0; transform: translateX(-50%) scaleY(.2); }
+  25% { opacity: 1; transform: translateX(-50%) scaleY(1.2); }
+  70% { opacity: .85; }
+  100% { opacity: 0; transform: translateX(-50%) scaleY(1.5); }
+}
+
+.heaven-beam {
   position: absolute;
   left: 50%;
-  top: 315px;
-  width: 330px;
-  height: 330px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, rgba(255,252,215,1) 0%, rgba(255,218,80,.72) 28%, rgba(255,170,30,.22) 54%, transparent 74%);
+  top: -40px;
+  width: 280px;
+  height: 540px;
+  transform: translateX(-50%);
+  z-index: 28;
   opacity: 0;
-}
-
-.money-screen.active .burst-light {
-  animation: burstLight 1.6s ease-out forwards;
-}
-
-@keyframes burstLight {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(.4); }
-  30% { opacity: 1; transform: translate(-50%, -50%) scale(1.25); }
-  70% { opacity: .82; transform: translate(-50%, -50%) scale(1.05); }
-  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.55); }
-}
-
-.rotating-rays {
-  position: absolute;
-  left: 50%;
-  top: 312px;
-  width: 420px;
-  height: 420px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
+  pointer-events: none;
   background:
-    conic-gradient(
-      rgba(255,232,140,0) 0deg 8deg,
-      rgba(255,232,140,.85) 8deg 13deg,
-      rgba(255,232,140,0) 13deg 24deg,
-      rgba(255,208,84,.75) 24deg 30deg,
-      rgba(255,232,140,0) 30deg 40deg,
-      rgba(255,232,140,.85) 40deg 45deg,
-      rgba(255,232,140,0) 45deg 56deg,
-      rgba(255,208,84,.75) 56deg 62deg,
-      rgba(255,232,140,0) 62deg 72deg,
-      rgba(255,232,140,.85) 72deg 77deg,
-      rgba(255,232,140,0) 77deg 88deg,
-      rgba(255,208,84,.75) 88deg 94deg,
-      rgba(255,232,140,0) 94deg 104deg,
-      rgba(255,232,140,.85) 104deg 109deg,
-      rgba(255,232,140,0) 109deg 120deg,
-      rgba(255,208,84,.75) 120deg 126deg,
-      rgba(255,232,140,0) 126deg 136deg,
-      rgba(255,232,140,.85) 136deg 141deg,
-      rgba(255,232,140,0) 141deg 152deg,
-      rgba(255,208,84,.75) 152deg 158deg,
-      rgba(255,232,140,0) 158deg 168deg,
-      rgba(255,232,140,.85) 168deg 173deg,
-      rgba(255,232,140,0) 173deg 184deg,
-      rgba(255,208,84,.75) 184deg 190deg,
-      rgba(255,232,140,0) 190deg 200deg,
-      rgba(255,232,140,.85) 200deg 205deg,
-      rgba(255,232,140,0) 205deg 216deg,
-      rgba(255,208,84,.75) 216deg 222deg,
-      rgba(255,232,140,0) 222deg 232deg,
-      rgba(255,232,140,.85) 232deg 237deg,
-      rgba(255,232,140,0) 237deg 248deg,
-      rgba(255,208,84,.75) 248deg 254deg,
-      rgba(255,232,140,0) 254deg 264deg,
-      rgba(255,232,140,.85) 264deg 269deg,
-      rgba(255,232,140,0) 269deg 280deg,
-      rgba(255,208,84,.75) 280deg 286deg,
-      rgba(255,232,140,0) 286deg 296deg,
-      rgba(255,232,140,.85) 296deg 301deg,
-      rgba(255,232,140,0) 301deg 312deg,
-      rgba(255,208,84,.75) 312deg 318deg,
-      rgba(255,232,140,0) 318deg 328deg,
-      rgba(255,232,140,.85) 328deg 333deg,
-      rgba(255,232,140,0) 333deg 344deg,
-      rgba(255,208,84,.75) 344deg 350deg,
-      rgba(255,232,140,0) 350deg 360deg
-    );
-  opacity: 0;
+    linear-gradient(180deg, rgba(255,255,230,.78), rgba(255,220,80,.36) 38%, rgba(255,180,35,.14) 72%, transparent 100%);
+  clip-path: polygon(43% 0%, 57% 0%, 100% 100%, 0% 100%);
   mix-blend-mode: screen;
 }
 
-.money-screen.active .rotating-rays {
-  animation: spinRays 2.2s linear infinite, raysShow 2.1s ease forwards;
+.money-screen.heaven-open .heaven-beam {
+  animation: heavenBeam 2.2s ease forwards;
 }
 
-@keyframes spinRays {
+@keyframes heavenBeam {
+  0% { opacity: 0; transform: translateX(-50%) scaleX(.45); }
+  20% { opacity: 1; transform: translateX(-50%) scaleX(1); }
+  80% { opacity: .65; }
+  100% { opacity: 0; transform: translateX(-50%) scaleX(1.35); }
+}
+
+/* 旋轉財光 */
+.money-rotating-rays {
+  position: absolute;
+  left: 50%;
+  top: 312px;
+  width: 450px;
+  height: 450px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  opacity: 0;
+  z-index: 22;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background:
+    conic-gradient(
+      transparent 0deg 8deg,
+      rgba(255,232,140,.95) 8deg 13deg,
+      transparent 13deg 24deg,
+      rgba(255,208,84,.82) 24deg 30deg,
+      transparent 30deg 40deg,
+      rgba(255,232,140,.95) 40deg 45deg,
+      transparent 45deg 56deg,
+      rgba(255,208,84,.82) 56deg 62deg,
+      transparent 62deg 72deg,
+      rgba(255,232,140,.95) 72deg 77deg,
+      transparent 77deg 88deg,
+      rgba(255,208,84,.82) 88deg 94deg,
+      transparent 94deg 104deg,
+      rgba(255,232,140,.95) 104deg 109deg,
+      transparent 109deg 120deg,
+      rgba(255,208,84,.82) 120deg 126deg,
+      transparent 126deg 136deg,
+      rgba(255,232,140,.95) 136deg 141deg,
+      transparent 141deg 152deg,
+      rgba(255,208,84,.82) 152deg 158deg,
+      transparent 158deg 168deg,
+      rgba(255,232,140,.95) 168deg 173deg,
+      transparent 173deg 184deg,
+      rgba(255,208,84,.82) 184deg 190deg,
+      transparent 190deg 200deg,
+      rgba(255,232,140,.95) 200deg 205deg,
+      transparent 205deg 216deg,
+      rgba(255,208,84,.82) 216deg 222deg,
+      transparent 222deg 232deg,
+      rgba(255,232,140,.95) 232deg 237deg,
+      transparent 237deg 248deg,
+      rgba(255,208,84,.82) 248deg 254deg,
+      transparent 254deg 264deg,
+      rgba(255,232,140,.95) 264deg 269deg,
+      transparent 269deg 280deg,
+      rgba(255,208,84,.82) 280deg 286deg,
+      transparent 286deg 296deg,
+      rgba(255,232,140,.95) 296deg 301deg,
+      transparent 301deg 312deg,
+      rgba(255,208,84,.82) 312deg 318deg,
+      transparent 318deg 328deg,
+      rgba(255,232,140,.95) 328deg 333deg,
+      transparent 333deg 344deg,
+      rgba(255,208,84,.82) 344deg 350deg,
+      transparent 350deg 360deg
+    );
+}
+
+.money-screen.rays-on .money-rotating-rays {
+  opacity: .82;
+  animation: raysSpin 1.85s linear infinite;
+}
+
+@keyframes raysSpin {
   from { transform: translate(-50%, -50%) rotate(0deg); }
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-@keyframes raysShow {
-  0% { opacity: 0; }
-  20% { opacity: .62; }
-  80% { opacity: .58; }
-  100% { opacity: 0; }
+/* 被吸走的財氣漩渦 */
+.absorb-vortex {
+  position: absolute;
+  left: 50%;
+  top: 310px;
+  width: 300px;
+  height: 180px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 36;
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background:
+    conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(255,245,170,.92) 35deg,
+      transparent 70deg,
+      rgba(255,196,54,.86) 120deg,
+      transparent 170deg,
+      rgba(255,245,170,.92) 220deg,
+      transparent 270deg,
+      rgba(255,196,54,.86) 320deg,
+      transparent 360deg
+    );
+  filter: blur(.3px);
 }
 
-.vault-glow {
+.money-screen.absorbing .absorb-vortex {
+  opacity: .88;
+  animation: vortexSpin .72s linear infinite, vortexPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes vortexSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+  to { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+}
+
+@keyframes vortexPulse {
+  0%, 100% { opacity: .48; }
+  50% { opacity: .92; }
+}
+
+/* 大元寶金光 */
+.ingot-core-glow {
   position: absolute;
   left: 50%;
   top: 318px;
-  width: 250px;
-  height: 150px;
+  width: 260px;
+  height: 180px;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(255,255,220,.95), rgba(255,221,82,.65) 38%, rgba(255,160,24,.18) 68%, transparent 78%);
+    radial-gradient(circle,
+      rgba(255,255,240,1) 0%,
+      rgba(255,232,120,.98) 26%,
+      rgba(255,192,40,.68) 52%,
+      rgba(255,160,0,.20) 72%,
+      transparent 82%);
   opacity: 0;
+  z-index: 42;
+  pointer-events: none;
   mix-blend-mode: screen;
 }
 
-.money-screen.active .vault-glow {
-  animation: vaultGlow 1.9s ease forwards;
+.money-screen.ingot-flash .ingot-core-glow {
+  animation: ingotGlowBurst .78s ease-out forwards;
 }
 
-@keyframes vaultGlow {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(.5); }
-  35% { opacity: 1; transform: translate(-50%, -50%) scale(1.18); }
-  70% { opacity: .78; transform: translate(-50%, -50%) scale(1); }
-  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.42); }
+@keyframes ingotGlowBurst {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.42); }
+  28% { opacity: 1; transform: translate(-50%, -50%) scale(1.20); }
+  62% { opacity: .92; transform: translate(-50%, -50%) scale(1.02); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.50); }
 }
 
-.fly-coin {
-  position: absolute;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 35% 28%, #fff9c6 0%, #efbe49 40%, #d18d1a 75%, #9d5c12 100%);
-  border: 2px solid rgba(255,241,190,.92);
-  box-shadow:
-    0 0 14px rgba(255,214,72,.85),
-    inset 0 3px 0 rgba(255,255,255,.22);
-  display: grid;
-  place-items: center;
-  color: #9d150b;
-  font-size: 18px;
-  font-weight: 900;
-  opacity: 0;
-}
-
-.money-screen.active .fly-coin {
-  animation-duration: 1.55s;
-  animation-timing-function: cubic-bezier(.28,.85,.38,1);
-  animation-fill-mode: forwards;
-}
-
-.fly-coin.c1 { left: 18px; top: 160px; animation-name: fly1; }
-.fly-coin.c2 { left: 106px; top: 120px; animation-name: fly2; }
-.fly-coin.c3 { right: 36px; top: 148px; animation-name: fly3; }
-.fly-coin.c4 { left: 30px; top: 300px; animation-name: fly4; }
-.fly-coin.c5 { right: 34px; top: 300px; animation-name: fly5; }
-.fly-coin.c6 { left: 74px; top: 450px; animation-name: fly6; }
-.fly-coin.c7 { right: 74px; top: 450px; animation-name: fly7; }
-.fly-coin.c8 { left: 180px; top: 488px; animation-name: fly8; }
-.fly-coin.c9 { left: 24px; top: 410px; animation-name: fly9; }
-.fly-coin.c10 { right: 24px; top: 410px; animation-name: fly10; }
-
-@keyframes fly1 {
-  0% { opacity: 1; transform: translate(0,0) scale(1) rotate(0deg); }
-  50% { opacity: 1; transform: translate(95px,-25px) scale(.85) rotate(180deg); }
-  100% { opacity: 0; transform: translate(175px,195px) scale(.15) rotate(360deg); }
-}
-@keyframes fly2 {
-  0% { opacity: 1; transform: translate(0,0) scale(1) rotate(0deg); }
-  50% { opacity: 1; transform: translate(40px,-18px) scale(.85) rotate(180deg); }
-  100% { opacity: 0; transform: translate(96px,230px) scale(.15) rotate(360deg); }
-}
-@keyframes fly3 {
-  0% { opacity: 1; transform: translate(0,0) scale(1) rotate(0deg); }
-  50% { opacity: 1; transform: translate(-70px,-20px) scale(.85) rotate(180deg); }
-  100% { opacity: 0; transform: translate(-158px,200px) scale(.15) rotate(360deg); }
-}
-@keyframes fly4 {
-  0% { opacity: 1; transform: translate(0,0) scale(1) rotate(0deg); }
-  50% { opacity: 1; transform: translate(90px,-70px) scale(.85) rotate(180deg); }
-  100% { opacity: 0; transform: translate(162px,54px) scale(.15) rotate(360deg); }
-}
-@keyframes fly5 {
-  0% { opacity: 1; transform: translate(0,0) scale(1) rotate(0deg); }
-  50% { opacity: 1; transform: translate(-88px,-72px) scale(.85) rotate(180deg); }
-  100% { opacity: 0; transform: translate(-164px,54px) scale(.15) rotate(360deg); }
-}
-@keyframes fly6 {
-  0% { opacity: 1; transform: translate(0,0) scale(1) rotate(0deg); }
-  50% { opacity: 1; transform: translate(70px,-130px) scale(.85) rotate(180deg); }
-  100% { opacity: 0; transform: translate(120px,-92px) scale(.15) rotate(360deg); }
-}
-@keyframes fly7 {
-  0% { opacity: 1; transform: translate(0,0) scale(1) rotate(0deg); }
-  50% { opacity: 1; transform: translate(-72px,-130px) scale(.85) rotate(180deg); }
-  100% { opacity: 0; transform: translate(-122px,-92px) scale(.15) rotate(360deg); }
-}
-@keyframes fly8 {
-  0% { opacity: 1; transform: translate(0,0) scale(1) rotate(0deg); }
-  50% { opacity: 1; transform: translate(0,-145px) scale(.85) rotate(180deg); }
-  100% { opacity: 0; transform: translate(0,-128px) scale(.15) rotate(360deg); }
-}
-@keyframes fly9 {
-  0% { opacity: 1; transform: translate(0,0) scale(1) rotate(0deg); }
-  50% { opacity: 1; transform: translate(90px,-118px) scale(.85) rotate(180deg); }
-  100% { opacity: 0; transform: translate(170px,-88px) scale(.15) rotate(360deg); }
-}
-@keyframes fly10 {
-  0% { opacity: 1; transform: translate(0,0) scale(1) rotate(0deg); }
-  50% { opacity: 1; transform: translate(-92px,-118px) scale(.85) rotate(180deg); }
-  100% { opacity: 0; transform: translate(-172px,-88px) scale(.15) rotate(360deg); }
-}
-
-.money-complete {
+.money-burst-light {
   position: absolute;
   left: 50%;
-  bottom: 126px;
-  transform: translateX(-50%);
-  z-index: 25;
-  width: 286px;
-  padding: 13px 12px;
-  border-radius: 999px;
-  text-align: center;
+  top: 315px;
+  width: 390px;
+  height: 390px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
   background:
-    radial-gradient(circle at 50% 10%, rgba(255,225,120,.25), transparent 30%),
-    rgba(112,12,5,.9);
-  color: #fff1b8;
-  border: 1.5px solid rgba(255,232,160,.9);
-  box-shadow:
-    0 0 32px rgba(255,219,92,.58),
-    0 10px 24px rgba(50,6,2,.35);
-  font-size: 16px;
-  font-weight: 900;
-  letter-spacing: 3px;
+    radial-gradient(circle,
+      rgba(255,252,215,1) 0%,
+      rgba(255,218,80,.82) 28%,
+      rgba(255,170,30,.30) 54%,
+      transparent 74%);
+  opacity: 0;
+  z-index: 40;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.money-screen.ingot-flash .money-burst-light {
+  animation: moneyBurst .88s ease-out forwards;
+}
+
+@keyframes moneyBurst {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.4); }
+  30% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
+}
+
+.final-glow {
+  position: absolute;
+  left: 50%;
+  top: 315px;
+  width: 340px;
+  height: 260px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255,255,230,.95), rgba(255,214,70,.55) 42%, rgba(255,150,20,.16) 68%, transparent 80%);
+  z-index: 34;
   opacity: 0;
   pointer-events: none;
+  mix-blend-mode: screen;
 }
 
-.money-screen.active .money-complete {
-  animation: completeShow 2.5s ease forwards;
+.money-screen.done .final-glow {
+  animation: finalGlowPulse 2.6s ease-in-out infinite;
 }
 
-@keyframes completeShow {
-  0%, 35% { opacity: 0; transform: translateX(-50%) translateY(10px); }
-  45%, 85% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  100% { opacity: 0; transform: translateX(-50%) translateY(-6px); }
+@keyframes finalGlowPulse {
+  0%, 100% { opacity: .58; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.16); }
 }
 
-.money-flash {
+/* 元寶雨 */
+.ingot-rain-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.fall-ingot {
+  position: absolute;
+  top: -110px;
+  left: 0;
+  width: var(--size, 74px);
+  height: var(--size, 74px);
+  pointer-events: none;
+  z-index: 75;
+
+  background-image: url("ingot-rain.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  filter:
+    drop-shadow(0 0 10px rgba(255, 235, 150, 0.96))
+    drop-shadow(0 0 24px rgba(255, 184, 40, 0.68));
+
+  transform:
+    translateX(var(--startX, 0px))
+    translateY(-120px)
+    scale(.8)
+    rotate(0deg);
+
+  animation: ingotRainAbsorb var(--dur, 1.5s) cubic-bezier(.18,.74,.22,1) forwards;
+}
+
+@keyframes ingotRainAbsorb {
+  0% {
+    opacity: 0;
+    transform:
+      translateX(var(--startX, 0px))
+      translateY(-130px)
+      scale(.58)
+      rotate(0deg);
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  42% {
+    opacity: 1;
+    transform:
+      translateX(var(--startX, 0px))
+      translateY(var(--dropY, 210px))
+      scale(1)
+      rotate(120deg);
+  }
+
+  68% {
+    opacity: 1;
+    transform:
+      translateX(calc(var(--startX, 0px) + var(--curveX, 0px)))
+      translateY(var(--curveY, 260px))
+      scale(.82)
+      rotate(250deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translateX(var(--endX, 180px))
+      translateY(var(--endY, 265px))
+      scale(.10)
+      rotate(520deg);
+  }
+}
+
+/* 財字粒子 */
+.fortune-char {
+  position: absolute;
+  color: #fff1a8;
+  font-size: 24px;
+  font-weight: 900;
+  text-shadow:
+    0 0 10px rgba(255,225,92,.95),
+    0 0 22px rgba(255,160,32,.6);
+  opacity: 0;
+  z-index: 90;
+  animation: fortuneCharFly 1.2s ease-out forwards;
+}
+
+@keyframes fortuneCharFly {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(.5);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--fx), var(--fy)) scale(1.3);
+  }
+}
+
+/* 金粒子 */
+.spark {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fffbd8 0%, #ffd95f 45%, rgba(255,185,50,.2) 100%);
+  box-shadow: 0 0 12px rgba(255,220,100,.95);
+  pointer-events: none;
+  z-index: 90;
+  animation: sparkFly .75s ease-out forwards;
+}
+
+@keyframes sparkFly {
+  0% { opacity: 1; transform: translate(0, 0) scale(.8); }
+  100% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(1.6); }
+}
+
+/* 全畫面閃光 */
+.money-full-flash {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at center, rgba(255,252,215,.98), rgba(255,209,78,.55), transparent 74%);
-  z-index: 999;
+    radial-gradient(circle at center, rgba(255,252,215,.98), rgba(255,209,78,.6), transparent 74%);
+  z-index: 9999;
   pointer-events: none;
-  animation: flashFade .9s ease forwards;
+  animation: fullFlash .9s ease forwards;
 }
 
-@keyframes flashFade {
+@keyframes fullFlash {
   0% { opacity: 0; }
-  20% { opacity: 1; }
+  18% { opacity: 1; }
   100% { opacity: 0; }
 }
 
+/* 補財庫卡片 */
 .money-card {
   margin: 14px 16px 0;
   background:
@@ -661,7 +807,7 @@ select {
   font-size: 18px;
 }
 
-/* 七燈祈福頁 */
+/* 點燈頁 */
 .light-page {
   min-height: 100vh;
   background:
@@ -673,50 +819,10 @@ select {
   position: relative;
 }
 
-.light-page::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, rgba(255,255,255,.08) 1px, transparent 1.5px);
-  background-size: 28px 28px;
-  opacity: .25;
-  pointer-events: none;
-}
-
-.light-hero {
-  position: relative;
-  margin-top: 8px;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.01)),
-    linear-gradient(180deg, #97180d, #6d0d07);
-  border: 1.5px solid rgba(244,206,116,.45);
-  border-radius: 26px;
-  padding: 22px 14px 22px;
-  box-shadow: 0 14px 34px rgba(35, 4, 2, .34);
-  overflow: hidden;
-}
-
-.light-title {
-  text-align: center;
-  font-size: 32px;
-  letter-spacing: 6px;
-  color: #fff1b8;
-  text-shadow: 0 4px 0 rgba(80, 8, 4, .55);
-  margin-bottom: 8px;
-}
-
-.light-subtitle {
-  text-align: center;
-  color: #ffdba0;
-  font-size: 14px;
-  margin-bottom: 16px;
-}
-
 .lamp-options {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  margin-bottom: 16px;
 }
 
 .lamp-option {
@@ -731,10 +837,6 @@ select {
   cursor: pointer;
   min-height: 76px;
   box-shadow: 0 8px 18px rgba(40,4,2,.25);
-}
-
-.lamp-option:active {
-  transform: scale(.98);
 }
 
 .lamp-option .icon {
@@ -758,738 +860,36 @@ select {
 
 .lamp-option.selected {
   border-color: #fff2b0;
-  box-shadow:
-    0 0 18px rgba(255,219,92,.6),
-    0 8px 18px rgba(40,4,2,.25);
+  box-shadow: 0 0 18px rgba(255,219,92,.6);
   background:
     radial-gradient(circle at 50% 0%, rgba(255,239,155,.45), transparent 40%),
     linear-gradient(180deg, #c02a18, #801006);
 }
 
-/* 燈主舞台 */
-.lamp-scene {
-  position: relative;
-  height: 370px;
+.light-hero {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.01)),
+    linear-gradient(180deg, #97180d, #6d0d07);
+  border: 1.5px solid rgba(244,206,116,.45);
+  border-radius: 26px;
+  padding: 22px 14px;
+  box-shadow: 0 14px 34px rgba(35, 4, 2, .34);
+}
+
+.light-title {
+  text-align: center;
+  font-size: 32px;
+  letter-spacing: 6px;
+  color: #fff1b8;
+  text-shadow: 0 4px 0 rgba(80, 8, 4, .55);
+  margin-bottom: 8px;
+}
+
+.light-subtitle {
+  text-align: center;
+  color: #ffdba0;
+  font-size: 14px;
   margin-bottom: 16px;
-  border-radius: 24px;
-  background:
-    radial-gradient(circle at 50% 35%, rgba(255,230,120,.1), transparent 30%),
-    rgba(70, 6, 3, .25);
-  overflow: hidden;
-}
-
-.lamp-type-label {
-  position: absolute;
-  left: 50%;
-  top: 18px;
-  transform: translateX(-50%);
-  z-index: 40;
-  background: rgba(78,8,4,.76);
-  color: #fff2be;
-  border: 1px solid rgba(255,232,160,.66);
-  border-radius: 999px;
-  padding: 7px 16px;
-  font-size: 15px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  box-shadow: 0 0 18px rgba(255,210,90,.2);
-}
-
-.lamp-aura {
-  position: absolute;
-  left: 50%;
-  top: 158px;
-  width: 260px;
-  height: 260px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, var(--aura1, rgba(255,249,208,.95)) 0%, var(--aura2, rgba(255,210,80,.45)) 36%, var(--aura3, rgba(255,160,20,.12)) 60%, transparent 74%);
-  opacity: .55;
-  filter: blur(2px);
-  mix-blend-mode: screen;
-}
-
-.lamp-rays {
-  position: absolute;
-  left: 50%;
-  top: 158px;
-  width: 330px;
-  height: 330px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background:
-    conic-gradient(
-      transparent 0deg 12deg,
-      var(--ray, rgba(255,225,135,.55)) 12deg 17deg,
-      transparent 17deg 30deg,
-      var(--ray2, rgba(255,196,84,.45)) 30deg 36deg,
-      transparent 36deg 48deg,
-      var(--ray, rgba(255,225,135,.55)) 48deg 53deg,
-      transparent 53deg 66deg,
-      var(--ray2, rgba(255,196,84,.45)) 66deg 72deg,
-      transparent 72deg 84deg,
-      var(--ray, rgba(255,225,135,.55)) 84deg 89deg,
-      transparent 89deg 102deg,
-      var(--ray2, rgba(255,196,84,.45)) 102deg 108deg,
-      transparent 108deg 120deg,
-      var(--ray, rgba(255,225,135,.55)) 120deg 125deg,
-      transparent 125deg 138deg,
-      var(--ray2, rgba(255,196,84,.45)) 138deg 144deg,
-      transparent 144deg 156deg,
-      var(--ray, rgba(255,225,135,.55)) 156deg 161deg,
-      transparent 161deg 174deg,
-      var(--ray2, rgba(255,196,84,.45)) 174deg 180deg,
-      transparent 180deg 192deg,
-      var(--ray, rgba(255,225,135,.55)) 192deg 197deg,
-      transparent 197deg 210deg,
-      var(--ray2, rgba(255,196,84,.45)) 210deg 216deg,
-      transparent 216deg 228deg,
-      var(--ray, rgba(255,225,135,.55)) 228deg 233deg,
-      transparent 233deg 246deg,
-      var(--ray2, rgba(255,196,84,.45)) 246deg 252deg,
-      transparent 252deg 264deg,
-      var(--ray, rgba(255,225,135,.55)) 264deg 269deg,
-      transparent 269deg 282deg,
-      var(--ray2, rgba(255,196,84,.45)) 282deg 288deg,
-      transparent 288deg 300deg,
-      var(--ray, rgba(255,225,135,.55)) 300deg 305deg,
-      transparent 305deg 318deg,
-      var(--ray2, rgba(255,196,84,.45)) 318deg 324deg,
-      transparent 324deg 336deg,
-      var(--ray, rgba(255,225,135,.55)) 336deg 341deg,
-      transparent 341deg 360deg
-    );
-  opacity: .35;
-  mix-blend-mode: screen;
-}
-
-/* 燈座 */
-.lamp-base {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: 238px;
-  height: 82px;
-  background: linear-gradient(180deg, #a21f12, #7a1008);
-  border-radius: 40px;
-  border: 2px solid rgba(244,206,116,.55);
-  box-shadow:
-    inset 0 8px 12px rgba(255,255,255,.08),
-    0 10px 20px rgba(30, 3, 2, .28);
-}
-
-.lamp-bowl {
-  position: absolute;
-  left: 50%;
-  bottom: 48px;
-  transform: translateX(-50%);
-  width: 212px;
-  height: 82px;
-  background: linear-gradient(180deg, #f7c765, #c9851a);
-  border-radius: 0 0 110px 110px;
-  border: 2px solid rgba(255,236,180,.8);
-  box-shadow:
-    inset 0 8px 16px rgba(255,255,255,.3),
-    0 10px 18px rgba(60, 6, 2, .26);
-}
-
-.lamp-center {
-  position: absolute;
-  left: 50%;
-  bottom: 108px;
-  transform: translateX(-50%);
-  width: 78px;
-  height: 24px;
-  background: linear-gradient(180deg, #f3df9a, #d9a941);
-  border-radius: 999px;
-  border: 2px solid rgba(255,235,170,.72);
-}
-
-.petal {
-  position: absolute;
-  width: 72px;
-  height: 78px;
-  background: linear-gradient(180deg, var(--petal1, #ff8d8d), var(--petal2, #d61f32));
-  border: 2px solid rgba(255,227,180,.55);
-  box-shadow: inset 0 10px 14px rgba(255,255,255,.15);
-  border-radius: 50% 50% 50% 50% / 58% 58% 42% 42%;
-  bottom: 92px;
-}
-
-.petal.center {
-  left: 50%;
-  transform: translateX(-50%);
-  width: 86px;
-  height: 98px;
-  z-index: 5;
-}
-
-.petal.left1 {
-  left: 50%;
-  transform: translateX(-106px) rotate(-18deg);
-  z-index: 4;
-}
-
-.petal.left2 {
-  left: 50%;
-  transform: translateX(-145px) rotate(-34deg);
-  width: 62px;
-  height: 68px;
-  bottom: 96px;
-  z-index: 3;
-}
-
-.petal.right1 {
-  left: 50%;
-  transform: translateX(34px) rotate(18deg);
-  z-index: 4;
-}
-
-.petal.right2 {
-  left: 50%;
-  transform: translateX(86px) rotate(34deg);
-  width: 62px;
-  height: 68px;
-  bottom: 96px;
-  z-index: 3;
-}
-
-/* 火焰 */
-.flame-core {
-  position: absolute;
-  left: 50%;
-  bottom: 188px;
-  transform: translateX(-50%);
-  width: 30px;
-  height: 58px;
-  background: radial-gradient(circle at 50% 20%, #fffce0, var(--flame1, #ffd866) 35%, var(--flame2, #ff9f16) 70%, var(--flame3, #ff5e00) 100%);
-  border-radius: 55% 55% 60% 60% / 70% 70% 30% 30%;
-  box-shadow: 0 0 18px var(--glow, rgba(255,208,74,.55));
-  z-index: 7;
-}
-
-.flame-inner {
-  position: absolute;
-  left: 50%;
-  bottom: 198px;
-  transform: translateX(-50%);
-  width: 14px;
-  height: 30px;
-  background: radial-gradient(circle at 50% 30%, #fffef2, #fff2a1 50%, var(--flame1, #ffc74f) 100%);
-  border-radius: 60% 60% 60% 60% / 70% 70% 30% 30%;
-  z-index: 8;
-}
-
-/* 不同燈種中心符號 */
-.lamp-symbol {
-  position: absolute;
-  left: 50%;
-  bottom: 142px;
-  transform: translateX(-50%);
-  z-index: 12;
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: rgba(120, 15, 8, .68);
-  color: #fff5c2;
-  border: 1.5px solid rgba(255,232,160,.74);
-  font-size: 24px;
-  font-weight: 900;
-  box-shadow: 0 0 18px var(--glow, rgba(255,208,74,.45));
-}
-
-/* 特效元素 */
-.effect-ring {
-  position: absolute;
-  left: 50%;
-  top: 158px;
-  width: 260px;
-  height: 260px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  border: 2px solid var(--ring, rgba(255,228,120,.5));
-  opacity: 0;
-}
-
-.magic-mark {
-  position: absolute;
-  left: 50%;
-  top: 158px;
-  transform: translate(-50%, -50%);
-  color: var(--mark, #fff1b8);
-  font-size: 76px;
-  font-weight: 900;
-  opacity: 0;
-  text-shadow: 0 0 26px var(--glow, rgba(255,208,74,.65));
-  pointer-events: none;
-}
-
-.lamp-coin,
-.lamp-heart,
-.lamp-star,
-.lamp-leaf,
-.lamp-shield {
-  position: absolute;
-  width: 26px;
-  height: 26px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  opacity: 0;
-  font-size: 18px;
-  font-weight: 900;
-  z-index: 15;
-}
-
-.lamp-coin {
-  background: radial-gradient(circle at 35% 28%, #fff9c6, #efbe49 45%, #9d5c12 100%);
-  color: #9d150b;
-  border: 1px solid rgba(255,241,190,.9);
-}
-
-.lamp-heart {
-  color: #ffb6ce;
-  text-shadow: 0 0 12px rgba(255,120,170,.9);
-}
-
-.lamp-star {
-  color: #d9f1ff;
-  text-shadow: 0 0 12px rgba(120,210,255,.9);
-}
-
-.lamp-leaf {
-  color: #b9ffe0;
-  text-shadow: 0 0 12px rgba(80,255,180,.9);
-}
-
-.lamp-shield {
-  color: #fff8dc;
-  text-shadow: 0 0 12px rgba(255,245,200,.9);
-}
-
-/* 粒子 */
-.light-particle {
-  position: absolute;
-  bottom: 110px;
-  left: 50%;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #fff9dc, var(--particle, #ffd55a) 60%, rgba(255,200,80,.2) 100%);
-  opacity: 0;
-  box-shadow: 0 0 10px var(--glow, rgba(255,212,75,.6));
-}
-
-.light-particle.p1 { transform: translateX(-16px); }
-.light-particle.p2 { transform: translateX(12px); }
-.light-particle.p3 { transform: translateX(-50px); }
-.light-particle.p4 { transform: translateX(42px); }
-.light-particle.p5 { transform: translateX(-76px); }
-.light-particle.p6 { transform: translateX(68px); }
-
-/* 啟動點燈基礎效果 */
-.light-scene.active .lamp-aura {
-  opacity: 1;
-  filter: blur(0);
-  animation: auraPulse 2s ease infinite;
-}
-
-.light-scene.active .lamp-rays {
-  opacity: .72;
-  animation: lightSpin 5s linear infinite;
-}
-
-.light-scene.active .flame-core {
-  transform: translateX(-50%) scale(1.28);
-  box-shadow:
-    0 0 18px var(--glow, rgba(255,208,74,.8)),
-    0 0 46px var(--glow, rgba(255,190,56,.82)),
-    0 0 92px var(--glowSoft, rgba(255,168,44,.4));
-}
-
-.light-scene.active .flame-inner {
-  transform: translateX(-50%) scale(1.18);
-  box-shadow: 0 0 18px rgba(255,243,150,.7);
-}
-
-.light-scene.active .petal {
-  box-shadow:
-    inset 0 10px 14px rgba(255,255,255,.18),
-    0 0 18px var(--glow, rgba(255,181,120,.55)),
-    0 0 38px var(--glowSoft, rgba(255,110,80,.28));
-  filter: saturate(1.16) brightness(1.05);
-}
-
-.light-scene.active .light-particle {
-  opacity: 1;
-}
-
-.light-scene.active .p1 { animation: float1 2.2s ease-in infinite; }
-.light-scene.active .p2 { animation: float2 2s ease-in .2s infinite; }
-.light-scene.active .p3 { animation: float3 2.5s ease-in .1s infinite; }
-.light-scene.active .p4 { animation: float4 2.1s ease-in .35s infinite; }
-.light-scene.active .p5 { animation: float5 2.4s ease-in .15s infinite; }
-.light-scene.active .p6 { animation: float6 2.25s ease-in .4s infinite; }
-
-.light-scene.active .effect-ring {
-  animation: ringExpand 1.7s ease-out infinite;
-}
-
-.light-scene.active .magic-mark {
-  animation: markShow 2.1s ease forwards;
-}
-
-/* 各燈種獨有效果 */
-.light-scene.guangming {
-  --aura1: rgba(255,255,235,.98);
-  --aura2: rgba(255,226,100,.62);
-  --aura3: rgba(255,196,40,.2);
-  --ray: rgba(255,248,190,.82);
-  --ray2: rgba(255,220,80,.72);
-  --petal1: #ff9a7d;
-  --petal2: #dc2d1e;
-  --flame1: #fff0a2;
-  --flame2: #ffbd2f;
-  --flame3: #ff7200;
-  --glow: rgba(255,226,92,.9);
-  --glowSoft: rgba(255,196,52,.45);
-  --particle: #ffe070;
-  --ring: rgba(255,248,190,.8);
-  --mark: #fff4b8;
-}
-
-.light-scene.taisui {
-  --aura1: rgba(255,220,255,.98);
-  --aura2: rgba(190,80,255,.56);
-  --aura3: rgba(120,40,255,.22);
-  --ray: rgba(230,150,255,.78);
-  --ray2: rgba(255,90,170,.62);
-  --petal1: #b86cff;
-  --petal2: #7c1bb8;
-  --flame1: #ffe6ff;
-  --flame2: #c55cff;
-  --flame3: #6d20ff;
-  --glow: rgba(210,110,255,.9);
-  --glowSoft: rgba(170,70,255,.45);
-  --particle: #d991ff;
-  --ring: rgba(220,150,255,.75);
-  --mark: #f1c2ff;
-}
-
-.light-scene.wenchang {
-  --aura1: rgba(225,248,255,.98);
-  --aura2: rgba(90,190,255,.56);
-  --aura3: rgba(30,120,255,.2);
-  --ray: rgba(150,220,255,.8);
-  --ray2: rgba(255,220,110,.6);
-  --petal1: #77cfff;
-  --petal2: #1d72d8;
-  --flame1: #eaffff;
-  --flame2: #6ed7ff;
-  --flame3: #248cff;
-  --glow: rgba(90,210,255,.9);
-  --glowSoft: rgba(70,150,255,.45);
-  --particle: #8be4ff;
-  --ring: rgba(140,220,255,.78);
-  --mark: #d8f6ff;
-}
-
-.light-scene.caili {
-  --aura1: rgba(255,250,210,.98);
-  --aura2: rgba(255,206,60,.7);
-  --aura3: rgba(255,145,20,.24);
-  --ray: rgba(255,230,110,.86);
-  --ray2: rgba(255,180,40,.72);
-  --petal1: #ffb35b;
-  --petal2: #d9820b;
-  --flame1: #fff7b5;
-  --flame2: #ffc731;
-  --flame3: #ff8a00;
-  --glow: rgba(255,210,70,.95);
-  --glowSoft: rgba(255,170,40,.5);
-  --particle: #ffd85c;
-  --ring: rgba(255,220,85,.85);
-  --mark: #ffe78a;
-}
-
-.light-scene.yaoshi {
-  --aura1: rgba(220,255,245,.98);
-  --aura2: rgba(70,230,180,.56);
-  --aura3: rgba(20,180,160,.2);
-  --ray: rgba(120,255,215,.78);
-  --ray2: rgba(90,190,255,.6);
-  --petal1: #75ffd1;
-  --petal2: #15997c;
-  --flame1: #eafff7;
-  --flame2: #62f0c8;
-  --flame3: #10a88a;
-  --glow: rgba(90,245,200,.9);
-  --glowSoft: rgba(60,210,180,.45);
-  --particle: #8cffd7;
-  --ring: rgba(130,255,220,.75);
-  --mark: #c9fff0;
-}
-
-.light-scene.yinyuan {
-  --aura1: rgba(255,230,240,.98);
-  --aura2: rgba(255,105,160,.58);
-  --aura3: rgba(255,70,130,.22);
-  --ray: rgba(255,150,190,.78);
-  --ray2: rgba(255,205,230,.62);
-  --petal1: #ff9fbd;
-  --petal2: #e02d74;
-  --flame1: #fff0f6;
-  --flame2: #ff88bd;
-  --flame3: #ff3c7c;
-  --glow: rgba(255,130,180,.9);
-  --glowSoft: rgba(255,90,150,.45);
-  --particle: #ff9bc1;
-  --ring: rgba(255,150,195,.75);
-  --mark: #ffd0e2;
-}
-
-.light-scene.pingan {
-  --aura1: rgba(255,255,245,.98);
-  --aura2: rgba(255,238,170,.56);
-  --aura3: rgba(255,255,255,.24);
-  --ray: rgba(255,255,230,.8);
-  --ray2: rgba(255,220,130,.62);
-  --petal1: #fff1c7;
-  --petal2: #d9a64c;
-  --flame1: #fffbe0;
-  --flame2: #ffe28b;
-  --flame3: #ffb340;
-  --glow: rgba(255,244,190,.9);
-  --glowSoft: rgba(255,230,150,.45);
-  --particle: #fff1a8;
-  --ring: rgba(255,252,210,.75);
-  --mark: #fff8d4;
-}
-
-/* 財利燈金幣 */
-.light-scene.active.caili .lamp-coin {
-  opacity: 1;
-}
-
-.light-scene.active.caili .coin-a { animation: lampCoinA 1.8s ease-in-out infinite; }
-.light-scene.active.caili .coin-b { animation: lampCoinB 1.9s ease-in-out .2s infinite; }
-.light-scene.active.caili .coin-c { animation: lampCoinC 2s ease-in-out .1s infinite; }
-.light-scene.active.caili .coin-d { animation: lampCoinD 1.7s ease-in-out .3s infinite; }
-
-/* 姻緣燈愛心 */
-.light-scene.active.yinyuan .lamp-heart {
-  opacity: 1;
-}
-
-.light-scene.active.yinyuan .heart-a { animation: heartA 2s ease-in-out infinite; }
-.light-scene.active.yinyuan .heart-b { animation: heartB 2.2s ease-in-out .2s infinite; }
-.light-scene.active.yinyuan .heart-c { animation: heartC 2.4s ease-in-out .3s infinite; }
-.light-scene.active.yinyuan .heart-d { animation: heartD 2.1s ease-in-out .1s infinite; }
-
-/* 文昌燈星光 */
-.light-scene.active.wenchang .lamp-star {
-  opacity: 1;
-}
-
-.light-scene.active.wenchang .star-a { animation: starA 2s ease-in-out infinite; }
-.light-scene.active.wenchang .star-b { animation: starB 2.2s ease-in-out .2s infinite; }
-.light-scene.active.wenchang .star-c { animation: starC 2.4s ease-in-out .3s infinite; }
-.light-scene.active.wenchang .star-d { animation: starD 2.1s ease-in-out .1s infinite; }
-
-/* 藥師燈療癒葉光 */
-.light-scene.active.yaoshi .lamp-leaf {
-  opacity: 1;
-}
-
-.light-scene.active.yaoshi .leaf-a { animation: leafA 2s ease-in-out infinite; }
-.light-scene.active.yaoshi .leaf-b { animation: leafB 2.2s ease-in-out .2s infinite; }
-.light-scene.active.yaoshi .leaf-c { animation: leafC 2.4s ease-in-out .3s infinite; }
-.light-scene.active.yaoshi .leaf-d { animation: leafD 2.1s ease-in-out .1s infinite; }
-
-/* 平安燈護盾 */
-.light-scene.active.pingan .lamp-shield {
-  opacity: 1;
-}
-
-.light-scene.active.pingan .shield-a { animation: shieldA 2.2s ease-in-out infinite; }
-.light-scene.active.pingan .shield-b { animation: shieldB 2.2s ease-in-out .2s infinite; }
-.light-scene.active.pingan .shield-c { animation: shieldC 2.2s ease-in-out .4s infinite; }
-
-/* 動畫 */
-@keyframes auraPulse {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  50% { transform: translate(-50%, -50%) scale(1.18); }
-  100% { transform: translate(-50%, -50%) scale(1); }
-}
-
-@keyframes lightSpin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-@keyframes ringExpand {
-  0% { opacity: .85; transform: translate(-50%, -50%) scale(.5); }
-  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.55); }
-}
-
-@keyframes markShow {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(.65) rotate(-8deg); }
-  35% { opacity: .85; transform: translate(-50%, -50%) scale(1.1) rotate(0deg); }
-  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.28) rotate(8deg); }
-}
-
-@keyframes float1 {
-  0% { transform: translateX(-16px) translateY(0) scale(.7); opacity: 0; }
-  20% { opacity: 1; }
-  100% { transform: translateX(-42px) translateY(-210px) scale(1.1); opacity: 0; }
-}
-@keyframes float2 {
-  0% { transform: translateX(12px) translateY(0) scale(.7); opacity: 0; }
-  20% { opacity: 1; }
-  100% { transform: translateX(34px) translateY(-230px) scale(1); opacity: 0; }
-}
-@keyframes float3 {
-  0% { transform: translateX(-50px) translateY(0) scale(.7); opacity: 0; }
-  20% { opacity: 1; }
-  100% { transform: translateX(-78px) translateY(-180px) scale(1.05); opacity: 0; }
-}
-@keyframes float4 {
-  0% { transform: translateX(42px) translateY(0) scale(.7); opacity: 0; }
-  20% { opacity: 1; }
-  100% { transform: translateX(86px) translateY(-200px) scale(1.05); opacity: 0; }
-}
-@keyframes float5 {
-  0% { transform: translateX(-76px) translateY(0) scale(.7); opacity: 0; }
-  20% { opacity: 1; }
-  100% { transform: translateX(-106px) translateY(-165px) scale(1); opacity: 0; }
-}
-@keyframes float6 {
-  0% { transform: translateX(68px) translateY(0) scale(.7); opacity: 0; }
-  20% { opacity: 1; }
-  100% { transform: translateX(112px) translateY(-175px) scale(1); opacity: 0; }
-}
-
-@keyframes lampCoinA {
-  0% { left: 58px; top: 250px; transform: scale(.8); opacity: 0; }
-  20% { opacity: 1; }
-  100% { left: 170px; top: 180px; transform: scale(.4) rotate(360deg); opacity: 0; }
-}
-@keyframes lampCoinB {
-  0% { right: 60px; top: 255px; transform: scale(.8); opacity: 0; }
-  20% { opacity: 1; }
-  100% { right: 170px; top: 182px; transform: scale(.4) rotate(360deg); opacity: 0; }
-}
-@keyframes lampCoinC {
-  0% { left: 88px; top: 115px; transform: scale(.8); opacity: 0; }
-  20% { opacity: 1; }
-  100% { left: 172px; top: 180px; transform: scale(.4) rotate(360deg); opacity: 0; }
-}
-@keyframes lampCoinD {
-  0% { right: 88px; top: 115px; transform: scale(.8); opacity: 0; }
-  20% { opacity: 1; }
-  100% { right: 172px; top: 180px; transform: scale(.4) rotate(360deg); opacity: 0; }
-}
-
-@keyframes heartA {
-  0% { left: 90px; top: 250px; transform: scale(.7); opacity: 0; }
-  25% { opacity: 1; }
-  100% { left: 52px; top: 92px; transform: scale(1.4); opacity: 0; }
-}
-@keyframes heartB {
-  0% { right: 92px; top: 248px; transform: scale(.7); opacity: 0; }
-  25% { opacity: 1; }
-  100% { right: 54px; top: 95px; transform: scale(1.4); opacity: 0; }
-}
-@keyframes heartC {
-  0% { left: 170px; top: 260px; transform: scale(.7); opacity: 0; }
-  25% { opacity: 1; }
-  100% { left: 132px; top: 72px; transform: scale(1.5); opacity: 0; }
-}
-@keyframes heartD {
-  0% { right: 160px; top: 260px; transform: scale(.7); opacity: 0; }
-  25% { opacity: 1; }
-  100% { right: 126px; top: 78px; transform: scale(1.5); opacity: 0; }
-}
-
-@keyframes starA {
-  0% { left: 65px; top: 250px; transform: scale(.6) rotate(0deg); opacity: 0; }
-  25% { opacity: 1; }
-  100% { left: 45px; top: 85px; transform: scale(1.5) rotate(180deg); opacity: 0; }
-}
-@keyframes starB {
-  0% { right: 65px; top: 250px; transform: scale(.6) rotate(0deg); opacity: 0; }
-  25% { opacity: 1; }
-  100% { right: 45px; top: 85px; transform: scale(1.5) rotate(180deg); opacity: 0; }
-}
-@keyframes starC {
-  0% { left: 160px; top: 255px; transform: scale(.6) rotate(0deg); opacity: 0; }
-  25% { opacity: 1; }
-  100% { left: 115px; top: 70px; transform: scale(1.4) rotate(180deg); opacity: 0; }
-}
-@keyframes starD {
-  0% { right: 160px; top: 255px; transform: scale(.6) rotate(0deg); opacity: 0; }
-  25% { opacity: 1; }
-  100% { right: 115px; top: 70px; transform: scale(1.4) rotate(180deg); opacity: 0; }
-}
-
-@keyframes leafA {
-  0% { left: 72px; top: 260px; transform: scale(.6) rotate(-20deg); opacity: 0; }
-  25% { opacity: 1; }
-  100% { left: 46px; top: 94px; transform: scale(1.3) rotate(40deg); opacity: 0; }
-}
-@keyframes leafB {
-  0% { right: 72px; top: 260px; transform: scale(.6) rotate(20deg); opacity: 0; }
-  25% { opacity: 1; }
-  100% { right: 46px; top: 94px; transform: scale(1.3) rotate(-40deg); opacity: 0; }
-}
-@keyframes leafC {
-  0% { left: 170px; top: 270px; transform: scale(.6) rotate(-20deg); opacity: 0; }
-  25% { opacity: 1; }
-  100% { left: 130px; top: 78px; transform: scale(1.25) rotate(60deg); opacity: 0; }
-}
-@keyframes leafD {
-  0% { right: 170px; top: 270px; transform: scale(.6) rotate(20deg); opacity: 0; }
-  25% { opacity: 1; }
-  100% { right: 130px; top: 78px; transform: scale(1.25) rotate(-60deg); opacity: 0; }
-}
-
-@keyframes shieldA {
-  0% { left: 62px; top: 175px; transform: scale(.6); opacity: 0; }
-  25% { opacity: 1; }
-  100% { left: 24px; top: 175px; transform: scale(1.45); opacity: 0; }
-}
-@keyframes shieldB {
-  0% { right: 62px; top: 175px; transform: scale(.6); opacity: 0; }
-  25% { opacity: 1; }
-  100% { right: 24px; top: 175px; transform: scale(1.45); opacity: 0; }
-}
-@keyframes shieldC {
-  0% { left: 50%; top: 260px; transform: translateX(-50%) scale(.6); opacity: 0; }
-  25% { opacity: 1; }
-  100% { left: 50%; top: 60px; transform: translateX(-50%) scale(1.45); opacity: 0; }
-}
-
-/* 按鈕與結果 */
-.light-action-btn {
-  width: 100%;
-  height: 64px;
-  border: none;
-  border-radius: 999px;
-  background:
-    radial-gradient(circle at 15% 50%, rgba(255,228,140,.35), transparent 20%),
-    radial-gradient(circle at 85% 50%, rgba(255,228,140,.35), transparent 20%),
-    linear-gradient(180deg, #d4301f, #99120c);
-  color: #fff0b5;
-  font-size: 23px;
-  font-weight: 900;
-  letter-spacing: 4px;
-  border: 2px solid rgba(244,206,116,.74);
-  box-shadow: 0 10px 20px rgba(50, 6, 2, .3);
-  cursor: pointer;
 }
 
 .light-result {
@@ -1501,70 +901,14 @@ select {
   line-height: 1.7;
 }
 
-.light-card {
-  margin-top: 16px;
-}
-
-.light-complete-toast {
-  position: fixed;
-  left: 50%;
-  bottom: 100px;
-  transform: translateX(-50%);
-  background:
-    radial-gradient(circle at 50% 0%, rgba(255,227,120,.25), transparent 32%),
-    rgba(112,12,5,.94);
-  color: #fff1b8;
-  border: 1.5px solid rgba(255,232,160,.92);
-  box-shadow:
-    0 0 28px rgba(255,219,92,.55),
-    0 12px 26px rgba(40,4,2,.35);
-  border-radius: 999px;
-  padding: 14px 24px;
-  z-index: 9999;
-  font-size: 16px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  opacity: 0;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-.light-complete-toast.show {
-  animation: toastShow 2.3s ease forwards;
-}
-
-@keyframes toastShow {
-  0% { opacity: 0; transform: translateX(-50%) translateY(16px); }
-  15% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  80% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
-}
-
-.light-flash {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at center, var(--flash1, rgba(255,250,220,.96)), var(--flash2, rgba(255,213,88,.35)), transparent 72%);
-  pointer-events: none;
-  z-index: 9998;
-  animation: flashFade .85s ease forwards;
-}
-
 @media (max-width: 380px) {
   .form-row {
     grid-template-columns: 1fr;
     gap: 0;
   }
 
-  .light-title {
-    font-size: 28px;
-  }
-
   .lamp-options {
     grid-template-columns: 1fr;
-  }
-
-  .lamp-scene {
-    height: 350px;
   }
 }
 </style>
@@ -1599,31 +943,26 @@ select {
       <div class="money-screen" id="moneyScreen">
         <button class="money-visible-back" onclick="changePage('homePage')">← 返回首頁</button>
 
-        <div class="money-overlay">
-          <div class="rotating-rays"></div>
-          <div class="burst-light"></div>
-          <div class="vault-glow"></div>
+        <div class="sky-crack"></div>
+        <div class="heaven-beam"></div>
+        <div class="money-rotating-rays"></div>
+        <div class="absorb-vortex"></div>
+        <div class="final-glow"></div>
+        <div class="money-burst-light"></div>
+        <div class="ingot-core-glow"></div>
 
-          <div class="fly-coin c1">財</div>
-          <div class="fly-coin c2">財</div>
-          <div class="fly-coin c3">財</div>
-          <div class="fly-coin c4">財</div>
-          <div class="fly-coin c5">財</div>
-          <div class="fly-coin c6">財</div>
-          <div class="fly-coin c7">財</div>
-          <div class="fly-coin c8">財</div>
-          <div class="fly-coin c9">財</div>
-          <div class="fly-coin c10">財</div>
-        </div>
+        <div class="ingot-rain-layer" id="ingotRainLayer"></div>
 
-        <div class="money-complete">財庫發光・補財完成</div>
-
-        <button class="money-start" onclick="startMoneyBlessing()">啟動補財庫</button>
+        <button class="money-start" id="moneyStartBtn" onclick="startMoneyBlessing()">
+          啟動補財庫
+        </button>
       </div>
 
       <div class="money-card">
         <h3>土地公補財庫祈福</h3>
-        <p id="moneyBlessText">誠心啟動補財庫，讓金光加持、財氣匯聚、金幣飛入元寶、福運入庫。</p>
+        <p id="moneyBlessText">
+          誠心啟動補財庫，讓金光加持、財氣匯聚、精美元寶雨從天而降，被大元寶吸入財庫。
+        </p>
 
         <div class="money-list">
           <div class="money-item">
@@ -1632,7 +971,7 @@ select {
           </div>
           <div class="money-item">
             <span>偏財</span>
-            <strong id="moneySide">小吉</strong>
+            <strong id="moneySide">有進財</strong>
           </div>
           <div class="money-item">
             <span>守財</span>
@@ -1656,109 +995,56 @@ select {
         <div class="light-subtitle">選擇燈種・點亮心願・祈求順遂</div>
 
         <div class="lamp-options">
-          <button class="lamp-option selected" data-lamp="guangming" onclick="selectLamp('guangming')">
+          <button class="lamp-option selected" onclick="selectLamp(this, '光明燈', '光明燈已點亮，願光明照路、前程順遂。')">
             <span class="icon">☀</span>
             <strong>光明燈</strong>
             <small>開智慧・照前程</small>
           </button>
 
-          <button class="lamp-option" data-lamp="taisui" onclick="selectLamp('taisui')">
+          <button class="lamp-option" onclick="selectLamp(this, '太歲燈', '太歲燈已點亮，願流年安穩、逢凶化吉。')">
             <span class="icon">✦</span>
             <strong>太歲燈</strong>
             <small>護流年・化不順</small>
           </button>
 
-          <button class="lamp-option" data-lamp="wenchang" onclick="selectLamp('wenchang')">
+          <button class="lamp-option" onclick="selectLamp(this, '文昌燈', '文昌燈已點亮，願考運提升、學業進步。')">
             <span class="icon">文</span>
             <strong>文昌燈</strong>
             <small>助考運・增學業</small>
           </button>
 
-          <button class="lamp-option" data-lamp="caili" onclick="selectLamp('caili')">
+          <button class="lamp-option" onclick="selectLamp(this, '財利燈', '財利燈已點亮，願財氣匯聚、財庫漸旺。')">
             <span class="icon">財</span>
             <strong>財利燈</strong>
             <small>招財氣・旺財庫</small>
           </button>
 
-          <button class="lamp-option" data-lamp="yaoshi" onclick="selectLamp('yaoshi')">
+          <button class="lamp-option" onclick="selectLamp(this, '藥師燈', '藥師燈已點亮，願身心安和、健康平穩。')">
             <span class="icon">藥</span>
             <strong>藥師燈</strong>
             <small>祈健康・除病氣</small>
           </button>
 
-          <button class="lamp-option" data-lamp="yinyuan" onclick="selectLamp('yinyuan')">
+          <button class="lamp-option" onclick="selectLamp(this, '姻緣燈', '姻緣燈已點亮，願良緣靠近、感情和合。')">
             <span class="icon">♡</span>
             <strong>姻緣燈</strong>
             <small>牽良緣・和感情</small>
           </button>
 
-          <button class="lamp-option" data-lamp="pingan" onclick="selectLamp('pingan')">
+          <button class="lamp-option" onclick="selectLamp(this, '平安燈', '平安燈已點亮，願出入平安、家宅安穩。')">
             <span class="icon">安</span>
             <strong>平安燈</strong>
             <small>保平安・護家運</small>
           </button>
         </div>
 
-        <div class="lamp-scene light-scene guangming" id="lightScene">
-          <div class="lamp-type-label" id="lampTypeLabel">光明燈</div>
-
-          <div class="lamp-rays"></div>
-          <div class="lamp-aura"></div>
-          <div class="effect-ring"></div>
-          <div class="magic-mark" id="magicMark">光</div>
-
-          <div class="lamp-coin coin-a">財</div>
-          <div class="lamp-coin coin-b">財</div>
-          <div class="lamp-coin coin-c">財</div>
-          <div class="lamp-coin coin-d">財</div>
-
-          <div class="lamp-heart heart-a">❤</div>
-          <div class="lamp-heart heart-b">❤</div>
-          <div class="lamp-heart heart-c">❤</div>
-          <div class="lamp-heart heart-d">❤</div>
-
-          <div class="lamp-star star-a">✦</div>
-          <div class="lamp-star star-b">✦</div>
-          <div class="lamp-star star-c">✦</div>
-          <div class="lamp-star star-d">✦</div>
-
-          <div class="lamp-leaf leaf-a">✚</div>
-          <div class="lamp-leaf leaf-b">✚</div>
-          <div class="lamp-leaf leaf-c">✚</div>
-          <div class="lamp-leaf leaf-d">✚</div>
-
-          <div class="lamp-shield shield-a">安</div>
-          <div class="lamp-shield shield-b">安</div>
-          <div class="lamp-shield shield-c">安</div>
-
-          <div class="petal left2"></div>
-          <div class="petal left1"></div>
-          <div class="petal center"></div>
-          <div class="petal right1"></div>
-          <div class="petal right2"></div>
-
-          <div class="flame-core"></div>
-          <div class="flame-inner"></div>
-          <div class="lamp-symbol" id="lampSymbol">光</div>
-          <div class="lamp-center"></div>
-          <div class="lamp-bowl"></div>
-          <div class="lamp-base"></div>
-
-          <div class="light-particle p1"></div>
-          <div class="light-particle p2"></div>
-          <div class="light-particle p3"></div>
-          <div class="light-particle p4"></div>
-          <div class="light-particle p5"></div>
-          <div class="light-particle p6"></div>
-        </div>
-
-        <button class="light-action-btn" onclick="startBlessingLight()">啟動祈福點燈</button>
+        <button class="main-btn" onclick="startBlessingLight()">啟動祈福點燈</button>
         <div class="light-result" id="lightResult">目前選擇：光明燈。願光明照路，前程順遂。</div>
       </div>
 
-      <div class="card light-card">
+      <div class="card" style="margin-top:16px;">
         <h3>七燈祈福說明</h3>
-        <p id="lampIntro">光明燈象徵照亮前路、開啟智慧，適合祈求方向清楚、前程明朗。</p>
+        <p>可選擇光明燈、太歲燈、文昌燈、財利燈、藥師燈、姻緣燈及平安燈，每種燈都有不同祝福方向。</p>
         <p class="notice">此功能為祈福互動效果展示，可搭配求籤、補財庫與命盤功能使用。</p>
       </div>
     </div>
@@ -1883,82 +1169,9 @@ const dailyMessages = [
   "今日人緣順暢，適合溝通、拜訪與處理合作事項。"
 ];
 
-const moneyLuckMain = ["旺","大旺","漸旺","有進財","招財"];
+const moneyLuckMain = ["旺","大旺","爆旺","有進財","招財"];
 const moneyLuckSide = ["小吉","有偏財","轉旺","有機會","偏財順"];
 const moneyLuckKeep = ["佳","守得住","穩定","安穩","聚財"];
-
-const lampData = {
-  guangming: {
-    name: "光明燈",
-    symbol: "光",
-    mark: "光",
-    result: "光明燈已點亮，願光明照路、前程順遂、智慧開啟。",
-    intro: "光明燈象徵照亮前路、開啟智慧，適合祈求方向清楚、前程明朗。",
-    toast: "光明燈點亮・前路光明",
-    flash1: "rgba(255,255,230,.96)",
-    flash2: "rgba(255,220,80,.38)"
-  },
-  taisui: {
-    name: "太歲燈",
-    symbol: "太",
-    mark: "歲",
-    result: "太歲燈已點亮，願流年安穩、逢凶化吉、諸事平順。",
-    intro: "太歲燈象徵護持流年、化解不順，適合祈求一年安穩、平安避災。",
-    toast: "太歲燈點亮・護法安年",
-    flash1: "rgba(255,225,255,.96)",
-    flash2: "rgba(190,80,255,.38)"
-  },
-  wenchang: {
-    name: "文昌燈",
-    symbol: "文",
-    mark: "昌",
-    result: "文昌燈已點亮，願考運提升、思路清晰、學業進步。",
-    intro: "文昌燈象徵文思、考運與學習，適合祈求考試順利、靈感清楚。",
-    toast: "文昌燈點亮・文氣上升",
-    flash1: "rgba(225,248,255,.96)",
-    flash2: "rgba(90,190,255,.38)"
-  },
-  caili: {
-    name: "財利燈",
-    symbol: "財",
-    mark: "財",
-    result: "財利燈已點亮，願財氣匯聚、正偏財順、財庫漸旺。",
-    intro: "財利燈象徵招財、聚財與財氣流通，適合祈求工作收入、財運順遂。",
-    toast: "財利燈點亮・財氣匯聚",
-    flash1: "rgba(255,250,210,.96)",
-    flash2: "rgba(255,200,40,.45)"
-  },
-  yaoshi: {
-    name: "藥師燈",
-    symbol: "藥",
-    mark: "癒",
-    result: "藥師燈已點亮，願身心安和、病氣遠離、健康平穩。",
-    intro: "藥師燈象徵療癒與安康，適合祈求健康、身心恢復與家人平安。",
-    toast: "藥師燈點亮・身心安康",
-    flash1: "rgba(220,255,245,.96)",
-    flash2: "rgba(70,230,180,.38)"
-  },
-  yinyuan: {
-    name: "姻緣燈",
-    symbol: "緣",
-    mark: "♡",
-    result: "姻緣燈已點亮，願良緣靠近、感情和合、人緣圓滿。",
-    intro: "姻緣燈象徵良緣、人緣與和合，適合祈求感情順利、關係圓融。",
-    toast: "姻緣燈點亮・良緣和合",
-    flash1: "rgba(255,230,240,.96)",
-    flash2: "rgba(255,105,160,.38)"
-  },
-  pingan: {
-    name: "平安燈",
-    symbol: "安",
-    mark: "安",
-    result: "平安燈已點亮，願出入平安、家宅安穩、萬事順心。",
-    intro: "平安燈象徵守護與安穩，適合祈求家運平安、出入順遂。",
-    toast: "平安燈點亮・平安守護",
-    flash1: "rgba(255,255,245,.96)",
-    flash2: "rgba(255,238,170,.38)"
-  }
-};
 
 const sticks = [
   {
@@ -1987,7 +1200,8 @@ const sticks = [
   }
 ];
 
-let currentLamp = "guangming";
+let currentLampName = "光明燈";
+let currentLampMessage = "光明燈已點亮，願光明照路、前程順遂。";
 
 function changePage(pageId) {
   document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
@@ -1995,7 +1209,6 @@ function changePage(pageId) {
 
   if (pageId === "recordPage") renderRecords();
   if (pageId === "moneyPage") resetMoneyPage();
-  if (pageId === "lightPage") resetLightPage();
 
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
@@ -2011,43 +1224,181 @@ function showMessage(title, text) {
 /* 補財庫 */
 function resetMoneyPage() {
   const screen = document.getElementById("moneyScreen");
-  screen.classList.remove("active");
+  const rainLayer = document.getElementById("ingotRainLayer");
+  const btn = document.getElementById("moneyStartBtn");
+
+  screen.classList.remove("shake", "heaven-open", "rays-on", "absorbing", "ingot-flash", "done");
+  rainLayer.innerHTML = "";
 
   document.getElementById("moneyBlessText").textContent =
-    "誠心啟動補財庫，讓金光加持、財氣匯聚、金幣飛入元寶、福運入庫。";
+    "誠心啟動補財庫，讓金光加持、財氣匯聚、精美元寶雨從天而降，被大元寶吸入財庫。";
 
   refreshMoneyLuck();
+
+  btn.disabled = false;
+  btn.style.opacity = "1";
+  btn.style.cursor = "pointer";
 }
 
 function startMoneyBlessing() {
   const screen = document.getElementById("moneyScreen");
+  const rainLayer = document.getElementById("ingotRainLayer");
+  const btn = document.getElementById("moneyStartBtn");
+  const blessText = document.getElementById("moneyBlessText");
 
-  screen.classList.remove("active");
+  btn.disabled = true;
+  btn.style.opacity = ".72";
+  btn.style.cursor = "not-allowed";
+
+  screen.classList.remove("shake", "heaven-open", "rays-on", "absorbing", "ingot-flash", "done");
+  rainLayer.innerHTML = "";
   void screen.offsetWidth;
-  screen.classList.add("active");
 
-  const flash = document.createElement("div");
-  flash.className = "money-flash";
-  document.body.appendChild(flash);
+  screen.classList.add("shake", "heaven-open", "rays-on", "absorbing");
+
+  createFullFlash();
+
+  blessText.textContent =
+    "補財庫啟動：大量精美元寶雨從天而降，正在被中間大元寶吸走，財庫金光大亮。";
 
   refreshMoneyLuck();
+  saveRecord("補財庫", "補財庫｜大量精美元寶雨・大元寶吸財入庫");
 
-  document.getElementById("moneyBlessText").textContent =
-    "金光已啟動，金幣正飛入金元寶，財庫正在發光，象徵財氣入庫、福氣加持、財運增旺。";
+  const totalIngots = 72;
+  const dropInterval = 38;
+  let finishedCount = 0;
 
-  saveRecord("補財庫", "已啟動補財庫祈福｜金幣入寶・財庫發光・財氣入庫");
+  for (let i = 0; i < totalIngots; i++) {
+    setTimeout(() => {
+      createFallingIngot(rainLayer, () => {
+        finishedCount++;
+
+        if (finishedCount % 2 === 0) {
+          triggerIngotFlash(screen);
+        }
+
+        createSparkBurst(rainLayer, 188, 310);
+
+        if (finishedCount % 3 === 0) {
+          createFortuneChars(rainLayer, 188, 310);
+        }
+
+        if (finishedCount === totalIngots) {
+          finishMoneyBlessing();
+        }
+      });
+    }, i * dropInterval);
+  }
+
+  function finishMoneyBlessing() {
+    screen.classList.add("done");
+    createFullFlash();
+
+    /* 結束後不跳 alert、不出現完成提示 */
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.style.opacity = "1";
+      btn.style.cursor = "pointer";
+      screen.classList.remove("shake", "heaven-open", "rays-on", "absorbing");
+    }, 2500);
+  }
+}
+
+function createFallingIngot(layer, onArrive) {
+  const ingot = document.createElement("div");
+  ingot.className = "fall-ingot";
+
+  const startX = Math.random() * 360 - 10;
+
+  /* 先大量直落，再被中心吸走 */
+  const dropY = Math.random() * 210 + 110;
+  const curveX = (182 - startX) * 0.35 + (Math.random() * 80 - 40);
+  const curveY = Math.random() * 80 + 240;
+
+  /* 中間大元寶吸入點 */
+  const endX = 160 + Math.random() * 52 - 26;
+  const endY = 250 + Math.random() * 36 - 18;
+
+  const size = Math.random() * 28 + 56;
+  const dur = (1.05 + Math.random() * 0.55).toFixed(2) + "s";
+
+  ingot.style.setProperty("--startX", startX + "px");
+  ingot.style.setProperty("--dropY", dropY + "px");
+  ingot.style.setProperty("--curveX", curveX + "px");
+  ingot.style.setProperty("--curveY", curveY + "px");
+  ingot.style.setProperty("--endX", endX + "px");
+  ingot.style.setProperty("--endY", endY + "px");
+  ingot.style.setProperty("--size", size + "px");
+  ingot.style.setProperty("--dur", dur);
+
+  layer.appendChild(ingot);
+
+  ingot.addEventListener("animationend", () => {
+    ingot.remove();
+    if (typeof onArrive === "function") onArrive();
+  });
+}
+
+function triggerIngotFlash(screen) {
+  screen.classList.remove("ingot-flash");
+  void screen.offsetWidth;
+  screen.classList.add("ingot-flash");
+
+  setTimeout(() => {
+    screen.classList.remove("ingot-flash");
+  }, 780);
+}
+
+function createSparkBurst(layer, x, y) {
+  const count = 6;
+
+  for (let i = 0; i < count; i++) {
+    const spark = document.createElement("div");
+    spark.className = "spark";
+    spark.style.left = x + "px";
+    spark.style.top = y + "px";
+
+    const sx = Math.random() * 110 - 55 + "px";
+    const sy = Math.random() * 110 - 55 + "px";
+
+    spark.style.setProperty("--sx", sx);
+    spark.style.setProperty("--sy", sy);
+
+    layer.appendChild(spark);
+    spark.addEventListener("animationend", () => spark.remove());
+  }
+}
+
+function createFortuneChars(layer, x, y) {
+  const words = ["財", "福", "旺"];
+  const count = 3;
+
+  for (let i = 0; i < count; i++) {
+    const char = document.createElement("div");
+    char.className = "fortune-char";
+    char.textContent = randomItem(words);
+    char.style.left = x + "px";
+    char.style.top = y + "px";
+
+    const fx = Math.random() * 130 - 65 + "px";
+    const fy = -Math.random() * 120 - 30 + "px";
+
+    char.style.setProperty("--fx", fx);
+    char.style.setProperty("--fy", fy);
+
+    layer.appendChild(char);
+    char.addEventListener("animationend", () => char.remove());
+  }
+}
+
+function createFullFlash() {
+  const flash = document.createElement("div");
+  flash.className = "money-full-flash";
+  document.body.appendChild(flash);
 
   setTimeout(() => {
     flash.remove();
   }, 900);
-
-  setTimeout(() => {
-    alert("補財庫完成\n\n願你金元寶滿庫、正財偏財皆順、財氣入庫、福氣長存。");
-  }, 1800);
-
-  setTimeout(() => {
-    screen.classList.remove("active");
-  }, 3300);
 }
 
 function refreshMoneyLuck() {
@@ -2056,68 +1407,25 @@ function refreshMoneyLuck() {
   document.getElementById("moneyKeep").textContent = randomItem(moneyLuckKeep);
 }
 
-/* 七燈祈福 */
-function resetLightPage() {
-  const lightScene = document.getElementById("lightScene");
-  lightScene.classList.remove("active");
-  selectLamp(currentLamp, false);
-}
+/* 點燈 */
+function selectLamp(button, lampName, message) {
+  document.querySelectorAll(".lamp-option").forEach(btn => btn.classList.remove("selected"));
+  button.classList.add("selected");
 
-function selectLamp(type, updateText = true) {
-  currentLamp = type;
-  const data = lampData[type];
-  const lightScene = document.getElementById("lightScene");
+  currentLampName = lampName;
+  currentLampMessage = message;
 
-  lightScene.className = "lamp-scene light-scene " + type;
-
-  document.querySelectorAll(".lamp-option").forEach(btn => {
-    btn.classList.toggle("selected", btn.dataset.lamp === type);
-  });
-
-  document.getElementById("lampTypeLabel").textContent = data.name;
-  document.getElementById("lampSymbol").textContent = data.symbol;
-  document.getElementById("magicMark").textContent = data.mark;
-  document.getElementById("lampIntro").textContent = data.intro;
-
-  if (updateText) {
-    document.getElementById("lightResult").textContent = "目前選擇：" + data.name + "。" + data.intro;
-  }
+  document.getElementById("lightResult").textContent =
+    "目前選擇：" + lampName + "。" + message;
 }
 
 function startBlessingLight() {
-  const data = lampData[currentLamp];
-  const lightScene = document.getElementById("lightScene");
-  const lightResult = document.getElementById("lightResult");
+  const result = document.getElementById("lightResult");
+  result.textContent = currentLampMessage;
 
-  lightScene.classList.remove("active");
-  void lightScene.offsetWidth;
-  lightScene.classList.add("active");
+  saveRecord("祈福點燈", currentLampName + "｜" + currentLampMessage);
 
-  const flash = document.createElement("div");
-  flash.className = "light-flash";
-  flash.style.setProperty("--flash1", data.flash1);
-  flash.style.setProperty("--flash2", data.flash2);
-  document.body.appendChild(flash);
-
-  lightResult.textContent = data.result;
-  saveRecord("祈福點燈", data.name + "｜" + data.result);
-
-  setTimeout(() => {
-    flash.remove();
-  }, 850);
-
-  const toast = document.createElement("div");
-  toast.className = "light-complete-toast show";
-  toast.textContent = data.toast;
-  document.body.appendChild(toast);
-
-  setTimeout(() => {
-    toast.remove();
-  }, 2300);
-
-  setTimeout(() => {
-    alert(data.name + "完成\n\n" + data.result);
-  }, 1300);
+  alert(currentLampName + "完成\n\n" + currentLampMessage);
 }
 
 /* 求籤 */
@@ -2333,11 +1641,11 @@ function randomItem(arr) {
 function escapeHTML(text) {
   return text.replace(/[&<>"']/g, function(match) {
     const map = {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#039;"
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
     };
     return map[match];
   });
