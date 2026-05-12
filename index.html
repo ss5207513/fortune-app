@@ -72,7 +72,7 @@ body {
 .hotspot.nav-bazi { left: 200px; top: 655px; width: 100px; height: 50px; }
 .hotspot.nav-me { left: 300px; top: 655px; width: 102px; height: 50px; }
 
-/* 共用頁面 */
+/* 共用 */
 .sub-page {
   min-height: 100vh;
   padding: 20px 16px 88px;
@@ -88,6 +88,8 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 18px;
+  position: relative;
+  z-index: 10;
 }
 
 .back-btn {
@@ -177,40 +179,10 @@ select {
   line-height: 1.7;
 }
 
-.tag {
-  display: inline-block;
-  background: #8f180d;
-  color: #fff1b8;
-  padding: 5px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-}
-
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-}
-
-.stick-area {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 9px;
-  margin: 12px 0;
-}
-
-.stick {
-  height: 120px;
-  border-radius: 16px;
-  background: linear-gradient(90deg, #d99c32, #fff0ae, #ba731c);
-  border: 2px solid rgba(120,70,14,.35);
-  display: grid;
-  place-items: center;
-  color: #8f180d;
-  font-size: 18px;
-  font-weight: 900;
-  writing-mode: vertical-rl;
-  letter-spacing: 4px;
 }
 
 .bazi-grid {
@@ -260,6 +232,421 @@ select {
   color: #9a6840;
   font-size: 13px;
   line-height: 1.65;
+}
+
+/* 求籤占卜頁 */
+.draw-temple-page {
+  min-height: 100vh;
+  padding: 20px 16px 90px;
+  color: #fff1c8;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(255,215,100,.26), transparent 28%),
+    linear-gradient(180deg, #8f160c 0%, #641006 48%, #3f0502 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.draw-temple-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,220,120,.06) 0 2px,
+      transparent 2px 28px
+    );
+  opacity: .5;
+  pointer-events: none;
+}
+
+.temple-stage {
+  position: relative;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255,215,90,.22), transparent 32%),
+    linear-gradient(180deg, rgba(155,24,12,.95), rgba(89,9,4,.96));
+  border: 1.5px solid rgba(244,206,116,.55);
+  border-radius: 28px;
+  padding: 22px 16px 20px;
+  overflow: hidden;
+  box-shadow: 0 16px 34px rgba(35,4,2,.35);
+}
+
+.temple-roof {
+  width: 100%;
+  height: 82px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.temple-roof::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  width: 290px;
+  height: 54px;
+  transform: translateX(-50%);
+  background:
+    linear-gradient(180deg, #ffd780, #b72612 45%, #751006);
+  border-radius: 50% 50% 18px 18px;
+  border: 2px solid rgba(255,226,150,.7);
+  box-shadow:
+    inset 0 8px 12px rgba(255,255,255,.18),
+    0 0 22px rgba(255,190,70,.25);
+}
+
+.temple-roof::after {
+  content: "福德正神";
+  position: absolute;
+  left: 50%;
+  top: 25px;
+  transform: translateX(-50%);
+  color: #fff1b8;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 5px;
+  text-shadow: 0 3px 0 rgba(80,8,4,.55);
+}
+
+.draw-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff1b8;
+  letter-spacing: 6px;
+  text-shadow:
+    0 4px 0 rgba(72,7,3,.55),
+    0 0 18px rgba(255,205,90,.5);
+  margin-bottom: 4px;
+}
+
+.draw-subtitle {
+  text-align: center;
+  font-size: 13px;
+  color: #ffd99d;
+  margin-bottom: 18px;
+}
+
+.draw-topic-box {
+  background: #fff3d4;
+  color: #5b2712;
+  border-radius: 18px;
+  padding: 14px;
+  border: 1.5px solid rgba(185,119,34,.35);
+  margin-bottom: 16px;
+}
+
+.draw-topic-box label {
+  color: #8f180d;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.draw-altar {
+  height: 390px;
+  position: relative;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255,218,90,.24), transparent 32%),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.01));
+  border: 1px solid rgba(255,225,150,.25);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.lantern {
+  position: absolute;
+  top: 34px;
+  width: 48px;
+  height: 72px;
+  background: linear-gradient(180deg, #d92e1d, #8f1209);
+  border-radius: 22px;
+  border: 2px solid rgba(255,220,120,.65);
+  box-shadow: 0 0 24px rgba(255,80,35,.32);
+}
+
+.lantern.left {
+  left: 28px;
+}
+
+.lantern.right {
+  right: 28px;
+}
+
+.lantern::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -20px;
+  width: 2px;
+  height: 22px;
+  background: rgba(255,220,120,.7);
+}
+
+.lantern::after {
+  content: "籤";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #ffe9a6;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.draw-glow {
+  position: absolute;
+  left: 50%;
+  top: 162px;
+  width: 260px;
+  height: 260px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255,250,210,.75), rgba(255,205,70,.28) 42%, transparent 72%);
+  opacity: .78;
+  filter: blur(1px);
+}
+
+.draw-rays {
+  position: absolute;
+  left: 50%;
+  top: 160px;
+  width: 320px;
+  height: 320px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    conic-gradient(
+      transparent 0deg 12deg,
+      rgba(255,225,135,.55) 12deg 17deg,
+      transparent 17deg 34deg,
+      rgba(255,196,84,.45) 34deg 40deg,
+      transparent 40deg 56deg,
+      rgba(255,225,135,.55) 56deg 62deg,
+      transparent 62deg 78deg,
+      rgba(255,196,84,.45) 78deg 84deg,
+      transparent 84deg 100deg,
+      rgba(255,225,135,.55) 100deg 106deg,
+      transparent 106deg 122deg,
+      rgba(255,196,84,.45) 122deg 128deg,
+      transparent 128deg 144deg,
+      rgba(255,225,135,.55) 144deg 150deg,
+      transparent 150deg 166deg,
+      rgba(255,196,84,.45) 166deg 172deg,
+      transparent 172deg 188deg,
+      rgba(255,225,135,.55) 188deg 194deg,
+      transparent 194deg 210deg,
+      rgba(255,196,84,.45) 210deg 216deg,
+      transparent 216deg 232deg,
+      rgba(255,225,135,.55) 232deg 238deg,
+      transparent 238deg 254deg,
+      rgba(255,196,84,.45) 254deg 260deg,
+      transparent 260deg 276deg,
+      rgba(255,225,135,.55) 276deg 282deg,
+      transparent 282deg 298deg,
+      rgba(255,196,84,.45) 298deg 304deg,
+      transparent 304deg 320deg,
+      rgba(255,225,135,.55) 320deg 326deg,
+      transparent 326deg 360deg
+    );
+  opacity: .35;
+  mix-blend-mode: screen;
+  animation: drawRaySpin 8s linear infinite;
+}
+
+@keyframes drawRaySpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* 籤筒 PNG */
+.fortune-cup-wrap {
+  position: absolute;
+  left: 50%;
+  top: 66px;
+  width: 280px;
+  height: 280px;
+  transform: translateX(-50%);
+  z-index: 20;
+  background-image: url("fortune-cup.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter:
+    drop-shadow(0 0 20px rgba(255, 215, 100, .58))
+    drop-shadow(0 14px 24px rgba(45, 4, 2, .45));
+}
+
+.draw-altar.shaking .fortune-cup-wrap {
+  animation: cupShake 1.15s ease-in-out;
+}
+
+@keyframes cupShake {
+  0% { transform: translateX(-50%) rotate(0deg); }
+  10% { transform: translateX(-50%) rotate(-8deg); }
+  20% { transform: translateX(-50%) rotate(7deg); }
+  30% { transform: translateX(-50%) rotate(-9deg); }
+  40% { transform: translateX(-50%) rotate(8deg); }
+  50% { transform: translateX(-50%) rotate(-6deg); }
+  60% { transform: translateX(-50%) rotate(5deg); }
+  70% { transform: translateX(-50%) rotate(-4deg); }
+  80% { transform: translateX(-50%) rotate(3deg); }
+  100% { transform: translateX(-50%) rotate(0deg); }
+}
+
+/* 掉出的籤 */
+.falling-stick {
+  position: absolute;
+  left: 50%;
+  top: 92px;
+  width: 20px;
+  height: 158px;
+  transform: translateX(-50%) rotate(-8deg);
+  border-radius: 999px;
+  background: linear-gradient(90deg, #bb7a1d, #fff1b0, #c98422);
+  border: 1.5px solid rgba(135,80,20,.55);
+  box-shadow:
+    0 0 18px rgba(255,215,88,.7),
+    inset 0 4px 8px rgba(255,255,255,.25);
+  opacity: 0;
+  z-index: 35;
+}
+
+.falling-stick::after {
+  content: "籤";
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  transform: translateX(-50%);
+  color: #8f180d;
+  font-weight: 900;
+  font-size: 14px;
+}
+
+.draw-altar.show-stick .falling-stick {
+  animation: stickDrop 1.15s cubic-bezier(.2,.82,.25,1) forwards;
+}
+
+@keyframes stickDrop {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-70px) rotate(-18deg) scale(.8);
+  }
+  20% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(135px) rotate(12deg) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(158px) rotate(7deg) scale(1);
+  }
+}
+
+.temple-table {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  width: 290px;
+  height: 70px;
+  transform: translateX(-50%);
+  background:
+    linear-gradient(180deg, #c23a21, #7c1008);
+  border-radius: 26px;
+  border: 2px solid rgba(255,220,130,.55);
+  box-shadow:
+    inset 0 6px 12px rgba(255,255,255,.12),
+    0 10px 18px rgba(36,4,2,.32);
+}
+
+.temple-table::after {
+  content: "誠心求籤・福德指引";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff1b8;
+  font-weight: 900;
+  letter-spacing: 3px;
+  font-size: 18px;
+}
+
+.draw-action-btn {
+  width: 100%;
+  height: 64px;
+  border: none;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 15% 50%, rgba(255,228,140,.35), transparent 20%),
+    radial-gradient(circle at 85% 50%, rgba(255,228,140,.35), transparent 20%),
+    linear-gradient(180deg, #d4301f, #99120c);
+  color: #fff0b5;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 5px;
+  border: 2px solid rgba(244,206,116,.74);
+  box-shadow: 0 10px 20px rgba(50, 6, 2, .3);
+  cursor: pointer;
+}
+
+.draw-action-btn:disabled {
+  opacity: .7;
+  cursor: not-allowed;
+}
+
+.draw-result-card {
+  margin-top: 16px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.75), transparent 22%),
+    #fff3d4;
+  color: #5b2712;
+  border-radius: 24px;
+  padding: 18px;
+  border: 2px solid rgba(245,207,120,.58);
+  box-shadow: 0 16px 34px rgba(40,6,2,.32);
+}
+
+.draw-result-card h3 {
+  color: #8f180d;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.draw-result-card p {
+  color: #6c371d;
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+
+.draw-level {
+  display: inline-block;
+  background: #8f180d;
+  color: #fff1b8;
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.draw-flash {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background:
+    radial-gradient(circle at center, rgba(255,250,220,.95), rgba(255,208,70,.38), transparent 72%);
+  animation: drawFlash .85s ease forwards;
+}
+
+@keyframes drawFlash {
+  0% { opacity: 0; }
+  25% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 /* 補財庫頁 */
@@ -331,16 +718,11 @@ select {
   cursor: pointer;
 }
 
-.money-start:active {
-  transform: scale(.98);
-}
-
 .money-start:disabled {
   opacity: .72;
   cursor: not-allowed;
 }
 
-/* 畫面震動 */
 .money-screen.shake {
   animation: screenShake .48s ease-in-out 2;
 }
@@ -355,7 +737,6 @@ select {
   100% { transform: translate(0,0); }
 }
 
-/* 天空裂開金光 */
 .sky-crack {
   position: absolute;
   left: 50%;
@@ -409,7 +790,6 @@ select {
   100% { opacity: 0; transform: translateX(-50%) scaleX(1.35); }
 }
 
-/* 旋轉財光 */
 .money-rotating-rays {
   position: absolute;
   left: 50%;
@@ -482,7 +862,6 @@ select {
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* 被吸走的財氣漩渦 */
 .absorb-vortex {
   position: absolute;
   left: 50%;
@@ -508,7 +887,6 @@ select {
       rgba(255,196,54,.86) 320deg,
       transparent 360deg
     );
-  filter: blur(.3px);
 }
 
 .money-screen.absorbing .absorb-vortex {
@@ -526,7 +904,6 @@ select {
   50% { opacity: .92; }
 }
 
-/* 大元寶金光 */
 .ingot-core-glow {
   position: absolute;
   left: 50%;
@@ -614,7 +991,6 @@ select {
   50% { opacity: 1; transform: translate(-50%, -50%) scale(1.16); }
 }
 
-/* 元寶雨 */
 .ingot-rain-layer {
   position: absolute;
   inset: 0;
@@ -631,22 +1007,18 @@ select {
   height: var(--size, 74px);
   pointer-events: none;
   z-index: 75;
-
   background-image: url("ingot-rain.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-
   filter:
     drop-shadow(0 0 10px rgba(255, 235, 150, 0.96))
     drop-shadow(0 0 24px rgba(255, 184, 40, 0.68));
-
   transform:
     translateX(var(--startX, 0px))
     translateY(-120px)
     scale(.8)
     rotate(0deg);
-
   animation: ingotRainAbsorb var(--dur, 1.5s) cubic-bezier(.18,.74,.22,1) forwards;
 }
 
@@ -660,9 +1032,7 @@ select {
       rotate(0deg);
   }
 
-  8% {
-    opacity: 1;
-  }
+  8% { opacity: 1; }
 
   42% {
     opacity: 1;
@@ -692,7 +1062,6 @@ select {
   }
 }
 
-/* 財字粒子 */
 .fortune-char {
   position: absolute;
   color: #fff1a8;
@@ -711,16 +1080,13 @@ select {
     opacity: 0;
     transform: translate(0, 0) scale(.5);
   }
-  20% {
-    opacity: 1;
-  }
+  20% { opacity: 1; }
   100% {
     opacity: 0;
     transform: translate(var(--fx), var(--fy)) scale(1.3);
   }
 }
 
-/* 金粒子 */
 .spark {
   position: absolute;
   width: 10px;
@@ -738,7 +1104,6 @@ select {
   100% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(1.6); }
 }
 
-/* 全畫面閃光 */
 .money-full-flash {
   position: fixed;
   inset: 0;
@@ -755,7 +1120,6 @@ select {
   100% { opacity: 0; }
 }
 
-/* 補財庫卡片 */
 .money-card {
   margin: 14px 16px 0;
   background:
@@ -937,6 +1301,57 @@ select {
     </div>
   </section>
 
+  <!-- 求籤頁 -->
+  <section id="drawPage" class="page">
+    <div class="draw-temple-page">
+      <div class="header">
+        <button class="back-btn" onclick="changePage('homePage')">返回首頁</button>
+        <div class="title">求籤</div>
+      </div>
+
+      <div class="temple-stage">
+        <div class="temple-roof"></div>
+
+        <div class="draw-title">求籤占卜</div>
+        <div class="draw-subtitle">台灣廟宇籤筒・誠心一問・福德指引</div>
+
+        <div class="draw-topic-box">
+          <label>求籤主題</label>
+          <select id="drawTopic">
+            <option value="今日指引">今日指引</option>
+            <option value="感情姻緣">感情姻緣</option>
+            <option value="學業考試">學業考試</option>
+            <option value="財運事業">財運事業</option>
+            <option value="工作方向">工作方向</option>
+            <option value="未來選擇">未來選擇</option>
+          </select>
+        </div>
+
+        <div class="draw-altar" id="drawAltar">
+          <div class="lantern left"></div>
+          <div class="lantern right"></div>
+
+          <div class="draw-rays"></div>
+          <div class="draw-glow"></div>
+
+          <div class="fortune-cup-wrap"></div>
+
+          <div class="falling-stick"></div>
+          <div class="temple-table"></div>
+        </div>
+
+        <button class="draw-action-btn" id="drawBtn" onclick="drawStick()">
+          搖動籤筒
+        </button>
+      </div>
+
+      <div class="draw-result-card" id="drawResult">
+        <h3>等待求籤中</h3>
+        <p>請先選擇主題，誠心點擊「搖動籤筒」。籤筒會先搖晃，再掉出一支籤。</p>
+      </div>
+    </div>
+  </section>
+
   <!-- 補財庫頁 -->
   <section id="moneyPage" class="page">
     <div class="money-page">
@@ -1050,40 +1465,6 @@ select {
     </div>
   </section>
 
-  <!-- 求籤頁 -->
-  <section id="drawPage" class="page">
-    <div class="sub-page">
-      <div class="header">
-        <button class="back-btn" onclick="changePage('homePage')">返回首頁</button>
-        <div class="title">求籤</div>
-      </div>
-
-      <div class="card">
-        <label>求籤主題</label>
-        <select id="drawTopic">
-          <option value="今日指引">今日指引</option>
-          <option value="感情姻緣">感情姻緣</option>
-          <option value="學業考試">學業考試</option>
-          <option value="財運事業">財運事業</option>
-          <option value="未來方向">未來方向</option>
-        </select>
-
-        <div class="stick-area" id="stickArea">
-          <div class="stick">福德籤</div>
-          <div class="stick">平安籤</div>
-          <div class="stick">財運籤</div>
-        </div>
-
-        <button class="main-btn" onclick="drawStick()">開始求籤</button>
-      </div>
-
-      <div class="card" id="drawResult">
-        <h3>等待求籤中</h3>
-        <p>請先選擇主題，誠心點擊「開始求籤」。</p>
-      </div>
-    </div>
-  </section>
-
   <!-- 八字頁 -->
   <section id="baziPage" class="page">
     <div class="sub-page">
@@ -1175,28 +1556,39 @@ const moneyLuckKeep = ["佳","守得住","穩定","安穩","聚財"];
 
 const sticks = [
   {
-    level:"上上籤",
-    title:"福德開財門",
-    text:"雲開月明福自來，守正行善可得財。今日適合主動把握機會，但仍要保持謙和。",
-    advice:"宜：談合作、整理金錢、拜訪貴人。忌：貪快、衝動決定。"
+    level: "上上籤",
+    title: "福德開財門",
+    poem: "金光照路福門開，貴人相扶好運來。",
+    explain: "此籤代表運勢漸開，事情有轉好跡象。若能把握機會，容易獲得幫助與成果。",
+    advice: "宜主動溝通、整理計畫、把握貴人。忌拖延與衝動。"
   },
   {
-    level:"上籤",
-    title:"貴人扶一程",
-    text:"前路雖有小阻，幸得貴人相助。只要願意開口溝通，事情會慢慢轉順。",
-    advice:"宜：請教、溝通、修補關係。忌：悶著不說。"
+    level: "上籤",
+    title: "貴人扶一程",
+    poem: "雲散月明路漸清，一言相助事能成。",
+    explain: "目前雖有小阻礙，但不是壞局。只要願意請教或溝通，就容易出現轉機。",
+    advice: "宜請教、合作、修補關係。忌獨自硬撐。"
   },
   {
-    level:"中上籤",
-    title:"先守後進",
-    text:"此時不宜躁進，先把基礎整理好，後面自然有轉機。",
-    advice:"宜：規劃、複習、存錢。忌：過度冒險。"
+    level: "中上籤",
+    title: "先守後進",
+    poem: "未到花開莫急催，守得根深福自來。",
+    explain: "此時適合先穩住基本盤，不宜太急。先整理資源，後面會更有利。",
+    advice: "宜規劃、存錢、複習、修正方向。忌冒進。"
   },
   {
-    level:"中籤",
-    title:"平安即是福",
-    text:"目前運勢平穩，沒有大起大落。保持日常節奏，就是最好的開運方式。",
-    advice:"宜：穩定作息、完成小事。忌：心浮氣躁。"
+    level: "中籤",
+    title: "平安即是福",
+    poem: "平步安行無大憂，日常修福自長久。",
+    explain: "運勢平穩，沒有大起大落。只要保持節奏，事情會慢慢累積成果。",
+    advice: "宜穩定作息、完成小事。忌心浮氣躁。"
+  },
+  {
+    level: "小吉籤",
+    title: "轉念見光",
+    poem: "一念轉時雲霧開，心安自有好安排。",
+    explain: "目前的困擾多半來自猶豫與不安。先把心定下來，答案會更清楚。",
+    advice: "宜冷靜判斷、放慢速度。忌過度焦慮。"
   }
 ];
 
@@ -1219,6 +1611,59 @@ function showDailyLuck() {
 
 function showMessage(title, text) {
   alert(title + "\n\n" + text);
+}
+
+/* 求籤 */
+function drawStick() {
+  const altar = document.getElementById("drawAltar");
+  const btn = document.getElementById("drawBtn");
+  const topic = document.getElementById("drawTopic").value;
+  const resultBox = document.getElementById("drawResult");
+
+  btn.disabled = true;
+  btn.textContent = "籤筒搖動中";
+
+  altar.classList.remove("shaking", "show-stick");
+  void altar.offsetWidth;
+  altar.classList.add("shaking");
+
+  resultBox.innerHTML = `
+    <h3>籤筒搖動中</h3>
+    <p>請靜心等待，籤詩即將落下。</p>
+  `;
+
+  setTimeout(() => {
+    altar.classList.add("show-stick");
+    createDrawFlash();
+  }, 1150);
+
+  setTimeout(() => {
+    const result = randomItem(sticks);
+
+    resultBox.innerHTML = `
+      <span class="draw-level">${result.level}</span>
+      <h3>${topic}｜${result.title}</h3>
+      <p><strong>籤詩：</strong>${result.poem}</p>
+      <p><strong>解籤：</strong>${result.explain}</p>
+      <p><strong>建議：</strong>${result.advice}</p>
+      <p class="notice">求籤結果僅供娛樂與自我提醒，不代表絕對命運。</p>
+    `;
+
+    saveRecord("求籤占卜", `${topic}｜${result.level}｜${result.title}`);
+
+    btn.disabled = false;
+    btn.textContent = "再次搖籤";
+  }, 2250);
+}
+
+function createDrawFlash() {
+  const flash = document.createElement("div");
+  flash.className = "draw-flash";
+  document.body.appendChild(flash);
+
+  setTimeout(() => {
+    flash.remove();
+  }, 850);
 }
 
 /* 補財庫 */
@@ -1294,7 +1739,6 @@ function startMoneyBlessing() {
     screen.classList.add("done");
     createFullFlash();
 
-    /* 結束後不跳 alert、不出現完成提示 */
     setTimeout(() => {
       btn.disabled = false;
       btn.style.opacity = "1";
@@ -1309,16 +1753,11 @@ function createFallingIngot(layer, onArrive) {
   ingot.className = "fall-ingot";
 
   const startX = Math.random() * 360 - 10;
-
-  /* 先大量直落，再被中心吸走 */
   const dropY = Math.random() * 210 + 110;
   const curveX = (182 - startX) * 0.35 + (Math.random() * 80 - 40);
   const curveY = Math.random() * 80 + 240;
-
-  /* 中間大元寶吸入點 */
   const endX = 160 + Math.random() * 52 - 26;
   const endY = 250 + Math.random() * 36 - 18;
-
   const size = Math.random() * 28 + 56;
   const dur = (1.05 + Math.random() * 0.55).toFixed(2) + "s";
 
@@ -1426,28 +1865,6 @@ function startBlessingLight() {
   saveRecord("祈福點燈", currentLampName + "｜" + currentLampMessage);
 
   alert(currentLampName + "完成\n\n" + currentLampMessage);
-}
-
-/* 求籤 */
-function drawStick() {
-  const topic = document.getElementById("drawTopic").value;
-  const result = randomItem(sticks);
-
-  document.getElementById("stickArea").innerHTML = `
-    <div class="stick">${result.level}</div>
-    <div class="stick">福德正神</div>
-    <div class="stick">好運籤</div>
-  `;
-
-  document.getElementById("drawResult").innerHTML = `
-    <h3>${topic}｜${result.level}</h3>
-    <p><span class="tag">${result.title}</span></p>
-    <p>${result.text}</p>
-    <p><strong>籤詩建議：</strong>${result.advice}</p>
-    <p class="notice">求籤結果僅供娛樂與自我提醒，不代表絕對命運。</p>
-  `;
-
-  saveRecord("求籤占卜", `${topic}｜${result.level}｜${result.title}`);
 }
 
 /* 八字 */
