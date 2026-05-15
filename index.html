@@ -4,1641 +4,2295 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>福德好運通</title>
-
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*{box-sizing:border-box;margin:0;padding:0}body{min-height:100vh;background:#8a180d;display:flex;justify-content:center;font-family:"Noto Serif TC","Noto Sans TC","Microsoft JhengHei",serif}.app{width:100%;max-width:402px;min-height:100vh;overflow:hidden;background:#8a180d}.page{display:none}.page.active{display:block}button{font-family:inherit;cursor:pointer}.home-screen{width:100%;aspect-ratio:402/705;min-height:705px;position:relative;background:url("fude-template.png") top center/100% auto no-repeat}.hotspot{position:absolute;border:none;background:transparent}.hotspot.draw{left:24px;top:304px;width:110px;height:95px}.hotspot.bazi{left:146px;top:304px;width:110px;height:95px}.hotspot.daily{left:270px;top:304px;width:105px;height:95px}.hotspot.money{left:24px;top:410px;width:110px;height:95px}.hotspot.date{left:146px;top:410px;width:110px;height:95px}.hotspot.light{left:270px;top:410px;width:105px;height:95px}.hotspot.start{left:64px;top:520px;width:270px;height:70px}.hotspot.today{left:118px;top:596px;width:168px;height:36px}.hotspot.nav-home{left:0;top:655px;width:100px;height:50px}.hotspot.nav-draw{left:100px;top:655px;width:100px;height:50px}.hotspot.nav-bazi{left:200px;top:655px;width:100px;height:50px}.hotspot.nav-me{left:300px;top:655px;width:102px;height:50px}
+.sub-page,.draw-temple-page,.light-page{min-height:100vh;padding:20px 16px 90px;color:#fff2cf;background:radial-gradient(circle at 50% 12%,rgba(255,215,100,.22),transparent 28%),linear-gradient(180deg,#8f160c,#641006 48%,#3f0502)}.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;position:relative;z-index:10}.back-btn{border:1px solid rgba(245,207,120,.7);background:rgba(70,8,4,.65);color:#fff1b8;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:800}.title{font-size:28px;color:#fff1b8;letter-spacing:4px;text-shadow:0 3px 0 rgba(52,7,3,.62)}.card,.draw-result-card,.money-card{background:linear-gradient(180deg,rgba(255,255,255,.75),transparent 24%),#fff3d4;color:#5b2712;border:2px solid rgba(245,207,120,.55);border-radius:24px;padding:18px;margin:14px 0 16px;box-shadow:0 16px 34px rgba(40,6,2,.32)}.card h3,.draw-result-card h3,.money-card h3{color:#8f180d;font-size:22px;margin-bottom:10px}.card p,.draw-result-card p,.money-card p{color:#6c371d;font-size:14px;line-height:1.8;margin-bottom:8px}label{display:block;color:#8f180d;font-size:14px;font-weight:900;margin-bottom:7px}input,select{width:100%;border:1px solid rgba(185,119,34,.36);background:#fffaf0;color:#5b2712;border-radius:14px;padding:13px;font-size:15px;font-family:inherit;margin-bottom:12px}.main-btn,.draw-action-btn,.light-launch-btn{width:100%;min-height:60px;border:none;border-radius:999px;background:radial-gradient(circle at 12% 50%,rgba(255,230,140,.36),transparent 20%),radial-gradient(circle at 88% 50%,rgba(255,230,140,.36),transparent 20%),linear-gradient(180deg,#d02a18,#8f150c);color:#fff1b8;font-size:22px;letter-spacing:4px;font-weight:900;border:2px solid rgba(244,206,116,.65);box-shadow:0 10px 20px rgba(50,6,2,.28)}.main-btn:disabled,.draw-action-btn:disabled,.light-launch-btn:disabled{opacity:.72;cursor:not-allowed}.notice{color:#9a6840;font-size:12px;line-height:1.7}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.bazi-grid,.money-list{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:14px 0}.pillar,.money-item{background:linear-gradient(180deg,#fff9e8,#ffe8b8);border:1px solid rgba(185,119,34,.34);border-radius:15px;text-align:center;padding:10px 4px}.pillar small,.money-item span{display:block;color:#9a6840;font-size:11px;margin-bottom:5px}.pillar strong,.money-item strong{display:block;color:#8f180d;font-size:18px}.record-item{background:#fff9e9;border-left:4px solid #8f180d;border-radius:14px;padding:12px;margin-bottom:10px;color:#5b2712}.record-item h4{color:#8f180d;margin-bottom:5px}.record-item p{color:#9a6840;font-size:13px;line-height:1.65}
+/* 求籤 */.temple-stage{position:relative;background:radial-gradient(circle at 50% 20%,rgba(255,215,90,.22),transparent 32%),linear-gradient(180deg,rgba(155,24,12,.95),rgba(89,9,4,.96));border:1.5px solid rgba(244,206,116,.55);border-radius:28px;padding:22px 16px 20px;overflow:hidden;box-shadow:0 16px 34px rgba(35,4,2,.35)}.temple-roof{height:82px;position:relative}.temple-roof:before{content:"";position:absolute;left:50%;top:12px;width:290px;height:54px;transform:translateX(-50%);background:linear-gradient(180deg,#ffd780,#b72612 45%,#751006);border-radius:50% 50% 18px 18px;border:2px solid rgba(255,226,150,.7)}.temple-roof:after{content:"福德正神";position:absolute;left:50%;top:25px;transform:translateX(-50%);color:#fff1b8;font-weight:900;font-size:22px;letter-spacing:5px;text-shadow:0 3px 0 rgba(80,8,4,.55)}.draw-title{text-align:center;font-size:32px;font-weight:900;color:#fff1b8;letter-spacing:6px;text-shadow:0 4px 0 rgba(72,7,3,.55),0 0 18px rgba(255,205,90,.5)}.draw-subtitle{text-align:center;font-size:13px;color:#ffd99d;margin:4px 0 18px}.draw-topic-box{background:#fff3d4;color:#5b2712;border-radius:18px;padding:14px;border:1.5px solid rgba(185,119,34,.35);margin-bottom:16px}.draw-altar{height:390px;position:relative;border-radius:24px;background:radial-gradient(circle at 50% 35%,rgba(255,218,90,.24),transparent 32%),linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.01));border:1px solid rgba(255,225,150,.25);overflow:hidden;margin-bottom:16px}.lantern{position:absolute;top:34px;width:48px;height:72px;background:linear-gradient(180deg,#d92e1d,#8f1209);border-radius:22px;border:2px solid rgba(255,220,120,.65);box-shadow:0 0 24px rgba(255,80,35,.32)}.lantern.left{left:28px}.lantern.right{right:28px}.lantern:before{content:"";position:absolute;left:50%;top:-20px;width:2px;height:22px;background:rgba(255,220,120,.7)}.lantern:after{content:"籤";position:absolute;inset:0;display:grid;place-items:center;color:#ffe9a6;font-size:20px;font-weight:900}.draw-glow{position:absolute;left:50%;top:162px;width:260px;height:260px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,250,210,.75),rgba(255,205,70,.28) 42%,transparent 72%);filter:blur(1px)}.draw-rays{position:absolute;left:50%;top:160px;width:320px;height:320px;transform:translate(-50%,-50%);border-radius:50%;background:conic-gradient(transparent 0 12deg,rgba(255,225,135,.55) 12deg 17deg,transparent 17deg 34deg,rgba(255,196,84,.45) 34deg 40deg,transparent 40deg 56deg,rgba(255,225,135,.55) 56deg 62deg,transparent 62deg 78deg,rgba(255,196,84,.45) 78deg 84deg,transparent 84deg 100deg,rgba(255,225,135,.55) 100deg 106deg,transparent 106deg 122deg,rgba(255,196,84,.45) 122deg 128deg,transparent 128deg 144deg,rgba(255,225,135,.55) 144deg 150deg,transparent 150deg 166deg,rgba(255,196,84,.45) 166deg 172deg,transparent 172deg 188deg,rgba(255,225,135,.55) 188deg 194deg,transparent 194deg 210deg,rgba(255,196,84,.45) 210deg 216deg,transparent 216deg 232deg,rgba(255,225,135,.55) 232deg 238deg,transparent 238deg 360deg);opacity:.35;mix-blend-mode:screen;animation:spin 8s linear infinite}@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}.fortune-cup-wrap{position:absolute;left:50%;top:66px;width:280px;height:280px;transform:translateX(-50%);z-index:20;background:url("fortune-cup.png") center/contain no-repeat;filter:drop-shadow(0 0 20px rgba(255,215,100,.58)) drop-shadow(0 14px 24px rgba(45,4,2,.45))}.draw-altar.shaking .fortune-cup-wrap{animation:cupShake 1.15s ease-in-out}@keyframes cupShake{0%,100%{transform:translateX(-50%) rotate(0)}10%{transform:translateX(-50%) rotate(-8deg)}20%{transform:translateX(-50%) rotate(7deg)}30%{transform:translateX(-50%) rotate(-9deg)}40%{transform:translateX(-50%) rotate(8deg)}50%{transform:translateX(-50%) rotate(-6deg)}60%{transform:translateX(-50%) rotate(5deg)}70%{transform:translateX(-50%) rotate(-4deg)}80%{transform:translateX(-50%) rotate(3deg)}}.falling-stick{position:absolute;left:50%;top:92px;width:20px;height:158px;transform:translateX(-50%) rotate(-8deg);border-radius:999px;background:linear-gradient(90deg,#bb7a1d,#fff1b0,#c98422);border:1.5px solid rgba(135,80,20,.55);box-shadow:0 0 18px rgba(255,215,88,.7),inset 0 4px 8px rgba(255,255,255,.25);opacity:0;z-index:35}.falling-stick:after{content:"籤";position:absolute;left:50%;top:18px;transform:translateX(-50%);color:#8f180d;font-weight:900;font-size:14px}.draw-altar.show-stick .falling-stick{animation:stickDrop 1.15s cubic-bezier(.2,.82,.25,1) forwards}@keyframes stickDrop{0%{opacity:0;transform:translateX(-50%) translateY(-70px) rotate(-18deg) scale(.8)}20%,70%{opacity:1}70%{transform:translateX(-50%) translateY(135px) rotate(12deg)}100%{opacity:1;transform:translateX(-50%) translateY(158px) rotate(7deg)}}.temple-table{position:absolute;left:50%;bottom:14px;width:290px;height:70px;transform:translateX(-50%);background:linear-gradient(180deg,#c23a21,#7c1008);border-radius:26px;border:2px solid rgba(255,220,130,.55);box-shadow:inset 0 6px 12px rgba(255,255,255,.12),0 10px 18px rgba(36,4,2,.32)}.temple-table:after{content:"誠心求籤・福德指引";position:absolute;inset:0;display:grid;place-items:center;color:#fff1b8;font-weight:900;letter-spacing:3px;font-size:18px}.draw-level{display:inline-block;background:#8f180d;color:#fff1b8;border-radius:999px;padding:5px 12px;font-size:13px;margin-bottom:8px}.draw-flash,.money-full-flash,.light-full-flash{position:fixed;inset:0;pointer-events:none;z-index:9999;background:radial-gradient(circle at center,rgba(255,250,220,.95),rgba(255,208,70,.38),transparent 72%);animation:flash .85s ease forwards}@keyframes flash{0%{opacity:0}25%{opacity:1}100%{opacity:0}}
+/* 補財庫 */.money-page{min-height:100vh;padding:0 0 90px;background:linear-gradient(180deg,#8c1007,#5a0804);color:#fff1b8}.money-screen{width:100%;aspect-ratio:402/705;min-height:705px;position:relative;background:url("money-template.png") top center/100% auto no-repeat;overflow:hidden}.money-visible-back{position:absolute;left:18px;top:18px;z-index:120;min-width:118px;height:44px;border:1.5px solid rgba(255,232,160,.9);background:linear-gradient(180deg,rgba(110,18,8,.9),rgba(72,8,4,.92));color:#fff1b8;border-radius:999px;font-size:15px;font-weight:900;letter-spacing:1px}.money-start{position:absolute;left:42px;bottom:36px;z-index:130;width:318px;height:70px;border:none;border-radius:999px;background:linear-gradient(180deg,#d92d1c,#8f150c);color:#fff1b8;font-size:24px;font-weight:900;letter-spacing:5px;border:2px solid rgba(244,206,116,.85);box-shadow:0 0 26px rgba(255,205,62,.32)}.money-start:disabled{opacity:.72;cursor:not-allowed}.money-screen.shake{animation:screenShake .48s ease-in-out 2}@keyframes screenShake{0%,100%{transform:translate(0)}15%{transform:translate(-4px,2px)}30%{transform:translate(4px,-2px)}45%{transform:translate(-3px,-2px)}60%{transform:translate(3px,2px)}75%{transform:translate(-2px,1px)}}.sky-crack,.heaven-beam{position:absolute;left:50%;top:0;transform:translateX(-50%);z-index:30;opacity:0;pointer-events:none}.sky-crack{width:360px;height:190px;background:radial-gradient(ellipse at 50% 0,rgba(255,255,225,.98),rgba(255,210,76,.68) 28%,rgba(255,150,20,.22) 58%,transparent 72%);clip-path:polygon(48% 0,52% 0,58% 34%,53% 34%,64% 86%,50% 45%,36% 86%,47% 34%,42% 34%)}.heaven-beam{top:-40px;width:280px;height:540px;background:linear-gradient(180deg,rgba(255,255,230,.78),rgba(255,220,80,.36) 38%,rgba(255,180,35,.14) 72%,transparent);clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);mix-blend-mode:screen}.money-screen.heaven-open .sky-crack{animation:skyCrackShow 1.4s ease forwards}.money-screen.heaven-open .heaven-beam{animation:skyCrackShow 2.2s ease forwards}@keyframes skyCrackShow{0%{opacity:0;transform:translateX(-50%) scaleY(.2)}25%{opacity:1;transform:translateX(-50%) scaleY(1.2)}100%{opacity:0;transform:translateX(-50%) scaleY(1.5)}}.money-rotating-rays,.absorb-vortex,.final-glow,.money-burst-light,.ingot-core-glow{position:absolute;left:50%;top:315px;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;mix-blend-mode:screen}.money-rotating-rays{width:450px;height:450px;opacity:0;z-index:22;background:conic-gradient(transparent 0 8deg,rgba(255,232,140,.95) 8deg 13deg,transparent 13deg 24deg,rgba(255,208,84,.82) 24deg 30deg,transparent 30deg 40deg,rgba(255,232,140,.95) 40deg 45deg,transparent 45deg 360deg)}.money-screen.rays-on .money-rotating-rays{opacity:.82;animation:spin2 1.85s linear infinite}@keyframes spin2{to{transform:translate(-50%,-50%) rotate(360deg)}}.absorb-vortex{top:310px;width:300px;height:180px;z-index:36;opacity:0;background:conic-gradient(from 0deg,transparent,rgba(255,245,170,.92),transparent,rgba(255,196,54,.86),transparent)}.money-screen.absorbing .absorb-vortex{opacity:.88;animation:spin2 .72s linear infinite}.ingot-core-glow{width:260px;height:180px;background:radial-gradient(circle,rgba(255,255,240,1),rgba(255,232,120,.98) 26%,rgba(255,192,40,.68) 52%,transparent 82%);opacity:0;z-index:42}.money-burst-light{width:390px;height:390px;background:radial-gradient(circle,rgba(255,252,215,1),rgba(255,218,80,.82) 28%,rgba(255,170,30,.3) 54%,transparent 74%);opacity:0;z-index:40}.money-screen.ingot-flash .ingot-core-glow{animation:burst .78s ease-out forwards}.money-screen.ingot-flash .money-burst-light{animation:burst .88s ease-out forwards}@keyframes burst{0%{opacity:0;transform:translate(-50%,-50%) scale(.42)}30%{opacity:1;transform:translate(-50%,-50%) scale(1.2)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.55)}}.final-glow{width:340px;height:260px;background:radial-gradient(circle,rgba(255,255,230,.95),rgba(255,214,70,.55) 42%,transparent 80%);z-index:34;opacity:0}.money-screen.done .final-glow{animation:finalGlow 2.6s ease-in-out infinite}@keyframes finalGlow{0%,100%{opacity:.58;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.16)}}.ingot-rain-layer{position:absolute;inset:0;z-index:70;pointer-events:none;overflow:hidden}.fall-ingot{position:absolute;top:-110px;left:0;width:var(--size,74px);height:var(--size,74px);pointer-events:none;z-index:75;background:url("ingot-rain.png") center/contain no-repeat;filter:drop-shadow(0 0 10px rgba(255,235,150,.96)) drop-shadow(0 0 24px rgba(255,184,40,.68));animation:ingotRainAbsorb var(--dur,1.5s) cubic-bezier(.18,.74,.22,1) forwards}@keyframes ingotRainAbsorb{0%{opacity:0;transform:translateX(var(--startX)) translateY(-130px) scale(.58) rotate(0)}8%{opacity:1}42%{opacity:1;transform:translateX(var(--startX)) translateY(var(--dropY)) scale(1) rotate(120deg)}68%{opacity:1;transform:translateX(calc(var(--startX) + var(--curveX))) translateY(var(--curveY)) scale(.82) rotate(250deg)}100%{opacity:0;transform:translateX(var(--endX)) translateY(var(--endY)) scale(.1) rotate(520deg)}}.fortune-char{position:absolute;color:#fff1a8;font-size:24px;font-weight:900;text-shadow:0 0 10px rgba(255,225,92,.95);opacity:0;z-index:90;animation:fortuneCharFly 1.2s ease-out forwards}@keyframes fortuneCharFly{0%{opacity:0;transform:translate(0) scale(.5)}20%{opacity:1}100%{opacity:0;transform:translate(var(--fx),var(--fy)) scale(1.3)}}.spark{position:absolute;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle,#fffbd8,#ffd95f 45%,rgba(255,185,50,.2));box-shadow:0 0 12px rgba(255,220,100,.95);z-index:90;animation:sparkFly .75s ease-out forwards}@keyframes sparkFly{100%{opacity:0;transform:translate(var(--sx),var(--sy)) scale(1.6)}}.money-list{grid-template-columns:repeat(3,1fr)}
+/* 點燈 天燈升空 */.lamp-options{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.lamp-option{border:1.5px solid rgba(244,206,116,.55);background:radial-gradient(circle at 50% 0,rgba(255,224,132,.28),transparent 36%),linear-gradient(180deg,rgba(125,18,9,.96),rgba(79,8,4,.95));color:#fff0bc;border-radius:18px;padding:12px 8px;min-height:76px;box-shadow:0 8px 18px rgba(40,4,2,.25)}.lamp-option .icon{display:block;font-size:24px;margin-bottom:5px}.lamp-option strong{display:block;font-size:16px;letter-spacing:2px}.lamp-option small{display:block;color:#ffd99d;font-size:11px;margin-top:3px}.lamp-option.selected{border-color:#fff2b0;box-shadow:0 0 18px rgba(255,219,92,.6);background:radial-gradient(circle at 50% 0,rgba(255,239,155,.45),transparent 40%),linear-gradient(180deg,#c02a18,#801006)}.light-hero{background:radial-gradient(circle at 50% 18%,rgba(255,214,110,.2),transparent 24%),linear-gradient(180deg,rgba(145,20,10,.98),rgba(86,8,4,.98));border:1.5px solid rgba(244,206,116,.45);border-radius:26px;padding:18px 14px;box-shadow:0 14px 34px rgba(35,4,2,.34)}.light-title{text-align:center;font-size:32px;letter-spacing:6px;color:#fff1b8;text-shadow:0 4px 0 rgba(80,8,4,.55);margin-bottom:8px}.light-subtitle{text-align:center;color:#ffdba0;font-size:14px;margin-bottom:16px}.light-stage{position:relative;height:420px;border-radius:24px;overflow:hidden;margin-top:10px;background:radial-gradient(circle at 50% 28%,rgba(255,223,132,.18),transparent 28%),linear-gradient(180deg,#a01b0e,#7d0f08 46%,#5a0804);border:1px solid rgba(255,226,150,.24)}.light-golden-rays{position:absolute;left:50%;top:180px;width:300px;height:300px;transform:translate(-50%,-50%);border-radius:50%;opacity:.22;background:conic-gradient(transparent 0 12deg,rgba(255,225,135,.55) 12deg 17deg,transparent 17deg 34deg,rgba(255,196,84,.45) 34deg 40deg,transparent 40deg 56deg,rgba(255,225,135,.55) 56deg 62deg,transparent 62deg 78deg,rgba(255,196,84,.45) 78deg 84deg,transparent 84deg 360deg);animation:lightRaySpin 12s linear infinite}@keyframes lightRaySpin{to{transform:translate(-50%,-50%) rotate(360deg)}}.main-lamp-wrap{position:absolute;left:50%;top:180px;transform:translate(-50%,-50%);width:170px;height:230px;z-index:10}.main-lamp-rope{position:absolute;left:50%;top:-18px;width:2px;height:24px;background:rgba(255,226,150,.8)}.main-lamp{position:absolute;left:50%;top:0;width:150px;height:210px;transform:translateX(-50%);border-radius:30px 30px 40px 40px;background:radial-gradient(circle at 50% 30%,rgba(255,243,196,.25),transparent 28%),linear-gradient(180deg,#e03a22,#b7190f 45%,#8d1009);border:2px solid rgba(255,223,125,.85);box-shadow:inset 0 8px 14px rgba(255,255,255,.16),0 0 18px rgba(255,132,58,.18)}.main-lamp:before{content:"";position:absolute;left:50%;top:18px;width:96px;height:52px;transform:translateX(-50%);border-radius:20px;border:2px solid rgba(255,220,130,.72);opacity:.55}.main-lamp:after{content:"";position:absolute;left:50%;bottom:-20px;width:8px;height:28px;transform:translateX(-50%);border-radius:999px;background:linear-gradient(180deg,#e9b12c,#bb3118)}.main-lamp-title{position:absolute;left:50%;top:72px;transform:translateX(-50%);color:#fff1b8;font-size:24px;font-weight:900;letter-spacing:4px;text-shadow:0 3px 0 rgba(70,8,4,.52);z-index:2}.main-lamp-sub{position:absolute;left:50%;top:112px;transform:translateX(-50%);color:#ffd99d;font-size:13px;letter-spacing:2px;white-space:nowrap;z-index:2}.main-lamp-glow{position:absolute;left:50%;top:106px;width:180px;height:180px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,248,215,.98),rgba(255,215,92,.42) 38%,transparent 70%);opacity:.28;filter:blur(2px);z-index:1}.main-lamp-flame{position:absolute;left:50%;top:30px;width:38px;height:54px;transform:translateX(-50%);background:radial-gradient(circle at 50% 28%,#fffdf2,#ffe9a8 28%,#ffb83c 60%,#e95a0c);clip-path:polygon(50% 0,70% 20%,84% 48%,72% 88%,50% 100%,28% 88%,16% 48%,30% 20%);box-shadow:0 0 14px rgba(255,214,92,.8),0 0 28px rgba(255,158,28,.45);z-index:3;animation:flamePulse 1.8s ease-in-out infinite}@keyframes flamePulse{50%{transform:translateX(-50%) scale(1.08);opacity:1}}.cloud-bank{position:absolute;left:0;right:0;bottom:0;height:88px;z-index:20;background:radial-gradient(circle at 5% 100%,#f9efdd 0 40px,transparent 41px),radial-gradient(circle at 18% 100%,#f4e2b8 0 54px,transparent 55px),radial-gradient(circle at 34% 100%,#f8edd6 0 44px,transparent 45px),radial-gradient(circle at 50% 100%,#f1d89a 0 58px,transparent 59px),radial-gradient(circle at 66% 100%,#f8edd6 0 46px,transparent 47px),radial-gradient(circle at 82% 100%,#f3e3be 0 55px,transparent 56px),radial-gradient(circle at 96% 100%,#f8edd6 0 42px,transparent 43px)}.cloud-haze{position:absolute;left:50%;bottom:60px;width:300px;height:90px;transform:translateX(-50%);background:radial-gradient(circle,rgba(255,240,210,.36),transparent 70%);filter:blur(8px);z-index:8;opacity:.6}.light-stage-action{margin-top:14px}.lantern-flight-layer{position:absolute;inset:0;z-index:30;overflow:hidden;pointer-events:none}.fly-lantern{position:absolute;left:50%;bottom:90px;width:var(--w,42px);height:var(--h,62px);opacity:0;filter:drop-shadow(0 0 10px rgba(255,212,92,.8));animation:flyLanternRise var(--dur,3.6s) ease-out forwards}.fly-lantern .rope{position:absolute;left:50%;top:-14px;width:2px;height:16px;transform:translateX(-50%);background:rgba(255,226,150,.8)}.fly-lantern .body{position:absolute;inset:0;border-radius:18px 18px 24px 24px;background:radial-gradient(circle at 50% 30%,rgba(255,243,196,.28),transparent 30%),linear-gradient(180deg,#ea4a2c,#c51b10 42%,#931109);border:2px solid rgba(255,223,125,.82);box-shadow:inset 0 5px 10px rgba(255,255,255,.14),0 0 16px rgba(255,132,58,.24)}.fly-lantern .body:before{content:"";position:absolute;left:50%;top:12px;width:58%;height:30%;transform:translateX(-50%);border:1.5px solid rgba(255,220,130,.65);border-radius:12px;opacity:.55}.fly-lantern .body:after{content:"";position:absolute;left:50%;bottom:-10px;width:6px;height:14px;transform:translateX(-50%);border-radius:999px;background:linear-gradient(180deg,#f1ba34,#c33718)}.fly-lantern .flame{position:absolute;left:50%;top:8px;width:14px;height:20px;transform:translateX(-50%);background:radial-gradient(circle at 50% 28%,#fffdf2,#ffe9a8 28%,#ffb83c 60%,#e95a0c);clip-path:polygon(50% 0,70% 20%,84% 48%,72% 88%,50% 100%,28% 88%,16% 48%,30% 20%);box-shadow:0 0 12px rgba(255,214,92,.78)}.fly-lantern .txt{position:absolute;left:50%;top:25px;transform:translateX(-50%);color:#fff1b8;font-size:11px;font-weight:900;letter-spacing:1px;text-shadow:0 2px 0 rgba(70,8,4,.45)}@keyframes flyLanternRise{0%{opacity:0;transform:translateX(calc(-50% + var(--startX))) translateY(0) scale(.7) rotate(0)}8%{opacity:1}25%{opacity:1;transform:translateX(calc(-50% + var(--midX))) translateY(-90px) scale(.88) rotate(var(--rot1))}55%{opacity:.95;transform:translateX(calc(-50% + var(--mid2X))) translateY(-220px) scale(.74) rotate(var(--rot2))}100%{opacity:0;transform:translateX(calc(-50% + var(--endX))) translateY(-380px) scale(.45) rotate(var(--rot3))}}.light-blessing-text{margin-top:14px;min-height:40px;text-align:center;color:#ffe3a9;font-size:15px;line-height:1.8}.light-stage.blessing-on .main-lamp-glow{animation:stageGlowBoom 1.25s ease forwards}.light-stage.blessing-on .main-lamp{animation:mainLampBright 1.3s ease forwards}@keyframes stageGlowBoom{0%{opacity:.28;transform:translate(-50%,-50%) scale(.7)}40%{opacity:1;transform:translate(-50%,-50%) scale(1.22)}100%{opacity:.72;transform:translate(-50%,-50%) scale(1.08)}}@keyframes mainLampBright{40%{box-shadow:inset 0 8px 14px rgba(255,255,255,.24),0 0 34px rgba(255,205,92,.55)}}.light-bless-badge{display:inline-block;margin-top:8px;padding:6px 14px;border-radius:999px;background:rgba(255,226,150,.14);border:1px solid rgba(255,226,150,.36);color:#fff1b8;font-size:13px;letter-spacing:2px}@media(max-width:380px){.form-row,.lamp-options{grid-template-columns:1fr}}
 
-body {
-  min-height: 100vh;
-  background: #8a180d;
-  display: flex;
-  justify-content: center;
-  font-family: "Noto Serif TC", "Noto Sans TC", "Microsoft JhengHei", serif;
-}
-
-.app {
-  width: 100%;
-  max-width: 402px;
-  min-height: 100vh;
-  position: relative;
-  overflow: hidden;
-  background: #8a180d;
-}
-
-.page {
-  display: none;
-}
-
-.page.active {
-  display: block;
-}
-
-/* 首頁 */
-.home-screen {
-  width: 100%;
-  aspect-ratio: 402 / 705;
-  min-height: 705px;
-  position: relative;
-  background-image: url("fude-template.png");
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  background-position: top center;
-}
-
-.hotspot {
-  position: absolute;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-}
-
-.hotspot.draw { left: 24px; top: 304px; width: 110px; height: 95px; }
-.hotspot.bazi { left: 146px; top: 304px; width: 110px; height: 95px; }
-.hotspot.daily { left: 270px; top: 304px; width: 105px; height: 95px; }
-
-.hotspot.money { left: 24px; top: 410px; width: 110px; height: 95px; }
-.hotspot.date { left: 146px; top: 410px; width: 110px; height: 95px; }
-.hotspot.light { left: 270px; top: 410px; width: 105px; height: 95px; }
-
-.hotspot.start { left: 64px; top: 520px; width: 270px; height: 70px; }
-.hotspot.today { left: 118px; top: 596px; width: 168px; height: 36px; }
-
-.hotspot.nav-home { left: 0; top: 655px; width: 100px; height: 50px; }
-.hotspot.nav-draw { left: 100px; top: 655px; width: 100px; height: 50px; }
-.hotspot.nav-bazi { left: 200px; top: 655px; width: 100px; height: 50px; }
-.hotspot.nav-me { left: 300px; top: 655px; width: 102px; height: 50px; }
-
-/* 共用 */
-.sub-page {
-  min-height: 100vh;
-  padding: 20px 16px 88px;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.035) 25%, transparent 25%) 0 0 / 24px 24px,
-    linear-gradient(225deg, rgba(255,255,255,.035) 25%, transparent 25%) 0 0 / 24px 24px,
-    linear-gradient(180deg, #8f1b0f 0%, #771006 46%, #4b0703 100%);
-  color: #fff2cf;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 18px;
-  position: relative;
-  z-index: 10;
-}
-
-.back-btn {
-  border: 1px solid rgba(245, 207, 120, .7);
-  background: rgba(70, 8, 4, .65);
-  color: #fff1b8;
-  border-radius: 999px;
-  padding: 8px 14px;
-  font-size: 14px;
-  font-weight: 800;
-  font-family: inherit;
-  cursor: pointer;
-}
-
-.title {
-  font-size: 28px;
-  color: #fff1b8;
-  letter-spacing: 4px;
-  text-shadow: 0 3px 0 rgba(52, 7, 3, .62);
-}
-
-.card {
-  background: #fff3d4;
-  color: #5b2712;
-  border: 1.5px solid rgba(185, 119, 34, .45);
-  border-radius: 22px;
-  padding: 18px;
-  margin-bottom: 16px;
-  box-shadow: 0 12px 28px rgba(51, 8, 3, .22);
-}
-
-.card h3 {
-  color: #8f180d;
-  margin-bottom: 10px;
-  font-size: 20px;
-}
-
-.card p {
-  color: #6c371d;
-  font-size: 14px;
-  line-height: 1.8;
-  margin-bottom: 8px;
-}
-
-label {
-  display: block;
-  color: #8f180d;
-  font-size: 14px;
-  font-weight: 900;
-  margin-bottom: 7px;
-}
-
-input,
-select {
-  width: 100%;
-  border: 1px solid rgba(185, 119, 34, .36);
-  background: #fffaf0;
-  color: #5b2712;
-  border-radius: 14px;
-  padding: 13px;
-  font-size: 15px;
-  font-family: inherit;
-  margin-bottom: 12px;
-}
-
-.main-btn {
-  width: 100%;
-  min-height: 60px;
-  border: none;
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 12% 50%, rgba(255,230,140,.36), transparent 20%),
-    radial-gradient(circle at 88% 50%, rgba(255,230,140,.36), transparent 20%),
-    linear-gradient(180deg, #d02a18, #8f150c);
-  color: #fff1b8;
-  font-size: 22px;
-  letter-spacing: 4px;
-  font-weight: 900;
-  font-family: inherit;
-  border: 2px solid rgba(244, 206, 116, .62);
-  cursor: pointer;
-}
-
-.notice {
-  color: #9a6840;
-  font-size: 12px;
-  line-height: 1.7;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.bazi-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 7px;
-  margin: 14px 0;
-}
-
-.pillar {
-  background: linear-gradient(180deg, #fff9e8, #ffe8b8);
-  border: 1px solid rgba(185,119,34,.34);
-  border-radius: 15px;
-  text-align: center;
-  padding: 10px 4px;
-}
-
-.pillar small {
-  display: block;
-  color: #9a6840;
-  font-size: 11px;
-  margin-bottom: 5px;
-}
-
-.pillar strong {
-  display: block;
-  color: #8f180d;
-  font-size: 18px;
-  margin-bottom: 5px;
-}
-
-.record-item {
-  background: #fff9e9;
-  border-left: 4px solid #8f180d;
-  border-radius: 14px;
-  padding: 12px;
-  margin-bottom: 10px;
-  color: #5b2712;
-}
-
-.record-item h4 {
-  color: #8f180d;
-  margin-bottom: 5px;
-}
-
-.record-item p {
-  color: #9a6840;
-  font-size: 13px;
-  line-height: 1.65;
-}
-
-/* 求籤占卜頁 */
-.draw-temple-page {
+/* ===== 超震撼豪華版點燈覆蓋樣式 ===== */
+.luxury-light-page {
   min-height: 100vh;
   padding: 20px 16px 90px;
   color: #fff1c8;
-  background:
-    radial-gradient(circle at 50% 12%, rgba(255,215,100,.26), transparent 28%),
-    linear-gradient(180deg, #8f160c 0%, #641006 48%, #3f0502 100%);
-  position: relative;
   overflow: hidden;
+  position: relative;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255,215,110,.24), transparent 28%),
+    radial-gradient(circle at 50% 75%, rgba(255,160,30,.10), transparent 36%),
+    linear-gradient(180deg, #7b120b 0%, #560704 48%, #320201 100%) !important;
 }
 
-.draw-temple-page::before {
+.luxury-light-page::before {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,220,120,.06) 0 2px,
-      transparent 2px 28px
-    );
-  opacity: .5;
+    radial-gradient(circle at 20% 12%, rgba(255,230,150,.09), transparent 18%),
+    radial-gradient(circle at 82% 10%, rgba(255,230,150,.08), transparent 18%),
+    repeating-linear-gradient(90deg, rgba(255,220,120,.035) 0 2px, transparent 2px 24px);
   pointer-events: none;
 }
 
-.temple-stage {
+.lux-light-panel {
   position: relative;
+  z-index: 2;
   background:
-    radial-gradient(circle at 50% 20%, rgba(255,215,90,.22), transparent 32%),
-    linear-gradient(180deg, rgba(155,24,12,.95), rgba(89,9,4,.96));
-  border: 1.5px solid rgba(244,206,116,.55);
+    linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.012)),
+    rgba(86, 8, 4, .38);
+  border: 1.5px solid rgba(244,206,116,.42);
   border-radius: 28px;
-  padding: 22px 16px 20px;
-  overflow: hidden;
-  box-shadow: 0 16px 34px rgba(35,4,2,.35);
+  padding: 18px 14px 22px;
+  box-shadow:
+    0 18px 36px rgba(20, 2, 1, .42),
+    inset 0 0 24px rgba(255,210,100,.04);
 }
 
-.temple-roof {
-  width: 100%;
-  height: 82px;
+.lux-light-title {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 6px;
+  color: #fff1b8;
+  text-shadow:
+    0 4px 0 rgba(80,8,4,.55),
+    0 0 20px rgba(255,205,92,.42);
+  margin-bottom: 6px;
+}
+
+.lux-light-subtitle {
+  text-align: center;
+  color: #ffd99d;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.lux-light-stage {
   position: relative;
-  margin-bottom: 10px;
+  height: 530px;
+  margin-top: 16px;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(255,226,150,.32);
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255,238,160,.16), transparent 28%),
+    radial-gradient(circle at 50% 60%, rgba(255,183,46,.10), transparent 34%),
+    linear-gradient(180deg, #a41b0f 0%, #7b0f08 45%, #520602 100%);
+  box-shadow:
+    inset 0 0 34px rgba(255,220,120,.055),
+    0 14px 30px rgba(25, 3, 2, .34);
 }
 
-.temple-roof::before {
+.lux-light-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.025) 25%, transparent 25%) 0 0 / 22px 22px,
+    radial-gradient(circle at 50% 22%, rgba(255,255,255,.06), transparent 28%);
+  pointer-events: none;
+}
+
+.lux-bg-glow {
+  position: absolute;
+  left: 50%;
+  top: 150px;
+  width: 300px;
+  height: 300px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255,250,220,.98), rgba(255,214,70,.38) 42%, transparent 72%);
+  filter: blur(2px);
+  opacity: .48;
+}
+
+.lux-heaven-gate {
+  position: absolute;
+  left: 50%;
+  top: -34px;
+  width: 310px;
+  height: 150px;
+  transform: translateX(-50%);
+  border-radius: 0 0 160px 160px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255,255,235,.86), rgba(255,212,80,.42) 42%, transparent 72%);
+  opacity: .55;
+  mix-blend-mode: screen;
+}
+
+.lux-beam {
+  position: absolute;
+  left: 50%;
+  top: -20px;
+  width: 280px;
+  height: 470px;
+  transform: translateX(-50%);
+  opacity: .26;
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,235,.95),
+      rgba(255,221,120,.32) 34%,
+      rgba(255,185,30,.12) 70%,
+      transparent 100%);
+  clip-path: polygon(44% 0%, 56% 0%, 92% 100%, 8% 100%);
+  mix-blend-mode: screen;
+}
+
+.lux-radial-rays {
+  position: absolute;
+  left: 50%;
+  top: 205px;
+  width: 420px;
+  height: 420px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  opacity: .28;
+  mix-blend-mode: screen;
+  background: conic-gradient(
+    transparent 0deg 8deg, rgba(255,225,135,.75) 8deg 11deg,
+    transparent 11deg 24deg, rgba(255,196,84,.55) 24deg 28deg,
+    transparent 28deg 42deg, rgba(255,225,135,.75) 42deg 45deg,
+    transparent 45deg 60deg, rgba(255,196,84,.55) 60deg 64deg,
+    transparent 64deg 78deg, rgba(255,225,135,.75) 78deg 81deg,
+    transparent 81deg 96deg, rgba(255,196,84,.55) 96deg 100deg,
+    transparent 100deg 114deg, rgba(255,225,135,.75) 114deg 117deg,
+    transparent 117deg 132deg, rgba(255,196,84,.55) 132deg 136deg,
+    transparent 136deg 150deg, rgba(255,225,135,.75) 150deg 153deg,
+    transparent 153deg 168deg, rgba(255,196,84,.55) 168deg 172deg,
+    transparent 172deg 186deg, rgba(255,225,135,.75) 186deg 189deg,
+    transparent 189deg 204deg, rgba(255,196,84,.55) 204deg 208deg,
+    transparent 208deg 222deg, rgba(255,225,135,.75) 222deg 225deg,
+    transparent 225deg 240deg, rgba(255,196,84,.55) 240deg 244deg,
+    transparent 244deg 258deg, rgba(255,225,135,.75) 258deg 261deg,
+    transparent 261deg 276deg, rgba(255,196,84,.55) 276deg 280deg,
+    transparent 280deg 294deg, rgba(255,225,135,.75) 294deg 297deg,
+    transparent 297deg 312deg, rgba(255,196,84,.55) 312deg 316deg,
+    transparent 316deg 330deg, rgba(255,225,135,.75) 330deg 333deg,
+    transparent 333deg 348deg, rgba(255,196,84,.55) 348deg 352deg,
+    transparent 352deg 360deg);
+  animation: luxRaySpin 12s linear infinite;
+}
+
+@keyframes luxRaySpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.lux-halo-ring {
+  position: absolute;
+  left: 50%;
+  top: 190px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,220,120,.35);
+  opacity: .62;
+  mix-blend-mode: screen;
+}
+
+.lux-halo-ring.ring1 {
+  width: 190px;
+  height: 190px;
+  animation: luxRingRotate 9s linear infinite;
+}
+
+.lux-halo-ring.ring2 {
+  width: 250px;
+  height: 250px;
+  border-style: dashed;
+  animation: luxRingRotateReverse 14s linear infinite;
+}
+
+.lux-halo-ring.ring3 {
+  width: 322px;
+  height: 322px;
+  opacity: .32;
+  animation: luxRingRotate 18s linear infinite;
+}
+
+.lux-halo-ring.ring4 {
+  width: 380px;
+  height: 380px;
+  opacity: .18;
+  border-style: dotted;
+  animation: luxRingRotateReverse 24s linear infinite;
+}
+
+@keyframes luxRingRotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes luxRingRotateReverse {
+  from { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+.lux-side-lamp {
+  position: absolute;
+  top: 90px;
+  width: 56px;
+  height: 90px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #df3b21, #98120a);
+  border: 2px solid rgba(255,223,125,.78);
+  box-shadow: 0 0 28px rgba(255,130,52,.24);
+  z-index: 12;
+}
+
+.lux-side-lamp.left { left: 26px; }
+.lux-side-lamp.right { right: 26px; }
+
+.lux-side-lamp::before {
   content: "";
   position: absolute;
   left: 50%;
-  top: 12px;
-  width: 290px;
-  height: 54px;
+  top: -22px;
+  width: 2px;
+  height: 24px;
   transform: translateX(-50%);
-  background:
-    linear-gradient(180deg, #ffd780, #b72612 45%, #751006);
-  border-radius: 50% 50% 18px 18px;
-  border: 2px solid rgba(255,226,150,.7);
-  box-shadow:
-    inset 0 8px 12px rgba(255,255,255,.18),
-    0 0 22px rgba(255,190,70,.25);
+  background: rgba(255,223,125,.7);
 }
 
-.temple-roof::after {
-  content: "福德正神";
+.lux-side-lamp::after {
+  content: "福";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff1b8;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.lux-main-lamp-wrap {
+  position: absolute;
+  left: 50%;
+  top: 248px;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 310px;
+  z-index: 16;
+}
+
+.lux-main-lamp-glow {
+  position: absolute;
+  left: 50%;
+  top: 105px;
+  width: 235px;
+  height: 235px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255,248,215,.98), rgba(255,214,70,.45) 42%, transparent 72%);
+  opacity: .36;
+  filter: blur(2px);
+}
+
+.lux-main-lamp {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 180px;
+  height: 235px;
+  transform: translateX(-50%);
+  border-radius: 36px 36px 50px 50px;
+  background:
+    radial-gradient(circle at 50% 26%, rgba(255,243,196,.24), transparent 28%),
+    linear-gradient(180deg, #f04a28 0%, #c8190f 44%, #901008 100%);
+  border: 2px solid rgba(255,223,125,.92);
+  box-shadow:
+    inset 0 10px 16px rgba(255,255,255,.16),
+    0 0 28px rgba(255,130,52,.25),
+    0 18px 30px rgba(25,3,2,.3);
+}
+
+.lux-main-lamp::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  width: 116px;
+  height: 62px;
+  transform: translateX(-50%);
+  border-radius: 20px;
+  border: 2px solid rgba(255,220,130,.64);
+  opacity: .58;
+}
+
+.lux-main-lamp::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -18px;
+  width: 10px;
+  height: 24px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #f2be38, #ba3317);
+  border-radius: 999px;
+}
+
+.lux-flame {
+  position: absolute;
+  left: 50%;
+  top: 22px;
+  width: 46px;
+  height: 66px;
+  transform: translateX(-50%);
+  clip-path: polygon(50% 0%, 68% 18%, 82% 46%, 72% 85%, 50% 100%, 28% 85%, 18% 46%, 32% 18%);
+  background:
+    radial-gradient(circle at 50% 26%, #fffef4 0%, #ffe9a8 26%, #ffb83c 60%, #e8590a 100%);
+  box-shadow:
+    0 0 16px rgba(255,214,92,.92),
+    0 0 36px rgba(255,150,28,.52);
+  animation: luxFlamePulse 1.55s ease-in-out infinite;
+}
+
+@keyframes luxFlamePulse {
+  0%,100% { transform: translateX(-50%) scale(1); opacity: .92; }
+  50% { transform: translateX(-50%) scale(1.12); opacity: 1; }
+}
+
+.lux-main-lamp-title {
+  position: absolute;
+  left: 50%;
+  top: 104px;
+  transform: translateX(-50%);
+  color: #fff1b8;
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-shadow: 0 3px 0 rgba(70,8,4,.52);
+  white-space: nowrap;
+}
+
+.lux-main-lamp-sub {
+  position: absolute;
+  left: 50%;
+  top: 146px;
+  transform: translateX(-50%);
+  color: #ffd99d;
+  font-size: 13px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.lux-lotus-seat {
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  width: 230px;
+  height: 76px;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 26px 26px;
+  background:
+    radial-gradient(circle at 50% 14%, rgba(255,255,255,.20), transparent 24%),
+    linear-gradient(180deg, #f8cd66, #d79018 42%, #9e4f0f 100%);
+  box-shadow:
+    inset 0 8px 12px rgba(255,255,255,.18),
+    0 8px 20px rgba(48, 5, 2, .32);
+  border: 2px solid rgba(255,221,126,.78);
+}
+
+.lux-lotus-seat::before,
+.lux-lotus-seat::after {
+  content: "";
+  position: absolute;
+  top: 18px;
+  width: 80px;
+  height: 44px;
+  background: linear-gradient(180deg, #f8d37c, #d9901b 60%, #a9540f);
+  border-radius: 50% 50% 40% 40%;
+  border: 1.5px solid rgba(255,221,126,.72);
+}
+
+.lux-lotus-seat::before {
+  left: -18px;
+  transform: rotate(-8deg);
+}
+
+.lux-lotus-seat::after {
+  right: -18px;
+  transform: rotate(8deg);
+}
+
+.lux-particle-layer,
+.lux-lantern-layer,
+.lux-symbol-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.lux-particle-layer { z-index: 25; }
+.lux-lantern-layer { z-index: 29; }
+.lux-symbol-layer { z-index: 31; }
+
+.lux-particle {
+  position: absolute;
+  width: var(--size, 12px);
+  height: var(--size, 12px);
+  left: 50%;
+  top: 250px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #fffce9 0%, #ffd85f 48%, rgba(255,190,50,.18) 100%);
+  box-shadow: 0 0 12px rgba(255,220,100,.9);
+  animation: luxParticleFloat var(--dur, 2.2s) ease-out forwards;
+}
+
+@keyframes luxParticleFloat {
+  0% { opacity: 0; transform: translate(-50%, 0) scale(.4); }
+  15% { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--x)), var(--y)) scale(1.35); }
+}
+
+.lux-symbol {
+  position: absolute;
+  left: 50%;
+  top: 240px;
+  color: #fff1a8;
+  font-size: var(--fs, 26px);
+  font-weight: 900;
+  text-shadow:
+    0 0 12px rgba(255,225,92,.95),
+    0 0 28px rgba(255,160,32,.65);
+  animation: luxSymbolFloat var(--dur, 1.5s) ease-out forwards;
+}
+
+@keyframes luxSymbolFloat {
+  0% { opacity: 0; transform: translate(-50%, 0) scale(.55); }
+  18% { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--x)), var(--y)) scale(1.35); }
+}
+
+.lux-fly-lantern {
+  position: absolute;
+  left: 50%;
+  bottom: 72px;
+  width: var(--w, 42px);
+  height: var(--h, 62px);
+  transform: translateX(-50%);
+  opacity: 0;
+  filter:
+    drop-shadow(0 0 12px rgba(255, 220, 92, .9))
+    drop-shadow(0 0 24px rgba(255, 150, 22, .42));
+  animation: luxLanternRise var(--dur, 4s) ease-out forwards;
+}
+
+.lux-fly-lantern .rope {
+  position: absolute;
+  left: 50%;
+  top: -14px;
+  width: 2px;
+  height: 16px;
+  transform: translateX(-50%);
+  background: rgba(255,223,125,.8);
+}
+
+.lux-fly-lantern .body {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px 18px 24px 24px;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255,243,196,.28), transparent 30%),
+    linear-gradient(180deg, #e94a2a 0%, #c61a10 42%, #931109 100%);
+  border: 2px solid rgba(255,223,125,.82);
+  box-shadow:
+    inset 0 5px 10px rgba(255,255,255,.14),
+    0 0 18px rgba(255,132,58,.24);
+}
+
+.lux-fly-lantern .body::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 11px;
+  width: 58%;
+  height: 30%;
+  transform: translateX(-50%);
+  border: 1.5px solid rgba(255,220,130,.65);
+  border-radius: 12px;
+  opacity: .55;
+}
+
+.lux-fly-lantern .body::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  width: 6px;
+  height: 14px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f1ba34, #c33718);
+}
+
+.lux-fly-lantern .flame {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 14px;
+  height: 20px;
+  transform: translateX(-50%);
+  border-radius: 60% 60% 75% 75%;
+  background:
+    radial-gradient(circle at 50% 28%, #fffdf2 0%, #ffe9a8 28%, #ffb83c 60%, #e95a0c 100%);
+  clip-path: polygon(50% 0%, 70% 20%, 84% 48%, 72% 88%, 50% 100%, 28% 88%, 16% 48%, 30% 20%);
+  box-shadow: 0 0 12px rgba(255,214,92,.78);
+}
+
+.lux-fly-lantern .txt {
   position: absolute;
   left: 50%;
   top: 25px;
   transform: translateX(-50%);
   color: #fff1b8;
-  font-weight: 900;
-  font-size: 22px;
-  letter-spacing: 5px;
-  text-shadow: 0 3px 0 rgba(80,8,4,.55);
-}
-
-.draw-title {
-  text-align: center;
-  font-size: 32px;
-  font-weight: 900;
-  color: #fff1b8;
-  letter-spacing: 6px;
-  text-shadow:
-    0 4px 0 rgba(72,7,3,.55),
-    0 0 18px rgba(255,205,90,.5);
-  margin-bottom: 4px;
-}
-
-.draw-subtitle {
-  text-align: center;
-  font-size: 13px;
-  color: #ffd99d;
-  margin-bottom: 18px;
-}
-
-.draw-topic-box {
-  background: #fff3d4;
-  color: #5b2712;
-  border-radius: 18px;
-  padding: 14px;
-  border: 1.5px solid rgba(185,119,34,.35);
-  margin-bottom: 16px;
-}
-
-.draw-topic-box label {
-  color: #8f180d;
-  font-weight: 900;
-  margin-bottom: 8px;
-}
-
-.draw-altar {
-  height: 390px;
-  position: relative;
-  border-radius: 24px;
-  background:
-    radial-gradient(circle at 50% 35%, rgba(255,218,90,.24), transparent 32%),
-    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.01));
-  border: 1px solid rgba(255,225,150,.25);
-  overflow: hidden;
-  margin-bottom: 16px;
-}
-
-.lantern {
-  position: absolute;
-  top: 34px;
-  width: 48px;
-  height: 72px;
-  background: linear-gradient(180deg, #d92e1d, #8f1209);
-  border-radius: 22px;
-  border: 2px solid rgba(255,220,120,.65);
-  box-shadow: 0 0 24px rgba(255,80,35,.32);
-}
-
-.lantern.left {
-  left: 28px;
-}
-
-.lantern.right {
-  right: 28px;
-}
-
-.lantern::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: -20px;
-  width: 2px;
-  height: 22px;
-  background: rgba(255,220,120,.7);
-}
-
-.lantern::after {
-  content: "籤";
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: #ffe9a6;
-  font-size: 20px;
-  font-weight: 900;
-}
-
-.draw-glow {
-  position: absolute;
-  left: 50%;
-  top: 162px;
-  width: 260px;
-  height: 260px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, rgba(255,250,210,.75), rgba(255,205,70,.28) 42%, transparent 72%);
-  opacity: .78;
-  filter: blur(1px);
-}
-
-.draw-rays {
-  position: absolute;
-  left: 50%;
-  top: 160px;
-  width: 320px;
-  height: 320px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background:
-    conic-gradient(
-      transparent 0deg 12deg,
-      rgba(255,225,135,.55) 12deg 17deg,
-      transparent 17deg 34deg,
-      rgba(255,196,84,.45) 34deg 40deg,
-      transparent 40deg 56deg,
-      rgba(255,225,135,.55) 56deg 62deg,
-      transparent 62deg 78deg,
-      rgba(255,196,84,.45) 78deg 84deg,
-      transparent 84deg 100deg,
-      rgba(255,225,135,.55) 100deg 106deg,
-      transparent 106deg 122deg,
-      rgba(255,196,84,.45) 122deg 128deg,
-      transparent 128deg 144deg,
-      rgba(255,225,135,.55) 144deg 150deg,
-      transparent 150deg 166deg,
-      rgba(255,196,84,.45) 166deg 172deg,
-      transparent 172deg 188deg,
-      rgba(255,225,135,.55) 188deg 194deg,
-      transparent 194deg 210deg,
-      rgba(255,196,84,.45) 210deg 216deg,
-      transparent 216deg 232deg,
-      rgba(255,225,135,.55) 232deg 238deg,
-      transparent 238deg 254deg,
-      rgba(255,196,84,.45) 254deg 260deg,
-      transparent 260deg 276deg,
-      rgba(255,225,135,.55) 276deg 282deg,
-      transparent 282deg 298deg,
-      rgba(255,196,84,.45) 298deg 304deg,
-      transparent 304deg 320deg,
-      rgba(255,225,135,.55) 320deg 326deg,
-      transparent 326deg 360deg
-    );
-  opacity: .35;
-  mix-blend-mode: screen;
-  animation: drawRaySpin 8s linear infinite;
-}
-
-@keyframes drawRaySpin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* 籤筒 PNG */
-.fortune-cup-wrap {
-  position: absolute;
-  left: 50%;
-  top: 66px;
-  width: 280px;
-  height: 280px;
-  transform: translateX(-50%);
-  z-index: 20;
-  background-image: url("fortune-cup.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter:
-    drop-shadow(0 0 20px rgba(255, 215, 100, .58))
-    drop-shadow(0 14px 24px rgba(45, 4, 2, .45));
-}
-
-.draw-altar.shaking .fortune-cup-wrap {
-  animation: cupShake 1.15s ease-in-out;
-}
-
-@keyframes cupShake {
-  0% { transform: translateX(-50%) rotate(0deg); }
-  10% { transform: translateX(-50%) rotate(-8deg); }
-  20% { transform: translateX(-50%) rotate(7deg); }
-  30% { transform: translateX(-50%) rotate(-9deg); }
-  40% { transform: translateX(-50%) rotate(8deg); }
-  50% { transform: translateX(-50%) rotate(-6deg); }
-  60% { transform: translateX(-50%) rotate(5deg); }
-  70% { transform: translateX(-50%) rotate(-4deg); }
-  80% { transform: translateX(-50%) rotate(3deg); }
-  100% { transform: translateX(-50%) rotate(0deg); }
-}
-
-/* 掉出的籤 */
-.falling-stick {
-  position: absolute;
-  left: 50%;
-  top: 92px;
-  width: 20px;
-  height: 158px;
-  transform: translateX(-50%) rotate(-8deg);
-  border-radius: 999px;
-  background: linear-gradient(90deg, #bb7a1d, #fff1b0, #c98422);
-  border: 1.5px solid rgba(135,80,20,.55);
-  box-shadow:
-    0 0 18px rgba(255,215,88,.7),
-    inset 0 4px 8px rgba(255,255,255,.25);
-  opacity: 0;
-  z-index: 35;
-}
-
-.falling-stick::after {
-  content: "籤";
-  position: absolute;
-  left: 50%;
-  top: 18px;
-  transform: translateX(-50%);
-  color: #8f180d;
-  font-weight: 900;
-  font-size: 14px;
-}
-
-.draw-altar.show-stick .falling-stick {
-  animation: stickDrop 1.15s cubic-bezier(.2,.82,.25,1) forwards;
-}
-
-@keyframes stickDrop {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-70px) rotate(-18deg) scale(.8);
-  }
-  20% {
-    opacity: 1;
-  }
-  70% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(135px) rotate(12deg) scale(1);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(158px) rotate(7deg) scale(1);
-  }
-}
-
-.temple-table {
-  position: absolute;
-  left: 50%;
-  bottom: 14px;
-  width: 290px;
-  height: 70px;
-  transform: translateX(-50%);
-  background:
-    linear-gradient(180deg, #c23a21, #7c1008);
-  border-radius: 26px;
-  border: 2px solid rgba(255,220,130,.55);
-  box-shadow:
-    inset 0 6px 12px rgba(255,255,255,.12),
-    0 10px 18px rgba(36,4,2,.32);
-}
-
-.temple-table::after {
-  content: "誠心求籤・福德指引";
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: #fff1b8;
-  font-weight: 900;
-  letter-spacing: 3px;
-  font-size: 18px;
-}
-
-.draw-action-btn {
-  width: 100%;
-  height: 64px;
-  border: none;
-  border-radius: 999px;
-  background:
-    radial-gradient(circle at 15% 50%, rgba(255,228,140,.35), transparent 20%),
-    radial-gradient(circle at 85% 50%, rgba(255,228,140,.35), transparent 20%),
-    linear-gradient(180deg, #d4301f, #99120c);
-  color: #fff0b5;
-  font-size: 24px;
-  font-weight: 900;
-  letter-spacing: 5px;
-  border: 2px solid rgba(244,206,116,.74);
-  box-shadow: 0 10px 20px rgba(50, 6, 2, .3);
-  cursor: pointer;
-}
-
-.draw-action-btn:disabled {
-  opacity: .7;
-  cursor: not-allowed;
-}
-
-.draw-result-card {
-  margin-top: 16px;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.75), transparent 22%),
-    #fff3d4;
-  color: #5b2712;
-  border-radius: 24px;
-  padding: 18px;
-  border: 2px solid rgba(245,207,120,.58);
-  box-shadow: 0 16px 34px rgba(40,6,2,.32);
-}
-
-.draw-result-card h3 {
-  color: #8f180d;
-  font-size: 22px;
-  margin-bottom: 8px;
-}
-
-.draw-result-card p {
-  color: #6c371d;
-  font-size: 14px;
-  line-height: 1.8;
-  margin-bottom: 8px;
-}
-
-.draw-level {
-  display: inline-block;
-  background: #8f180d;
-  color: #fff1b8;
-  border-radius: 999px;
-  padding: 5px 12px;
-  font-size: 13px;
-  margin-bottom: 8px;
-}
-
-.draw-flash {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  background:
-    radial-gradient(circle at center, rgba(255,250,220,.95), rgba(255,208,70,.38), transparent 72%);
-  animation: drawFlash .85s ease forwards;
-}
-
-@keyframes drawFlash {
-  0% { opacity: 0; }
-  25% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-/* 補財庫頁 */
-.money-page {
-  min-height: 100vh;
-  padding: 0 0 90px;
-  background: linear-gradient(180deg, #8c1007 0%, #5a0804 100%);
-  color: #fff1b8;
-}
-
-.money-screen {
-  width: 100%;
-  aspect-ratio: 402 / 705;
-  min-height: 705px;
-  position: relative;
-  background-image: url("money-template.png");
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  background-position: top center;
-  overflow: hidden;
-}
-
-.money-visible-back {
-  position: absolute;
-  left: 18px;
-  top: 18px;
-  z-index: 120;
-  min-width: 118px;
-  height: 44px;
-  border: 1.5px solid rgba(255, 232, 160, .9);
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255, 230, 140, .22), transparent 32%),
-    linear-gradient(180deg, rgba(110, 18, 8, .9), rgba(72, 8, 4, .92));
-  color: #fff1b8;
-  border-radius: 999px;
-  font-size: 15px;
+  font-size: 11px;
   font-weight: 900;
   letter-spacing: 1px;
-  font-family: inherit;
-  box-shadow:
-    0 0 18px rgba(255, 208, 82, .22),
-    0 8px 18px rgba(45, 5, 2, .3);
-  cursor: pointer;
+  text-shadow: 0 2px 0 rgba(70,8,4,.45);
 }
 
-.money-start {
-  position: absolute;
-  left: 42px;
-  bottom: 36px;
-  z-index: 130;
-  width: 318px;
-  height: 70px;
-  border: none;
-  border-radius: 999px;
-  background:
-    radial-gradient(circle at 12% 50%, rgba(255,230,140,.45), transparent 22%),
-    radial-gradient(circle at 88% 50%, rgba(255,230,140,.45), transparent 22%),
-    linear-gradient(180deg, #d92d1c, #8f150c);
-  color: #fff1b8;
-  font-size: 24px;
-  font-weight: 900;
-  letter-spacing: 5px;
-  font-family: inherit;
-  border: 2px solid rgba(244,206,116,.85);
-  box-shadow:
-    inset 0 3px 0 rgba(255,255,255,.2),
-    0 0 26px rgba(255,205,62,.32),
-    0 10px 24px rgba(72,8,3,.35);
-  cursor: pointer;
-}
-
-.money-start:disabled {
-  opacity: .72;
-  cursor: not-allowed;
-}
-
-.money-screen.shake {
-  animation: screenShake .48s ease-in-out 2;
-}
-
-@keyframes screenShake {
-  0% { transform: translate(0,0); }
-  15% { transform: translate(-4px,2px); }
-  30% { transform: translate(4px,-2px); }
-  45% { transform: translate(-3px,-2px); }
-  60% { transform: translate(3px,2px); }
-  75% { transform: translate(-2px,1px); }
-  100% { transform: translate(0,0); }
-}
-
-.sky-crack {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 360px;
-  height: 190px;
-  transform: translateX(-50%);
-  z-index: 30;
-  opacity: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse at 50% 0%, rgba(255,255,225,.98) 0%, rgba(255,210,76,.68) 28%, rgba(255,150,20,.22) 58%, transparent 72%);
-  clip-path: polygon(48% 0%, 52% 0%, 58% 34%, 53% 34%, 64% 86%, 50% 45%, 36% 86%, 47% 34%, 42% 34%);
-}
-
-.money-screen.heaven-open .sky-crack {
-  animation: skyCrackShow 1.4s ease forwards;
-}
-
-@keyframes skyCrackShow {
-  0% { opacity: 0; transform: translateX(-50%) scaleY(.2); }
-  25% { opacity: 1; transform: translateX(-50%) scaleY(1.2); }
-  70% { opacity: .85; }
-  100% { opacity: 0; transform: translateX(-50%) scaleY(1.5); }
-}
-
-.heaven-beam {
-  position: absolute;
-  left: 50%;
-  top: -40px;
-  width: 280px;
-  height: 540px;
-  transform: translateX(-50%);
-  z-index: 28;
-  opacity: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(180deg, rgba(255,255,230,.78), rgba(255,220,80,.36) 38%, rgba(255,180,35,.14) 72%, transparent 100%);
-  clip-path: polygon(43% 0%, 57% 0%, 100% 100%, 0% 100%);
-  mix-blend-mode: screen;
-}
-
-.money-screen.heaven-open .heaven-beam {
-  animation: heavenBeam 2.2s ease forwards;
-}
-
-@keyframes heavenBeam {
-  0% { opacity: 0; transform: translateX(-50%) scaleX(.45); }
-  20% { opacity: 1; transform: translateX(-50%) scaleX(1); }
-  80% { opacity: .65; }
-  100% { opacity: 0; transform: translateX(-50%) scaleX(1.35); }
-}
-
-.money-rotating-rays {
-  position: absolute;
-  left: 50%;
-  top: 312px;
-  width: 450px;
-  height: 450px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  opacity: 0;
-  z-index: 22;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  background:
-    conic-gradient(
-      transparent 0deg 8deg,
-      rgba(255,232,140,.95) 8deg 13deg,
-      transparent 13deg 24deg,
-      rgba(255,208,84,.82) 24deg 30deg,
-      transparent 30deg 40deg,
-      rgba(255,232,140,.95) 40deg 45deg,
-      transparent 45deg 56deg,
-      rgba(255,208,84,.82) 56deg 62deg,
-      transparent 62deg 72deg,
-      rgba(255,232,140,.95) 72deg 77deg,
-      transparent 77deg 88deg,
-      rgba(255,208,84,.82) 88deg 94deg,
-      transparent 94deg 104deg,
-      rgba(255,232,140,.95) 104deg 109deg,
-      transparent 109deg 120deg,
-      rgba(255,208,84,.82) 120deg 126deg,
-      transparent 126deg 136deg,
-      rgba(255,232,140,.95) 136deg 141deg,
-      transparent 141deg 152deg,
-      rgba(255,208,84,.82) 152deg 158deg,
-      transparent 158deg 168deg,
-      rgba(255,232,140,.95) 168deg 173deg,
-      transparent 173deg 184deg,
-      rgba(255,208,84,.82) 184deg 190deg,
-      transparent 190deg 200deg,
-      rgba(255,232,140,.95) 200deg 205deg,
-      transparent 205deg 216deg,
-      rgba(255,208,84,.82) 216deg 222deg,
-      transparent 222deg 232deg,
-      rgba(255,232,140,.95) 232deg 237deg,
-      transparent 237deg 248deg,
-      rgba(255,208,84,.82) 248deg 254deg,
-      transparent 254deg 264deg,
-      rgba(255,232,140,.95) 264deg 269deg,
-      transparent 269deg 280deg,
-      rgba(255,208,84,.82) 280deg 286deg,
-      transparent 286deg 296deg,
-      rgba(255,232,140,.95) 296deg 301deg,
-      transparent 301deg 312deg,
-      rgba(255,208,84,.82) 312deg 318deg,
-      transparent 318deg 328deg,
-      rgba(255,232,140,.95) 328deg 333deg,
-      transparent 333deg 344deg,
-      rgba(255,208,84,.82) 344deg 350deg,
-      transparent 350deg 360deg
-    );
-}
-
-.money-screen.rays-on .money-rotating-rays {
-  opacity: .82;
-  animation: raysSpin 1.85s linear infinite;
-}
-
-@keyframes raysSpin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-.absorb-vortex {
-  position: absolute;
-  left: 50%;
-  top: 310px;
-  width: 300px;
-  height: 180px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  z-index: 36;
-  opacity: 0;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  background:
-    conic-gradient(
-      from 0deg,
-      transparent 0deg,
-      rgba(255,245,170,.92) 35deg,
-      transparent 70deg,
-      rgba(255,196,54,.86) 120deg,
-      transparent 170deg,
-      rgba(255,245,170,.92) 220deg,
-      transparent 270deg,
-      rgba(255,196,54,.86) 320deg,
-      transparent 360deg
-    );
-}
-
-.money-screen.absorbing .absorb-vortex {
-  opacity: .88;
-  animation: vortexSpin .72s linear infinite, vortexPulse 1.2s ease-in-out infinite;
-}
-
-@keyframes vortexSpin {
-  from { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-  to { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
-}
-
-@keyframes vortexPulse {
-  0%, 100% { opacity: .48; }
-  50% { opacity: .92; }
-}
-
-.ingot-core-glow {
-  position: absolute;
-  left: 50%;
-  top: 318px;
-  width: 260px;
-  height: 180px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle,
-      rgba(255,255,240,1) 0%,
-      rgba(255,232,120,.98) 26%,
-      rgba(255,192,40,.68) 52%,
-      rgba(255,160,0,.20) 72%,
-      transparent 82%);
-  opacity: 0;
-  z-index: 42;
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
-
-.money-screen.ingot-flash .ingot-core-glow {
-  animation: ingotGlowBurst .78s ease-out forwards;
-}
-
-@keyframes ingotGlowBurst {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(.42); }
-  28% { opacity: 1; transform: translate(-50%, -50%) scale(1.20); }
-  62% { opacity: .92; transform: translate(-50%, -50%) scale(1.02); }
-  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.50); }
-}
-
-.money-burst-light {
-  position: absolute;
-  left: 50%;
-  top: 315px;
-  width: 390px;
-  height: 390px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle,
-      rgba(255,252,215,1) 0%,
-      rgba(255,218,80,.82) 28%,
-      rgba(255,170,30,.30) 54%,
-      transparent 74%);
-  opacity: 0;
-  z-index: 40;
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
-
-.money-screen.ingot-flash .money-burst-light {
-  animation: moneyBurst .88s ease-out forwards;
-}
-
-@keyframes moneyBurst {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(.4); }
-  30% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
-  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); }
-}
-
-.final-glow {
-  position: absolute;
-  left: 50%;
-  top: 315px;
-  width: 340px;
-  height: 260px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, rgba(255,255,230,.95), rgba(255,214,70,.55) 42%, rgba(255,150,20,.16) 68%, transparent 80%);
-  z-index: 34;
-  opacity: 0;
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
-
-.money-screen.done .final-glow {
-  animation: finalGlowPulse 2.6s ease-in-out infinite;
-}
-
-@keyframes finalGlowPulse {
-  0%, 100% { opacity: .58; transform: translate(-50%, -50%) scale(1); }
-  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.16); }
-}
-
-.ingot-rain-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 70;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.fall-ingot {
-  position: absolute;
-  top: -110px;
-  left: 0;
-  width: var(--size, 74px);
-  height: var(--size, 74px);
-  pointer-events: none;
-  z-index: 75;
-  background-image: url("ingot-rain.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  filter:
-    drop-shadow(0 0 10px rgba(255, 235, 150, 0.96))
-    drop-shadow(0 0 24px rgba(255, 184, 40, 0.68));
-  transform:
-    translateX(var(--startX, 0px))
-    translateY(-120px)
-    scale(.8)
-    rotate(0deg);
-  animation: ingotRainAbsorb var(--dur, 1.5s) cubic-bezier(.18,.74,.22,1) forwards;
-}
-
-@keyframes ingotRainAbsorb {
-  0% {
-    opacity: 0;
-    transform:
-      translateX(var(--startX, 0px))
-      translateY(-130px)
-      scale(.58)
-      rotate(0deg);
-  }
-
+@keyframes luxLanternRise {
+  0% { opacity: 0; transform: translateX(calc(-50% + var(--startX))) translateY(0px) scale(.74) rotate(0deg); }
   8% { opacity: 1; }
-
-  42% {
-    opacity: 1;
-    transform:
-      translateX(var(--startX, 0px))
-      translateY(var(--dropY, 210px))
-      scale(1)
-      rotate(120deg);
-  }
-
-  68% {
-    opacity: 1;
-    transform:
-      translateX(calc(var(--startX, 0px) + var(--curveX, 0px)))
-      translateY(var(--curveY, 260px))
-      scale(.82)
-      rotate(250deg);
-  }
-
-  100% {
-    opacity: 0;
-    transform:
-      translateX(var(--endX, 180px))
-      translateY(var(--endY, 265px))
-      scale(.10)
-      rotate(520deg);
-  }
+  30% { opacity: 1; transform: translateX(calc(-50% + var(--midX))) translateY(-120px) scale(.94) rotate(var(--rot1)); }
+  58% { opacity: .95; transform: translateX(calc(-50% + var(--mid2X))) translateY(-280px) scale(.78) rotate(var(--rot2)); }
+  100% { opacity: 0; transform: translateX(calc(-50% + var(--endX))) translateY(-470px) scale(.45) rotate(var(--rot3)); }
 }
 
-.fortune-char {
+.lux-clouds {
   position: absolute;
-  color: #fff1a8;
-  font-size: 24px;
-  font-weight: 900;
-  text-shadow:
-    0 0 10px rgba(255,225,92,.95),
-    0 0 22px rgba(255,160,32,.6);
-  opacity: 0;
-  z-index: 90;
-  animation: fortuneCharFly 1.2s ease-out forwards;
-}
-
-@keyframes fortuneCharFly {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0) scale(.5);
-  }
-  20% { opacity: 1; }
-  100% {
-    opacity: 0;
-    transform: translate(var(--fx), var(--fy)) scale(1.3);
-  }
-}
-
-.spark {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #fffbd8 0%, #ffd95f 45%, rgba(255,185,50,.2) 100%);
-  box-shadow: 0 0 12px rgba(255,220,100,.95);
-  pointer-events: none;
-  z-index: 90;
-  animation: sparkFly .75s ease-out forwards;
-}
-
-@keyframes sparkFly {
-  0% { opacity: 1; transform: translate(0, 0) scale(.8); }
-  100% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(1.6); }
-}
-
-.money-full-flash {
-  position: fixed;
-  inset: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100px;
+  z-index: 18;
   background:
-    radial-gradient(circle at center, rgba(255,252,215,.98), rgba(255,209,78,.6), transparent 74%);
-  z-index: 9999;
-  pointer-events: none;
-  animation: fullFlash .9s ease forwards;
+    radial-gradient(circle at 5% 100%, #f9efdd 0 40px, transparent 41px),
+    radial-gradient(circle at 18% 100%, #f4e2b8 0 54px, transparent 55px),
+    radial-gradient(circle at 34% 100%, #f8edd6 0 44px, transparent 45px),
+    radial-gradient(circle at 50% 100%, #f1d89a 0 58px, transparent 59px),
+    radial-gradient(circle at 66% 100%, #f8edd6 0 46px, transparent 47px),
+    radial-gradient(circle at 82% 100%, #f3e3be 0 55px, transparent 56px),
+    radial-gradient(circle at 96% 100%, #f8edd6 0 42px, transparent 43px);
 }
 
-@keyframes fullFlash {
+.lux-stage-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 38%, rgba(255,252,215,.98), rgba(255,208,70,.36), transparent 72%);
+  animation: luxStageFlash .95s ease forwards;
+}
+
+@keyframes luxStageFlash {
   0% { opacity: 0; }
   18% { opacity: 1; }
   100% { opacity: 0; }
 }
 
-.money-card {
-  margin: 14px 16px 0;
+.lux-screen-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(255,252,215,.92), rgba(255,212,86,.32), transparent 74%);
+  animation: luxScreenFlash .9s ease forwards;
+}
+
+@keyframes luxScreenFlash {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.lux-light-stage.shock-on {
+  animation: luxStageShake .58s ease-in-out 1;
+}
+
+@keyframes luxStageShake {
+  0%,100% { transform: translate(0,0); }
+  12% { transform: translate(-3px,2px); }
+  24% { transform: translate(3px,-2px); }
+  36% { transform: translate(-2px,-1px); }
+  48% { transform: translate(2px,2px); }
+  60% { transform: translate(-2px,1px); }
+  72% { transform: translate(2px,-1px); }
+}
+
+.lux-light-stage.blessing-on .lux-main-lamp-glow {
+  animation: luxLampGlowBlast 1.2s ease forwards;
+}
+
+.lux-light-stage.blessing-on .lux-main-lamp {
+  animation: luxLampBrighten 1.25s ease forwards;
+}
+
+.lux-light-stage.blessing-on .lux-beam {
+  animation: luxBeamBlast 1.3s ease forwards;
+}
+
+.lux-light-stage.blessing-on .lux-heaven-gate {
+  animation: luxGateOpen 1.5s ease forwards;
+}
+
+@keyframes luxLampGlowBlast {
+  0% { opacity: .36; transform: translate(-50%, -50%) scale(.7); }
+  40% { opacity: 1; transform: translate(-50%, -50%) scale(1.45); }
+  100% { opacity: .78; transform: translate(-50%, -50%) scale(1.12); }
+}
+
+@keyframes luxLampBrighten {
+  0% { box-shadow: inset 0 10px 16px rgba(255,255,255,.16), 0 0 28px rgba(255,130,52,.25), 0 18px 30px rgba(25,3,2,.3); }
+  40% { box-shadow: inset 0 10px 16px rgba(255,255,255,.28), 0 0 48px rgba(255,212,92,.72), 0 18px 30px rgba(25,3,2,.3); }
+  100% { box-shadow: inset 0 10px 16px rgba(255,255,255,.20), 0 0 32px rgba(255,180,62,.42), 0 18px 30px rgba(25,3,2,.3); }
+}
+
+@keyframes luxBeamBlast {
+  0% { opacity: .18; }
+  35% { opacity: .86; }
+  100% { opacity: .38; }
+}
+
+@keyframes luxGateOpen {
+  0% { opacity: .35; transform: translateX(-50%) scaleY(.55); }
+  35% { opacity: 1; transform: translateX(-50%) scaleY(1.18); }
+  100% { opacity: .58; transform: translateX(-50%) scaleY(1); }
+}
+
+.light-stage-action {
+  margin-top: 14px;
+}
+
+.light-launch-btn {
+  width: 100%;
+  min-height: 62px;
+  border: none;
+  border-radius: 18px;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.75), transparent 24%),
-    #fff3d4;
-  color: #5b2712;
-  border-radius: 24px;
-  padding: 18px;
-  border: 2px solid rgba(245,207,120,.6);
-  box-shadow: 0 16px 34px rgba(40,6,2,.32);
-}
-
-.money-card h3 {
-  color: #8f180d;
+    radial-gradient(circle at 12% 50%, rgba(255,230,140,.40), transparent 20%),
+    radial-gradient(circle at 88% 50%, rgba(255,230,140,.40), transparent 20%),
+    linear-gradient(180deg, #d93120, #8f150c);
+  color: #fff1b8;
   font-size: 22px;
-  margin-bottom: 10px;
+  letter-spacing: 4px;
+  font-weight: 900;
+  font-family: inherit;
+  border: 2px solid rgba(244, 206, 116, .68);
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(50, 6, 2, .30), 0 0 22px rgba(255, 205, 70, .18);
 }
 
-.money-card p {
-  color: #6c371d;
-  font-size: 14px;
+.light-launch-btn:disabled {
+  opacity: .72;
+  cursor: not-allowed;
+}
+
+.light-blessing-text {
+  margin-top: 14px;
+  min-height: 40px;
+  text-align: center;
+  color: #ffe3a9;
+  font-size: 15px;
   line-height: 1.8;
 }
 
-.money-list {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 9px;
-  margin-top: 14px;
-}
-
-.money-item {
-  text-align: center;
-  background: #fff9e8;
-  border: 1px solid rgba(185,119,34,.32);
-  border-radius: 16px;
-  padding: 10px 6px;
-}
-
-.money-item span {
-  display: block;
-  color: #9a6840;
-  font-size: 12px;
-  margin-bottom: 5px;
-}
-
-.money-item strong {
-  color: #8f180d;
-  font-size: 18px;
-}
-
-/* 點燈頁 */
-.light-page {
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at 50% 22%, rgba(255,214,110,.22), transparent 24%),
-    linear-gradient(180deg, #7d130b 0%, #5e0904 48%, #420502 100%);
-  padding: 20px 16px 90px;
-  color: #fff1c8;
-  overflow: hidden;
-  position: relative;
-}
-
-.lamp-options {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-.lamp-option {
-  border: 1.5px solid rgba(244,206,116,.55);
-  background:
-    radial-gradient(circle at 50% 0%, rgba(255,224,132,.28), transparent 36%),
-    linear-gradient(180deg, rgba(125,18,9,.96), rgba(79,8,4,.95));
-  color: #fff0bc;
-  border-radius: 18px;
-  padding: 12px 8px;
-  font-family: inherit;
-  cursor: pointer;
-  min-height: 76px;
-  box-shadow: 0 8px 18px rgba(40,4,2,.25);
-}
-
-.lamp-option .icon {
-  display: block;
-  font-size: 24px;
-  margin-bottom: 5px;
-}
-
-.lamp-option strong {
-  display: block;
-  font-size: 16px;
+.light-bless-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 226, 150, .14);
+  border: 1px solid rgba(255, 226, 150, .36);
+  color: #fff1b8;
+  font-size: 13px;
   letter-spacing: 2px;
 }
 
-.lamp-option small {
-  display: block;
-  color: #ffd99d;
-  font-size: 11px;
-  margin-top: 3px;
+
+/* ===== 點燈背景圖版：使用 light-template.png ===== */
+.light-bg-page {
+  min-height: 100vh;
+  padding: 0;
+  background: #5a0703;
+  display: flex;
+  justify-content: center;
 }
 
-.lamp-option.selected {
-  border-color: #fff2b0;
-  box-shadow: 0 0 18px rgba(255,219,92,.6);
-  background:
-    radial-gradient(circle at 50% 0%, rgba(255,239,155,.45), transparent 40%),
-    linear-gradient(180deg, #c02a18, #801006);
+.light-bg-screen {
+  width: 100%;
+  max-width: 402px;
+  min-height: 705px;
+  aspect-ratio: 402 / 705;
+  position: relative;
+  overflow: hidden;
+  background-image: url("light-template.png");
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: top center;
 }
 
-.light-hero {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.01)),
-    linear-gradient(180deg, #97180d, #6d0d07);
-  border: 1.5px solid rgba(244,206,116,.45);
-  border-radius: 26px;
-  padding: 22px 14px;
-  box-shadow: 0 14px 34px rgba(35, 4, 2, .34);
+.light-back-hotspot {
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  width: 120px;
+  height: 46px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 90;
 }
 
-.light-title {
+.light-bg-start {
+  position: absolute;
+  left: 74px;
+  top: 528px;
+  width: 254px;
+  height: 70px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 90;
+}
+
+.light-bg-start:disabled {
+  cursor: not-allowed;
+}
+
+.light-bg-result {
+  position: absolute;
+  left: 42px;
+  right: 42px;
+  top: 608px;
+  z-index: 70;
+  color: #ffe7a8;
   text-align: center;
-  font-size: 32px;
-  letter-spacing: 6px;
+  line-height: 1.8;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-shadow:
+    0 2px 0 rgba(72, 8, 4, .45),
+    0 0 12px rgba(255, 210, 80, .45);
+  pointer-events: none;
+}
+
+.light-bg-result .light-bless-badge {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(255, 226, 150, .13);
+  border: 1px solid rgba(255, 226, 150, .28);
   color: #fff1b8;
-  text-shadow: 0 4px 0 rgba(80, 8, 4, .55);
-  margin-bottom: 8px;
+  font-size: 12px;
 }
 
-.light-subtitle {
-  text-align: center;
-  color: #ffdba0;
+/* 背景圖版特效位置調整 */
+.light-bg-screen .lux-particle-layer,
+.light-bg-screen .lux-lantern-layer,
+.light-bg-screen .lux-symbol-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.light-bg-screen .lux-particle-layer { z-index: 50; }
+.light-bg-screen .lux-lantern-layer { z-index: 55; }
+.light-bg-screen .lux-symbol-layer { z-index: 60; }
+
+.light-bg-screen .lux-particle {
+  top: 330px;
+}
+
+.light-bg-screen .lux-symbol {
+  top: 315px;
+}
+
+.light-bg-screen .lux-fly-lantern {
+  bottom: 150px;
+}
+
+.light-bg-screen.blessing-on::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -40px;
+  width: 280px;
+  height: 520px;
+  transform: translateX(-50%);
+  z-index: 20;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255,255,230,.72), rgba(255,222,105,.30) 38%, rgba(255,180,40,.10) 72%, transparent 100%);
+  clip-path: polygon(44% 0%, 56% 0%, 92% 100%, 8% 100%);
+  mix-blend-mode: screen;
+  animation: bgLightBeam 1.4s ease forwards;
+}
+
+.light-bg-screen.blessing-on::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 270px;
+  width: 330px;
+  height: 330px;
+  transform: translate(-50%, -50%);
+  z-index: 21;
+  pointer-events: none;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255,255,220,.92), rgba(255,213,66,.38) 42%, transparent 72%);
+  mix-blend-mode: screen;
+  animation: bgLampBurst 1.2s ease forwards;
+}
+
+@keyframes bgLightBeam {
+  0% { opacity: 0; transform: translateX(-50%) scaleX(.55); }
+  35% { opacity: 1; transform: translateX(-50%) scaleX(1.1); }
+  100% { opacity: .42; transform: translateX(-50%) scaleX(1); }
+}
+
+@keyframes bgLampBurst {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.55); }
+  38% { opacity: 1; transform: translate(-50%, -50%) scale(1.22); }
+  100% { opacity: .55; transform: translate(-50%, -50%) scale(1); }
+}
+
+
+/* ===== 點燈背景圖版：明確返回鍵 + 精緻小天燈升空強化 ===== */
+.light-visible-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 128px !important;
+  height: 44px !important;
+  left: 18px !important;
+  top: 18px !important;
+  border-radius: 999px !important;
+  border: 1.5px solid rgba(255, 232, 160, .95) !important;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 232, 150, .22), transparent 32%),
+    linear-gradient(180deg, rgba(118, 18, 8, .92), rgba(68, 8, 4, .94)) !important;
+  color: #fff1b8 !important;
+  font-size: 15px !important;
+  font-weight: 900 !important;
+  letter-spacing: 1px !important;
+  font-family: inherit !important;
+  box-shadow:
+    0 0 18px rgba(255, 212, 82, .28),
+    0 8px 18px rgba(45, 5, 2, .35),
+    inset 0 2px 0 rgba(255,255,255,.14) !important;
+  z-index: 160 !important;
+  cursor: pointer;
+}
+
+.light-visible-back:active {
+  transform: scale(.97);
+}
+
+.light-bg-screen .lux-lantern-layer {
+  z-index: 95 !important;
+}
+
+.light-bg-screen .lux-fly-lantern {
+  bottom: 118px !important;
+  filter:
+    drop-shadow(0 0 10px rgba(255, 232, 130, .95))
+    drop-shadow(0 0 22px rgba(255, 152, 28, .48))
+    drop-shadow(0 8px 10px rgba(60, 6, 2, .25)) !important;
+  animation-name: refinedLanternRise !important;
+  animation-timing-function: cubic-bezier(.18,.72,.18,1) !important;
+}
+
+.light-bg-screen .lux-fly-lantern .body {
+  border-radius: 18px 18px 24px 24px !important;
+  background:
+    radial-gradient(circle at 50% 24%, rgba(255,252,212,.42), transparent 24%),
+    linear-gradient(90deg, rgba(255,230,135,.28), transparent 18%, transparent 82%, rgba(255,230,135,.22)),
+    linear-gradient(180deg, #f2542f 0%, #d82917 42%, #9b1108 100%) !important;
+  border: 2px solid rgba(255,224,128,.9) !important;
+  box-shadow:
+    inset 0 7px 12px rgba(255,255,255,.18),
+    inset 0 -8px 12px rgba(80,6,2,.22),
+    0 0 18px rgba(255,166,52,.35) !important;
+}
+
+.light-bg-screen .lux-fly-lantern .body::before {
+  width: 62% !important;
+  height: 30% !important;
+  top: 11px !important;
+  border: 1.5px solid rgba(255,230,150,.72) !important;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,222,110,.20), transparent 60%);
+}
+
+.light-bg-screen .lux-fly-lantern .body::after {
+  height: 16px !important;
+  bottom: -12px !important;
+  background:
+    linear-gradient(180deg, #ffd777, #e4411f 70%, #9a1208) !important;
+  box-shadow: 0 0 8px rgba(255,190,60,.5);
+}
+
+.light-bg-screen .lux-fly-lantern .rope {
+  height: 20px !important;
+  top: -18px !important;
+  background: rgba(255,226,150,.86) !important;
+}
+
+.light-bg-screen .lux-fly-lantern .flame {
+  width: 16px !important;
+  height: 24px !important;
+  top: 7px !important;
+  box-shadow:
+    0 0 12px rgba(255,232,130,.9),
+    0 0 22px rgba(255,156,34,.5) !important;
+}
+
+.light-bg-screen .lux-fly-lantern .txt {
+  top: 26px !important;
+  font-size: 12px !important;
+  color: #fff3bd !important;
+  text-shadow:
+    0 2px 0 rgba(85,8,4,.52),
+    0 0 8px rgba(255,210,80,.45) !important;
+}
+
+@keyframes refinedLanternRise {
+  0% {
+    opacity: 0;
+    transform:
+      translateX(calc(-50% + var(--startX)))
+      translateY(20px)
+      scale(.56)
+      rotate(0deg);
+  }
+  8% { opacity: 1; }
+  24% {
+    opacity: 1;
+    transform:
+      translateX(calc(-50% + var(--midX)))
+      translateY(-125px)
+      scale(.88)
+      rotate(var(--rot1));
+  }
+  54% {
+    opacity: .96;
+    transform:
+      translateX(calc(-50% + var(--mid2X)))
+      translateY(-305px)
+      scale(.72)
+      rotate(var(--rot2));
+  }
+  82% {
+    opacity: .72;
+    transform:
+      translateX(calc(-50% + var(--endX)))
+      translateY(-455px)
+      scale(.55)
+      rotate(var(--rot3));
+  }
+  100% {
+    opacity: 0;
+    transform:
+      translateX(calc(-50% + var(--endX)))
+      translateY(-560px)
+      scale(.38)
+      rotate(var(--rot3));
+  }
+}
+
+.light-bg-screen.lanterns-on::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 310px;
+  height: 520px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 25;
+  background:
+    linear-gradient(180deg, rgba(255,250,220,.62), rgba(255,216,92,.30) 38%, rgba(255,160,35,.10) 76%, transparent 100%);
+  clip-path: polygon(45% 0%, 55% 0%, 94% 100%, 6% 100%);
+  mix-blend-mode: screen;
+  animation: lanternBeamFade 2.2s ease forwards;
+}
+
+@keyframes lanternBeamFade {
+  0% { opacity: 0; transform: translateX(-50%) scaleX(.55); }
+  25% { opacity: .95; transform: translateX(-50%) scaleX(1.05); }
+  100% { opacity: .38; transform: translateX(-50%) scaleX(1); }
+}
+
+
+/* ===== 以 PNG 小天燈圖片取代原本動畫小天燈 ===== */
+.light-bg-screen .lux-fly-lantern {
+  position: absolute;
+  left: 50%;
+  bottom: 118px !important;
+  width: var(--w, 56px);
+  height: var(--h, 86px);
+  transform: translateX(-50%);
+  transform-origin: center center;
+  pointer-events: none;
+  z-index: 98;
+  filter:
+    drop-shadow(0 0 10px rgba(255, 232, 130, .95))
+    drop-shadow(0 0 22px rgba(255, 152, 28, .48))
+    drop-shadow(0 8px 10px rgba(60, 6, 2, .25)) !important;
+  animation-name: refinedLanternRise !important;
+  animation-timing-function: cubic-bezier(.18,.72,.18,1) !important;
+}
+
+.light-bg-screen .lux-fly-lantern .lantern-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+
+/* ===== 求籤頁背景圖版：使用 draw-template.png ===== */
+.draw-bg-page {
+  min-height: 100vh;
+  background: #8f1b0f;
+  display: flex;
+  justify-content: center;
+}
+
+.draw-bg-screen {
+  width: 100%;
+  max-width: 402px;
+  min-height: 705px;
+  aspect-ratio: 402 / 705;
+  position: relative;
+  overflow: hidden;
+  background-image: url("draw-qian-bg.png");
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+
+/* 左上返回首頁：保留明確功能 */
+.draw-bg-back {
+  position: absolute;
+  left: 14px;
+  top: 8px;
+  width: 82px;
+  height: 30px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 226, 150, .82);
+  background: rgba(95, 12, 6, .78);
+  color: #fff1b8;
+  font-size: 13px;
+  font-weight: 900;
+  font-family: inherit;
+  z-index: 120;
+  cursor: pointer;
+}
+
+/* 求籤主題下拉：對齊背景圖上的白色選擇框 */
+.draw-bg-select {
+  position: absolute;
+  left: 36px;
+  top: 236px;
+  width: 330px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(190, 128, 68, .32);
+  background: rgba(255, 249, 236, .92);
+  color: #7a2a15;
   font-size: 14px;
-  margin-bottom: 16px;
+  font-family: inherit;
+  padding: 0 12px;
+  z-index: 110;
 }
 
-.light-result {
-  margin-top: 14px;
-  text-align: center;
-  min-height: 42px;
-  color: #ffe3a9;
+/* 搖籤按鈕：覆蓋背景圖上的「再次搖籤」區塊 */
+.draw-bg-shake {
+  position: absolute;
+  left: 42px;
+  top: 633px;
+  width: 318px;
+  height: 52px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 120;
+}
+
+.draw-bg-shake:disabled {
+  cursor: not-allowed;
+}
+
+/* 搖籤發光 */
+.draw-bg-glow-layer {
+  position: absolute;
+  left: 50%;
+  top: 440px;
+  width: 260px;
+  height: 260px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0;
+  background:
+    radial-gradient(circle, rgba(255,252,210,.92), rgba(255,210,68,.42) 45%, transparent 72%);
+  mix-blend-mode: screen;
+}
+
+.draw-bg-screen.shaking .draw-bg-glow-layer {
+  animation: drawBgGlow 1.2s ease forwards;
+}
+
+@keyframes drawBgGlow {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.55); }
+  35% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+  100% { opacity: .35; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* 掉出的籤：覆蓋在背景籤筒上 */
+.draw-bg-stick {
+  position: absolute;
+  left: 50%;
+  top: 390px;
+  width: 20px;
+  height: 160px;
+  transform: translateX(-50%) translateY(-80px) rotate(-12deg);
+  border-radius: 999px;
+  background: linear-gradient(90deg, #b8791d, #fff0a8, #c88422);
+  border: 1px solid rgba(135, 80, 20, .55);
+  box-shadow:
+    0 0 16px rgba(255,215,88,.75),
+    inset 0 4px 8px rgba(255,255,255,.25);
+  color: #8f180d;
+  font-size: 13px;
+  font-weight: 900;
+  display: grid;
+  place-items: start center;
+  padding-top: 18px;
+  opacity: 0;
+  z-index: 95;
+  pointer-events: none;
+}
+
+.draw-bg-screen.show-stick .draw-bg-stick {
+  animation: drawBgStickDrop 1.1s cubic-bezier(.2,.82,.25,1) forwards;
+}
+
+@keyframes drawBgStickDrop {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-90px) rotate(-18deg) scale(.8);
+  }
+  20% { opacity: 1; }
+  70% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(80px) rotate(10deg) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(100px) rotate(7deg) scale(1);
+  }
+}
+
+/* 結果文字覆蓋在背景底下卡片上 */
+.draw-bg-result {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  top: 720px;
+  min-height: 210px;
+  z-index: 110;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.70), transparent 24%),
+    #fff3d4;
+  color: #5b2712;
+  border-radius: 22px;
+  padding: 16px;
+  border: 1.5px solid rgba(245,207,120,.55);
+  box-shadow: 0 12px 26px rgba(40,6,2,.24);
+}
+
+.draw-bg-result h3 {
+  color: #8f180d;
+  font-size: 20px;
+  margin: 8px 0;
+}
+
+.draw-bg-result p {
+  color: #6c371d;
+  font-size: 14px;
+  line-height: 1.75;
+  margin-bottom: 6px;
+}
+
+.draw-bg-result .draw-level {
+  display: inline-block;
+  background: #8f180d;
+  color: #fff1b8;
+  border-radius: 999px;
+  padding: 4px 11px;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.draw-bg-screen.after-draw {
+  min-height: 970px;
+}
+
+.draw-bg-screen.after-draw .draw-bg-result {
+  top: 710px;
+}
+
+/* 手機寬度微調 */
+@media (max-width: 380px) {
+  .draw-bg-select {
+    left: 32px;
+    width: calc(100% - 64px);
+  }
+
+  .draw-bg-shake {
+    left: 38px;
+    width: calc(100% - 76px);
+  }
+}
+
+
+/* ===== 求籤頁改用福德正神廟宇背景圖 ===== */
+.draw-bg-screen {
+  max-width: 420px;
+  min-height: 930px;
+  aspect-ratio: auto;
+  background-image: linear-gradient(180deg, rgba(52,9,4,.08) 0%, rgba(52,9,4,.12) 48%, rgba(88,16,8,.28) 100%), url("draw-qian-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+.draw-bg-back {
+  left: 16px;
+  top: 14px;
+  width: 96px;
+  height: 36px;
+  font-size: 14px;
+  background: rgba(92, 15, 8, .82);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 8px 18px rgba(32, 4, 1, .28);
+}
+
+.draw-bg-select {
+  left: 24px;
+  right: 24px;
+  width: auto;
+  top: 726px;
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 222, 160, .42);
+  background: rgba(255, 248, 235, .95);
+  box-shadow: 0 10px 18px rgba(44, 6, 2, .18);
   font-size: 15px;
-  line-height: 1.7;
+  z-index: 115;
+}
+
+.draw-bg-glow-layer {
+  top: 516px;
+  width: 300px;
+  height: 300px;
+}
+
+.draw-bg-stick {
+  top: 438px;
+  height: 188px;
+  width: 22px;
+  z-index: 116;
+}
+
+.draw-bg-shake {
+  left: 32px;
+  top: 786px;
+  width: calc(100% - 64px);
+  height: 64px;
+  border-radius: 999px;
+  z-index: 118;
+}
+
+.draw-bg-result {
+  left: 18px;
+  right: 18px;
+  top: 866px;
+  min-height: 230px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,243,212,.98) 22%);
+  border: 1.5px solid rgba(247, 209, 123, .58);
+  box-shadow: 0 14px 30px rgba(40, 6, 2, .26);
+  z-index: 117;
+}
+
+.draw-bg-result h3 {
+  font-size: 22px;
+}
+
+.draw-bg-result p {
+  font-size: 14px;
+  line-height: 1.78;
+}
+
+.draw-bg-result .draw-level {
+  background: linear-gradient(180deg, #a12617, #7e180e);
+  border: 1px solid rgba(255, 220, 148, .45);
+  box-shadow: 0 4px 10px rgba(120, 14, 6, .18);
+}
+
+.draw-bg-screen.after-draw {
+  min-height: 1120px;
+}
+
+.draw-bg-screen.after-draw .draw-bg-result {
+  top: 866px;
 }
 
 @media (max-width: 380px) {
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: 0;
+  .draw-bg-screen {
+    min-height: 900px;
   }
-
-  .lamp-options {
-    grid-template-columns: 1fr;
+  .draw-bg-select {
+    top: 700px;
+    left: 18px;
+    right: 18px;
+  }
+  .draw-bg-shake {
+    left: 24px;
+    width: calc(100% - 48px);
+    top: 758px;
+  }
+  .draw-bg-result {
+    left: 14px;
+    right: 14px;
+    top: 836px;
   }
 }
+
+
+/* ===== 求籤頁修正版：去除今日指引選單，籤詩搖完才顯示 ===== */
+.draw-bg-select {
+  display: none !important;
+}
+
+.draw-bg-screen {
+  min-height: 930px;
+}
+
+/* 明確搖籤按鈕 */
+.draw-bg-shake {
+  left: 50% !important;
+  top: 630px !important;
+  width: 270px !important;
+  height: 58px !important;
+  transform: translateX(-50%);
+  border-radius: 999px !important;
+  border: 2px solid rgba(255, 226, 150, .72) !important;
+  background:
+    radial-gradient(circle at 15% 50%, rgba(255, 230, 150, .28), transparent 22%),
+    radial-gradient(circle at 85% 50%, rgba(255, 230, 150, .28), transparent 22%),
+    linear-gradient(180deg, rgba(199, 48, 29, .95), rgba(124, 18, 10, .96)) !important;
+  color: #fff1b8 !important;
+  box-shadow:
+    0 0 18px rgba(255, 198, 72, .28),
+    0 10px 22px rgba(42, 5, 2, .34),
+    inset 0 3px 0 rgba(255,255,255,.14);
+  font-family: inherit;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 4px;
+}
+
+.draw-bg-shake::after {
+  content: "誠心搖籤";
+}
+
+.draw-bg-shake:disabled::after {
+  content: "搖籤中";
+}
+
+/* 籤詩結果預設不顯示，搖完籤才出現 */
+.draw-bg-result {
+  display: none !important;
+  top: 710px !important;
+}
+
+.draw-bg-screen.after-draw {
+  min-height: 990px !important;
+}
+
+.draw-bg-screen.after-draw .draw-bg-result {
+  display: block !important;
+}
+
+/* 搖籤中提示卡 */
+.draw-bg-screen.shaking:not(.after-draw) .draw-bg-result {
+  display: block !important;
+  top: 710px !important;
+  min-height: 120px !important;
+}
+
+/* 掉籤位置微調 */
+.draw-bg-stick {
+  top: 438px !important;
+}
+
+@media (max-width: 380px) {
+  .draw-bg-shake {
+    top: 610px !important;
+    width: 250px !important;
+  }
+
+  .draw-bg-result {
+    top: 690px !important;
+  }
+
+  .draw-bg-screen.shaking:not(.after-draw) .draw-bg-result {
+    top: 690px !important;
+  }
+}
+
+
+/* ===== 誠心搖籤：華麗動畫加強版 ===== */
+
+/* 三層特效容器 */
+.draw-lux-rays,
+.draw-lux-particles,
+.draw-lux-smoke,
+.draw-lux-godlight,
+.draw-lux-jiaobei {
+  position: absolute;
+  pointer-events: none;
+  z-index: 90;
+}
+
+/* 神光從土地公方向往下照 */
+.draw-lux-godlight {
+  left: 50%;
+  top: 70px;
+  width: 330px;
+  height: 560px;
+  transform: translateX(-50%);
+  opacity: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 250, 220, .88),
+      rgba(255, 218, 92, .38) 32%,
+      rgba(255, 165, 36, .13) 68%,
+      transparent 100%
+    );
+  clip-path: polygon(44% 0%, 56% 0%, 96% 100%, 4% 100%);
+  mix-blend-mode: screen;
+}
+
+/* 旋轉法光 */
+.draw-lux-rays {
+  left: 50%;
+  top: 430px;
+  width: 330px;
+  height: 330px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  opacity: 0;
+  mix-blend-mode: screen;
+  background:
+    conic-gradient(
+      transparent 0deg 8deg,
+      rgba(255, 231, 138, .8) 8deg 12deg,
+      transparent 12deg 24deg,
+      rgba(255, 190, 68, .55) 24deg 29deg,
+      transparent 29deg 43deg,
+      rgba(255, 231, 138, .8) 43deg 47deg,
+      transparent 47deg 62deg,
+      rgba(255, 190, 68, .55) 62deg 67deg,
+      transparent 67deg 82deg,
+      rgba(255, 231, 138, .8) 82deg 86deg,
+      transparent 86deg 101deg,
+      rgba(255, 190, 68, .55) 101deg 106deg,
+      transparent 106deg 121deg,
+      rgba(255, 231, 138, .8) 121deg 125deg,
+      transparent 125deg 140deg,
+      rgba(255, 190, 68, .55) 140deg 145deg,
+      transparent 145deg 160deg,
+      rgba(255, 231, 138, .8) 160deg 164deg,
+      transparent 164deg 179deg,
+      rgba(255, 190, 68, .55) 179deg 184deg,
+      transparent 184deg 199deg,
+      rgba(255, 231, 138, .8) 199deg 203deg,
+      transparent 203deg 218deg,
+      rgba(255, 190, 68, .55) 218deg 223deg,
+      transparent 223deg 238deg,
+      rgba(255, 231, 138, .8) 238deg 242deg,
+      transparent 242deg 257deg,
+      rgba(255, 190, 68, .55) 257deg 262deg,
+      transparent 262deg 277deg,
+      rgba(255, 231, 138, .8) 277deg 281deg,
+      transparent 281deg 296deg,
+      rgba(255, 190, 68, .55) 296deg 301deg,
+      transparent 301deg 316deg,
+      rgba(255, 231, 138, .8) 316deg 320deg,
+      transparent 320deg 335deg,
+      rgba(255, 190, 68, .55) 335deg 340deg,
+      transparent 340deg 360deg
+    );
+}
+
+/* 香煙霧氣 */
+.draw-lux-smoke {
+  left: 50%;
+  top: 300px;
+  width: 260px;
+  height: 360px;
+  transform: translateX(-50%);
+  opacity: 0;
+  filter: blur(10px);
+  background:
+    radial-gradient(ellipse at 32% 76%, rgba(255, 240, 204, .18), transparent 48%),
+    radial-gradient(ellipse at 62% 66%, rgba(255, 230, 175, .20), transparent 46%),
+    radial-gradient(ellipse at 48% 36%, rgba(255, 255, 230, .15), transparent 44%),
+    radial-gradient(ellipse at 52% 12%, rgba(255, 255, 240, .10), transparent 52%);
+}
+
+/* 粒子層 */
+.draw-lux-particles {
+  inset: 0;
+  overflow: hidden;
+}
+
+/* 聖筊光點 */
+.draw-lux-jiaobei {
+  left: 50%;
+  top: 618px;
+  width: 220px;
+  height: 90px;
+  transform: translateX(-50%);
+  opacity: 0;
+  background:
+    radial-gradient(ellipse at 35% 60%, rgba(255, 237, 145, .75), transparent 32%),
+    radial-gradient(ellipse at 65% 60%, rgba(255, 237, 145, .75), transparent 32%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 190, 50, .28), transparent 60%);
+  mix-blend-mode: screen;
+  filter: blur(1px);
+}
+
+/* 啟動動畫狀態 */
+.draw-bg-screen.lux-shaking .draw-lux-godlight {
+  animation: drawGodLight 2.4s ease forwards;
+}
+
+.draw-bg-screen.lux-shaking .draw-lux-rays {
+  animation: drawRaysSpin 1.8s linear infinite, drawRaysShow 2.4s ease forwards;
+}
+
+.draw-bg-screen.lux-shaking .draw-lux-smoke {
+  animation: drawSmokeRise 2.8s ease-in-out forwards;
+}
+
+.draw-bg-screen.lux-shaking .draw-lux-jiaobei {
+  animation: jiaobeiGlow 2.1s ease-in-out forwards;
+}
+
+.draw-bg-screen.lux-shaking {
+  animation: drawTempleShake .62s ease-in-out 1;
+}
+
+@keyframes drawGodLight {
+  0% { opacity: 0; transform: translateX(-50%) scaleX(.55); }
+  25% { opacity: .95; transform: translateX(-50%) scaleX(1.04); }
+  78% { opacity: .62; }
+  100% { opacity: .25; transform: translateX(-50%) scaleX(1); }
+}
+
+@keyframes drawRaysSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes drawRaysShow {
+  0% { opacity: 0; }
+  22% { opacity: .9; }
+  100% { opacity: .28; }
+}
+
+@keyframes drawSmokeRise {
+  0% { opacity: 0; transform: translateX(-50%) translateY(36px) scale(.72); }
+  25% { opacity: .9; }
+  100% { opacity: .35; transform: translateX(-50%) translateY(-40px) scale(1.08); }
+}
+
+@keyframes jiaobeiGlow {
+  0% { opacity: 0; transform: translateX(-50%) scale(.65); }
+  35% { opacity: .96; transform: translateX(-50%) scale(1.08); }
+  100% { opacity: .20; transform: translateX(-50%) scale(1); }
+}
+
+@keyframes drawTempleShake {
+  0%, 100% { transform: translate(0,0); }
+  12% { transform: translate(-3px, 2px); }
+  24% { transform: translate(3px, -2px); }
+  36% { transform: translate(-2px, -1px); }
+  48% { transform: translate(2px, 2px); }
+  60% { transform: translate(-2px, 1px); }
+  72% { transform: translate(2px, -1px); }
+}
+
+/* 金色粒子 */
+.draw-lux-dot {
+  position: absolute;
+  left: 50%;
+  top: 470px;
+  width: var(--size, 8px);
+  height: var(--size, 8px);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #fff9d8 0%, #ffd85a 48%, rgba(255, 178, 42, .15) 100%);
+  box-shadow:
+    0 0 8px rgba(255, 226, 120, .95),
+    0 0 18px rgba(255, 164, 36, .45);
+  animation: drawLuxDotFly var(--dur, 1.6s) ease-out forwards;
+}
+
+@keyframes drawLuxDotFly {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(.45);
+  }
+  18% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--x)), var(--y)) scale(1.25);
+  }
+}
+
+/* 福、籤、吉 字光 */
+.draw-lux-word {
+  position: absolute;
+  left: 50%;
+  top: 440px;
+  color: #fff0a8;
+  font-size: var(--fs, 24px);
+  font-weight: 900;
+  text-shadow:
+    0 0 10px rgba(255, 224, 96, .95),
+    0 0 24px rgba(255, 150, 32, .58);
+  animation: drawLuxWordFly var(--dur, 1.5s) ease-out forwards;
+  z-index: 112;
+}
+
+@keyframes drawLuxWordFly {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(.52);
+  }
+  20% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--x)), var(--y)) scale(1.22);
+  }
+}
+
+/* 落籤最後爆光 */
+.draw-final-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 130;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255, 252, 220, .98), rgba(255, 210, 74, .34), transparent 70%);
+  animation: drawFinalFlash .9s ease forwards;
+}
+
+@keyframes drawFinalFlash {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+
+/* ===== 誠心搖籤按鈕往下移一點 ===== */
+.draw-bg-shake {
+  top: 662px !important;
+}
+
+.draw-bg-result {
+  top: 742px !important;
+}
+
+.draw-bg-screen.shaking:not(.after-draw) .draw-bg-result {
+  top: 742px !important;
+}
+
+.draw-bg-screen.after-draw .draw-bg-result {
+  top: 742px !important;
+}
+
+@media (max-width: 380px) {
+  .draw-bg-shake {
+    top: 642px !important;
+  }
+
+  .draw-bg-result,
+  .draw-bg-screen.shaking:not(.after-draw) .draw-bg-result,
+  .draw-bg-screen.after-draw .draw-bg-result {
+    top: 722px !important;
+  }
+}
+
+
+/* ===== 誠心搖籤按鈕再往下更多 ===== */
+.draw-bg-shake {
+  top: 704px !important;
+}
+
+.draw-bg-result {
+  top: 790px !important;
+}
+
+.draw-bg-screen.shaking:not(.after-draw) .draw-bg-result {
+  top: 790px !important;
+}
+
+.draw-bg-screen.after-draw .draw-bg-result {
+  top: 790px !important;
+}
+
+/* 頁面高度加長，避免下方籤詩被裁切 */
+.draw-bg-screen {
+  min-height: 1050px !important;
+}
+
+.draw-bg-screen.after-draw {
+  min-height: 1180px !important;
+}
+
+@media (max-width: 380px) {
+  .draw-bg-shake {
+    top: 684px !important;
+  }
+
+  .draw-bg-result,
+  .draw-bg-screen.shaking:not(.after-draw) .draw-bg-result,
+  .draw-bg-screen.after-draw .draw-bg-result {
+    top: 770px !important;
+  }
+
+  .draw-bg-screen {
+    min-height: 1030px !important;
+  }
+
+  .draw-bg-screen.after-draw {
+    min-height: 1160px !important;
+  }
+}
+
+
+/* ===== 掉籤動畫：放大版神明籤，更明顯 ===== */
+.draw-bg-stick {
+  width: 132px !important;
+  height: 430px !important;
+  top: 300px !important;
+  left: 50% !important;
+  padding: 0 !important;
+  color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: url("shenming-qian.png") center center / contain no-repeat !important;
+  box-shadow:
+    0 0 28px rgba(255, 220, 110, .88),
+    0 0 60px rgba(255, 170, 0, .32),
+    0 18px 28px rgba(40, 4, 2, .30) !important;
+  transform-origin: bottom center !important;
+  z-index: 140 !important;
+}
+
+.draw-bg-screen.show-stick .draw-bg-stick {
+  animation: newShenmingQianDrop 1.25s cubic-bezier(.18,.86,.26,1) forwards !important;
+}
+
+@keyframes newShenmingQianDrop {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-150px) rotate(-16deg) scale(.78);
+    filter: brightness(1.28) drop-shadow(0 0 18px rgba(255,220,120,.78));
+  }
+
+  22% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-72px) rotate(11deg) scale(.92);
+  }
+
+  52% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(52px) rotate(-8deg) scale(1.06);
+  }
+
+  78% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(112px) rotate(12deg) scale(1.08);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(138px) rotate(8deg) scale(1.08);
+    filter: brightness(1.08) drop-shadow(0 0 18px rgba(255,210,90,.7));
+  }
+}
+
+/* 手機寬度微調 */
+@media (max-width: 380px) {
+  .draw-bg-stick {
+    width: 118px !important;
+    height: 382px !important;
+    top: 292px !important;
+  }
+}
+
 </style>
 </head>
-
 <body>
 <main class="app">
+<section id="homePage" class="page active"><div class="home-screen"><button class="hotspot draw" onclick="changePage('drawPage')"></button><button class="hotspot bazi" onclick="changePage('baziPage')"></button><button class="hotspot daily" onclick="showDailyLuck()"></button><button class="hotspot money" onclick="changePage('moneyPage')"></button><button class="hotspot date" onclick="showMessage('良辰吉日','今日宜穩定規劃，重要決定可先整理方向。')"></button><button class="hotspot light" onclick="changePage('lightPage')"></button><button class="hotspot start" onclick="changePage('drawPage')"></button><button class="hotspot today" onclick="showDailyLuck()"></button><button class="hotspot nav-home" onclick="changePage('homePage')"></button><button class="hotspot nav-draw" onclick="changePage('drawPage')"></button><button class="hotspot nav-bazi" onclick="changePage('baziPage')"></button><button class="hotspot nav-me" onclick="changePage('recordPage')"></button></div></section>
 
-  <!-- 首頁 -->
-  <section id="homePage" class="page active">
-    <div class="home-screen">
-      <button class="hotspot draw" onclick="changePage('drawPage')"></button>
-      <button class="hotspot bazi" onclick="changePage('baziPage')"></button>
-      <button class="hotspot daily" onclick="showDailyLuck()"></button>
-      <button class="hotspot money" onclick="changePage('moneyPage')"></button>
-      <button class="hotspot date" onclick="showMessage('良辰吉日','今日宜穩定規劃，重要決定可先整理方向。')"></button>
-      <button class="hotspot light" onclick="changePage('lightPage')"></button>
+<section id="drawPage" class="page">
+  <div class="draw-bg-page">
+    <div class="draw-bg-screen" id="drawAltar">
+      <div class="draw-lux-godlight"></div>
+      <div class="draw-lux-rays"></div>
+      <div class="draw-lux-smoke"></div>
+      <div class="draw-lux-jiaobei"></div>
+      <div class="draw-lux-particles" id="drawLuxParticles"></div>
+      <button class="draw-bg-back" onclick="changePage('homePage')" aria-label="返回首頁">返回首頁</button>
 
-      <button class="hotspot start" onclick="changePage('drawPage')"></button>
-      <button class="hotspot today" onclick="showDailyLuck()"></button>
+      <input id="drawTopic" type="hidden" value="今日指引">
 
-      <button class="hotspot nav-home" onclick="changePage('homePage')"></button>
-      <button class="hotspot nav-draw" onclick="changePage('drawPage')"></button>
-      <button class="hotspot nav-bazi" onclick="changePage('baziPage')"></button>
-      <button class="hotspot nav-me" onclick="changePage('recordPage')"></button>
+      <div class="draw-bg-glow-layer" id="drawGlowLayer"></div>
+      <div class="draw-bg-stick" id="drawBgStick">籤</div>
+
+      <button class="draw-bg-shake" id="drawBtn" onclick="drawStick()" aria-label="搖籤"></button>
+
+      <div class="draw-bg-result" id="drawResult"></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 求籤頁 -->
-  <section id="drawPage" class="page">
-    <div class="draw-temple-page">
-      <div class="header">
-        <button class="back-btn" onclick="changePage('homePage')">返回首頁</button>
-        <div class="title">求籤</div>
-      </div>
+<section id="moneyPage" class="page"><div class="money-page"><div class="money-screen" id="moneyScreen"><button class="money-visible-back" onclick="changePage('homePage')">← 返回首頁</button><div class="sky-crack"></div><div class="heaven-beam"></div><div class="money-rotating-rays"></div><div class="absorb-vortex"></div><div class="final-glow"></div><div class="money-burst-light"></div><div class="ingot-core-glow"></div><div class="ingot-rain-layer" id="ingotRainLayer"></div><button class="money-start" id="moneyStartBtn" onclick="startMoneyBlessing()">啟動補財庫</button></div><div class="money-card"><h3>土地公補財庫祈福</h3><p id="moneyBlessText">誠心啟動補財庫，讓金光加持、財氣匯聚、精美元寶雨從天而降，被大元寶吸入財庫。</p><div class="money-list"><div class="money-item"><span>正財</span><strong id="moneyMain">旺</strong></div><div class="money-item"><span>偏財</span><strong id="moneySide">有進財</strong></div><div class="money-item"><span>守財</span><strong id="moneyKeep">佳</strong></div></div></div></div></section>
 
-      <div class="temple-stage">
-        <div class="temple-roof"></div>
 
-        <div class="draw-title">求籤占卜</div>
-        <div class="draw-subtitle">台灣廟宇籤筒・誠心一問・福德指引</div>
+<section id="lightPage" class="page">
+  <div class="light-bg-page">
+    <div class="light-bg-screen" id="lightStage">
+      <button class="light-back-hotspot light-visible-back" onclick="changePage('homePage')" aria-label="返回首頁">← 返回首頁</button>
 
-        <div class="draw-topic-box">
-          <label>求籤主題</label>
-          <select id="drawTopic">
-            <option value="今日指引">今日指引</option>
-            <option value="感情姻緣">感情姻緣</option>
-            <option value="學業考試">學業考試</option>
-            <option value="財運事業">財運事業</option>
-            <option value="工作方向">工作方向</option>
-            <option value="未來選擇">未來選擇</option>
-          </select>
-        </div>
+      <div class="lux-particle-layer" id="luxParticleLayer"></div>
+      <div class="lux-lantern-layer" id="lanternFlightLayer"></div>
+      <div class="lux-symbol-layer" id="luxSymbolLayer"></div>
 
-        <div class="draw-altar" id="drawAltar">
-          <div class="lantern left"></div>
-          <div class="lantern right"></div>
+      <button class="light-bg-start" id="lightLaunchBtn" onclick="startBlessingLight()" aria-label="祈福點燈"></button>
 
-          <div class="draw-rays"></div>
-          <div class="draw-glow"></div>
-
-          <div class="fortune-cup-wrap"></div>
-
-          <div class="falling-stick"></div>
-          <div class="temple-table"></div>
-        </div>
-
-        <button class="draw-action-btn" id="drawBtn" onclick="drawStick()">
-          搖動籤筒
-        </button>
-      </div>
-
-      <div class="draw-result-card" id="drawResult">
-        <h3>等待求籤中</h3>
-        <p>請先選擇主題，誠心點擊「搖動籤筒」。籤筒會先搖晃，再掉出一支籤。</p>
+      <div class="light-bg-result" id="lightResult">
+        目前選擇：光明燈。光明燈已點亮，願光明照路、前程順遂。
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- 補財庫頁 -->
-  <section id="moneyPage" class="page">
-    <div class="money-page">
-      <div class="money-screen" id="moneyScreen">
-        <button class="money-visible-back" onclick="changePage('homePage')">← 返回首頁</button>
-
-        <div class="sky-crack"></div>
-        <div class="heaven-beam"></div>
-        <div class="money-rotating-rays"></div>
-        <div class="absorb-vortex"></div>
-        <div class="final-glow"></div>
-        <div class="money-burst-light"></div>
-        <div class="ingot-core-glow"></div>
-
-        <div class="ingot-rain-layer" id="ingotRainLayer"></div>
-
-        <button class="money-start" id="moneyStartBtn" onclick="startMoneyBlessing()">
-          啟動補財庫
-        </button>
-      </div>
-
-      <div class="money-card">
-        <h3>土地公補財庫祈福</h3>
-        <p id="moneyBlessText">
-          誠心啟動補財庫，讓金光加持、財氣匯聚、精美元寶雨從天而降，被大元寶吸入財庫。
-        </p>
-
-        <div class="money-list">
-          <div class="money-item">
-            <span>正財</span>
-            <strong id="moneyMain">旺</strong>
-          </div>
-          <div class="money-item">
-            <span>偏財</span>
-            <strong id="moneySide">有進財</strong>
-          </div>
-          <div class="money-item">
-            <span>守財</span>
-            <strong id="moneyKeep">佳</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 七燈祈福頁 -->
-  <section id="lightPage" class="page">
-    <div class="light-page">
-      <div class="header">
-        <button class="back-btn" onclick="changePage('homePage')">返回首頁</button>
-        <div class="title">點燈</div>
-      </div>
-
-      <div class="light-hero">
-        <div class="light-title">祈福點燈</div>
-        <div class="light-subtitle">選擇燈種・點亮心願・祈求順遂</div>
-
-        <div class="lamp-options">
-          <button class="lamp-option selected" onclick="selectLamp(this, '光明燈', '光明燈已點亮，願光明照路、前程順遂。')">
-            <span class="icon">☀</span>
-            <strong>光明燈</strong>
-            <small>開智慧・照前程</small>
-          </button>
-
-          <button class="lamp-option" onclick="selectLamp(this, '太歲燈', '太歲燈已點亮，願流年安穩、逢凶化吉。')">
-            <span class="icon">✦</span>
-            <strong>太歲燈</strong>
-            <small>護流年・化不順</small>
-          </button>
-
-          <button class="lamp-option" onclick="selectLamp(this, '文昌燈', '文昌燈已點亮，願考運提升、學業進步。')">
-            <span class="icon">文</span>
-            <strong>文昌燈</strong>
-            <small>助考運・增學業</small>
-          </button>
-
-          <button class="lamp-option" onclick="selectLamp(this, '財利燈', '財利燈已點亮，願財氣匯聚、財庫漸旺。')">
-            <span class="icon">財</span>
-            <strong>財利燈</strong>
-            <small>招財氣・旺財庫</small>
-          </button>
-
-          <button class="lamp-option" onclick="selectLamp(this, '藥師燈', '藥師燈已點亮，願身心安和、健康平穩。')">
-            <span class="icon">藥</span>
-            <strong>藥師燈</strong>
-            <small>祈健康・除病氣</small>
-          </button>
-
-          <button class="lamp-option" onclick="selectLamp(this, '姻緣燈', '姻緣燈已點亮，願良緣靠近、感情和合。')">
-            <span class="icon">♡</span>
-            <strong>姻緣燈</strong>
-            <small>牽良緣・和感情</small>
-          </button>
-
-          <button class="lamp-option" onclick="selectLamp(this, '平安燈', '平安燈已點亮，願出入平安、家宅安穩。')">
-            <span class="icon">安</span>
-            <strong>平安燈</strong>
-            <small>保平安・護家運</small>
-          </button>
-        </div>
-
-        <button class="main-btn" onclick="startBlessingLight()">啟動祈福點燈</button>
-        <div class="light-result" id="lightResult">目前選擇：光明燈。願光明照路，前程順遂。</div>
-      </div>
-
-      <div class="card" style="margin-top:16px;">
-        <h3>七燈祈福說明</h3>
-        <p>可選擇光明燈、太歲燈、文昌燈、財利燈、藥師燈、姻緣燈及平安燈，每種燈都有不同祝福方向。</p>
-        <p class="notice">此功能為祈福互動效果展示，可搭配求籤、補財庫與命盤功能使用。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 八字頁 -->
-  <section id="baziPage" class="page">
-    <div class="sub-page">
-      <div class="header">
-        <button class="back-btn" onclick="changePage('homePage')">返回首頁</button>
-        <div class="title">命盤</div>
-      </div>
-
-      <div class="card">
-        <label>姓名</label>
-        <input id="userName" type="text" placeholder="例如：小明" />
-
-        <div class="form-row">
-          <div>
-            <label>性別</label>
-            <select id="gender">
-              <option value="不指定">不指定</option>
-              <option value="男">男</option>
-              <option value="女">女</option>
-            </select>
-          </div>
-
-          <div>
-            <label>出生日期</label>
-            <input id="birthDate" type="date" />
-          </div>
-        </div>
-
-        <label>出生時辰</label>
-        <select id="birthHour">
-          <option value="0">子時 23:00－00:59</option>
-          <option value="1">丑時 01:00－02:59</option>
-          <option value="2">寅時 03:00－04:59</option>
-          <option value="3">卯時 05:00－06:59</option>
-          <option value="4">辰時 07:00－08:59</option>
-          <option value="5">巳時 09:00－10:59</option>
-          <option value="6">午時 11:00－12:59</option>
-          <option value="7">未時 13:00－14:59</option>
-          <option value="8">申時 15:00－16:59</option>
-          <option value="9">酉時 17:00－18:59</option>
-          <option value="10">戌時 19:00－20:59</option>
-          <option value="11">亥時 21:00－22:59</option>
-        </select>
-
-        <button class="main-btn" onclick="calculateBazi()">產生命盤</button>
-      </div>
-
-      <div class="card" id="baziResult">
-        <h3>尚未產生命盤</h3>
-        <p>請輸入出生日期與出生時辰。</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 我的紀錄 -->
-  <section id="recordPage" class="page">
-    <div class="sub-page">
-      <div class="header">
-        <button class="back-btn" onclick="changePage('homePage')">返回首頁</button>
-        <div class="title">我的</div>
-      </div>
-
-      <div class="card">
-        <button class="main-btn" onclick="clearRecords()">清除紀錄</button>
-      </div>
-
-      <div id="recordList"></div>
-    </div>
-  </section>
-
+<section id="baziPage" class="page"><div class="sub-page"><div class="header"><button class="back-btn" onclick="changePage('homePage')">返回首頁</button><div class="title">命盤</div></div><div class="card"><label>姓名</label><input id="userName" type="text" placeholder="例如：小明"><div class="form-row"><div><label>性別</label><select id="gender"><option value="不指定">不指定</option><option value="男">男</option><option value="女">女</option></select></div><div><label>出生日期</label><input id="birthDate" type="date"></div></div><label>出生時辰</label><select id="birthHour"><option value="0">子時 23:00－00:59</option><option value="1">丑時 01:00－02:59</option><option value="2">寅時 03:00－04:59</option><option value="3">卯時 05:00－06:59</option><option value="4">辰時 07:00－08:59</option><option value="5">巳時 09:00－10:59</option><option value="6">午時 11:00－12:59</option><option value="7">未時 13:00－14:59</option><option value="8">申時 15:00－16:59</option><option value="9">酉時 17:00－18:59</option><option value="10">戌時 19:00－20:59</option><option value="11">亥時 21:00－22:59</option></select><button class="main-btn" onclick="calculateBazi()">產生命盤</button></div><div class="card" id="baziResult"><h3>尚未產生命盤</h3><p>請輸入出生日期與出生時辰。</p></div></div></section>
+<section id="recordPage" class="page"><div class="sub-page"><div class="header"><button class="back-btn" onclick="changePage('homePage')">返回首頁</button><div class="title">我的</div></div><div class="card"><button class="main-btn" onclick="clearRecords()">清除紀錄</button></div><div id="recordList"></div></div></section>
 </main>
+<script>
+const stems=["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"],branches=["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"],zodiac=["鼠","牛","虎","兔","龍","蛇","馬","羊","猴","雞","狗","豬"];const dailyMessages=["今日有福德星照臨，適合整理財務、修補關係、穩定前行。","今日宜保持善念，凡事先穩後進，貴人容易在細節中出現。","今日適合求穩不求快，先完成眼前的小事，好運自然累積。","今日財氣偏旺，但不宜衝動花費，適合規劃與儲蓄。","今日人緣順暢，適合溝通、拜訪與處理合作事項。"],moneyLuckMain=["旺","大旺","爆旺","有進財","招財"],moneyLuckSide=["小吉","有偏財","轉旺","有機會","偏財順"],moneyLuckKeep=["佳","守得住","穩定","安穩","聚財"];const sticks=[{level:"上上籤",title:"福德開財門",poem:"金光照路福門開，貴人相扶好運來。",explain:"此籤代表運勢漸開，事情有轉好跡象。若能把握機會，容易獲得幫助與成果。",advice:"宜主動溝通、整理計畫、把握貴人。忌拖延與衝動。"},{level:"上籤",title:"貴人扶一程",poem:"雲散月明路漸清，一言相助事能成。",explain:"目前雖有小阻礙，但不是壞局。只要願意請教或溝通，就容易出現轉機。",advice:"宜請教、合作、修補關係。忌獨自硬撐。"},{level:"中上籤",title:"先守後進",poem:"未到花開莫急催，守得根深福自來。",explain:"此時適合先穩住基本盤，不宜太急。先整理資源，後面會更有利。",advice:"宜規劃、存錢、複習、修正方向。忌冒進。"},{level:"中籤",title:"平安即是福",poem:"平步安行無大憂，日常修福自長久。",explain:"運勢平穩，沒有大起大落。只要保持節奏，事情會慢慢累積成果。",advice:"宜穩定作息、完成小事。忌心浮氣躁。"},{level:"小吉籤",title:"轉念見光",poem:"一念轉時雲霧開，心安自有好安排。",explain:"目前的困擾多半來自猶豫與不安。先把心定下來，答案會更清楚。",advice:"宜冷靜判斷、放慢速度。忌過度焦慮。"}];let currentLampName="光明燈",currentLampMessage="光明燈已點亮，願光明照路、前程順遂。";
+function changePage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');if(id==='recordPage')renderRecords();if(id==='moneyPage')resetMoneyPage();scrollTo({top:0,behavior:'smooth'})}function randomItem(a){return a[Math.floor(Math.random()*a.length)]}function showDailyLuck(){alert(randomItem(dailyMessages))}function showMessage(t,x){alert(t+'\n\n'+x)}function createDrawFlash(){const f=document.createElement('div');f.className='draw-flash';document.body.appendChild(f);setTimeout(()=>f.remove(),850)}
+function drawStick(){const a=document.getElementById('drawAltar'),b=document.getElementById('drawBtn'),topic=document.getElementById('drawTopic').value,r=document.getElementById('drawResult');b.disabled=true;b.textContent='籤筒搖動中';a.classList.remove('shaking','show-stick');void a.offsetWidth;a.classList.add('shaking');r.innerHTML='<h3>籤筒搖動中</h3><p>請靜心等待，籤詩即將落下。</p>';setTimeout(()=>{a.classList.add('show-stick');createDrawFlash()},1150);setTimeout(()=>{const s=randomItem(sticks);r.innerHTML=`<span class="draw-level">${s.level}</span><h3>${topic}｜${s.title}</h3><p><strong>籤詩：</strong>${s.poem}</p><p><strong>解籤：</strong>${s.explain}</p><p><strong>建議：</strong>${s.advice}</p><p class="notice">求籤結果僅供娛樂與自我提醒，不代表絕對命運。</p>`;saveRecord('求籤占卜',`${topic}｜${s.level}｜${s.title}`);b.disabled=false;b.textContent='再次搖籤'},2250)}
+function resetMoneyPage(){const s=document.getElementById('moneyScreen'),l=document.getElementById('ingotRainLayer'),b=document.getElementById('moneyStartBtn');s.classList.remove('shake','heaven-open','rays-on','absorbing','ingot-flash','done');l.innerHTML='';document.getElementById('moneyBlessText').textContent='誠心啟動補財庫，讓金光加持、財氣匯聚、精美元寶雨從天而降，被大元寶吸入財庫。';refreshMoneyLuck();b.disabled=false;b.style.opacity='1';b.style.cursor='pointer'}function startMoneyBlessing(){const s=document.getElementById('moneyScreen'),l=document.getElementById('ingotRainLayer'),b=document.getElementById('moneyStartBtn'),t=document.getElementById('moneyBlessText');b.disabled=true;b.style.opacity='.72';s.classList.remove('shake','heaven-open','rays-on','absorbing','ingot-flash','done');l.innerHTML='';void s.offsetWidth;s.classList.add('shake','heaven-open','rays-on','absorbing');createFullFlash();t.textContent='補財庫啟動：大量精美元寶雨從天而降，正在被中間大元寶吸走，財庫金光大亮。';refreshMoneyLuck();saveRecord('補財庫','補財庫｜大量精美元寶雨・大元寶吸財入庫');let done=0,total=72;for(let i=0;i<total;i++)setTimeout(()=>createFallingIngot(l,()=>{done++;if(done%2===0)triggerIngotFlash(s);createSparkBurst(l,188,310);if(done%3===0)createFortuneChars(l,188,310);if(done===total){s.classList.add('done');createFullFlash();setTimeout(()=>{b.disabled=false;b.style.opacity='1';s.classList.remove('shake','heaven-open','rays-on','absorbing')},2500)}}),i*38)}function createFallingIngot(layer,onArrive){const e=document.createElement('div');e.className='fall-ingot';let startX=Math.random()*360-10,dropY=Math.random()*210+110,curveX=(182-startX)*.35+(Math.random()*80-40),curveY=Math.random()*80+240,endX=160+Math.random()*52-26,endY=250+Math.random()*36-18,size=Math.random()*28+56,dur=(1.05+Math.random()*.55).toFixed(2)+'s';Object.entries({startX:startX+'px',dropY:dropY+'px',curveX:curveX+'px',curveY:curveY+'px',endX:endX+'px',endY:endY+'px',size:size+'px',dur}).forEach(([k,v])=>e.style.setProperty('--'+k,v));layer.appendChild(e);e.addEventListener('animationend',()=>{e.remove();onArrive&&onArrive()})}function triggerIngotFlash(s){s.classList.remove('ingot-flash');void s.offsetWidth;s.classList.add('ingot-flash');setTimeout(()=>s.classList.remove('ingot-flash'),780)}function createSparkBurst(layer,x,y){for(let i=0;i<6;i++){const p=document.createElement('div');p.className='spark';p.style.left=x+'px';p.style.top=y+'px';p.style.setProperty('--sx',Math.random()*110-55+'px');p.style.setProperty('--sy',Math.random()*110-55+'px');layer.appendChild(p);p.addEventListener('animationend',()=>p.remove())}}function createFortuneChars(layer,x,y){for(let i=0;i<3;i++){const c=document.createElement('div');c.className='fortune-char';c.textContent=randomItem(['財','福','旺']);c.style.left=x+'px';c.style.top=y+'px';c.style.setProperty('--fx',Math.random()*130-65+'px');c.style.setProperty('--fy',-Math.random()*120-30+'px');layer.appendChild(c);c.addEventListener('animationend',()=>c.remove())}}function createFullFlash(){const f=document.createElement('div');f.className='money-full-flash';document.body.appendChild(f);setTimeout(()=>f.remove(),900)}function refreshMoneyLuck(){document.getElementById('moneyMain').textContent=randomItem(moneyLuckMain);document.getElementById('moneySide').textContent=randomItem(moneyLuckSide);document.getElementById('moneyKeep').textContent=randomItem(moneyLuckKeep)}
+function selectLamp(btn,name,msg){document.querySelectorAll('.lamp-option').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected');currentLampName=name;currentLampMessage=msg;document.getElementById('lightResult').textContent='目前選擇：'+name+'。'+msg;document.getElementById('lampMainTitle').textContent=name;document.getElementById('lampMainSub').textContent=getLampSubtitle(name)}function getLampSubtitle(n){return {'光明燈':'願光明照路・前程順遂','太歲燈':'護流年平穩・逢凶化吉','文昌燈':'啟智慧文運・學業精進','財利燈':'願財氣匯聚・財運增旺','藥師燈':'願身心安和・健康平穩','姻緣燈':'願良緣靠近・感情和合','平安燈':'願出入平安・家宅安穩'}[n]||'祈福點燈・心願順遂'}function startBlessingLight(){const st=document.getElementById('lightStage'),layer=document.getElementById('lanternFlightLayer'),res=document.getElementById('lightResult'),btn=document.getElementById('lightLaunchBtn');btn.disabled=true;layer.innerHTML='';st.classList.remove('blessing-on');void st.offsetWidth;st.classList.add('blessing-on');createLightFlash();res.innerHTML=`<div>${currentLampMessage}</div><div class="light-bless-badge">天燈升空・願望上達天聽</div>`;saveRecord('祈福點燈',currentLampName+'｜'+currentLampMessage);let total=currentLampName==='光明燈'?14:10;for(let i=0;i<total;i++)setTimeout(()=>createFlyingLantern(layer,currentLampName),i*260);setTimeout(()=>{res.innerHTML=`<div>${currentLampMessage}</div><div class="light-bless-badge">${currentLampName}・祈福完成</div>`;btn.disabled=false},total*260+1800)}function createFlyingLantern(layer,name){const l=document.createElement('div');l.className='fly-lantern';let startX=Math.random()*220-110,midX=startX+(Math.random()*70-35),mid2X=midX+(Math.random()*90-45),endX=mid2X+(Math.random()*120-60),w=34+Math.random()*16,h=w*1.45,dur=(3.2+Math.random()*1.6).toFixed(2)+'s';Object.entries({startX:startX+'px',midX:midX+'px',mid2X:mid2X+'px',endX:endX+'px',w:w+'px',h:h+'px',dur,rot1:(Math.random()*8-4).toFixed(1)+'deg',rot2:(Math.random()*10-5).toFixed(1)+'deg',rot3:(Math.random()*12-6).toFixed(1)+'deg'}).forEach(([k,v])=>l.style.setProperty('--'+k,v));l.innerHTML=`<div class="rope"></div><div class="body"></div><div class="flame"></div><div class="txt">${getLanternWord(name)}</div>`;layer.appendChild(l);l.addEventListener('animationend',()=>l.remove())}function getLanternWord(n){return {'光明燈':'明','太歲燈':'安','文昌燈':'文','財利燈':'財','藥師燈':'康','姻緣燈':'緣','平安燈':'福'}[n]||'福'}function createLightFlash(){const f=document.createElement('div');f.className='light-full-flash';document.body.appendChild(f);setTimeout(()=>f.remove(),900)}
+function calculateBazi(){const name=document.getElementById('userName').value.trim()||'未命名',gender=document.getElementById('gender').value,birth=document.getElementById('birthDate').value,h=Number(document.getElementById('birthHour').value);if(!birth){alert('請先選擇出生日期');return}const d=new Date(birth+'T00:00:00'),y=d.getFullYear(),m=d.getMonth()+1,day=d.getDate(),b=getBazi(d,h),z=zodiac[b.year.branchIndex];document.getElementById('baziResult').innerHTML=`<h3>${escapeHTML(name)} 的八字命盤</h3><p>性別：${gender}｜出生：${y} 年 ${m} 月 ${day} 日｜生肖：${z}</p><div class="bazi-grid"><div class="pillar"><small>年柱</small><strong>${b.year.stem}${b.year.branch}</strong></div><div class="pillar"><small>月柱</small><strong>${b.month.stem}${b.month.branch}</strong></div><div class="pillar"><small>日柱</small><strong>${b.day.stem}${b.day.branch}</strong></div><div class="pillar"><small>時柱</small><strong>${b.hour.stem}${b.hour.branch}</strong></div></div><p><strong>土地公好運建議：</strong>今日宜穩定前行，先整理方向，再求突破。</p><p class="notice">此版本為娛樂與學習用規則庫版，僅供參考。</p>`;saveRecord('八字命盤',`${name}｜生肖：${z}`)}function getBazi(date,hourBranchIndex){const ay=isBeforeLiChun(date)?date.getFullYear()-1:date.getFullYear(),ysi=mod(ay-4,10),ybi=mod(ay-4,12),md=getSolarMonthPillar(date,ysi),base=new Date('1900-01-31T00:00:00'),diff=Math.floor((date-base)/86400000),dsi=mod(diff+4,10),dbi=mod(diff+2,12),hsi=mod(dsi*2+hourBranchIndex,10);return{year:{stem:stems[ysi],branch:branches[ybi],branchIndex:ybi},month:md,day:{stem:stems[dsi],branch:branches[dbi]},hour:{stem:stems[hsi],branch:branches[hourBranchIndex]}}}function isBeforeLiChun(d){const m=d.getMonth()+1,day=d.getDate();return m<2||m===2&&day<4}function getSolarMonthPillar(d,ysi){const mb=getSolarMonthBranch(d),bi=branches.indexOf(mb),order=mod(bi-2,12),map={0:2,5:2,1:4,6:4,2:6,7:6,3:8,8:8,4:0,9:0},si=mod(map[ysi]+order,10);return{stem:stems[si],branch:mb,branchIndex:bi}}function getSolarMonthBranch(date){const m=date.getMonth()+1,d=date.getDate();if(m===1&&d<6)return'子';if(m===1)return'丑';if(m===2&&d<4)return'丑';if(m===2)return'寅';if(m===3&&d<6)return'寅';if(m===3)return'卯';if(m===4&&d<5)return'卯';if(m===4)return'辰';if(m===5&&d<6)return'辰';if(m===5)return'巳';if(m===6&&d<6)return'巳';if(m===6)return'午';if(m===7&&d<7)return'午';if(m===7)return'未';if(m===8&&d<8)return'未';if(m===8)return'申';if(m===9&&d<8)return'申';if(m===9)return'酉';if(m===10&&d<8)return'酉';if(m===10)return'戌';if(m===11&&d<7)return'戌';if(m===11)return'亥';if(m===12&&d<7)return'亥';return'子'}
+function saveRecord(type,content){const rs=JSON.parse(localStorage.getItem('fortuneRecords'))||[];rs.unshift({type,content,time:new Date().toLocaleString('zh-TW')});localStorage.setItem('fortuneRecords',JSON.stringify(rs.slice(0,30)))}function renderRecords(){const el=document.getElementById('recordList'),rs=JSON.parse(localStorage.getItem('fortuneRecords'))||[];if(!rs.length){el.innerHTML='<div class="card"><h3>目前沒有紀錄</h3><p>完成求籤、補財庫、祈福點燈或八字命盤後，紀錄會自動出現在這裡。</p></div>';return}el.innerHTML=rs.map(r=>`<div class="record-item"><h4>${r.type}</h4><p>${r.content}</p><p>${r.time}</p></div>`).join('')}function clearRecords(){if(confirm('確定要清除所有紀錄嗎？')){localStorage.removeItem('fortuneRecords');renderRecords()}}function escapeHTML(t){return t.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}function mod(n,m){return((n%m)+m)%m}
+</script>
 
 <script>
-const stems = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
-const branches = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
-const zodiac = ["鼠","牛","虎","兔","龍","蛇","馬","羊","猴","雞","狗","豬"];
+/* ===== 超震撼豪華版點燈 JS 覆蓋 ===== */
+function selectLamp(button, lampName, message) {
+  document.querySelectorAll(".lamp-option").forEach(btn => btn.classList.remove("selected"));
+  button.classList.add("selected");
 
-const dailyMessages = [
-  "今日有福德星照臨，適合整理財務、修補關係、穩定前行。",
-  "今日宜保持善念，凡事先穩後進，貴人容易在細節中出現。",
-  "今日適合求穩不求快，先完成眼前的小事，好運自然累積。",
-  "今日財氣偏旺，但不宜衝動花費，適合規劃與儲蓄。",
-  "今日人緣順暢，適合溝通、拜訪與處理合作事項。"
-];
+  currentLampName = lampName;
+  currentLampMessage = message;
 
-const moneyLuckMain = ["旺","大旺","爆旺","有進財","招財"];
-const moneyLuckSide = ["小吉","有偏財","轉旺","有機會","偏財順"];
-const moneyLuckKeep = ["佳","守得住","穩定","安穩","聚財"];
+  const title = document.getElementById("lampMainTitle");
+  const sub = document.getElementById("lampMainSub");
+  const result = document.getElementById("lightResult");
 
-const sticks = [
-  {
-    level: "上上籤",
-    title: "福德開財門",
-    poem: "金光照路福門開，貴人相扶好運來。",
-    explain: "此籤代表運勢漸開，事情有轉好跡象。若能把握機會，容易獲得幫助與成果。",
-    advice: "宜主動溝通、整理計畫、把握貴人。忌拖延與衝動。"
-  },
-  {
-    level: "上籤",
-    title: "貴人扶一程",
-    poem: "雲散月明路漸清，一言相助事能成。",
-    explain: "目前雖有小阻礙，但不是壞局。只要願意請教或溝通，就容易出現轉機。",
-    advice: "宜請教、合作、修補關係。忌獨自硬撐。"
-  },
-  {
-    level: "中上籤",
-    title: "先守後進",
-    poem: "未到花開莫急催，守得根深福自來。",
-    explain: "此時適合先穩住基本盤，不宜太急。先整理資源，後面會更有利。",
-    advice: "宜規劃、存錢、複習、修正方向。忌冒進。"
-  },
-  {
-    level: "中籤",
-    title: "平安即是福",
-    poem: "平步安行無大憂，日常修福自長久。",
-    explain: "運勢平穩，沒有大起大落。只要保持節奏，事情會慢慢累積成果。",
-    advice: "宜穩定作息、完成小事。忌心浮氣躁。"
-  },
-  {
-    level: "小吉籤",
-    title: "轉念見光",
-    poem: "一念轉時雲霧開，心安自有好安排。",
-    explain: "目前的困擾多半來自猶豫與不安。先把心定下來，答案會更清楚。",
-    advice: "宜冷靜判斷、放慢速度。忌過度焦慮。"
+  if (title) title.textContent = lampName;
+  if (sub) sub.textContent = getLampSubtitle(lampName);
+  if (result) result.textContent = "目前選擇：" + lampName + "。" + message;
+}
+
+function getLampSubtitle(lampName) {
+  const map = {
+    "光明燈": "願光明照路・前程順遂",
+    "太歲燈": "護流年平穩・逢凶化吉",
+    "文昌燈": "啟智慧文運・學業精進",
+    "財利燈": "願財氣匯聚・財運增旺",
+    "藥師燈": "願身心安和・健康平穩",
+    "姻緣燈": "願良緣靠近・感情和合",
+    "平安燈": "願出入平安・家宅安穩"
+  };
+  return map[lampName] || "祈福點燈・心願順遂";
+}
+
+function startBlessingLight() {
+  const stage = document.getElementById("lightStage");
+  const particleLayer = document.getElementById("luxParticleLayer");
+  const lanternLayer = document.getElementById("lanternFlightLayer");
+  const symbolLayer = document.getElementById("luxSymbolLayer");
+  const result = document.getElementById("lightResult");
+  const btn = document.getElementById("lightLaunchBtn");
+
+  if (!stage || !particleLayer || !lanternLayer || !symbolLayer || !result || !btn) return;
+
+  btn.disabled = true;
+  particleLayer.innerHTML = "";
+  lanternLayer.innerHTML = "";
+  symbolLayer.innerHTML = "";
+
+  stage.classList.remove("blessing-on", "shock-on");
+  void stage.offsetWidth;
+  stage.classList.add("blessing-on", "shock-on");
+
+  createLuxStageFlash(stage);
+  createLuxScreenFlash();
+
+  result.innerHTML = `
+    <div>${currentLampMessage}</div>
+    <div class="light-bless-badge">神光降臨・法陣啟動・祈福上達</div>
+  `;
+
+  if (typeof saveRecord === "function") {
+    saveRecord("祈福點燈", currentLampName + "｜" + currentLampMessage);
   }
-];
 
-let currentLampName = "光明燈";
-let currentLampMessage = "光明燈已點亮，願光明照路、前程順遂。";
+  for (let i = 0; i < 90; i++) {
+    setTimeout(() => createLuxParticle(particleLayer), i * 25);
+  }
 
-function changePage(pageId) {
-  document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
-  document.getElementById(pageId).classList.add("active");
+  for (let i = 0; i < 26; i++) {
+    setTimeout(() => createLuxSymbol(symbolLayer, currentLampName), 180 + i * 90);
+  }
 
-  if (pageId === "recordPage") renderRecords();
-  if (pageId === "moneyPage") resetMoneyPage();
+  const totalLanterns = currentLampName === "光明燈" ? 22 : 17;
+  for (let i = 0; i < totalLanterns; i++) {
+    setTimeout(() => createLuxFlyingLantern(lanternLayer, currentLampName), 220 + i * 160);
+  }
 
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  setTimeout(() => createLuxStageFlash(stage), 1150);
+
+  setTimeout(() => {
+    result.innerHTML = `
+      <div>${currentLampMessage}</div>
+      <div class="light-bless-badge">${currentLampName}・祈福完成</div>
+    `;
+    btn.disabled = false;
+    stage.classList.remove("shock-on");
+  }, totalLanterns * 160 + 2500);
 }
 
-function showDailyLuck() {
-  alert(randomItem(dailyMessages));
+function createLuxParticle(layer) {
+  const p = document.createElement("div");
+  p.className = "lux-particle";
+
+  p.style.setProperty("--size", (Math.random() * 9 + 7).toFixed(1) + "px");
+  p.style.setProperty("--dur", (1.6 + Math.random() * 1.9).toFixed(2) + "s");
+  p.style.setProperty("--x", (Math.random() * 280 - 140).toFixed(1) + "px");
+  p.style.setProperty("--y", (-Math.random() * 300 - 40).toFixed(1) + "px");
+
+  layer.appendChild(p);
+  p.addEventListener("animationend", () => p.remove());
 }
 
-function showMessage(title, text) {
-  alert(title + "\n\n" + text);
+function createLuxSymbol(layer, lampName) {
+  const s = document.createElement("div");
+  s.className = "lux-symbol";
+  s.textContent = getLanternWord(lampName);
+
+  s.style.setProperty("--fs", (Math.random() * 12 + 22).toFixed(1) + "px");
+  s.style.setProperty("--dur", (1.1 + Math.random() * 1.1).toFixed(2) + "s");
+  s.style.setProperty("--x", (Math.random() * 220 - 110).toFixed(1) + "px");
+  s.style.setProperty("--y", (-Math.random() * 230 - 60).toFixed(1) + "px");
+
+  layer.appendChild(s);
+  s.addEventListener("animationend", () => s.remove());
 }
 
-/* 求籤 */
+function createLuxFlyingLantern(layer, lampName) {
+  const lantern = document.createElement("div");
+  lantern.className = "lux-fly-lantern";
+
+  const startX = Math.random() * 250 - 125;
+  const midX = startX + (Math.random() * 80 - 40);
+  const mid2X = midX + (Math.random() * 100 - 50);
+  const endX = mid2X + (Math.random() * 140 - 70);
+
+  const width = 34 + Math.random() * 19;
+  const height = width * 1.45;
+  const dur = (3.2 + Math.random() * 1.7).toFixed(2) + "s";
+
+  lantern.style.setProperty("--startX", startX + "px");
+  lantern.style.setProperty("--midX", midX + "px");
+  lantern.style.setProperty("--mid2X", mid2X + "px");
+  lantern.style.setProperty("--endX", endX + "px");
+  lantern.style.setProperty("--w", width + "px");
+  lantern.style.setProperty("--h", height + "px");
+  lantern.style.setProperty("--dur", dur);
+  lantern.style.setProperty("--rot1", (Math.random() * 8 - 4).toFixed(1) + "deg");
+  lantern.style.setProperty("--rot2", (Math.random() * 10 - 5).toFixed(1) + "deg");
+  lantern.style.setProperty("--rot3", (Math.random() * 12 - 6).toFixed(1) + "deg");
+
+  lantern.innerHTML = `
+    <div class="rope"></div>
+    <div class="body"></div>
+    <div class="flame"></div>
+    <div class="txt">${getLanternWord(lampName)}</div>
+  `;
+
+  layer.appendChild(lantern);
+  lantern.addEventListener("animationend", () => lantern.remove());
+}
+
+function getLanternWord(lampName) {
+  const map = {
+    "光明燈": "明",
+    "太歲燈": "安",
+    "文昌燈": "文",
+    "財利燈": "財",
+    "藥師燈": "康",
+    "姻緣燈": "緣",
+    "平安燈": "福"
+  };
+  return map[lampName] || "福";
+}
+
+function createLuxStageFlash(stage) {
+  const flash = document.createElement("div");
+  flash.className = "lux-stage-flash";
+  stage.appendChild(flash);
+  setTimeout(() => flash.remove(), 950);
+}
+
+function createLuxScreenFlash() {
+  const flash = document.createElement("div");
+  flash.className = "lux-screen-flash";
+  document.body.appendChild(flash);
+  setTimeout(() => flash.remove(), 900);
+}
+</script>
+
+
+<script>
+/* ===== 點燈背景圖版 JS 覆蓋 ===== */
+currentLampName = "光明燈";
+currentLampMessage = "光明燈已點亮，願光明照路、前程順遂。";
+
+function selectLamp(button, lampName, message) {
+  currentLampName = lampName;
+  currentLampMessage = message;
+  const result = document.getElementById("lightResult");
+  if (result) {
+    result.innerHTML = "目前選擇：" + lampName + "。" + message;
+  }
+}
+
+function startBlessingLight() {
+  const stage = document.getElementById("lightStage");
+  const particleLayer = document.getElementById("luxParticleLayer");
+  const lanternLayer = document.getElementById("lanternFlightLayer");
+  const symbolLayer = document.getElementById("luxSymbolLayer");
+  const result = document.getElementById("lightResult");
+  const btn = document.getElementById("lightLaunchBtn");
+
+  if (!stage || !particleLayer || !lanternLayer || !symbolLayer || !result || !btn) return;
+
+  btn.disabled = true;
+  particleLayer.innerHTML = "";
+  lanternLayer.innerHTML = "";
+  symbolLayer.innerHTML = "";
+
+  stage.classList.remove("blessing-on", "shock-on");
+  void stage.offsetWidth;
+  stage.classList.add("blessing-on", "shock-on");
+
+  createLuxStageFlash(stage);
+  createLuxScreenFlash();
+
+  result.innerHTML = `
+    <div>${currentLampMessage}</div>
+    <div class="light-bless-badge">神光降臨・祈福點燈</div>
+  `;
+
+  if (typeof saveRecord === "function") {
+    saveRecord("祈福點燈", currentLampName + "｜" + currentLampMessage);
+  }
+
+  for (let i = 0; i < 100; i++) {
+    setTimeout(() => createLuxParticle(particleLayer), i * 22);
+  }
+
+  for (let i = 0; i < 30; i++) {
+    setTimeout(() => createLuxSymbol(symbolLayer, currentLampName), 140 + i * 75);
+  }
+
+  const totalLanterns = 24;
+  for (let i = 0; i < totalLanterns; i++) {
+    setTimeout(() => createLuxFlyingLantern(lanternLayer, currentLampName), 220 + i * 145);
+  }
+
+  setTimeout(() => createLuxStageFlash(stage), 1050);
+
+  setTimeout(() => {
+    result.innerHTML = `
+      <div>${currentLampMessage}</div>
+      <div class="light-bless-badge">光明燈・祈福完成</div>
+    `;
+    btn.disabled = false;
+    stage.classList.remove("shock-on");
+  }, totalLanterns * 145 + 2450);
+}
+</script>
+
+
+<script>
+/* ===== 點燈背景圖版：明確返回鍵 + 精緻小天燈升空 JS 覆蓋 ===== */
+function startBlessingLight() {
+  const stage = document.getElementById("lightStage");
+  const particleLayer = document.getElementById("luxParticleLayer");
+  const lanternLayer = document.getElementById("lanternFlightLayer");
+  const symbolLayer = document.getElementById("luxSymbolLayer");
+  const result = document.getElementById("lightResult");
+  const btn = document.getElementById("lightLaunchBtn");
+
+  if (!stage || !particleLayer || !lanternLayer || !symbolLayer || !result || !btn) return;
+
+  btn.disabled = true;
+  particleLayer.innerHTML = "";
+  lanternLayer.innerHTML = "";
+  symbolLayer.innerHTML = "";
+
+  stage.classList.remove("blessing-on", "shock-on", "lanterns-on");
+  void stage.offsetWidth;
+  stage.classList.add("blessing-on", "shock-on", "lanterns-on");
+
+  createLuxStageFlash(stage);
+  createLuxScreenFlash();
+
+  result.innerHTML = `
+    <div>${currentLampMessage}</div>
+    <div class="light-bless-badge">神光降臨・小天燈升空</div>
+  `;
+
+  if (typeof saveRecord === "function") {
+    saveRecord("祈福點燈", currentLampName + "｜精緻小天燈升空");
+  }
+
+  for (let i = 0; i < 80; i++) {
+    setTimeout(() => createLuxParticle(particleLayer), i * 26);
+  }
+
+  for (let i = 0; i < 24; i++) {
+    setTimeout(() => createLuxSymbol(symbolLayer, currentLampName), 160 + i * 82);
+  }
+
+  const totalLanterns = 30;
+  for (let i = 0; i < totalLanterns; i++) {
+    setTimeout(() => createRefinedFlyingLantern(lanternLayer, currentLampName), 180 + i * 135);
+  }
+
+  setTimeout(() => createLuxStageFlash(stage), 1100);
+
+  setTimeout(() => {
+    result.innerHTML = `
+      <div>${currentLampMessage}</div>
+      <div class="light-bless-badge">光明燈・祈福完成</div>
+    `;
+    btn.disabled = false;
+    stage.classList.remove("shock-on");
+  }, totalLanterns * 135 + 2600);
+}
+
+function createRefinedFlyingLantern(layer, lampName) {
+  const lantern = document.createElement("div");
+  lantern.className = "lux-fly-lantern";
+
+  const startX = Math.random() * 260 - 130;
+  const midX = startX + (Math.random() * 90 - 45);
+  const mid2X = midX + (Math.random() * 110 - 55);
+  const endX = mid2X + (Math.random() * 150 - 75);
+
+  const width = 34 + Math.random() * 22;
+  const height = width * 1.56;
+
+  lantern.style.setProperty("--startX", startX + "px");
+  lantern.style.setProperty("--midX", midX + "px");
+  lantern.style.setProperty("--mid2X", mid2X + "px");
+  lantern.style.setProperty("--endX", endX + "px");
+  lantern.style.setProperty("--w", width + "px");
+  lantern.style.setProperty("--h", height + "px");
+  lantern.style.setProperty("--dur", (4.0 + Math.random() * 1.8).toFixed(2) + "s");
+  lantern.style.setProperty("--rot1", (Math.random() * 8 - 4).toFixed(1) + "deg");
+  lantern.style.setProperty("--rot2", (Math.random() * 10 - 5).toFixed(1) + "deg");
+  lantern.style.setProperty("--rot3", (Math.random() * 12 - 6).toFixed(1) + "deg");
+
+  lantern.innerHTML = `<img class="lantern-img" src="fly-lantern.png" alt="${lampName}小天燈">`;
+
+  layer.appendChild(lantern);
+  lantern.addEventListener("animationend", () => lantern.remove());
+}
+</script>
+
+
+<script>
+/* ===== 求籤頁背景圖版 JS 覆蓋 ===== */
 function drawStick() {
   const altar = document.getElementById("drawAltar");
   const btn = document.getElementById("drawBtn");
   const topic = document.getElementById("drawTopic").value;
   const resultBox = document.getElementById("drawResult");
 
-  btn.disabled = true;
-  btn.textContent = "籤筒搖動中";
+  if (!altar || !btn || !resultBox) return;
 
-  altar.classList.remove("shaking", "show-stick");
+  btn.disabled = true;
+  altar.classList.remove("shaking", "show-stick", "after-draw");
   void altar.offsetWidth;
   altar.classList.add("shaking");
 
   resultBox.innerHTML = `
     <h3>籤筒搖動中</h3>
-    <p>請靜心等待，籤詩即將落下。</p>
+    <p>請靜心等待，福德正神正在為你指引。</p>
   `;
 
   setTimeout(() => {
     altar.classList.add("show-stick");
     createDrawFlash();
-  }, 1150);
+  }, 950);
 
   setTimeout(() => {
     const result = randomItem(sticks);
+
+    altar.classList.add("after-draw");
 
     resultBox.innerHTML = `
       <span class="draw-level">${result.level}</span>
@@ -1650,427 +2304,172 @@ function drawStick() {
     `;
 
     saveRecord("求籤占卜", `${topic}｜${result.level}｜${result.title}`);
-
     btn.disabled = false;
-    btn.textContent = "再次搖籤";
-  }, 2250);
+  }, 2100);
 }
+</script>
 
-function createDrawFlash() {
-  const flash = document.createElement("div");
-  flash.className = "draw-flash";
-  document.body.appendChild(flash);
 
-  setTimeout(() => {
-    flash.remove();
-  }, 850);
-}
+<script>
+/* ===== 求籤頁修正版 JS：籤詩搖完才顯示 ===== */
+function drawStick() {
+  const altar = document.getElementById("drawAltar");
+  const btn = document.getElementById("drawBtn");
+  const topicInput = document.getElementById("drawTopic");
+  const topic = topicInput ? topicInput.value : "今日指引";
+  const resultBox = document.getElementById("drawResult");
 
-/* 補財庫 */
-function resetMoneyPage() {
-  const screen = document.getElementById("moneyScreen");
-  const rainLayer = document.getElementById("ingotRainLayer");
-  const btn = document.getElementById("moneyStartBtn");
-
-  screen.classList.remove("shake", "heaven-open", "rays-on", "absorbing", "ingot-flash", "done");
-  rainLayer.innerHTML = "";
-
-  document.getElementById("moneyBlessText").textContent =
-    "誠心啟動補財庫，讓金光加持、財氣匯聚、精美元寶雨從天而降，被大元寶吸入財庫。";
-
-  refreshMoneyLuck();
-
-  btn.disabled = false;
-  btn.style.opacity = "1";
-  btn.style.cursor = "pointer";
-}
-
-function startMoneyBlessing() {
-  const screen = document.getElementById("moneyScreen");
-  const rainLayer = document.getElementById("ingotRainLayer");
-  const btn = document.getElementById("moneyStartBtn");
-  const blessText = document.getElementById("moneyBlessText");
+  if (!altar || !btn || !resultBox) return;
 
   btn.disabled = true;
-  btn.style.opacity = ".72";
-  btn.style.cursor = "not-allowed";
+  altar.classList.remove("shaking", "show-stick", "after-draw");
+  resultBox.innerHTML = "";
+  void altar.offsetWidth;
 
-  screen.classList.remove("shake", "heaven-open", "rays-on", "absorbing", "ingot-flash", "done");
-  rainLayer.innerHTML = "";
-  void screen.offsetWidth;
+  altar.classList.add("shaking");
 
-  screen.classList.add("shake", "heaven-open", "rays-on", "absorbing");
-
-  createFullFlash();
-
-  blessText.textContent =
-    "補財庫啟動：大量精美元寶雨從天而降，正在被中間大元寶吸走，財庫金光大亮。";
-
-  refreshMoneyLuck();
-  saveRecord("補財庫", "補財庫｜大量精美元寶雨・大元寶吸財入庫");
-
-  const totalIngots = 72;
-  const dropInterval = 38;
-  let finishedCount = 0;
-
-  for (let i = 0; i < totalIngots; i++) {
-    setTimeout(() => {
-      createFallingIngot(rainLayer, () => {
-        finishedCount++;
-
-        if (finishedCount % 2 === 0) {
-          triggerIngotFlash(screen);
-        }
-
-        createSparkBurst(rainLayer, 188, 310);
-
-        if (finishedCount % 3 === 0) {
-          createFortuneChars(rainLayer, 188, 310);
-        }
-
-        if (finishedCount === totalIngots) {
-          finishMoneyBlessing();
-        }
-      });
-    }, i * dropInterval);
-  }
-
-  function finishMoneyBlessing() {
-    screen.classList.add("done");
-    createFullFlash();
-
-    setTimeout(() => {
-      btn.disabled = false;
-      btn.style.opacity = "1";
-      btn.style.cursor = "pointer";
-      screen.classList.remove("shake", "heaven-open", "rays-on", "absorbing");
-    }, 2500);
-  }
-}
-
-function createFallingIngot(layer, onArrive) {
-  const ingot = document.createElement("div");
-  ingot.className = "fall-ingot";
-
-  const startX = Math.random() * 360 - 10;
-  const dropY = Math.random() * 210 + 110;
-  const curveX = (182 - startX) * 0.35 + (Math.random() * 80 - 40);
-  const curveY = Math.random() * 80 + 240;
-  const endX = 160 + Math.random() * 52 - 26;
-  const endY = 250 + Math.random() * 36 - 18;
-  const size = Math.random() * 28 + 56;
-  const dur = (1.05 + Math.random() * 0.55).toFixed(2) + "s";
-
-  ingot.style.setProperty("--startX", startX + "px");
-  ingot.style.setProperty("--dropY", dropY + "px");
-  ingot.style.setProperty("--curveX", curveX + "px");
-  ingot.style.setProperty("--curveY", curveY + "px");
-  ingot.style.setProperty("--endX", endX + "px");
-  ingot.style.setProperty("--endY", endY + "px");
-  ingot.style.setProperty("--size", size + "px");
-  ingot.style.setProperty("--dur", dur);
-
-  layer.appendChild(ingot);
-
-  ingot.addEventListener("animationend", () => {
-    ingot.remove();
-    if (typeof onArrive === "function") onArrive();
-  });
-}
-
-function triggerIngotFlash(screen) {
-  screen.classList.remove("ingot-flash");
-  void screen.offsetWidth;
-  screen.classList.add("ingot-flash");
+  resultBox.innerHTML = `
+    <h3>籤筒搖動中</h3>
+    <p>請靜心等待，福德正神正在為你指引。</p>
+  `;
 
   setTimeout(() => {
-    screen.classList.remove("ingot-flash");
-  }, 780);
+    altar.classList.add("show-stick");
+    if (typeof createDrawFlash === "function") {
+      createDrawFlash();
+    }
+  }, 950);
+
+  setTimeout(() => {
+    const result = randomItem(sticks);
+
+    altar.classList.add("after-draw");
+
+    resultBox.innerHTML = `
+      <span class="draw-level">${result.level}</span>
+      <h3>${topic}｜${result.title}</h3>
+      <p><strong>籤詩：</strong>${result.poem}</p>
+      <p><strong>解籤：</strong>${result.explain}</p>
+      <p><strong>建議：</strong>${result.advice}</p>
+      <p class="notice">求籤結果僅供娛樂與自我提醒，不代表絕對命運。</p>
+    `;
+
+    if (typeof saveRecord === "function") {
+      saveRecord("求籤占卜", `${topic}｜${result.level}｜${result.title}`);
+    }
+
+    btn.disabled = false;
+  }, 2100);
 }
+</script>
 
-function createSparkBurst(layer, x, y) {
-  const count = 6;
 
-  for (let i = 0; i < count; i++) {
-    const spark = document.createElement("div");
-    spark.className = "spark";
-    spark.style.left = x + "px";
-    spark.style.top = y + "px";
+<script>
+/* ===== 誠心搖籤：華麗動畫 JS 覆蓋 ===== */
+function drawStick() {
+  const altar = document.getElementById("drawAltar");
+  const btn = document.getElementById("drawBtn");
+  const topicInput = document.getElementById("drawTopic");
+  const topic = topicInput ? topicInput.value : "今日指引";
+  const resultBox = document.getElementById("drawResult");
+  const particleLayer = document.getElementById("drawLuxParticles");
 
-    const sx = Math.random() * 110 - 55 + "px";
-    const sy = Math.random() * 110 - 55 + "px";
+  if (!altar || !btn || !resultBox) return;
 
-    spark.style.setProperty("--sx", sx);
-    spark.style.setProperty("--sy", sy);
+  btn.disabled = true;
+  altar.classList.remove("shaking", "show-stick", "after-draw", "lux-shaking");
+  resultBox.innerHTML = "";
+  if (particleLayer) particleLayer.innerHTML = "";
+  void altar.offsetWidth;
 
-    layer.appendChild(spark);
-    spark.addEventListener("animationend", () => spark.remove());
+  altar.classList.add("shaking", "lux-shaking");
+
+  resultBox.innerHTML = `
+    <h3>福德正神降光中</h3>
+    <p>香火已起，籤筒正在感應，請靜心等待。</p>
+  `;
+
+  for (let i = 0; i < 90; i++) {
+    setTimeout(() => createDrawLuxDot(particleLayer), i * 24);
   }
-}
 
-function createFortuneChars(layer, x, y) {
-  const words = ["財", "福", "旺"];
-  const count = 3;
-
-  for (let i = 0; i < count; i++) {
-    const char = document.createElement("div");
-    char.className = "fortune-char";
-    char.textContent = randomItem(words);
-    char.style.left = x + "px";
-    char.style.top = y + "px";
-
-    const fx = Math.random() * 130 - 65 + "px";
-    const fy = -Math.random() * 120 - 30 + "px";
-
-    char.style.setProperty("--fx", fx);
-    char.style.setProperty("--fy", fy);
-
-    layer.appendChild(char);
-    char.addEventListener("animationend", () => char.remove());
+  for (let i = 0; i < 24; i++) {
+    setTimeout(() => createDrawLuxWord(particleLayer), 180 + i * 70);
   }
+
+  setTimeout(() => {
+    altar.classList.add("show-stick");
+    createDrawFinalFlash(altar);
+    if (typeof createDrawFlash === "function") {
+      createDrawFlash();
+    }
+  }, 1050);
+
+  setTimeout(() => {
+    const result = randomItem(sticks);
+
+    altar.classList.add("after-draw");
+    altar.classList.remove("lux-shaking");
+
+    resultBox.innerHTML = `
+      <span class="draw-level">${result.level}</span>
+      <h3>${topic}｜${result.title}</h3>
+      <p><strong>籤詩：</strong>${result.poem}</p>
+      <p><strong>解籤：</strong>${result.explain}</p>
+      <p><strong>建議：</strong>${result.advice}</p>
+      <p class="notice">求籤結果僅供娛樂與自我提醒，不代表絕對命運。</p>
+    `;
+
+    if (typeof saveRecord === "function") {
+      saveRecord("求籤占卜", `${topic}｜${result.level}｜${result.title}`);
+    }
+
+    btn.disabled = false;
+  }, 2350);
 }
 
-function createFullFlash() {
+function createDrawLuxDot(layer) {
+  if (!layer) return;
+
+  const dot = document.createElement("div");
+  dot.className = "draw-lux-dot";
+
+  dot.style.setProperty("--size", (Math.random() * 7 + 5).toFixed(1) + "px");
+  dot.style.setProperty("--dur", (1.2 + Math.random() * 1.4).toFixed(2) + "s");
+  dot.style.setProperty("--x", (Math.random() * 260 - 130).toFixed(1) + "px");
+  dot.style.setProperty("--y", (-Math.random() * 240 - 40).toFixed(1) + "px");
+
+  layer.appendChild(dot);
+  dot.addEventListener("animationend", () => dot.remove());
+}
+
+function createDrawLuxWord(layer) {
+  if (!layer) return;
+
+  const words = ["福", "籤", "吉", "安"];
+  const word = document.createElement("div");
+  word.className = "draw-lux-word";
+  word.textContent = words[Math.floor(Math.random() * words.length)];
+
+  word.style.setProperty("--fs", (Math.random() * 10 + 20).toFixed(1) + "px");
+  word.style.setProperty("--dur", (1.1 + Math.random() * 1.2).toFixed(2) + "s");
+  word.style.setProperty("--x", (Math.random() * 230 - 115).toFixed(1) + "px");
+  word.style.setProperty("--y", (-Math.random() * 220 - 60).toFixed(1) + "px");
+
+  layer.appendChild(word);
+  word.addEventListener("animationend", () => word.remove());
+}
+
+function createDrawFinalFlash(altar) {
   const flash = document.createElement("div");
-  flash.className = "money-full-flash";
-  document.body.appendChild(flash);
+  flash.className = "draw-final-flash";
+  altar.appendChild(flash);
 
   setTimeout(() => {
     flash.remove();
   }, 900);
 }
-
-function refreshMoneyLuck() {
-  document.getElementById("moneyMain").textContent = randomItem(moneyLuckMain);
-  document.getElementById("moneySide").textContent = randomItem(moneyLuckSide);
-  document.getElementById("moneyKeep").textContent = randomItem(moneyLuckKeep);
-}
-
-/* 點燈 */
-function selectLamp(button, lampName, message) {
-  document.querySelectorAll(".lamp-option").forEach(btn => btn.classList.remove("selected"));
-  button.classList.add("selected");
-
-  currentLampName = lampName;
-  currentLampMessage = message;
-
-  document.getElementById("lightResult").textContent =
-    "目前選擇：" + lampName + "。" + message;
-}
-
-function startBlessingLight() {
-  const result = document.getElementById("lightResult");
-  result.textContent = currentLampMessage;
-
-  saveRecord("祈福點燈", currentLampName + "｜" + currentLampMessage);
-
-  alert(currentLampName + "完成\n\n" + currentLampMessage);
-}
-
-/* 八字 */
-function calculateBazi() {
-  const name = document.getElementById("userName").value.trim() || "未命名";
-  const gender = document.getElementById("gender").value;
-  const birthDate = document.getElementById("birthDate").value;
-  const birthHourBranchIndex = Number(document.getElementById("birthHour").value);
-
-  if (!birthDate) {
-    alert("請先選擇出生日期");
-    return;
-  }
-
-  const date = new Date(birthDate + "T00:00:00");
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-
-  const bazi = getBazi(date, birthHourBranchIndex);
-  const zodiacName = zodiac[bazi.year.branchIndex];
-
-  document.getElementById("baziResult").innerHTML = `
-    <h3>${escapeHTML(name)} 的八字命盤</h3>
-    <p>性別：${gender}｜出生：${year} 年 ${month} 月 ${day} 日｜生肖：${zodiacName}</p>
-
-    <div class="bazi-grid">
-      <div class="pillar">
-        <small>年柱</small>
-        <strong>${bazi.year.stem}${bazi.year.branch}</strong>
-      </div>
-      <div class="pillar">
-        <small>月柱</small>
-        <strong>${bazi.month.stem}${bazi.month.branch}</strong>
-      </div>
-      <div class="pillar">
-        <small>日柱</small>
-        <strong>${bazi.day.stem}${bazi.day.branch}</strong>
-      </div>
-      <div class="pillar">
-        <small>時柱</small>
-        <strong>${bazi.hour.stem}${bazi.hour.branch}</strong>
-      </div>
-    </div>
-
-    <p><strong>土地公好運建議：</strong>今日宜穩定前行，先整理方向，再求突破。</p>
-    <p class="notice">此版本為娛樂與學習用規則庫版，僅供參考。</p>
-  `;
-
-  saveRecord("八字命盤", `${name}｜生肖：${zodiacName}`);
-}
-
-function getBazi(date, hourBranchIndex) {
-  const adjustedYear = isBeforeLiChun(date) ? date.getFullYear() - 1 : date.getFullYear();
-  const yearStemIndex = mod(adjustedYear - 4, 10);
-  const yearBranchIndex = mod(adjustedYear - 4, 12);
-
-  const monthData = getSolarMonthPillar(date, yearStemIndex);
-
-  const baseDate = new Date("1900-01-31T00:00:00");
-  const dayDiff = Math.floor((date - baseDate) / 86400000);
-  const dayStemIndex = mod(dayDiff + 4, 10);
-  const dayBranchIndex = mod(dayDiff + 2, 12);
-  const hourStemIndex = mod(dayStemIndex * 2 + hourBranchIndex, 10);
-
-  return {
-    year: {
-      stem: stems[yearStemIndex],
-      branch: branches[yearBranchIndex],
-      branchIndex: yearBranchIndex
-    },
-    month: monthData,
-    day: {
-      stem: stems[dayStemIndex],
-      branch: branches[dayBranchIndex]
-    },
-    hour: {
-      stem: stems[hourStemIndex],
-      branch: branches[hourBranchIndex]
-    }
-  };
-}
-
-function isBeforeLiChun(date) {
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  return month < 2 || (month === 2 && day < 4);
-}
-
-function getSolarMonthPillar(date, yearStemIndex) {
-  const monthBranch = getSolarMonthBranch(date);
-  const branchIndex = branches.indexOf(monthBranch);
-  const monthOrderFromYin = mod(branchIndex - 2, 12);
-
-  const firstMonthStemMap = {
-    0: 2, 5: 2,
-    1: 4, 6: 4,
-    2: 6, 7: 6,
-    3: 8, 8: 8,
-    4: 0, 9: 0
-  };
-
-  const firstStemIndex = firstMonthStemMap[yearStemIndex];
-  const monthStemIndex = mod(firstStemIndex + monthOrderFromYin, 10);
-
-  return {
-    stem: stems[monthStemIndex],
-    branch: monthBranch,
-    branchIndex
-  };
-}
-
-function getSolarMonthBranch(date) {
-  const m = date.getMonth() + 1;
-  const d = date.getDate();
-
-  if (m === 1 && d < 6) return "子";
-  if (m === 1) return "丑";
-  if (m === 2 && d < 4) return "丑";
-  if (m === 2) return "寅";
-  if (m === 3 && d < 6) return "寅";
-  if (m === 3) return "卯";
-  if (m === 4 && d < 5) return "卯";
-  if (m === 4) return "辰";
-  if (m === 5 && d < 6) return "辰";
-  if (m === 5) return "巳";
-  if (m === 6 && d < 6) return "巳";
-  if (m === 6) return "午";
-  if (m === 7 && d < 7) return "午";
-  if (m === 7) return "未";
-  if (m === 8 && d < 8) return "未";
-  if (m === 8) return "申";
-  if (m === 9 && d < 8) return "申";
-  if (m === 9) return "酉";
-  if (m === 10 && d < 8) return "酉";
-  if (m === 10) return "戌";
-  if (m === 11 && d < 7) return "戌";
-  if (m === 11) return "亥";
-  if (m === 12 && d < 7) return "亥";
-  return "子";
-}
-
-/* 紀錄 */
-function saveRecord(type, content) {
-  const records = JSON.parse(localStorage.getItem("fortuneRecords")) || [];
-
-  records.unshift({
-    type,
-    content,
-    time: new Date().toLocaleString("zh-TW")
-  });
-
-  localStorage.setItem("fortuneRecords", JSON.stringify(records.slice(0,30)));
-}
-
-function renderRecords() {
-  const recordList = document.getElementById("recordList");
-  const records = JSON.parse(localStorage.getItem("fortuneRecords")) || [];
-
-  if (records.length === 0) {
-    recordList.innerHTML = `
-      <div class="card">
-        <h3>目前沒有紀錄</h3>
-        <p>完成求籤、補財庫、祈福點燈或八字命盤後，紀錄會自動出現在這裡。</p>
-      </div>
-    `;
-    return;
-  }
-
-  recordList.innerHTML = records.map(record => `
-    <div class="record-item">
-      <h4>${record.type}</h4>
-      <p>${record.content}</p>
-      <p>${record.time}</p>
-    </div>
-  `).join("");
-}
-
-function clearRecords() {
-  if (confirm("確定要清除所有紀錄嗎？")) {
-    localStorage.removeItem("fortuneRecords");
-    renderRecords();
-  }
-}
-
-/* 工具 */
-function randomItem(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
-function escapeHTML(text) {
-  return text.replace(/[&<>"']/g, function(match) {
-    const map = {
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#039;"
-    };
-    return map[match];
-  });
-}
-
-function mod(n, m) {
-  return ((n % m) + m) % m;
-}
 </script>
+
 </body>
 </html>
