@@ -1468,6 +1468,146 @@
 }
 
 
+/* ===== 天門開啟・神籤從天而降特效 ===== */
+.draw-heaven-portal,
+.draw-heaven-beam,
+.draw-heaven-ring {
+  position: absolute;
+  left: 50%;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 88;
+}
+
+.draw-heaven-portal {
+  top: -36px;
+  width: 240px;
+  height: 118px;
+  transform: translateX(-50%) scale(.35);
+  border-radius: 0 0 120px 120px;
+  background:
+    radial-gradient(ellipse at 50% 8%, rgba(255,255,235,.98), rgba(255,228,120,.9) 28%, rgba(255,175,40,.42) 56%, transparent 74%);
+  filter: blur(2px);
+  mix-blend-mode: screen;
+}
+
+.draw-heaven-beam {
+  top: 36px;
+  width: 330px;
+  height: 620px;
+  transform: translateX(-50%) scaleY(.25);
+  transform-origin: top center;
+  background: linear-gradient(180deg, rgba(255,255,238,.95), rgba(255,232,126,.58) 22%, rgba(255,192,62,.22) 58%, transparent 100%);
+  clip-path: polygon(44% 0%, 56% 0%, 78% 34%, 98% 100%, 2% 100%, 22% 34%);
+  mix-blend-mode: screen;
+  filter: blur(1px);
+}
+
+.draw-heaven-ring {
+  top: 54px;
+  width: 172px;
+  height: 172px;
+  transform: translateX(-50%) scale(.4);
+  border-radius: 50%;
+  border: 2px solid rgba(255,238,170,.78);
+  box-shadow: 0 0 22px rgba(255,231,140,.9), inset 0 0 26px rgba(255,185,40,.35);
+  background: radial-gradient(circle, rgba(255,255,240,.18), rgba(255,210,70,.08) 48%, transparent 62%);
+  mix-blend-mode: screen;
+}
+
+.draw-bg-screen.heaven-descend .draw-heaven-portal {
+  animation: heavenPortalOpen 1.25s ease-out forwards;
+}
+
+.draw-bg-screen.heaven-descend .draw-heaven-beam {
+  animation: heavenBeamShine 1.65s ease-out forwards;
+}
+
+.draw-bg-screen.heaven-descend .draw-heaven-ring {
+  animation: heavenRingSpin 1.55s ease-out forwards;
+}
+
+@keyframes heavenPortalOpen {
+  0% { opacity: 0; transform: translateX(-50%) scale(.25); }
+  20% { opacity: 1; transform: translateX(-50%) scale(1.08); }
+  65% { opacity: .92; }
+  100% { opacity: .18; transform: translateX(-50%) scale(1.18); }
+}
+
+@keyframes heavenBeamShine {
+  0% { opacity: 0; transform: translateX(-50%) scaleY(.15); }
+  22% { opacity: .95; transform: translateX(-50%) scaleY(1.02); }
+  70% { opacity: .7; }
+  100% { opacity: .2; transform: translateX(-50%) scaleY(1.08); }
+}
+
+@keyframes heavenRingSpin {
+  0% { opacity: 0; transform: translateX(-50%) scale(.3) rotate(0deg); }
+  18% { opacity: .9; transform: translateX(-50%) scale(1.1) rotate(40deg); }
+  100% { opacity: .15; transform: translateX(-50%) scale(1.35) rotate(200deg); }
+}
+
+.draw-heaven-spark {
+  position: absolute;
+  left: 50%;
+  top: 96px;
+  width: var(--size, 8px);
+  height: var(--size, 32px);
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 115;
+  background: linear-gradient(180deg, rgba(255,255,240,0), rgba(255,247,188,.95) 18%, rgba(255,210,88,.95) 58%, rgba(255,160,32,.15) 100%);
+  box-shadow: 0 0 12px rgba(255,230,130,.85), 0 0 22px rgba(255,170,40,.42);
+  animation: heavenSparkDrop var(--dur, 1.1s) cubic-bezier(.18,.74,.24,1) forwards;
+}
+
+@keyframes heavenSparkDrop {
+  0% { opacity: 0; transform: translate(calc(-50% + var(--sx)), -120px) scaleY(.65); }
+  12% { opacity: 1; }
+  85% { opacity: .95; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--ex)), var(--ey)) scaleY(1.22); }
+}
+
+.draw-impact-spark {
+  position: absolute;
+  left: 50%;
+  top: 470px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 128;
+  background: radial-gradient(circle, #fffce9 0%, #ffe28a 42%, rgba(255,171,28,.2) 72%, transparent 100%);
+  box-shadow: 0 0 16px rgba(255,230,120,.95), 0 0 28px rgba(255,175,40,.42);
+  animation: impactSparkBurst .8s ease-out forwards;
+}
+
+@keyframes impactSparkBurst {
+  0% { opacity: 0; transform: translate(-50%, 0) scale(.4); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--ix)), var(--iy)) scale(1.25); }
+}
+
+.draw-impact-ring {
+  position: absolute;
+  left: 50%;
+  top: 508px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 127;
+  border: 2px solid rgba(255,235,162,.82);
+  box-shadow: 0 0 14px rgba(255,210,90,.68), inset 0 0 10px rgba(255,250,210,.3);
+  animation: impactRingExpand .82s ease-out forwards;
+}
+
+@keyframes impactRingExpand {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.2); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(4.2); }
+}
+
 /* ===== 誠心搖籤：華麗動畫加強版 ===== */
 
 /* 三層特效容器 */
@@ -1802,68 +1942,980 @@
 }
 
 
-/* ===== 掉籤動畫：放大版神明籤，更明顯 ===== */
+/* ===== 掉籤動畫：神明籤從天而降・更華麗（加大版／去除籤旁邊框特效） ===== */
 .draw-bg-stick {
-  width: 132px !important;
-  height: 430px !important;
-  top: 300px !important;
+  width: 182px !important;
+  height: 592px !important;
+  top: 208px !important;
   left: 50% !important;
   padding: 0 !important;
   color: transparent !important;
   border: none !important;
   border-radius: 0 !important;
   background: url("shenming-qian.png") center center / contain no-repeat !important;
-  box-shadow:
-    0 0 28px rgba(255, 220, 110, .88),
-    0 0 60px rgba(255, 170, 0, .32),
-    0 18px 28px rgba(40, 4, 2, .30) !important;
+  box-shadow: none !important;
+  filter: none !important;
   transform-origin: bottom center !important;
   z-index: 140 !important;
 }
 
 .draw-bg-screen.show-stick .draw-bg-stick {
-  animation: newShenmingQianDrop 1.25s cubic-bezier(.18,.86,.26,1) forwards !important;
+  animation: heavenlyQianDrop 1.45s cubic-bezier(.14,.82,.2,1) forwards !important;
 }
 
-@keyframes newShenmingQianDrop {
+@keyframes heavenlyQianDrop {
   0% {
     opacity: 0;
-    transform: translateX(-50%) translateY(-150px) rotate(-16deg) scale(.78);
-    filter: brightness(1.28) drop-shadow(0 0 18px rgba(255,220,120,.78));
+    transform: translateX(-50%) translateY(-500px) rotate(-10deg) scale(.56);
+    filter: brightness(1.12);
   }
 
-  22% {
+  16% {
     opacity: 1;
-    transform: translateX(-50%) translateY(-72px) rotate(11deg) scale(.92);
+    transform: translateX(-50%) translateY(-305px) rotate(6deg) scale(.72);
   }
 
-  52% {
+  42% {
     opacity: 1;
-    transform: translateX(-50%) translateY(52px) rotate(-8deg) scale(1.06);
+    transform: translateX(-50%) translateY(-58px) rotate(-4deg) scale(.96);
   }
 
-  78% {
+  68% {
     opacity: 1;
-    transform: translateX(-50%) translateY(112px) rotate(12deg) scale(1.08);
+    transform: translateX(-50%) translateY(120px) rotate(8deg) scale(1.08);
+  }
+
+  84% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(176px) rotate(-5deg) scale(1.06);
   }
 
   100% {
     opacity: 1;
-    transform: translateX(-50%) translateY(138px) rotate(8deg) scale(1.08);
-    filter: brightness(1.08) drop-shadow(0 0 18px rgba(255,210,90,.7));
+    transform: translateX(-50%) translateY(164px) rotate(3deg) scale(1.06);
+    filter: brightness(1.03);
   }
 }
 
 /* 手機寬度微調 */
 @media (max-width: 380px) {
   .draw-bg-stick {
-    width: 118px !important;
-    height: 382px !important;
-    top: 292px !important;
+    width: 162px !important;
+    height: 528px !important;
+    top: 218px !important;
+  }
+}
+
+
+
+/* ===== 神籤特效修正：不要搖晃，直接從天慢慢降下來 ===== */
+.draw-bg-screen.lux-arrival .draw-lux-godlight {
+  animation: drawGodLight 2.8s ease forwards;
+}
+
+.draw-bg-screen.lux-arrival .draw-lux-rays {
+  animation: drawRaysSpin 2.2s linear infinite, drawRaysShow 2.8s ease forwards;
+}
+
+.draw-bg-screen.lux-arrival .draw-lux-smoke {
+  animation: drawSmokeRise 3.1s ease-in-out forwards;
+}
+
+.draw-bg-screen.lux-arrival .draw-lux-jiaobei {
+  animation: jiaobeiGlow 2.5s ease-in-out forwards;
+}
+
+.draw-bg-screen.show-stick .draw-bg-stick {
+  animation: heavenlyQianDropSlow 2.6s cubic-bezier(.12,.76,.18,1) forwards !important;
+}
+
+@keyframes heavenlyQianDropSlow {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-640px) rotate(0deg) scale(.52);
+    filter: brightness(1.08);
+  }
+
+  12% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-520px) rotate(0deg) scale(.60);
+  }
+
+  34% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-280px) rotate(0deg) scale(.78);
+  }
+
+  62% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-20px) rotate(0deg) scale(.96);
+  }
+
+  84% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(134px) rotate(0deg) scale(1.04);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(164px) rotate(0deg) scale(1.05);
+    filter: brightness(1.02);
+  }
+}
+
+@media (max-width: 380px) {
+  .draw-bg-screen.show-stick .draw-bg-stick {
+    animation: heavenlyQianDropSlowMobile 2.6s cubic-bezier(.12,.76,.18,1) forwards !important;
+  }
+
+  @keyframes heavenlyQianDropSlowMobile {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-600px) rotate(0deg) scale(.50);
+      filter: brightness(1.08);
+    }
+
+    12% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-490px) rotate(0deg) scale(.58);
+    }
+
+    34% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-255px) rotate(0deg) scale(.76);
+    }
+
+    62% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-10px) rotate(0deg) scale(.94);
+    }
+
+    84% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(126px) rotate(0deg) scale(1.03);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(154px) rotate(0deg) scale(1.04);
+      filter: brightness(1.02);
+    }
+  }
+}
+
+
+
+/* ===== 追加修正：籤只在點擊後出現，並掉落到香爐位置 ===== */
+.draw-bg-stick {
+  top: auto !important;
+  bottom: 236px !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.draw-bg-screen.show-stick .draw-bg-stick {
+  visibility: visible !important;
+  opacity: 1 !important;
+  animation: heavenlyQianDropToIncense 2.8s cubic-bezier(.15,.78,.18,1) forwards !important;
+}
+
+@keyframes heavenlyQianDropToIncense {
+  0% {
+    opacity: 0;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-760px) rotate(0deg) scale(.52);
+    filter: brightness(1.1);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-620px) rotate(0deg) scale(.58);
+  }
+  28% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-420px) rotate(0deg) scale(.70);
+  }
+  52% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-220px) rotate(0deg) scale(.82);
+  }
+  72% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-88px) rotate(0deg) scale(.92);
+  }
+  88% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(14px) rotate(0deg) scale(1.02);
+    filter: brightness(1.04);
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0) rotate(0deg) scale(1.04);
+    filter: brightness(1.02);
+  }
+}
+
+@media (max-width: 380px) {
+  .draw-bg-stick {
+    bottom: 224px !important;
+  }
+
+  .draw-bg-screen.show-stick .draw-bg-stick {
+    animation: heavenlyQianDropToIncenseMobile 2.8s cubic-bezier(.15,.78,.18,1) forwards !important;
+  }
+
+  @keyframes heavenlyQianDropToIncenseMobile {
+    0% {
+      opacity: 0;
+      visibility: visible;
+      transform: translateX(-50%) translateY(-700px) rotate(0deg) scale(.50);
+      filter: brightness(1.1);
+    }
+    10% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-570px) rotate(0deg) scale(.56);
+    }
+    28% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-390px) rotate(0deg) scale(.68);
+    }
+    52% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-206px) rotate(0deg) scale(.80);
+    }
+    72% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-78px) rotate(0deg) scale(.91);
+    }
+    88% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(12px) rotate(0deg) scale(1.01);
+      filter: brightness(1.04);
+    }
+    100% {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0) rotate(0deg) scale(1.03);
+      filter: brightness(1.02);
+    }
+  }
+}
+
+
+/* ===== 籤筒搖動特效（點擊搖籤後觸發） ===== */
+.draw-cup-overlay {
+  position: absolute;
+  right: -1.8%;
+  top: 46.2%;
+  width: 31.2%;
+  aspect-ratio: 236 / 507;
+  background: url("fortune-cup.png") center center / contain no-repeat;
+  pointer-events: none;
+  z-index: 60;
+  transform-origin: 50% 84%;
+  filter: drop-shadow(0 10px 14px rgba(45,4,2,.28));
+  opacity: .98;
+}
+
+.draw-bg-screen.shaking .draw-cup-overlay {
+  animation: drawCupLuxuryShake 1.22s cubic-bezier(.22,.68,.2,1) forwards;
+}
+
+@keyframes drawCupLuxuryShake {
+  0%   { transform: rotate(0deg) translateY(0); }
+  8%   { transform: rotate(-8deg) translateY(0); }
+  16%  { transform: rotate(7deg) translateY(-1px); }
+  24%  { transform: rotate(-9deg) translateY(0); }
+  34%  { transform: rotate(8deg) translateY(-2px); }
+  46%  { transform: rotate(-6deg) translateY(0); }
+  58%  { transform: rotate(5deg) translateY(-1px); }
+  70%  { transform: rotate(-3deg) translateY(0); }
+  82%  { transform: rotate(2deg) translateY(0); }
+  100% { transform: rotate(0deg) translateY(0); }
+}
+
+@media (max-width: 420px) {
+  .draw-cup-overlay {
+    right: -2.4%;
+    top: 46.8%;
+    width: 31.8%;
+  }
+}
+
+/* ===== 修復版：右側籤筒搖動特效，點擊搖籤後一定觸發 ===== */
+.draw-cup-overlay {
+  position: absolute !important;
+
+  /* 右側籤筒位置 */
+  right: -2px !important;
+  top: 360px !important;
+  width: 150px !important;
+  height: 300px !important;
+
+  /* 直接使用求籤背景圖，裁出右側籤筒，不依賴 fortune-cup.png */
+  background-image: url("draw-qian-bg.png") !important;
+  background-repeat: no-repeat !important;
+  background-size: 420px auto !important;
+  background-position: right -360px top -360px !important;
+
+  pointer-events: none !important;
+  z-index: 122 !important;
+  opacity: 1 !important;
+  transform-origin: 50% 88% !important;
+  filter:
+    drop-shadow(0 10px 14px rgba(45,4,2,.28))
+    drop-shadow(0 0 10px rgba(255,210,90,.25));
+}
+
+/* 點擊搖籤後，用 JS 加上 cup-shaking，籤筒會明顯左右擺動 */
+.draw-bg-screen.cup-shaking .draw-cup-overlay {
+  animation: cupShakeFixed 1.65s ease-in-out forwards !important;
+}
+
+@keyframes cupShakeFixed {
+  0%   { transform: rotate(0deg) translateX(0) translateY(0) scale(1); }
+  8%   { transform: rotate(-9deg) translateX(-7px) translateY(-2px) scale(1.02); }
+  16%  { transform: rotate(9deg) translateX(7px) translateY(1px) scale(1.02); }
+  24%  { transform: rotate(-11deg) translateX(-8px) translateY(-2px) scale(1.025); }
+  32%  { transform: rotate(10deg) translateX(8px) translateY(1px) scale(1.025); }
+  42%  { transform: rotate(-8deg) translateX(-6px) translateY(-1px) scale(1.018); }
+  52%  { transform: rotate(7deg) translateX(6px) translateY(1px) scale(1.018); }
+  64%  { transform: rotate(-5deg) translateX(-4px) translateY(0) scale(1.012); }
+  76%  { transform: rotate(4deg) translateX(4px) translateY(0) scale(1.01); }
+  88%  { transform: rotate(-2deg) translateX(-2px) translateY(0) scale(1.004); }
+  100% { transform: rotate(0deg) translateX(0) translateY(0) scale(1); }
+}
+
+.draw-cup-glow {
+  position: absolute;
+  right: 16px;
+  top: 394px;
+  width: 110px;
+  height: 210px;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 121;
+  opacity: 0;
+  background:
+    radial-gradient(circle, rgba(255,246,190,.42), rgba(255,186,48,.16) 42%, transparent 72%);
+  mix-blend-mode: screen;
+  filter: blur(3px);
+}
+
+.draw-bg-screen.cup-shaking .draw-cup-glow {
+  animation: cupGlowFixed 1.65s ease-in-out forwards;
+}
+
+@keyframes cupGlowFixed {
+  0% { opacity: 0; transform: scale(.8); }
+  18% { opacity: .95; transform: scale(1.08); }
+  65% { opacity: .48; transform: scale(1.12); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+@media (max-width: 380px) {
+  .draw-cup-overlay {
+    right: -8px !important;
+    top: 350px !important;
+    width: 140px !important;
+    height: 280px !important;
+    background-size: 402px auto !important;
+    background-position: right -350px top -350px !important;
+  }
+
+  .draw-cup-glow {
+    right: 10px;
+    top: 382px;
+    width: 104px;
+    height: 198px;
   }
 }
 
 </style>
+
+<style id="table-cup-shake-fix">
+/* ===== 桌上籤筒搖晃修正版：只搖桌上的籤筒 ===== */
+.draw-cup-overlay {
+  position: absolute !important;
+  right: -1.2% !important;
+  top: 52.4% !important;
+  width: 37.6% !important;
+  aspect-ratio: 630 / 1185 !important;
+  height: auto !important;
+  background: url("fortune-cup-clean.png") center center / contain no-repeat !important;
+  pointer-events: none !important;
+  z-index: 122 !important;
+  opacity: 1 !important;
+  transform-origin: 50% 87% !important;
+  filter:
+    drop-shadow(0 10px 16px rgba(45,4,2,.34))
+    drop-shadow(0 0 12px rgba(255,215,100,.22));
+}
+
+.draw-cup-glow {
+  position: absolute !important;
+  right: 4.8% !important;
+  top: 58.2% !important;
+  width: 26% !important;
+  height: 22% !important;
+  border-radius: 999px !important;
+  pointer-events: none !important;
+  z-index: 121 !important;
+  opacity: 0 !important;
+  background: radial-gradient(circle, rgba(255,245,195,.38), rgba(255,190,50,.18) 42%, transparent 72%) !important;
+  filter: blur(4px) !important;
+  mix-blend-mode: screen !important;
+}
+
+.draw-bg-screen.shaking .draw-cup-overlay,
+.draw-bg-screen.cup-shaking .draw-cup-overlay {
+  animation: tableCupShake 1.45s cubic-bezier(.22,.68,.2,1) forwards !important;
+}
+
+.draw-bg-screen.shaking .draw-cup-glow,
+.draw-bg-screen.cup-shaking .draw-cup-glow {
+  animation: tableCupGlow 1.45s ease-out forwards !important;
+}
+
+@keyframes tableCupShake {
+  0%   { transform: translate3d(0,0,0) rotate(0deg) scale(1); }
+  10%  { transform: translate3d(-5px,-2px,0) rotate(-7deg) scale(1.01); }
+  20%  { transform: translate3d(4px,0,0) rotate(6deg) scale(1.012); }
+  30%  { transform: translate3d(-6px,-1px,0) rotate(-8deg) scale(1.015); }
+  40%  { transform: translate3d(6px,1px,0) rotate(7deg) scale(1.015); }
+  52%  { transform: translate3d(-4px,0,0) rotate(-5deg) scale(1.01); }
+  64%  { transform: translate3d(3px,0,0) rotate(4deg) scale(1.008); }
+  78%  { transform: translate3d(-2px,0,0) rotate(-2.5deg) scale(1.004); }
+  100% { transform: translate3d(0,0,0) rotate(0deg) scale(1); }
+}
+
+@keyframes tableCupGlow {
+  0%   { opacity: 0; transform: scale(.8); }
+  18%  { opacity: .95; transform: scale(1.04); }
+  56%  { opacity: .5; transform: scale(1.08); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+@media (max-width: 420px) {
+  .draw-cup-overlay {
+    right: -1.8% !important;
+    top: 52.7% !important;
+    width: 38.5% !important;
+  }
+  .draw-cup-glow {
+    right: 4.2% !important;
+    top: 58.6% !important;
+    width: 26.5% !important;
+    height: 21.5% !important;
+  }
+}
+</style>
+
+
+<style id="table-cup-position-cover-fix">
+/* ===== 籤筒位置修正：覆蓋背景圖桌上的籤筒，取代原本背景籤筒 ===== */
+
+/* 先用深色柔邊遮罩蓋掉背景圖原本桌上籤筒，避免兩個籤筒重疊 */
+.draw-cup-mask {
+  position: absolute !important;
+  left: 252px !important;
+  top: 292px !important;
+  width: 132px !important;
+  height: 292px !important;
+  pointer-events: none !important;
+  z-index: 118 !important;
+  border-radius: 18px;
+  background:
+    radial-gradient(ellipse at 52% 45%, rgba(86, 31, 12, .62) 0%, rgba(86, 31, 12, .46) 38%, rgba(86, 31, 12, .12) 64%, transparent 78%);
+  filter: blur(4px);
+  opacity: .88;
+}
+
+/* 新籤筒精準蓋在背景圖原本右側桌上籤筒位置 */
+.draw-cup-overlay {
+  position: absolute !important;
+  left: 252px !important;
+  top: 294px !important;
+  right: auto !important;
+  width: 132px !important;
+  height: 248px !important;
+  aspect-ratio: auto !important;
+
+  background: url("fortune-cup-clean.png") center center / contain no-repeat !important;
+  pointer-events: none !important;
+  z-index: 124 !important;
+  opacity: 1 !important;
+
+  transform-origin: 50% 88% !important;
+  filter:
+    drop-shadow(0 12px 16px rgba(38, 5, 2, .42))
+    drop-shadow(0 0 10px rgba(255, 210, 90, .25)) !important;
+}
+
+/* 搖籤時只搖這個覆蓋籤筒 */
+.draw-bg-screen.shaking .draw-cup-overlay,
+.draw-bg-screen.cup-shaking .draw-cup-overlay {
+  animation: tableCupCoverShake 1.45s cubic-bezier(.22,.68,.2,1) forwards !important;
+}
+
+@keyframes tableCupCoverShake {
+  0%   { transform: translate3d(0,0,0) rotate(0deg) scale(1); }
+  10%  { transform: translate3d(-5px,-2px,0) rotate(-7deg) scale(1.012); }
+  20%  { transform: translate3d(5px,0,0) rotate(6deg) scale(1.014); }
+  30%  { transform: translate3d(-6px,-1px,0) rotate(-8deg) scale(1.018); }
+  40%  { transform: translate3d(6px,1px,0) rotate(7deg) scale(1.018); }
+  52%  { transform: translate3d(-4px,0,0) rotate(-5deg) scale(1.012); }
+  64%  { transform: translate3d(3px,0,0) rotate(4deg) scale(1.008); }
+  78%  { transform: translate3d(-2px,0,0) rotate(-2.5deg) scale(1.004); }
+  100% { transform: translate3d(0,0,0) rotate(0deg) scale(1); }
+}
+
+.draw-cup-glow {
+  position: absolute !important;
+  left: 266px !important;
+  top: 332px !important;
+  right: auto !important;
+  width: 104px !important;
+  height: 190px !important;
+  pointer-events: none !important;
+  z-index: 123 !important;
+  border-radius: 999px !important;
+  opacity: 0 !important;
+  background: radial-gradient(circle, rgba(255,245,195,.42), rgba(255,190,50,.18) 42%, transparent 72%) !important;
+  filter: blur(4px) !important;
+  mix-blend-mode: screen !important;
+}
+
+.draw-bg-screen.shaking .draw-cup-glow,
+.draw-bg-screen.cup-shaking .draw-cup-glow {
+  animation: tableCupCoverGlow 1.45s ease-out forwards !important;
+}
+
+@keyframes tableCupCoverGlow {
+  0%   { opacity: 0; transform: scale(.82); }
+  18%  { opacity: .95; transform: scale(1.04); }
+  56%  { opacity: .52; transform: scale(1.08); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+@media (max-width: 380px) {
+  .draw-cup-mask {
+    left: 242px !important;
+    top: 286px !important;
+    width: 126px !important;
+    height: 278px !important;
+  }
+
+  .draw-cup-overlay {
+    left: 242px !important;
+    top: 288px !important;
+    width: 126px !important;
+    height: 238px !important;
+  }
+
+  .draw-cup-glow {
+    left: 255px !important;
+    top: 326px !important;
+    width: 100px !important;
+    height: 182px !important;
+  }
+}
+</style>
+
+
+<style id="final-table-cup-replace-position-fix">
+/* ===== 最終修復：特效籤筒精準取代「桌上右下角籤筒」 ===== */
+/* 目的：把新籤筒放到背景圖原本桌上籤筒位置，不再漂到上方 */
+
+/* 先蓋掉之前所有錯位用的籤筒圖層設定 */
+.draw-cup-overlay {
+  position: absolute !important;
+
+  /* 桌上原本籤筒位置：右下角 */
+  left: 274px !important;
+  top: 392px !important;
+  right: auto !important;
+  bottom: auto !important;
+
+  width: 118px !important;
+  height: 222px !important;
+  aspect-ratio: auto !important;
+
+  background-image: url("fortune-cup-clean.png") !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: contain !important;
+
+  z-index: 124 !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+  transform-origin: 50% 88% !important;
+
+  filter:
+    drop-shadow(0 10px 14px rgba(36, 4, 2, .42))
+    drop-shadow(0 0 8px rgba(255, 215, 100, .22)) !important;
+}
+
+/* 遮罩位置也移到桌上原本籤筒，柔和蓋住背景舊籤筒 */
+.draw-cup-mask {
+  position: absolute !important;
+  left: 268px !important;
+  top: 384px !important;
+  width: 132px !important;
+  height: 244px !important;
+  z-index: 118 !important;
+  pointer-events: none !important;
+  border-radius: 18px !important;
+  background:
+    radial-gradient(ellipse at 50% 50%,
+      rgba(72, 24, 10, .72) 0%,
+      rgba(72, 24, 10, .54) 42%,
+      rgba(72, 24, 10, .18) 66%,
+      transparent 82%) !important;
+  filter: blur(5px) !important;
+  opacity: .92 !important;
+}
+
+/* 發光層同步到桌上籤筒位置 */
+.draw-cup-glow {
+  position: absolute !important;
+  left: 280px !important;
+  top: 424px !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: 96px !important;
+  height: 166px !important;
+  border-radius: 999px !important;
+  pointer-events: none !important;
+  z-index: 123 !important;
+  opacity: 0 !important;
+  background:
+    radial-gradient(circle,
+      rgba(255, 246, 195, .42),
+      rgba(255, 190, 50, .18) 42%,
+      transparent 72%) !important;
+  filter: blur(4px) !important;
+  mix-blend-mode: screen !important;
+}
+
+/* 點擊搖籤後，只搖桌上右下角這個籤筒 */
+.draw-bg-screen.shaking .draw-cup-overlay,
+.draw-bg-screen.cup-shaking .draw-cup-overlay {
+  animation: finalTableCupShake 1.55s cubic-bezier(.22,.68,.2,1) forwards !important;
+}
+
+@keyframes finalTableCupShake {
+  0%   { transform: translate3d(0,0,0) rotate(0deg) scale(1); }
+  10%  { transform: translate3d(-4px,-2px,0) rotate(-6deg) scale(1.012); }
+  20%  { transform: translate3d(4px,0,0) rotate(6deg) scale(1.014); }
+  31%  { transform: translate3d(-5px,-1px,0) rotate(-7deg) scale(1.018); }
+  42%  { transform: translate3d(5px,1px,0) rotate(6.5deg) scale(1.018); }
+  54%  { transform: translate3d(-3px,0,0) rotate(-4deg) scale(1.012); }
+  66%  { transform: translate3d(3px,0,0) rotate(3deg) scale(1.008); }
+  82%  { transform: translate3d(-1px,0,0) rotate(-1.5deg) scale(1.004); }
+  100% { transform: translate3d(0,0,0) rotate(0deg) scale(1); }
+}
+
+.draw-bg-screen.shaking .draw-cup-glow,
+.draw-bg-screen.cup-shaking .draw-cup-glow {
+  animation: finalTableCupGlow 1.55s ease-out forwards !important;
+}
+
+@keyframes finalTableCupGlow {
+  0%   { opacity: 0; transform: scale(.82); }
+  18%  { opacity: .95; transform: scale(1.04); }
+  56%  { opacity: .52; transform: scale(1.08); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+/* 窄螢幕微調 */
+@media (max-width: 380px) {
+  .draw-cup-overlay {
+    left: 262px !important;
+    top: 382px !important;
+    width: 112px !important;
+    height: 212px !important;
+  }
+
+  .draw-cup-mask {
+    left: 256px !important;
+    top: 374px !important;
+    width: 124px !important;
+    height: 232px !important;
+  }
+
+  .draw-cup-glow {
+    left: 268px !important;
+    top: 414px !important;
+    width: 90px !important;
+    height: 158px !important;
+  }
+}
+</style>
+
+
+<style id="lot-modal-center-style">
+/* ===== 抽籤完成後：中央籤詩彈窗 ===== */
+.lot-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.lot-modal.show {
+  display: flex;
+  animation: lotModalFadeIn .28s ease forwards;
+}
+
+.lot-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 36%, rgba(255, 215, 100, .18), transparent 30%),
+    rgba(36, 3, 1, .72);
+  backdrop-filter: blur(3px);
+}
+
+.lot-modal-card {
+  position: relative;
+  width: min(92vw, 376px);
+  max-height: 82vh;
+  overflow: hidden;
+  border-radius: 28px;
+  padding: 22px 18px 20px;
+  color: #692511;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.82), transparent 28%),
+    linear-gradient(180deg, #fff8e8 0%, #fff0d0 64%, #f7d99a 100%);
+  border: 2px solid rgba(255, 224, 145, .95);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, .42),
+    0 0 0 1px rgba(145, 59, 13, .18),
+    0 0 34px rgba(255, 194, 67, .35),
+    inset 0 0 22px rgba(255, 255, 255, .55);
+  transform: scale(.82) translateY(26px);
+  animation: lotCardPop .48s cubic-bezier(.16,.82,.22,1) forwards;
+}
+
+.lot-modal-card::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 22px;
+  border: 1.5px solid rgba(165, 82, 18, .28);
+  pointer-events: none;
+}
+
+.lot-modal-shine {
+  position: absolute;
+  left: 50%;
+  top: -120px;
+  width: 260px;
+  height: 260px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.96), rgba(255,216,100,.42) 34%, transparent 72%);
+  opacity: .58;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.lot-modal-close {
+  position: absolute;
+  right: 14px;
+  top: 12px;
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid rgba(150, 62, 18, .28);
+  border-radius: 999px;
+  background: rgba(127, 27, 10, .88);
+  color: #fff2c4;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 900;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.lot-modal-content {
+  position: relative;
+  z-index: 2;
+  max-height: calc(82vh - 108px);
+  overflow-y: auto;
+  padding: 4px 4px 6px;
+  scrollbar-width: thin;
+}
+
+.lot-modal .draw-level {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #9e160d, #6f0a05);
+  color: #fff4c8;
+  font-size: 13px;
+  font-weight: 900;
+  box-shadow: 0 4px 10px rgba(80, 10, 3, .18);
+}
+
+.lot-modal h3 {
+  color: #a42310;
+  font-size: 21px;
+  line-height: 1.45;
+  margin: 4px 0 12px;
+  padding-right: 30px;
+  text-shadow: 0 1px 0 rgba(255,255,255,.55);
+}
+
+.lot-modal p {
+  color: #683018;
+  font-size: 15px;
+  line-height: 1.92;
+  margin-bottom: 9px;
+}
+
+.lot-modal strong {
+  color: #8f1b0c;
+}
+
+.lot-modal .notice {
+  margin-top: 10px;
+  padding-top: 9px;
+  border-top: 1px dashed rgba(145, 67, 15, .25);
+  color: #8d613a;
+  font-size: 13px !important;
+}
+
+.lot-modal-ok {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 12px;
+  border: 2px solid rgba(255, 220, 140, .88);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 16% 50%, rgba(255, 232, 150, .32), transparent 22%),
+    radial-gradient(circle at 84% 50%, rgba(255, 232, 150, .32), transparent 22%),
+    linear-gradient(180deg, #d74722, #8f1309);
+  color: #fff4c8;
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(82, 12, 3, .22);
+}
+
+@keyframes lotModalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes lotCardPop {
+  0% { opacity: 0; transform: scale(.82) translateY(26px); }
+  58% { opacity: 1; transform: scale(1.035) translateY(-4px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@media (max-width: 380px) {
+  .lot-modal-card {
+    width: 94vw;
+    padding: 20px 15px 17px;
+  }
+
+  .lot-modal h3 {
+    font-size: 19px;
+  }
+
+  .lot-modal p {
+    font-size: 14px;
+  }
+}
+</style>
+
+
+<style id="final-cup-shake-force-style">
+/* ===== 最終修正：點擊搖籤按鈕後，籤筒必定搖晃 ===== */
+
+/* 兼容原本畫面使用的籤筒 class */
+.fortune-cup-wrap {
+  transform-origin: 50% 88% !important;
+}
+
+.draw-altar.shaking .fortune-cup-wrap,
+.draw-altar.cup-shaking .fortune-cup-wrap,
+.fortune-cup-wrap.shaking {
+  animation: finalCupShakeForce 1.55s cubic-bezier(.22,.68,.2,1) forwards !important;
+}
+
+@keyframes finalCupShakeForce {
+  0%   { transform: translateX(-50%) rotate(0deg) scale(1); }
+  8%   { transform: translateX(-50%) rotate(-8deg) scale(1.025); }
+  16%  { transform: translateX(-50%) rotate(8deg) scale(1.025); }
+  24%  { transform: translateX(-50%) rotate(-10deg) scale(1.03); }
+  34%  { transform: translateX(-50%) rotate(9deg) scale(1.03); }
+  46%  { transform: translateX(-50%) rotate(-7deg) scale(1.02); }
+  58%  { transform: translateX(-50%) rotate(6deg) scale(1.018); }
+  70%  { transform: translateX(-50%) rotate(-4deg) scale(1.012); }
+  82%  { transform: translateX(-50%) rotate(3deg) scale(1.006); }
+  100% { transform: translateX(-50%) rotate(0deg) scale(1); }
+}
+
+/* 若你的籤筒不是置中的版本，而是香爐右側絕對定位版本，使用這組不帶 translateX 的搖晃 */
+.fortune-cup-wrap.side-cup.shaking,
+.draw-altar.shaking .fortune-cup-wrap.side-cup,
+.draw-altar.cup-shaking .fortune-cup-wrap.side-cup {
+  animation: finalSideCupShakeForce 1.55s cubic-bezier(.22,.68,.2,1) forwards !important;
+}
+
+@keyframes finalSideCupShakeForce {
+  0%   { transform: rotate(0deg) scale(1); }
+  8%   { transform: rotate(-8deg) translateX(-4px) translateY(-2px) scale(1.025); }
+  16%  { transform: rotate(8deg) translateX(4px) translateY(1px) scale(1.025); }
+  24%  { transform: rotate(-10deg) translateX(-5px) translateY(-2px) scale(1.03); }
+  34%  { transform: rotate(9deg) translateX(5px) translateY(1px) scale(1.03); }
+  46%  { transform: rotate(-7deg) translateX(-3px) scale(1.02); }
+  58%  { transform: rotate(6deg) translateX(3px) scale(1.018); }
+  70%  { transform: rotate(-4deg) translateX(-2px) scale(1.012); }
+  82%  { transform: rotate(3deg) translateX(2px) scale(1.006); }
+  100% { transform: rotate(0deg) translateX(0) translateY(0) scale(1); }
+}
+
+/* 籤筒搖動時加一點金光，讓效果更明顯 */
+.fortune-cup-wrap::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 150px;
+  height: 150px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,244,180,.56), rgba(255,190,40,.20) 45%, transparent 72%);
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.fortune-cup-wrap.shaking::after,
+.draw-altar.shaking .fortune-cup-wrap::after,
+.draw-altar.cup-shaking .fortune-cup-wrap::after {
+  animation: finalCupGlowForce 1.55s ease forwards;
+}
+
+@keyframes finalCupGlowForce {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.75); }
+  18% { opacity: .95; transform: translate(-50%, -50%) scale(1.12); }
+  55% { opacity: .42; transform: translate(-50%, -50%) scale(1.22); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+</style>
+
 </head>
 <body>
 <main class="app">
@@ -1872,6 +2924,9 @@
 <section id="drawPage" class="page">
   <div class="draw-bg-page">
     <div class="draw-bg-screen" id="drawAltar">
+      <div class="draw-heaven-portal"></div>
+      <div class="draw-heaven-beam"></div>
+      <div class="draw-heaven-ring"></div>
       <div class="draw-lux-godlight"></div>
       <div class="draw-lux-rays"></div>
       <div class="draw-lux-smoke"></div>
@@ -1883,6 +2938,9 @@
 
       <div class="draw-bg-glow-layer" id="drawGlowLayer"></div>
       <div class="draw-bg-stick" id="drawBgStick">籤</div>
+      <div class="draw-cup-mask" aria-hidden="true"></div>
+      <div class="draw-cup-overlay" aria-hidden="true"></div>
+      <div class="draw-cup-glow" aria-hidden="true"></div>
 
       <button class="draw-bg-shake" id="drawBtn" onclick="drawStick()" aria-label="搖籤"></button>
 
@@ -1916,9 +2974,9 @@
 <section id="recordPage" class="page"><div class="sub-page"><div class="header"><button class="back-btn" onclick="changePage('homePage')">返回首頁</button><div class="title">我的</div></div><div class="card"><button class="main-btn" onclick="clearRecords()">清除紀錄</button></div><div id="recordList"></div></div></section>
 </main>
 <script>
-const stems=["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"],branches=["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"],zodiac=["鼠","牛","虎","兔","龍","蛇","馬","羊","猴","雞","狗","豬"];const dailyMessages=["今日有福德星照臨，適合整理財務、修補關係、穩定前行。","今日宜保持善念，凡事先穩後進，貴人容易在細節中出現。","今日適合求穩不求快，先完成眼前的小事，好運自然累積。","今日財氣偏旺，但不宜衝動花費，適合規劃與儲蓄。","今日人緣順暢，適合溝通、拜訪與處理合作事項。"],moneyLuckMain=["旺","大旺","爆旺","有進財","招財"],moneyLuckSide=["小吉","有偏財","轉旺","有機會","偏財順"],moneyLuckKeep=["佳","守得住","穩定","安穩","聚財"];const sticks=[{level:"上上籤",title:"福德開財門",poem:"金光照路福門開，貴人相扶好運來。",explain:"此籤代表運勢漸開，事情有轉好跡象。若能把握機會，容易獲得幫助與成果。",advice:"宜主動溝通、整理計畫、把握貴人。忌拖延與衝動。"},{level:"上籤",title:"貴人扶一程",poem:"雲散月明路漸清，一言相助事能成。",explain:"目前雖有小阻礙，但不是壞局。只要願意請教或溝通，就容易出現轉機。",advice:"宜請教、合作、修補關係。忌獨自硬撐。"},{level:"中上籤",title:"先守後進",poem:"未到花開莫急催，守得根深福自來。",explain:"此時適合先穩住基本盤，不宜太急。先整理資源，後面會更有利。",advice:"宜規劃、存錢、複習、修正方向。忌冒進。"},{level:"中籤",title:"平安即是福",poem:"平步安行無大憂，日常修福自長久。",explain:"運勢平穩，沒有大起大落。只要保持節奏，事情會慢慢累積成果。",advice:"宜穩定作息、完成小事。忌心浮氣躁。"},{level:"小吉籤",title:"轉念見光",poem:"一念轉時雲霧開，心安自有好安排。",explain:"目前的困擾多半來自猶豫與不安。先把心定下來，答案會更清楚。",advice:"宜冷靜判斷、放慢速度。忌過度焦慮。"}];let currentLampName="光明燈",currentLampMessage="光明燈已點亮，願光明照路、前程順遂。";
+const stems=["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"],branches=["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"],zodiac=["鼠","牛","虎","兔","龍","蛇","馬","羊","猴","雞","狗","豬"];const dailyMessages=["今日有福德星照臨，適合整理財務、修補關係、穩定前行。","今日宜保持善念，凡事先穩後進，貴人容易在細節中出現。","今日適合求穩不求快，先完成眼前的小事，好運自然累積。","今日財氣偏旺，但不宜衝動花費，適合規劃與儲蓄。","今日人緣順暢，適合溝通、拜訪與處理合作事項。"],moneyLuckMain=["旺","大旺","爆旺","有進財","招財"],moneyLuckSide=["小吉","有偏財","轉旺","有機會","偏財順"],moneyLuckKeep=["佳","守得住","穩定","安穩","聚財"];const sticks=[{"level":"上上籤","title":"第一籤｜甲子","meta":"屬金利秋 宜其西方","poem":"日出便見風雲散，光明清淨照世間，一向前途通大道，萬事清吉保平安。","explain":"這支籤像日月光明照開陰霾，代表事情原本有不明朗之處，但逐漸會看見方向。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第二籤｜甲寅","meta":"屬水利冬 宜其北方","poem":"於今此景正當時，看看欲吐百花魁，若能遇得春色到，一洒清吉脫塵埃。","explain":"這支籤以花開結果來比喻時機，表示事情需要看季節與成熟度，時機到了自然有成果。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第三籤｜甲辰","meta":"屬火利夏 宜其南方","poem":"勸君把定心莫虛，天註衣祿自有餘，和合重重常吉慶，時來終遇得明珠。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第四籤｜甲午","meta":"屬金利秋 宜其西方","poem":"風恬浪靜可行舟，恰是中秋月一輪，凡事不須多憂慮，福祿自有慶家門。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中籤","title":"第五籤｜甲申","meta":"屬水利冬 宜其北方","poem":"只恐前途命有變，勸君作急可宜先，且守長江無大事，命逢太白守身邊。","explain":"這支籤以江水、行路或方向來比喻前途，提醒目前要先守穩，不要冒然亂闖。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"下籤","title":"第六籤｜甲戌","meta":"屬火利夏 宜其南方","poem":"風雲致雨落洋洋，天災時氣必有傷，命內此事難和合，更逢一足出外鄉。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這不是叫你放棄，而是提醒你：眼前條件還不成熟，越急越容易出錯，先退一步整理問題比較安全。","advice":"建議先停下來檢查細節、避開衝突與高風險決定；若涉及金錢、合約、健康或重要承諾，更要保守處理。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第七籤｜乙丑","meta":"屬金利秋 宜其西方","poem":"雲開月出正分明，不須進退問前程，婚姻皆由天註定，和合清吉萬事成。","explain":"這支籤有月光、太平、和合之象，多半表示陰霾漸散，貴人與好消息會慢慢出現。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第八籤｜乙卯","meta":"屬水利冬 宜其北方","poem":"禾稻看看結成完，此事必定兩相全，回到家中寬心坐，妻兒鼓舞樂團圓。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中籤","title":"第九籤｜乙巳","meta":"屬火利夏 宜其南方","poem":"龍虎相隨在深山，君爾何須背後看，不知此去相愛愉，他日與我卻無干。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"下籤","title":"第十籤｜乙未","meta":"屬金利秋 宜其西方","poem":"花開結子一半枯，可惜今年汝虛度，漸漸日落西山去，勸君不用向前途。","explain":"這支籤以花開結果來比喻時機，表示事情需要看季節與成熟度，時機到了自然有成果。白話來說，這不是叫你放棄，而是提醒你：眼前條件還不成熟，越急越容易出錯，先退一步整理問題比較安全。","advice":"建議先停下來檢查細節、避開衝突與高風險決定；若涉及金錢、合約、健康或重要承諾，更要保守處理。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中上籤","title":"第十一籤｜乙酉","meta":"屬水利冬 宜其北方","poem":"靈雞漸漸見分明，凡事且看子丑寅，雲開月出照天下，郎君即便見太平。","explain":"這支籤有月光、太平、和合之象，多半表示陰霾漸散，貴人與好消息會慢慢出現。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第十二籤｜乙亥","meta":"屬火利夏 宜其南方","poem":"長江風浪漸漸靜，于今得進可安寧，必有貴人相扶助，凶事脫出見太平。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"下籤","title":"第十三籤｜丙子","meta":"屬水利冬 宜其北方","poem":"命中正逢羅孛關，用盡心機總未休，作福問神難得過，恰是行舟上高灘。","explain":"這支籤帶有阻礙與不順的提醒，表示現在局勢尚未穩定，不宜硬衝。白話來說，這不是叫你放棄，而是提醒你：眼前條件還不成熟，越急越容易出錯，先退一步整理問題比較安全。","advice":"建議先停下來檢查細節、避開衝突與高風險決定；若涉及金錢、合約、健康或重要承諾，更要保守處理。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中上籤","title":"第十四籤｜丙寅","meta":"屬火利夏 宜其南方","poem":"財中漸漸見分明，花開花謝結子成，寬心且看月中桂，郎君即便見太平。","explain":"這支籤有月光、太平、和合之象，多半表示陰霾漸散，貴人與好消息會慢慢出現。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中籤","title":"第十五籤｜丙辰","meta":"屬土利年 四方皆宜","poem":"八十原來是太公，看看晚景遇文王，目下緊事休相問，勸君且守待運通。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"下籤","title":"第十六籤｜丙午","meta":"屬水利冬 宜其北方","poem":"不須作福不須求，用盡心機總未休，陽世不知陰世事，官法如爐不自由。","explain":"這支籤帶有阻礙與不順的提醒，表示現在局勢尚未穩定，不宜硬衝。白話來說，這不是叫你放棄，而是提醒你：眼前條件還不成熟，越急越容易出錯，先退一步整理問題比較安全。","advice":"建議先停下來檢查細節、避開衝突與高風險決定；若涉及金錢、合約、健康或重要承諾，更要保守處理。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中籤","title":"第十七籤｜丙申","meta":"屬火利夏 宜其南方","poem":"舊恨重重未改為，家中禍患不臨身，須當謹防宜作福，龍蛇交會得和合。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第十八籤｜丙戌","meta":"屬土利年 四方皆宜","poem":"君問中間此言因，看看祿馬拱前程，若得貴人多得利，和合自有兩分明。","explain":"這支籤帶有貴人、福德、財喜與順遂之象，表示只要方向正確，事情有轉好機會。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中籤","title":"第十九籤｜丁丑","meta":"屬水利冬 宜其北方","poem":"富貴由命天註定，心高必然誤君期，不然且回依舊路，雲開月出自分明。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"下籤","title":"第二十籤｜丁卯","meta":"屬火利夏 宜其南方","poem":"前途功名未得意，只恐命內有交加，兩家必定防損失，勸君且退莫咨嗟。","explain":"這支籤帶有阻礙與不順的提醒，表示現在局勢尚未穩定，不宜硬衝。白話來說，這不是叫你放棄，而是提醒你：眼前條件還不成熟，越急越容易出錯，先退一步整理問題比較安全。","advice":"建議先停下來檢查細節、避開衝突與高風險決定；若涉及金錢、合約、健康或重要承諾，更要保守處理。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第二十一籤｜丁巳","meta":"屬土利年 四方皆宜","poem":"十方佛法有靈通，大難禍患不相同，紅日當空常照耀，還有貴人到家堂。","explain":"這支籤帶有貴人、福德、財喜與順遂之象，表示只要方向正確，事情有轉好機會。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上上籤","title":"第二十二籤｜丁未","meta":"屬水利冬 宜其北方","poem":"太公家業八十成，月出光輝四海明，命內自然逢大吉，茅屋中間百事亨。","explain":"這支籤有月光、太平、和合之象，多半表示陰霾漸散，貴人與好消息會慢慢出現。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中下籤","title":"第二十三籤｜丁酉","meta":"屬火利夏 宜其南方","poem":"欲去長江水闊茫，前途未遂運未通，如今絲綸常在手，只恐魚水不相逢。","explain":"這支籤以江水、行路或方向來比喻前途，提醒目前要先守穩，不要冒然亂闖。白話來說，這不是叫你放棄，而是提醒你：眼前條件還不成熟，越急越容易出錯，先退一步整理問題比較安全。","advice":"建議先停下來檢查細節、避開衝突與高風險決定；若涉及金錢、合約、健康或重要承諾，更要保守處理。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第二十四籤｜丁亥","meta":"屬土利年 四方皆宜","poem":"月出光輝四海明，前途祿位見太平，浮雲掃退終無事，可保禍患不臨身。","explain":"這支籤像日月光明照開陰霾，代表事情原本有不明朗之處，但逐漸會看見方向。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中籤","title":"第二十五籤｜戊子","meta":"屬火利夏 宜其南方","poem":"總是前途莫心勞，求神問聖枉是多，但看雞犬日過後，不須作福事如何。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上上籤","title":"第二十六籤｜戊寅","meta":"屬土利年 四方皆宜","poem":"選出牡丹第一枝，勸君折取莫遲疑，世間若問相知處，萬事逢春正及時。","explain":"這支籤以花開結果來比喻時機，表示事情需要看季節與成熟度，時機到了自然有成果。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第二十七籤｜戊辰","meta":"屬木利春 宜其東方","poem":"君爾寬心且自由，門庭清吉家無憂，財寶自然終吉利，凡事無傷不用求。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"下籤","title":"第二十八籤｜戊午","meta":"屬火利夏 宜其南方","poem":"於今莫作此當時，虎落平陽被犬欺，世間凡事何難定，千山萬水也遲疑。","explain":"這支籤帶有阻礙與不順的提醒，表示現在局勢尚未穩定，不宜硬衝。白話來說，這不是叫你放棄，而是提醒你：眼前條件還不成熟，越急越容易出錯，先退一步整理問題比較安全。","advice":"建議先停下來檢查細節、避開衝突與高風險決定；若涉及金錢、合約、健康或重要承諾，更要保守處理。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中籤","title":"第二十九籤｜戊申","meta":"屬土利年 四方皆宜","poem":"枯木可惜未逢春，如今反在暗中藏，寬心且守風霜退，還君依舊作乾坤。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中下籤","title":"第三十籤｜戊戌","meta":"屬木利春 宜其東方","poem":"漸漸看此月中和，過後須防未得高，改變顏色前途去，凡事必定見重勞。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這不是叫你放棄，而是提醒你：眼前條件還不成熟，越急越容易出錯，先退一步整理問題比較安全。","advice":"建議先停下來檢查細節、避開衝突與高風險決定；若涉及金錢、合約、健康或重要承諾，更要保守處理。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第三十一籤｜己丑","meta":"屬火利夏 宜其南方","poem":"綠柳蒼蒼正當時，任君此去作乾坤，花果結實無殘謝，福祿自有慶家門。","explain":"這支籤以花開結果來比喻時機，表示事情需要看季節與成熟度，時機到了自然有成果。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"下籤","title":"第三十二籤｜己卯","meta":"屬土利年 四方皆宜","poem":"龍虎相交在門前，此事必定兩相連，黃金忽然變成鐵，何用作福問神仙。","explain":"這支籤帶有阻礙與不順的提醒，表示現在局勢尚未穩定，不宜硬衝。白話來說，這不是叫你放棄，而是提醒你：眼前條件還不成熟，越急越容易出錯，先退一步整理問題比較安全。","advice":"建議先停下來檢查細節、避開衝突與高風險決定；若涉及金錢、合約、健康或重要承諾，更要保守處理。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中籤","title":"第三十三籤｜己巳","meta":"屬木利春 宜其東方","poem":"欲去長江水闊茫，行舟把定未遭風，戶內用心再作福，看看魚水得相逢。","explain":"這支籤以江水、行路或方向來比喻前途，提醒目前要先守穩，不要冒然亂闖。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中上籤","title":"第三十四籤｜己未","meta":"屬火利夏 宜其南方","poem":"危險高山行過盡，莫嫌此路有重重，若見蘭桂漸漸發，長蛇反轉變成龍。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中上籤","title":"第三十五籤｜己酉","meta":"屬土利年 四方皆宜","poem":"此事何須用心機，前途變怪自然知，看看此去得和合，漸漸脫出見太平。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第三十六籤｜己亥","meta":"屬木利春 宜其東方","poem":"福如東海壽如山，君爾何須嘆苦難，命內自然逢大吉，祈保分明自平安。","explain":"這支籤帶有貴人、福德、財喜與順遂之象，表示只要方向正確，事情有轉好機會。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第三十七籤｜庚子","meta":"屬土利年 四方皆宜","poem":"運逢得意身顯變，君爾身中皆有益，一向前途無難事，決意之中保清吉。","explain":"這支籤帶有貴人、福德、財喜與順遂之象，表示只要方向正確，事情有轉好機會。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中上籤","title":"第三十八籤｜庚寅","meta":"屬木利春 宜其東方","poem":"名顯有意在中央，不須祈禱心自安，看看早晚日過後，即時得意在其間。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中籤","title":"第三十九籤｜庚辰","meta":"屬金利秋 宜其西方","poem":"意中若問神仙路，勸爾且退望高樓，寬心且守寬心坐，必然遇得貴人扶。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第四十籤｜庚午","meta":"屬土利年 四方皆宜","poem":"平生富貴成祿位，君家門戶定光輝，此中必定無損失，夫妻百歲喜相隨。","explain":"這支籤帶有貴人、福德、財喜與順遂之象，表示只要方向正確，事情有轉好機會。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中籤","title":"第四十一籤｜庚申","meta":"屬木利春 宜其東方","poem":"今行到此實難推，歌歌暢飲自徘徊，雞犬相聞消息近，婚姻夙世結成雙。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"下籤","title":"第四十二籤｜庚戌","meta":"屬金利秋 宜其西方","poem":"一重江水一重山，誰知此去路又難，任他改求終不過，是非終久未得安。","explain":"這支籤帶有阻礙與不順的提醒，表示現在局勢尚未穩定，不宜硬衝。白話來說，這不是叫你放棄，而是提醒你：眼前條件還不成熟，越急越容易出錯，先退一步整理問題比較安全。","advice":"建議先停下來檢查細節、避開衝突與高風險決定；若涉及金錢、合約、健康或重要承諾，更要保守處理。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中籤","title":"第四十三籤｜辛丑","meta":"屬土利年 四方皆宜","poem":"一年作事急如飛，君爾寬心莫遲疑，貴人還在千里外，音信月中漸漸知。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中上籤","title":"第四十四籤｜辛卯","meta":"屬木利春 宜其東方","poem":"客到前途多得利，君爾何故兩相疑，雖是中間逢進退，月出光輝得運時。","explain":"這支籤有月光、太平、和合之象，多半表示陰霾漸散，貴人與好消息會慢慢出現。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第四十五籤｜辛巳","meta":"屬金利秋 宜其西方","poem":"花開今已結成果，富貴榮華終到老，君子小人相會合，萬事清吉莫煩惱。","explain":"這支籤以花開結果來比喻時機，表示事情需要看季節與成熟度，時機到了自然有成果。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上上籤","title":"第四十六籤｜辛未","meta":"屬土利年 四方皆宜","poem":"功名得意與君顯，前途富貴喜安然，若遇一輪明月照，十五團圓光滿天。","explain":"這支籤像日月光明照開陰霾，代表事情原本有不明朗之處，但逐漸會看見方向。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中上籤","title":"第四十七籤｜辛酉","meta":"屬木利春 宜其東方","poem":"君爾何須問聖跡，自己心中皆有益，於今且看月中旬，凶事脫出化成吉。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"下籤","title":"第四十八籤｜辛亥","meta":"屬金利秋 宜其西方","poem":"陽世作事未和同，雲遮月色正朦朧，心中意欲前途去，只恐命內運未通。","explain":"這支籤帶有阻礙與不順的提醒，表示現在局勢尚未穩定，不宜硬衝。白話來說，這不是叫你放棄，而是提醒你：眼前條件還不成熟，越急越容易出錯，先退一步整理問題比較安全。","advice":"建議先停下來檢查細節、避開衝突與高風險決定；若涉及金錢、合約、健康或重要承諾，更要保守處理。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中籤","title":"第四十九籤｜壬子","meta":"屬木利春 宜其東方","poem":"言語雖多不可從，風雲靜處未行龍，暗中終得明消息，君爾何須問重重。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第五十籤｜壬寅","meta":"屬金利秋 宜其西方","poem":"佛前發誓無異心，且看前途得好音，此物原來本是鐵，也能變化得成金。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中籤","title":"第五十一籤｜壬辰","meta":"屬水利冬 宜其北方","poem":"東西南北不堪行，前途此事正可當，勸君把定莫煩惱，家門自有保安康。","explain":"這支籤以江水、行路或方向來比喻前途，提醒目前要先守穩，不要冒然亂闖。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中上籤","title":"第五十二籤｜壬午","meta":"屬木利春 宜其東方","poem":"功名事業本由天，不須掛念意懸懸，若問中間遲與速，風雲際會在眼前。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上上籤","title":"第五十三籤｜壬申","meta":"屬金利秋 宜其西方","poem":"看君來問心中事，積善之家慶有餘，運亨財子雙雙至，指日喜氣溢門閭。","explain":"這支籤帶有貴人、福德、財喜與順遂之象，表示只要方向正確，事情有轉好機會。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中上籤","title":"第五十四籤｜壬戌","meta":"屬土利年 四方皆宜","poem":"孤燈寂寂夜沉沉，萬事清吉萬事成，若逢陰中有善果，燒得好香達神明。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"下籤","title":"第五十五籤｜癸丑","meta":"屬木利春 宜其東方","poem":"須知進退總言虛，看看發暗未必全，珠玉深藏還未變，心中但得枉徒然。","explain":"這支籤帶有阻礙與不順的提醒，表示現在局勢尚未穩定，不宜硬衝。白話來說，這不是叫你放棄，而是提醒你：眼前條件還不成熟，越急越容易出錯，先退一步整理問題比較安全。","advice":"建議先停下來檢查細節、避開衝突與高風險決定；若涉及金錢、合約、健康或重要承諾，更要保守處理。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中籤","title":"第五十六籤｜癸卯","meta":"屬金利秋 宜其西方","poem":"病中若得苦心勞，到底完全總未遭，去後不須回頭問，心中事務盡消磨。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第五十七籤｜癸巳","meta":"屬水利冬 宜其北方","poem":"勸君把定心莫虛，前途清吉得運時，到底中間無大事，又遇神仙守安居。","explain":"這支籤提醒你先觀察局勢，再依照時機行動，保持心定比急著求成更重要。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中下籤","title":"第五十八籤｜癸未","meta":"屬木利春 宜其東方","poem":"蛇身意欲變成龍，只恐命內運未通，久病且作寬心坐，言語雖多不可從。","explain":"這支籤帶有阻礙與不順的提醒，表示現在局勢尚未穩定，不宜硬衝。白話來說，這不是叫你放棄，而是提醒你：眼前條件還不成熟，越急越容易出錯，先退一步整理問題比較安全。","advice":"建議先停下來檢查細節、避開衝突與高風險決定；若涉及金錢、合約、健康或重要承諾，更要保守處理。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"上籤","title":"第五十九籤｜癸酉","meta":"屬金利秋 宜其西方","poem":"有心作福莫遲疑，求名清吉正當時，此事必能成會合，財寶自然喜相隨。","explain":"這支籤帶有貴人、福德、財喜與順遂之象，表示只要方向正確，事情有轉好機會。白話來說，這支籤的走向偏吉，表示事情有機會順利推進，但仍要靠你自己把握好時機、說話做事穩重。","advice":"建議主動整理計畫、把握貴人與好機會；可以往前走，但不要因為籤好就大意。","source":"台灣廟宇常見正統六十甲子籤"},{"level":"中上籤","title":"第六十籤｜癸亥","meta":"屬水利冬 宜其北方","poem":"月出光輝本清吉，浮雲總是蔽陰色，戶內用心再作福，當官分理便有益。","explain":"這支籤像日月光明照開陰霾，代表事情原本有不明朗之處，但逐漸會看見方向。白話來說，這支籤屬於先穩後進，事情未必立刻大好，但只要照步驟處理，就能慢慢轉順。","advice":"建議先把能做的事情做好，例如溝通、準備、確認資料、調整心態；不要急著一次定生死。","source":"台灣廟宇常見正統六十甲子籤"}];let currentLampName="光明燈",currentLampMessage="光明燈已點亮，願光明照路、前程順遂。";
 function changePage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');if(id==='recordPage')renderRecords();if(id==='moneyPage')resetMoneyPage();scrollTo({top:0,behavior:'smooth'})}function randomItem(a){return a[Math.floor(Math.random()*a.length)]}function showDailyLuck(){alert(randomItem(dailyMessages))}function showMessage(t,x){alert(t+'\n\n'+x)}function createDrawFlash(){const f=document.createElement('div');f.className='draw-flash';document.body.appendChild(f);setTimeout(()=>f.remove(),850)}
-function drawStick(){const a=document.getElementById('drawAltar'),b=document.getElementById('drawBtn'),topic=document.getElementById('drawTopic').value,r=document.getElementById('drawResult');b.disabled=true;b.textContent='籤筒搖動中';a.classList.remove('shaking','show-stick');void a.offsetWidth;a.classList.add('shaking');r.innerHTML='<h3>籤筒搖動中</h3><p>請靜心等待，籤詩即將落下。</p>';setTimeout(()=>{a.classList.add('show-stick');createDrawFlash()},1150);setTimeout(()=>{const s=randomItem(sticks);r.innerHTML=`<span class="draw-level">${s.level}</span><h3>${topic}｜${s.title}</h3><p><strong>籤詩：</strong>${s.poem}</p><p><strong>解籤：</strong>${s.explain}</p><p><strong>建議：</strong>${s.advice}</p><p class="notice">求籤結果僅供娛樂與自我提醒，不代表絕對命運。</p>`;saveRecord('求籤占卜',`${topic}｜${s.level}｜${s.title}`);b.disabled=false;b.textContent='再次搖籤'},2250)}
+function drawStick(){const a=document.getElementById('drawAltar'),b=document.getElementById('drawBtn'),topic=document.getElementById('drawTopic').value,r=document.getElementById('drawResult');b.disabled=true;b.textContent='籤筒搖動中';a.classList.remove('shaking','show-stick');void a.offsetWidth;a.classList.add('shaking');r.innerHTML='<h3>籤筒搖動中</h3><p>請靜心等待，籤詩即將落下。</p>';setTimeout(()=>{a.classList.add('show-stick');createDrawFlash()},1150);setTimeout(()=>{const s=randomItem(sticks);r.innerHTML=`<span class="draw-level">${s.level}</span><h3>${topic}｜${s.title}</h3><p><strong>籤詩：</strong>${s.poem}</p><p><strong>解籤：</strong>${s.explain}</p><p><strong>建議：</strong>${s.advice}</p><p class="notice">此為台灣廟宇六十甲子籤白話解籤風格，供祈福參考與自我提醒。</p>`;saveRecord('求籤占卜',`${topic}｜${s.level}｜${s.title}`);b.disabled=false;b.textContent='再次搖籤'},2250)}
 function resetMoneyPage(){const s=document.getElementById('moneyScreen'),l=document.getElementById('ingotRainLayer'),b=document.getElementById('moneyStartBtn');s.classList.remove('shake','heaven-open','rays-on','absorbing','ingot-flash','done');l.innerHTML='';document.getElementById('moneyBlessText').textContent='誠心啟動補財庫，讓金光加持、財氣匯聚、精美元寶雨從天而降，被大元寶吸入財庫。';refreshMoneyLuck();b.disabled=false;b.style.opacity='1';b.style.cursor='pointer'}function startMoneyBlessing(){const s=document.getElementById('moneyScreen'),l=document.getElementById('ingotRainLayer'),b=document.getElementById('moneyStartBtn'),t=document.getElementById('moneyBlessText');b.disabled=true;b.style.opacity='.72';s.classList.remove('shake','heaven-open','rays-on','absorbing','ingot-flash','done');l.innerHTML='';void s.offsetWidth;s.classList.add('shake','heaven-open','rays-on','absorbing');createFullFlash();t.textContent='補財庫啟動：大量精美元寶雨從天而降，正在被中間大元寶吸走，財庫金光大亮。';refreshMoneyLuck();saveRecord('補財庫','補財庫｜大量精美元寶雨・大元寶吸財入庫');let done=0,total=72;for(let i=0;i<total;i++)setTimeout(()=>createFallingIngot(l,()=>{done++;if(done%2===0)triggerIngotFlash(s);createSparkBurst(l,188,310);if(done%3===0)createFortuneChars(l,188,310);if(done===total){s.classList.add('done');createFullFlash();setTimeout(()=>{b.disabled=false;b.style.opacity='1';s.classList.remove('shake','heaven-open','rays-on','absorbing')},2500)}}),i*38)}function createFallingIngot(layer,onArrive){const e=document.createElement('div');e.className='fall-ingot';let startX=Math.random()*360-10,dropY=Math.random()*210+110,curveX=(182-startX)*.35+(Math.random()*80-40),curveY=Math.random()*80+240,endX=160+Math.random()*52-26,endY=250+Math.random()*36-18,size=Math.random()*28+56,dur=(1.05+Math.random()*.55).toFixed(2)+'s';Object.entries({startX:startX+'px',dropY:dropY+'px',curveX:curveX+'px',curveY:curveY+'px',endX:endX+'px',endY:endY+'px',size:size+'px',dur}).forEach(([k,v])=>e.style.setProperty('--'+k,v));layer.appendChild(e);e.addEventListener('animationend',()=>{e.remove();onArrive&&onArrive()})}function triggerIngotFlash(s){s.classList.remove('ingot-flash');void s.offsetWidth;s.classList.add('ingot-flash');setTimeout(()=>s.classList.remove('ingot-flash'),780)}function createSparkBurst(layer,x,y){for(let i=0;i<6;i++){const p=document.createElement('div');p.className='spark';p.style.left=x+'px';p.style.top=y+'px';p.style.setProperty('--sx',Math.random()*110-55+'px');p.style.setProperty('--sy',Math.random()*110-55+'px');layer.appendChild(p);p.addEventListener('animationend',()=>p.remove())}}function createFortuneChars(layer,x,y){for(let i=0;i<3;i++){const c=document.createElement('div');c.className='fortune-char';c.textContent=randomItem(['財','福','旺']);c.style.left=x+'px';c.style.top=y+'px';c.style.setProperty('--fx',Math.random()*130-65+'px');c.style.setProperty('--fy',-Math.random()*120-30+'px');layer.appendChild(c);c.addEventListener('animationend',()=>c.remove())}}function createFullFlash(){const f=document.createElement('div');f.className='money-full-flash';document.body.appendChild(f);setTimeout(()=>f.remove(),900)}function refreshMoneyLuck(){document.getElementById('moneyMain').textContent=randomItem(moneyLuckMain);document.getElementById('moneySide').textContent=randomItem(moneyLuckSide);document.getElementById('moneyKeep').textContent=randomItem(moneyLuckKeep)}
 function selectLamp(btn,name,msg){document.querySelectorAll('.lamp-option').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected');currentLampName=name;currentLampMessage=msg;document.getElementById('lightResult').textContent='目前選擇：'+name+'。'+msg;document.getElementById('lampMainTitle').textContent=name;document.getElementById('lampMainSub').textContent=getLampSubtitle(name)}function getLampSubtitle(n){return {'光明燈':'願光明照路・前程順遂','太歲燈':'護流年平穩・逢凶化吉','文昌燈':'啟智慧文運・學業精進','財利燈':'願財氣匯聚・財運增旺','藥師燈':'願身心安和・健康平穩','姻緣燈':'願良緣靠近・感情和合','平安燈':'願出入平安・家宅安穩'}[n]||'祈福點燈・心願順遂'}function startBlessingLight(){const st=document.getElementById('lightStage'),layer=document.getElementById('lanternFlightLayer'),res=document.getElementById('lightResult'),btn=document.getElementById('lightLaunchBtn');btn.disabled=true;layer.innerHTML='';st.classList.remove('blessing-on');void st.offsetWidth;st.classList.add('blessing-on');createLightFlash();res.innerHTML=`<div>${currentLampMessage}</div><div class="light-bless-badge">天燈升空・願望上達天聽</div>`;saveRecord('祈福點燈',currentLampName+'｜'+currentLampMessage);let total=currentLampName==='光明燈'?14:10;for(let i=0;i<total;i++)setTimeout(()=>createFlyingLantern(layer,currentLampName),i*260);setTimeout(()=>{res.innerHTML=`<div>${currentLampMessage}</div><div class="light-bless-badge">${currentLampName}・祈福完成</div>`;btn.disabled=false},total*260+1800)}function createFlyingLantern(layer,name){const l=document.createElement('div');l.className='fly-lantern';let startX=Math.random()*220-110,midX=startX+(Math.random()*70-35),mid2X=midX+(Math.random()*90-45),endX=mid2X+(Math.random()*120-60),w=34+Math.random()*16,h=w*1.45,dur=(3.2+Math.random()*1.6).toFixed(2)+'s';Object.entries({startX:startX+'px',midX:midX+'px',mid2X:mid2X+'px',endX:endX+'px',w:w+'px',h:h+'px',dur,rot1:(Math.random()*8-4).toFixed(1)+'deg',rot2:(Math.random()*10-5).toFixed(1)+'deg',rot3:(Math.random()*12-6).toFixed(1)+'deg'}).forEach(([k,v])=>l.style.setProperty('--'+k,v));l.innerHTML=`<div class="rope"></div><div class="body"></div><div class="flame"></div><div class="txt">${getLanternWord(name)}</div>`;layer.appendChild(l);l.addEventListener('animationend',()=>l.remove())}function getLanternWord(n){return {'光明燈':'明','太歲燈':'安','文昌燈':'文','財利燈':'財','藥師燈':'康','姻緣燈':'緣','平安燈':'福'}[n]||'福'}function createLightFlash(){const f=document.createElement('div');f.className='light-full-flash';document.body.appendChild(f);setTimeout(()=>f.remove(),900)}
 function calculateBazi(){const name=document.getElementById('userName').value.trim()||'未命名',gender=document.getElementById('gender').value,birth=document.getElementById('birthDate').value,h=Number(document.getElementById('birthHour').value);if(!birth){alert('請先選擇出生日期');return}const d=new Date(birth+'T00:00:00'),y=d.getFullYear(),m=d.getMonth()+1,day=d.getDate(),b=getBazi(d,h),z=zodiac[b.year.branchIndex];document.getElementById('baziResult').innerHTML=`<h3>${escapeHTML(name)} 的八字命盤</h3><p>性別：${gender}｜出生：${y} 年 ${m} 月 ${day} 日｜生肖：${z}</p><div class="bazi-grid"><div class="pillar"><small>年柱</small><strong>${b.year.stem}${b.year.branch}</strong></div><div class="pillar"><small>月柱</small><strong>${b.month.stem}${b.month.branch}</strong></div><div class="pillar"><small>日柱</small><strong>${b.day.stem}${b.day.branch}</strong></div><div class="pillar"><small>時柱</small><strong>${b.hour.stem}${b.hour.branch}</strong></div></div><p><strong>土地公好運建議：</strong>今日宜穩定前行，先整理方向，再求突破。</p><p class="notice">此版本為娛樂與學習用規則庫版，僅供參考。</p>`;saveRecord('八字命盤',`${name}｜生肖：${z}`)}function getBazi(date,hourBranchIndex){const ay=isBeforeLiChun(date)?date.getFullYear()-1:date.getFullYear(),ysi=mod(ay-4,10),ybi=mod(ay-4,12),md=getSolarMonthPillar(date,ysi),base=new Date('1900-01-31T00:00:00'),diff=Math.floor((date-base)/86400000),dsi=mod(diff+4,10),dbi=mod(diff+2,12),hsi=mod(dsi*2+hourBranchIndex,10);return{year:{stem:stems[ysi],branch:branches[ybi],branchIndex:ybi},month:md,day:{stem:stems[dsi],branch:branches[dbi]},hour:{stem:stems[hsi],branch:branches[hourBranchIndex]}}}function isBeforeLiChun(d){const m=d.getMonth()+1,day=d.getDate();return m<2||m===2&&day<4}function getSolarMonthPillar(d,ysi){const mb=getSolarMonthBranch(d),bi=branches.indexOf(mb),order=mod(bi-2,12),map={0:2,5:2,1:4,6:4,2:6,7:6,3:8,8:8,4:0,9:0},si=mod(map[ysi]+order,10);return{stem:stems[si],branch:mb,branchIndex:bi}}function getSolarMonthBranch(date){const m=date.getMonth()+1,d=date.getDate();if(m===1&&d<6)return'子';if(m===1)return'丑';if(m===2&&d<4)return'丑';if(m===2)return'寅';if(m===3&&d<6)return'寅';if(m===3)return'卯';if(m===4&&d<5)return'卯';if(m===4)return'辰';if(m===5&&d<6)return'辰';if(m===5)return'巳';if(m===6&&d<6)return'巳';if(m===6)return'午';if(m===7&&d<7)return'午';if(m===7)return'未';if(m===8&&d<8)return'未';if(m===8)return'申';if(m===9&&d<8)return'申';if(m===9)return'酉';if(m===10&&d<8)return'酉';if(m===10)return'戌';if(m===11&&d<7)return'戌';if(m===11)return'亥';if(m===12&&d<7)return'亥';return'子'}
@@ -2300,7 +3358,7 @@ function drawStick() {
       <p><strong>籤詩：</strong>${result.poem}</p>
       <p><strong>解籤：</strong>${result.explain}</p>
       <p><strong>建議：</strong>${result.advice}</p>
-      <p class="notice">求籤結果僅供娛樂與自我提醒，不代表絕對命運。</p>
+      <p class="notice">此為台灣廟宇六十甲子籤白話解籤風格，供祈福參考與自我提醒。</p>
     `;
 
     saveRecord("求籤占卜", `${topic}｜${result.level}｜${result.title}`);
@@ -2351,7 +3409,7 @@ function drawStick() {
       <p><strong>籤詩：</strong>${result.poem}</p>
       <p><strong>解籤：</strong>${result.explain}</p>
       <p><strong>建議：</strong>${result.advice}</p>
-      <p class="notice">求籤結果僅供娛樂與自我提醒，不代表絕對命運。</p>
+      <p class="notice">此為台灣廟宇六十甲子籤白話解籤風格，供祈福參考與自我提醒。</p>
     `;
 
     if (typeof saveRecord === "function") {
@@ -2365,7 +3423,7 @@ function drawStick() {
 
 
 <script>
-/* ===== 誠心搖籤：華麗動畫 JS 覆蓋 ===== */
+/* ===== 誠心搖籤：天門開啟・神籤從天而降 豪華版 ===== */
 function drawStick() {
   const altar = document.getElementById("drawAltar");
   const btn = document.getElementById("drawBtn");
@@ -2377,39 +3435,46 @@ function drawStick() {
   if (!altar || !btn || !resultBox) return;
 
   btn.disabled = true;
-  altar.classList.remove("shaking", "show-stick", "after-draw", "lux-shaking");
+  altar.classList.remove("shaking", "show-stick", "after-draw", "lux-shaking", "heaven-descend");
   resultBox.innerHTML = "";
   if (particleLayer) particleLayer.innerHTML = "";
   void altar.offsetWidth;
 
-  altar.classList.add("shaking", "lux-shaking");
+  altar.classList.add("shaking", "lux-shaking", "heaven-descend");
 
   resultBox.innerHTML = `
-    <h3>福德正神降光中</h3>
-    <p>香火已起，籤筒正在感應，請靜心等待。</p>
+    <h3>天門開啟・神籤降臨中</h3>
+    <p>金光灌頂、香火感應，請誠心靜候神籤從天而降。</p>
   `;
 
-  for (let i = 0; i < 90; i++) {
-    setTimeout(() => createDrawLuxDot(particleLayer), i * 24);
+  for (let i = 0; i < 120; i++) {
+    setTimeout(() => createDrawLuxDot(particleLayer), i * 18);
   }
 
-  for (let i = 0; i < 24; i++) {
-    setTimeout(() => createDrawLuxWord(particleLayer), 180 + i * 70);
+  for (let i = 0; i < 36; i++) {
+    setTimeout(() => createDrawLuxWord(particleLayer), 120 + i * 56);
+  }
+
+  for (let i = 0; i < 30; i++) {
+    setTimeout(() => createHeavenSpark(particleLayer), i * 48);
   }
 
   setTimeout(() => {
     altar.classList.add("show-stick");
     createDrawFinalFlash(altar);
-    if (typeof createDrawFlash === "function") {
-      createDrawFlash();
-    }
-  }, 1050);
+    createImpactBurst(particleLayer);
+    if (typeof createDrawFlash === "function") createDrawFlash();
+  }, 980);
+
+  setTimeout(() => {
+    createImpactBurst(particleLayer);
+  }, 1350);
 
   setTimeout(() => {
     const result = randomItem(sticks);
 
     altar.classList.add("after-draw");
-    altar.classList.remove("lux-shaking");
+    altar.classList.remove("lux-shaking", "heaven-descend");
 
     resultBox.innerHTML = `
       <span class="draw-level">${result.level}</span>
@@ -2417,7 +3482,7 @@ function drawStick() {
       <p><strong>籤詩：</strong>${result.poem}</p>
       <p><strong>解籤：</strong>${result.explain}</p>
       <p><strong>建議：</strong>${result.advice}</p>
-      <p class="notice">求籤結果僅供娛樂與自我提醒，不代表絕對命運。</p>
+      <p class="notice">此為台灣廟宇六十甲子籤白話解籤風格，供祈福參考與自我提醒。</p>
     `;
 
     if (typeof saveRecord === "function") {
@@ -2425,50 +3490,941 @@ function drawStick() {
     }
 
     btn.disabled = false;
-  }, 2350);
+  }, 2750);
 }
 
 function createDrawLuxDot(layer) {
   if (!layer) return;
-
   const dot = document.createElement("div");
   dot.className = "draw-lux-dot";
-
-  dot.style.setProperty("--size", (Math.random() * 7 + 5).toFixed(1) + "px");
-  dot.style.setProperty("--dur", (1.2 + Math.random() * 1.4).toFixed(2) + "s");
-  dot.style.setProperty("--x", (Math.random() * 260 - 130).toFixed(1) + "px");
-  dot.style.setProperty("--y", (-Math.random() * 240 - 40).toFixed(1) + "px");
-
+  dot.style.setProperty("--size", (Math.random() * 8 + 5).toFixed(1) + "px");
+  dot.style.setProperty("--dur", (1.25 + Math.random() * 1.5).toFixed(2) + "s");
+  dot.style.setProperty("--x", (Math.random() * 280 - 140).toFixed(1) + "px");
+  dot.style.setProperty("--y", (-Math.random() * 260 - 50).toFixed(1) + "px");
   layer.appendChild(dot);
   dot.addEventListener("animationend", () => dot.remove());
 }
 
 function createDrawLuxWord(layer) {
   if (!layer) return;
-
-  const words = ["福", "籤", "吉", "安"];
+  const words = ["福", "籤", "吉", "安", "順", "旺"];
   const word = document.createElement("div");
   word.className = "draw-lux-word";
   word.textContent = words[Math.floor(Math.random() * words.length)];
-
-  word.style.setProperty("--fs", (Math.random() * 10 + 20).toFixed(1) + "px");
-  word.style.setProperty("--dur", (1.1 + Math.random() * 1.2).toFixed(2) + "s");
-  word.style.setProperty("--x", (Math.random() * 230 - 115).toFixed(1) + "px");
-  word.style.setProperty("--y", (-Math.random() * 220 - 60).toFixed(1) + "px");
-
+  word.style.setProperty("--fs", (Math.random() * 12 + 20).toFixed(1) + "px");
+  word.style.setProperty("--dur", (1.15 + Math.random() * 1.25).toFixed(2) + "s");
+  word.style.setProperty("--x", (Math.random() * 250 - 125).toFixed(1) + "px");
+  word.style.setProperty("--y", (-Math.random() * 235 - 65).toFixed(1) + "px");
   layer.appendChild(word);
   word.addEventListener("animationend", () => word.remove());
+}
+
+function createHeavenSpark(layer) {
+  if (!layer) return;
+  const spark = document.createElement("div");
+  spark.className = "draw-heaven-spark";
+  spark.style.setProperty("--size", (Math.random() * 4 + 4).toFixed(1) + "px");
+  spark.style.setProperty("--dur", (0.85 + Math.random() * 0.45).toFixed(2) + "s");
+  spark.style.setProperty("--sx", (Math.random() * 110 - 55).toFixed(1) + "px");
+  spark.style.setProperty("--ex", (Math.random() * 190 - 95).toFixed(1) + "px");
+  spark.style.setProperty("--ey", (Math.random() * 350 + 280).toFixed(1) + "px");
+  layer.appendChild(spark);
+  spark.addEventListener("animationend", () => spark.remove());
+}
+
+function createImpactBurst(layer) {
+  if (!layer) return;
+
+  const ring = document.createElement("div");
+  ring.className = "draw-impact-ring";
+  layer.appendChild(ring);
+  ring.addEventListener("animationend", () => ring.remove());
+
+  for (let i = 0; i < 14; i++) {
+    const spark = document.createElement("div");
+    spark.className = "draw-impact-spark";
+    spark.style.setProperty("--ix", (Math.random() * 180 - 90).toFixed(1) + "px");
+    spark.style.setProperty("--iy", (-Math.random() * 120 - 40).toFixed(1) + "px");
+    layer.appendChild(spark);
+    spark.addEventListener("animationend", () => spark.remove());
+  }
 }
 
 function createDrawFinalFlash(altar) {
   const flash = document.createElement("div");
   flash.className = "draw-final-flash";
   altar.appendChild(flash);
+  setTimeout(() => flash.remove(), 950);
+}
+</script>
+
+
+<script>
+/* ===== 覆蓋：神籤不搖晃，直接從天慢慢降下來 ===== */
+function drawStick() {
+  const altar = document.getElementById("drawAltar");
+  const btn = document.getElementById("drawBtn");
+  const topicInput = document.getElementById("drawTopic");
+  const topic = topicInput ? topicInput.value : "今日指引";
+  const resultBox = document.getElementById("drawResult");
+  const particleLayer = document.getElementById("drawLuxParticles");
+
+  if (!altar || !btn || !resultBox) return;
+
+  btn.disabled = true;
+  altar.classList.remove("shaking", "show-stick", "after-draw", "lux-shaking", "heaven-descend", "lux-arrival");
+  resultBox.innerHTML = "";
+  if (particleLayer) particleLayer.innerHTML = "";
+  void altar.offsetWidth;
+
+  altar.classList.add("heaven-descend", "lux-arrival");
+
+  resultBox.innerHTML = `
+    <h3>天門開啟・神籤降臨中</h3>
+    <p>請誠心靜候，神籤正從天上緩緩降下。</p>
+  `;
+
+  for (let i = 0; i < 140; i++) {
+    setTimeout(() => createDrawLuxDot(particleLayer), i * 18);
+  }
+
+  for (let i = 0; i < 42; i++) {
+    setTimeout(() => createDrawLuxWord(particleLayer), 120 + i * 56);
+  }
+
+  for (let i = 0; i < 36; i++) {
+    setTimeout(() => createHeavenSpark(particleLayer), i * 56);
+  }
 
   setTimeout(() => {
-    flash.remove();
-  }, 900);
+    altar.classList.add("show-stick");
+  }, 240);
+
+  setTimeout(() => {
+    createDrawFinalFlash(altar);
+    createImpactBurst(particleLayer);
+    if (typeof createDrawFlash === "function") createDrawFlash();
+  }, 2220);
+
+  setTimeout(() => {
+    const result = randomItem(sticks);
+    altar.classList.add("after-draw");
+    altar.classList.remove("heaven-descend", "lux-arrival");
+
+    resultBox.innerHTML = `
+      <span class="draw-level">${result.level}</span>
+      <h3>${topic}｜${result.title}</h3>
+      <p><strong>籤詩：</strong>${result.poem}</p>
+      <p><strong>解籤：</strong>${result.explain}</p>
+      <p><strong>建議：</strong>${result.advice}</p>
+      <p class="notice">此為台灣廟宇六十甲子籤白話解籤風格，供祈福參考與自我提醒。</p>
+    `;
+
+    if (typeof saveRecord === "function") {
+      saveRecord("求籤占卜", `${topic}｜${result.level}｜${result.title}`);
+    }
+
+    btn.disabled = false;
+    btn.textContent = "再次搖籤";
+  }, 3300);
+
+  btn.textContent = "神籤降臨中";
 }
+</script>
+
+
+<script>
+/* ===== 追加修正：點擊後才出現神籤，並降落到香爐 ===== */
+function drawStick() {
+  const altar = document.getElementById("drawAltar");
+  const btn = document.getElementById("drawBtn");
+  const topicInput = document.getElementById("drawTopic");
+  const topic = topicInput ? topicInput.value : "今日指引";
+  const resultBox = document.getElementById("drawResult");
+  const particleLayer = document.getElementById("drawLuxParticles");
+
+  if (!altar || !btn || !resultBox) return;
+
+  btn.disabled = true;
+  btn.textContent = "神籤降臨中";
+
+  altar.classList.remove(
+    "shaking", "show-stick", "after-draw", "lux-shaking",
+    "heaven-descend", "lux-arrival"
+  );
+
+  if (particleLayer) particleLayer.innerHTML = "";
+  resultBox.innerHTML = '<h3>恭請神籤降臨</h3><p>請誠心靜候，神籤將從天而降，落入香爐前方。</p>';
+
+  void altar.offsetWidth;
+  altar.classList.add("heaven-descend", "lux-arrival");
+
+  for (let i = 0; i < 140; i++) {
+    setTimeout(() => createDrawLuxDot(particleLayer), i * 18);
+  }
+  for (let i = 0; i < 42; i++) {
+    setTimeout(() => createDrawLuxWord(particleLayer), 120 + i * 56);
+  }
+  for (let i = 0; i < 36; i++) {
+    setTimeout(() => createHeavenSpark(particleLayer), i * 56);
+  }
+
+  /* 先有天門與金光，之後神籤才出現 */
+  setTimeout(() => {
+    altar.classList.add("show-stick");
+  }, 520);
+
+  setTimeout(() => {
+    createDrawFinalFlash(altar);
+    createImpactBurst(particleLayer);
+    if (typeof createDrawFlash === "function") createDrawFlash();
+  }, 2680);
+
+  setTimeout(() => {
+    const result = randomItem(sticks);
+    altar.classList.add("after-draw");
+    altar.classList.remove("heaven-descend", "lux-arrival");
+
+    resultBox.innerHTML = `
+      <span class="draw-level">${result.level}</span>
+      <h3>${topic}｜${result.title}</h3>
+      <p><strong>籤詩：</strong>${result.poem}</p>
+      <p><strong>解籤：</strong>${result.explain}</p>
+      <p><strong>建議：</strong>${result.advice}</p>
+      <p class="notice">此為台灣廟宇六十甲子籤白話解籤風格，供祈福參考與自我提醒。</p>
+    `;
+
+    if (typeof saveRecord === "function") {
+      saveRecord("求籤占卜", `${topic}｜${result.level}｜${result.title}`);
+    }
+
+    btn.disabled = false;
+    btn.textContent = "再次搖籤";
+  }, 3800);
+}
+</script>
+
+
+<script>
+/* ===== 修正：進入求籤頁時不顯示籤，必須點擊搖籤才出現 ===== */
+function resetDrawPage() {
+  const altar = document.getElementById('drawAltar');
+  const btn = document.getElementById('drawBtn');
+  const resultBox = document.getElementById('drawResult');
+  const particleLayer = document.getElementById('drawLuxParticles');
+  const stick = document.getElementById('drawBgStick');
+
+  if (altar) {
+    altar.classList.remove('shaking', 'show-stick', 'after-draw', 'lux-shaking', 'heaven-descend', 'lux-arrival');
+  }
+  if (stick) {
+    stick.style.display = 'none';
+    stick.style.opacity = '0';
+    stick.style.visibility = 'hidden';
+  }
+  if (btn) {
+    btn.disabled = false;
+    btn.textContent = '誠心搖籤';
+  }
+  if (resultBox) {
+    resultBox.innerHTML = '';
+  }
+  if (particleLayer) {
+    particleLayer.innerHTML = '';
+  }
+}
+
+function changePage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+
+  if (id === 'recordPage') renderRecords();
+  if (id === 'moneyPage') resetMoneyPage();
+  if (id === 'drawPage') resetDrawPage();
+
+  scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function drawStick() {
+  const altar = document.getElementById("drawAltar");
+  const btn = document.getElementById("drawBtn");
+  const topicInput = document.getElementById("drawTopic");
+  const topic = topicInput ? topicInput.value : "今日指引";
+  const resultBox = document.getElementById("drawResult");
+  const particleLayer = document.getElementById("drawLuxParticles");
+  const stick = document.getElementById('drawBgStick');
+
+  if (!altar || !btn || !resultBox) return;
+
+  btn.disabled = true;
+  btn.textContent = "神籤降臨中";
+
+  altar.classList.remove(
+    "shaking", "show-stick", "after-draw", "lux-shaking",
+    "heaven-descend", "lux-arrival"
+  );
+
+  if (particleLayer) particleLayer.innerHTML = "";
+  if (stick) {
+    stick.style.display = 'block';
+    stick.style.opacity = '0';
+    stick.style.visibility = 'hidden';
+  }
+  resultBox.innerHTML = '<h3>恭請神籤降臨</h3><p>請誠心靜候，神籤將從天而降，落入香爐前方。</p>';
+
+  void altar.offsetWidth;
+  altar.classList.add("heaven-descend", "lux-arrival");
+
+  for (let i = 0; i < 140; i++) {
+    setTimeout(() => createDrawLuxDot(particleLayer), i * 18);
+  }
+  for (let i = 0; i < 42; i++) {
+    setTimeout(() => createDrawLuxWord(particleLayer), 120 + i * 56);
+  }
+  for (let i = 0; i < 36; i++) {
+    setTimeout(() => createHeavenSpark(particleLayer), i * 56);
+  }
+
+  setTimeout(() => {
+    altar.classList.add("show-stick");
+    if (stick) {
+      stick.style.display = 'block';
+      stick.style.visibility = 'visible';
+      stick.style.opacity = '1';
+    }
+  }, 520);
+
+  setTimeout(() => {
+    createDrawFinalFlash(altar);
+    createImpactBurst(particleLayer);
+    if (typeof createDrawFlash === "function") createDrawFlash();
+  }, 2680);
+
+  setTimeout(() => {
+    const result = randomItem(sticks);
+    altar.classList.add("after-draw");
+    altar.classList.remove("heaven-descend", "lux-arrival");
+
+    resultBox.innerHTML = `
+      <span class="draw-level">${result.level}</span>
+      <h3>${topic}｜${result.title}</h3>
+      <p><strong>籤詩：</strong>${result.poem}</p>
+      <p><strong>解籤：</strong>${result.explain}</p>
+      <p><strong>建議：</strong>${result.advice}</p>
+      <p class="notice">此為台灣廟宇六十甲子籤白話解籤風格，供祈福參考與自我提醒。</p>
+    `;
+
+    if (typeof saveRecord === "function") {
+      saveRecord("求籤占卜", `${topic}｜${result.level}｜${result.title}`);
+    }
+
+    btn.disabled = false;
+    btn.textContent = "再次搖籤";
+  }, 3800);
+}
+
+document.addEventListener('DOMContentLoaded', resetDrawPage);
+</script>
+
+
+<script>
+/* ===== 最終修復：點擊搖籤時，右側籤筒一定搖動 ===== */
+function resetDrawPage() {
+  const altar = document.getElementById('drawAltar');
+  const btn = document.getElementById('drawBtn');
+  const resultBox = document.getElementById('drawResult');
+  const particleLayer = document.getElementById('drawLuxParticles');
+  const stick = document.getElementById('drawBgStick');
+
+  if (altar) {
+    altar.classList.remove(
+      'shaking', 'cup-shaking', 'show-stick', 'after-draw',
+      'lux-shaking', 'heaven-descend', 'lux-arrival'
+    );
+  }
+
+  if (stick) {
+    stick.style.display = 'none';
+    stick.style.opacity = '0';
+    stick.style.visibility = 'hidden';
+  }
+
+  if (btn) {
+    btn.disabled = false;
+    btn.textContent = '誠心搖籤';
+  }
+
+  if (resultBox) resultBox.innerHTML = '';
+  if (particleLayer) particleLayer.innerHTML = '';
+}
+
+function changePage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+
+  if (id === 'recordPage') renderRecords();
+  if (id === 'moneyPage') resetMoneyPage();
+  if (id === 'drawPage') resetDrawPage();
+
+  scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function drawStick() {
+  const altar = document.getElementById("drawAltar");
+  const btn = document.getElementById("drawBtn");
+  const topicInput = document.getElementById("drawTopic");
+  const topic = topicInput ? topicInput.value : "今日指引";
+  const resultBox = document.getElementById("drawResult");
+  const particleLayer = document.getElementById("drawLuxParticles");
+  const stick = document.getElementById("drawBgStick");
+
+  if (!altar || !btn || !resultBox) return;
+
+  btn.disabled = true;
+  btn.textContent = "籤筒搖動中";
+
+  altar.classList.remove(
+    "shaking", "cup-shaking", "show-stick", "after-draw",
+    "lux-shaking", "heaven-descend", "lux-arrival"
+  );
+
+  if (particleLayer) particleLayer.innerHTML = "";
+  if (stick) {
+    stick.style.display = "block";
+    stick.style.opacity = "0";
+    stick.style.visibility = "hidden";
+  }
+
+  resultBox.innerHTML = '<h3>籤筒搖動中</h3><p>請誠心靜候，籤筒正在感應，神籤即將降臨。</p>';
+
+  void altar.offsetWidth;
+
+  /* 這兩個 class 是重點：cup-shaking 讓右側籤筒搖，heaven-descend 讓金光開啟 */
+  altar.classList.add("cup-shaking", "heaven-descend", "lux-arrival");
+
+  for (let i = 0; i < 140; i++) {
+    setTimeout(() => createDrawLuxDot(particleLayer), i * 18);
+  }
+  for (let i = 0; i < 42; i++) {
+    setTimeout(() => createDrawLuxWord(particleLayer), 120 + i * 56);
+  }
+  for (let i = 0; i < 36; i++) {
+    setTimeout(() => createHeavenSpark(particleLayer), i * 56);
+  }
+
+  /* 籤筒先搖，再讓神籤出現 */
+  setTimeout(() => {
+    altar.classList.add("show-stick");
+    if (stick) {
+      stick.style.display = "block";
+      stick.style.visibility = "visible";
+      stick.style.opacity = "1";
+    }
+  }, 1050);
+
+  setTimeout(() => {
+    createDrawFinalFlash(altar);
+    createImpactBurst(particleLayer);
+    if (typeof createDrawFlash === "function") createDrawFlash();
+  }, 3050);
+
+  setTimeout(() => {
+    const result = randomItem(sticks);
+
+    altar.classList.add("after-draw");
+    altar.classList.remove("heaven-descend", "lux-arrival", "cup-shaking");
+
+    resultBox.innerHTML = `
+      <span class="draw-level">${result.level}</span>
+      <h3>${topic}｜${result.title}</h3>
+      <p><strong>籤詩：</strong>${result.poem}</p>
+      <p><strong>解籤：</strong>${result.explain}</p>
+      <p><strong>建議：</strong>${result.advice}</p>
+      <p class="notice">此為台灣廟宇六十甲子籤白話解籤風格，供祈福參考與自我提醒。</p>
+    `;
+
+    if (typeof saveRecord === "function") {
+      saveRecord("求籤占卜", `${topic}｜${result.level}｜${result.title}`);
+    }
+
+    btn.disabled = false;
+    btn.textContent = "再次搖籤";
+  }, 4200);
+}
+
+document.addEventListener('DOMContentLoaded', resetDrawPage);
+</script>
+
+
+<script id="table-cup-shake-fix-script">
+/* ===== 最終修正：桌上籤筒搖動、點搖籤後才出現神籤 ===== */
+function resetDrawPage() {
+  const altar = document.getElementById('drawAltar');
+  const btn = document.getElementById('drawBtn');
+  const resultBox = document.getElementById('drawResult');
+  const particleLayer = document.getElementById('drawLuxParticles');
+  const stick = document.getElementById('drawBgStick');
+
+  if (altar) {
+    altar.classList.remove('shaking','cup-shaking','show-stick','after-draw','lux-shaking','heaven-descend','lux-arrival');
+  }
+  if (stick) {
+    stick.style.display = 'none';
+    stick.style.opacity = '0';
+    stick.style.visibility = 'hidden';
+  }
+  if (btn) {
+    btn.disabled = false;
+    btn.textContent = '誠心搖籤';
+  }
+  if (resultBox) resultBox.innerHTML = '';
+  if (particleLayer) particleLayer.innerHTML = '';
+}
+
+function changePage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const page = document.getElementById(id);
+  if (page) page.classList.add('active');
+
+  if (id === 'recordPage' && typeof renderRecords === 'function') renderRecords();
+  if (id === 'moneyPage' && typeof resetMoneyPage === 'function') resetMoneyPage();
+  if (id === 'drawPage') resetDrawPage();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function drawStick() {
+  const altar = document.getElementById('drawAltar');
+  const btn = document.getElementById('drawBtn');
+  const topicInput = document.getElementById('drawTopic');
+  const topic = topicInput ? topicInput.value : '今日指引';
+  const resultBox = document.getElementById('drawResult');
+  const particleLayer = document.getElementById('drawLuxParticles');
+  const stick = document.getElementById('drawBgStick');
+
+  if (!altar || !btn || !resultBox) return;
+
+  btn.disabled = true;
+  btn.textContent = '籤筒搖動中';
+
+  altar.classList.remove('shaking','cup-shaking','show-stick','after-draw','lux-shaking','heaven-descend','lux-arrival');
+  void altar.offsetWidth;
+
+  if (particleLayer) particleLayer.innerHTML = '';
+  if (stick) {
+    stick.style.display = 'block';
+    stick.style.opacity = '0';
+    stick.style.visibility = 'hidden';
+  }
+
+  resultBox.innerHTML = '<h3>籤筒搖動中</h3><p>請誠心靜候，桌上籤筒正在搖動，神籤即將降下。</p>';
+
+  altar.classList.add('shaking','cup-shaking','heaven-descend','lux-arrival');
+
+  if (typeof createDrawLuxDot === 'function' && particleLayer) {
+    for (let i = 0; i < 110; i++) setTimeout(() => createDrawLuxDot(particleLayer), i * 18);
+  }
+  if (typeof createDrawLuxWord === 'function' && particleLayer) {
+    for (let i = 0; i < 32; i++) setTimeout(() => createDrawLuxWord(particleLayer), 120 + i * 58);
+  }
+  if (typeof createHeavenSpark === 'function' && particleLayer) {
+    for (let i = 0; i < 28; i++) setTimeout(() => createHeavenSpark(particleLayer), i * 62);
+  }
+
+  setTimeout(() => {
+    altar.classList.add('show-stick');
+    if (stick) {
+      stick.style.display = 'block';
+      stick.style.visibility = 'visible';
+      stick.style.opacity = '1';
+    }
+  }, 1180);
+
+  setTimeout(() => {
+    if (typeof createDrawFinalFlash === 'function') createDrawFinalFlash(altar);
+    if (typeof createImpactBurst === 'function' && particleLayer) createImpactBurst(particleLayer);
+    if (typeof createDrawFlash === 'function') createDrawFlash();
+  }, 2880);
+
+  setTimeout(() => {
+    const pool = (typeof sticks !== 'undefined' && Array.isArray(sticks) && sticks.length) ? sticks : [];
+    const s = pool.length ? (typeof randomItem === 'function' ? randomItem(pool) : pool[Math.floor(Math.random()*pool.length)]) : {
+      level: '中上籤', title: '先守後進', poem: '守得雲開見月明，時來運轉自光明。', explain: '目前宜穩健前行，先整理方向，再把握機會。', advice: '保持耐心，按部就班，貴人自會出現。'
+    };
+
+    altar.classList.add('after-draw');
+    altar.classList.remove('heaven-descend','lux-arrival','shaking','cup-shaking');
+
+    resultBox.innerHTML = `
+      <span class="draw-level">${s.level}</span>
+      <h3>${topic}｜${s.title}</h3>
+      <p><strong>籤詩：</strong>${s.poem}</p>
+      <p><strong>解籤：</strong>${s.explain}</p>
+      <p><strong>建議：</strong>${s.advice}</p>
+      <p class="notice">此為台灣廟宇六十甲子籤白話解籤風格，供祈福參考與自我提醒。</p>
+    `;
+
+    if (typeof saveRecord === 'function') saveRecord('求籤占卜', `${topic}｜${s.level}｜${s.title}`);
+
+    btn.disabled = false;
+    btn.textContent = '再次搖籤';
+  }, 4100);
+}
+
+document.addEventListener('DOMContentLoaded', resetDrawPage);
+</script>
+
+
+<!-- ===== 中央籤詩彈窗：抽籤完成後顯示，可關閉 ===== -->
+<div class="lot-modal" id="lotModal" aria-hidden="true">
+  <div class="lot-modal-backdrop" onclick="closeLotModal()"></div>
+  <div class="lot-modal-card" role="dialog" aria-modal="true" aria-label="籤詩結果">
+    <button class="lot-modal-close" onclick="closeLotModal()" aria-label="關閉籤詩">×</button>
+    <div class="lot-modal-shine"></div>
+    <div class="lot-modal-content" id="lotModalContent"></div>
+    <button class="lot-modal-ok" onclick="closeLotModal()">看完關閉</button>
+  </div>
+</div>
+
+
+<script id="lot-modal-center-script">
+/* ===== 覆蓋求籤結果：動畫完成後在中間顯示，可關閉 ===== */
+function closeLotModal() {
+  const modal = document.getElementById("lotModal");
+  if (!modal) return;
+  modal.classList.remove("show");
+  modal.setAttribute("aria-hidden", "true");
+}
+
+function openLotModal(html) {
+  const modal = document.getElementById("lotModal");
+  const content = document.getElementById("lotModalContent");
+  if (!modal || !content) return;
+
+  content.innerHTML = html;
+  modal.classList.add("show");
+  modal.setAttribute("aria-hidden", "false");
+}
+
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape") closeLotModal();
+});
+
+function resetDrawPage() {
+  const altar = document.getElementById("drawAltar");
+  const btn = document.getElementById("drawBtn");
+  const resultBox = document.getElementById("drawResult");
+  const particleLayer = document.getElementById("drawLuxParticles");
+  const stick = document.getElementById("drawBgStick");
+
+  closeLotModal();
+
+  if (altar) {
+    altar.classList.remove(
+      "shaking", "show-stick", "after-draw", "lux-shaking",
+      "heaven-descend", "lux-arrival"
+    );
+  }
+
+  if (stick) {
+    stick.style.display = "none";
+    stick.style.opacity = "0";
+    stick.style.visibility = "hidden";
+  }
+
+  if (btn) {
+    btn.disabled = false;
+    btn.textContent = "誠心搖籤";
+  }
+
+  if (resultBox) {
+    resultBox.innerHTML = "";
+  }
+
+  if (particleLayer) {
+    particleLayer.innerHTML = "";
+  }
+}
+
+function drawStick() {
+  const altar = document.getElementById("drawAltar");
+  const btn = document.getElementById("drawBtn");
+  const topicInput = document.getElementById("drawTopic");
+  const topic = topicInput ? topicInput.value : "今日指引";
+  const resultBox = document.getElementById("drawResult");
+  const particleLayer = document.getElementById("drawLuxParticles");
+  const stick = document.getElementById("drawBgStick");
+
+  if (!altar || !btn || !resultBox) return;
+
+  closeLotModal();
+
+  btn.disabled = true;
+  btn.textContent = "神籤降臨中";
+
+  altar.classList.remove(
+    "shaking", "show-stick", "after-draw", "lux-shaking",
+    "heaven-descend", "lux-arrival"
+  );
+
+  if (particleLayer) particleLayer.innerHTML = "";
+
+  if (stick) {
+    stick.style.display = "block";
+    stick.style.opacity = "0";
+    stick.style.visibility = "hidden";
+  }
+
+  resultBox.innerHTML = '<h3>恭請神籤降臨</h3><p>請誠心靜候，神籤將從天而降，籤詩完成後會顯示於畫面中央。</p>';
+
+  void altar.offsetWidth;
+  altar.classList.add("heaven-descend", "lux-arrival");
+
+  if (typeof createDrawLuxDot === "function") {
+    for (let i = 0; i < 140; i++) {
+      setTimeout(() => createDrawLuxDot(particleLayer), i * 18);
+    }
+  }
+
+  if (typeof createDrawLuxWord === "function") {
+    for (let i = 0; i < 42; i++) {
+      setTimeout(() => createDrawLuxWord(particleLayer), 120 + i * 56);
+    }
+  }
+
+  if (typeof createHeavenSpark === "function") {
+    for (let i = 0; i < 36; i++) {
+      setTimeout(() => createHeavenSpark(particleLayer), i * 56);
+    }
+  }
+
+  setTimeout(() => {
+    altar.classList.add("show-stick");
+    if (stick) {
+      stick.style.display = "block";
+      stick.style.visibility = "visible";
+      stick.style.opacity = "1";
+    }
+  }, 520);
+
+  setTimeout(() => {
+    if (typeof createDrawFinalFlash === "function") createDrawFinalFlash(altar);
+    if (typeof createImpactBurst === "function") createImpactBurst(particleLayer);
+    if (typeof createDrawFlash === "function") createDrawFlash();
+  }, 2680);
+
+  setTimeout(() => {
+    const result = randomItem(sticks);
+    altar.classList.add("after-draw");
+    altar.classList.remove("heaven-descend", "lux-arrival");
+
+    const lotHTML = `
+      <span class="draw-level">${result.level}</span>
+      <h3>${topic}｜${result.title}</h3>
+      <p><strong>籤詩：</strong>${result.poem}</p>
+      <p><strong>白話解籤：</strong>${result.explain}</p>
+      <p><strong>白話建議：</strong>${result.advice}</p>
+      <p class="notice">此為台灣廟宇六十甲子籤白話解籤風格，供祈福參考與自我提醒。</p>
+    `;
+
+    /* 底下結果區不再佔滿畫面，只留下提示 */
+    resultBox.innerHTML = `
+      <h3>籤詩已降臨</h3>
+      <p>籤詩內容已顯示在畫面中央，看完可按「看完關閉」。</p>
+    `;
+
+    openLotModal(lotHTML);
+
+    if (typeof saveRecord === "function") {
+      saveRecord("求籤占卜", `${topic}｜${result.level}｜${result.title}`);
+    }
+
+    btn.disabled = false;
+    btn.textContent = "再次搖籤";
+  }, 3800);
+}
+</script>
+
+
+<script id="orthodox-60jiazi-plain-final">
+/* ===== 最終版：正統六十甲子籤 + 白話文翻譯，抽完中央顯示 ===== */
+function closeLotModal() {
+  const modal = document.getElementById("lotModal");
+  const content = document.getElementById("lotModalContent");
+  if (!modal) return;
+  modal.classList.remove("show");
+  modal.setAttribute("aria-hidden", "true");
+  if (content) content.innerHTML = "";
+}
+
+function openLotModal(html) {
+  const modal = document.getElementById("lotModal");
+  const content = document.getElementById("lotModalContent");
+  if (!modal || !content) return;
+  content.innerHTML = html;
+  modal.classList.add("show");
+  modal.setAttribute("aria-hidden", "false");
+}
+
+function resetDrawPage() {
+  const altar = document.getElementById("drawAltar");
+  const btn = document.getElementById("drawBtn");
+  const resultBox = document.getElementById("drawResult");
+  const particleLayer = document.getElementById("drawLuxParticles");
+  const stick = document.getElementById("drawBgStick");
+
+  closeLotModal();
+
+  if (altar) {
+    altar.classList.remove("shaking", "show-stick", "after-draw", "lux-shaking", "heaven-descend", "lux-arrival");
+  }
+  if (stick) {
+    stick.style.display = "none";
+    stick.style.opacity = "0";
+    stick.style.visibility = "hidden";
+  }
+  if (btn) {
+    btn.disabled = false;
+    btn.textContent = "誠心搖籤";
+  }
+  if (resultBox) resultBox.innerHTML = "";
+  if (particleLayer) particleLayer.innerHTML = "";
+}
+
+function drawStick() {
+  const altar = document.getElementById("drawAltar");
+  const btn = document.getElementById("drawBtn");
+  const topicInput = document.getElementById("drawTopic");
+  const topic = topicInput ? topicInput.value : "今日指引";
+  const resultBox = document.getElementById("drawResult");
+  const particleLayer = document.getElementById("drawLuxParticles");
+  const stick = document.getElementById("drawBgStick");
+
+  if (!altar || !btn || !resultBox) return;
+
+  closeLotModal();
+
+  btn.disabled = true;
+  btn.textContent = "神籤降臨中";
+
+  altar.classList.remove("shaking", "show-stick", "after-draw", "lux-shaking", "heaven-descend", "lux-arrival");
+  if (particleLayer) particleLayer.innerHTML = "";
+
+  if (stick) {
+    stick.style.display = "block";
+    stick.style.opacity = "0";
+    stick.style.visibility = "hidden";
+  }
+
+  resultBox.innerHTML = `
+    <h3>恭請神籤降臨</h3>
+    <p>請誠心靜候，系統將從台灣廟宇常見正統六十甲子籤中抽出一支。</p>
+  `;
+
+  void altar.offsetWidth;
+  altar.classList.add("heaven-descend", "lux-arrival");
+
+  if (typeof createDrawLuxDot === "function") {
+    for (let i = 0; i < 140; i++) setTimeout(() => createDrawLuxDot(particleLayer), i * 18);
+  }
+  if (typeof createDrawLuxWord === "function") {
+    for (let i = 0; i < 42; i++) setTimeout(() => createDrawLuxWord(particleLayer), 120 + i * 56);
+  }
+  if (typeof createHeavenSpark === "function") {
+    for (let i = 0; i < 36; i++) setTimeout(() => createHeavenSpark(particleLayer), i * 56);
+  }
+
+  setTimeout(() => {
+    altar.classList.add("show-stick");
+    if (stick) {
+      stick.style.display = "block";
+      stick.style.visibility = "visible";
+      stick.style.opacity = "1";
+    }
+  }, 520);
+
+  setTimeout(() => {
+    if (typeof createDrawFinalFlash === "function") createDrawFinalFlash(altar);
+    if (typeof createImpactBurst === "function") createImpactBurst(particleLayer);
+    if (typeof createDrawFlash === "function") createDrawFlash();
+  }, 2680);
+
+  setTimeout(() => {
+    const result = randomItem(sticks);
+    altar.classList.add("after-draw");
+    altar.classList.remove("heaven-descend", "lux-arrival");
+
+    const lotHTML = `
+      <span class="draw-level">${result.level}</span>
+      <h3>${topic}｜${result.title}</h3>
+      <p><strong>五行方位：</strong>${result.meta || ""}</p>
+      <p><strong>正統籤詩：</strong>${result.poem}</p>
+      <p><strong>白話翻譯：</strong>${result.explain}</p>
+      <p><strong>白話建議：</strong>${result.advice}</p>
+      <p class="notice">此為台灣廟宇常見正統六十甲子籤詩文，白話文為輔助理解，供祈福參考與自我提醒。</p>
+    `;
+
+    resultBox.innerHTML = `
+      <h3>${result.title} 已降臨</h3>
+      <p>籤詩內容已顯示在畫面中央，看完可按「看完關閉」。</p>
+    `;
+
+    openLotModal(lotHTML);
+
+    if (typeof saveRecord === "function") {
+      saveRecord("求籤占卜", `${topic}｜${result.level}｜${result.title}`);
+    }
+
+    btn.disabled = false;
+    btn.textContent = "再次搖籤";
+  }, 3800);
+}
+
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape") closeLotModal();
+});
+</script>
+
+
+<script id="final-cup-shake-force-script">
+/* ===== 最終修正：搖籤時強制觸發籤筒搖晃 ===== */
+(function () {
+  const originalDrawStick = window.drawStick;
+
+  window.drawStick = function () {
+    const altar = document.getElementById("drawAltar");
+    const cup = document.querySelector(".fortune-cup-wrap");
+    const btn = document.getElementById("drawBtn");
+
+    if (altar) {
+      altar.classList.remove("shaking", "cup-shaking");
+      void altar.offsetWidth;
+      altar.classList.add("shaking", "cup-shaking");
+    }
+
+    if (cup) {
+      cup.classList.remove("shaking");
+      void cup.offsetWidth;
+
+      /* 判斷是否為右側絕對定位籤筒，避免 translateX 造成跑位 */
+      const computed = window.getComputedStyle(cup);
+      if (computed.left !== "auto" && computed.left !== "50%") {
+        cup.classList.add("side-cup");
+      }
+
+      cup.classList.add("shaking");
+
+      setTimeout(() => {
+        cup.classList.remove("shaking");
+      }, 1700);
+    }
+
+    if (typeof originalDrawStick === "function") {
+      originalDrawStick();
+    } else if (btn) {
+      btn.disabled = false;
+    }
+  };
+})();
 </script>
 
 </body>
