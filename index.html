@@ -2916,10 +2916,3311 @@
 }
 </style>
 
+
+
+
+
+<style id="teacher-bazi-style">
+.teacher-bazi-page{min-height:100vh;background:radial-gradient(circle at 50% 10%,rgba(255,219,120,.24),transparent 28%),linear-gradient(180deg,#8e170c 0%,#5d0904 54%,#360201 100%);color:#fff1c8}
+.teacher-bazi-bg{position:relative;min-height:100vh;padding:18px 16px 90px;overflow:hidden}
+.teacher-bazi-bg::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 12%,rgba(255,230,150,.10),transparent 18%),radial-gradient(circle at 84% 10%,rgba(255,230,150,.10),transparent 18%),repeating-linear-gradient(90deg,rgba(255,220,120,.035) 0 2px,transparent 2px 26px);pointer-events:none}
+.teacher-header{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.teacher-back-btn{border:1.5px solid rgba(255,226,150,.86);background:rgba(90,15,6,.82);color:#fff4c8;border-radius:999px;padding:8px 15px;font-size:14px;font-weight:900;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.teacher-title-wrap{text-align:right}.teacher-title-wrap h1{font-size:30px;color:#fff1b8;letter-spacing:4px;text-shadow:0 4px 0 rgba(72,7,3,.55),0 0 18px rgba(255,205,90,.45)}.teacher-title-wrap p{color:#ffd99d;font-size:12px;margin-top:4px}
+.teacher-oracle-card,.teacher-result-card{position:relative;z-index:2;border:1.8px solid rgba(244,206,116,.58);border-radius:28px;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.02)),rgba(88,8,4,.52);box-shadow:0 18px 38px rgba(22,2,1,.38),inset 0 0 24px rgba(255,210,100,.06);padding:20px 16px;overflow:hidden}
+.teacher-oracle-card::before{content:"";position:absolute;left:50%;top:-110px;width:260px;height:260px;transform:translateX(-50%);background:radial-gradient(circle,rgba(255,255,230,.8),rgba(255,210,80,.18) 42%,transparent 72%);border-radius:50%;pointer-events:none;mix-blend-mode:screen}
+.teacher-avatar{position:relative;width:126px;height:126px;margin:0 auto 14px}.teacher-glow{position:absolute;inset:-18px;border-radius:50%;background:radial-gradient(circle,rgba(255,245,190,.82),rgba(255,180,40,.18) 48%,transparent 72%);filter:blur(2px);animation:teacherGlowPulse 2.3s ease-in-out infinite}
+.teacher-face{position:relative;z-index:2;width:126px;height:126px;border-radius:50%;display:grid;place-items:center;color:#fff1b8;font-size:46px;font-weight:900;background:radial-gradient(circle at 50% 25%,rgba(255,255,255,.28),transparent 30%),linear-gradient(180deg,#d93a20,#7c0e07);border:3px solid rgba(255,218,120,.9);box-shadow:inset 0 8px 16px rgba(255,255,255,.16),0 0 30px rgba(255,210,90,.36),0 14px 22px rgba(30,4,2,.32)}
+@keyframes teacherGlowPulse{0%,100%{opacity:.62;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+.teacher-oracle-card h2{text-align:center;font-size:25px;color:#fff1b8;letter-spacing:3px;margin-bottom:8px}.teacher-desc{text-align:center;color:#ffdba0;font-size:14px;line-height:1.8;margin-bottom:16px}
+.teacher-form label{display:block;color:#ffe1a4;font-size:14px;font-weight:900;margin:12px 0 7px}.teacher-form input,.teacher-form select{width:100%;border:1.5px solid rgba(245,207,120,.48);background:#fff8e8;color:#5b2712;border-radius:16px;padding:13px;font-size:15px;font-family:inherit;outline:none;box-shadow:inset 0 2px 5px rgba(80,20,2,.05)}
+.teacher-main-btn{width:100%;min-height:60px;margin-top:18px;border:2px solid rgba(244,206,116,.78);border-radius:999px;background:radial-gradient(circle at 14% 50%,rgba(255,230,140,.36),transparent 22%),radial-gradient(circle at 86% 50%,rgba(255,230,140,.36),transparent 22%),linear-gradient(180deg,#d7341f,#8f150c);color:#fff1b8;font-size:22px;letter-spacing:4px;font-weight:900;box-shadow:0 12px 22px rgba(45,5,2,.30),0 0 22px rgba(255,205,70,.18)}
+.teacher-result-card{display:none;margin-top:16px;background:radial-gradient(circle at 50% 0%,rgba(255,255,255,.72),transparent 28%),linear-gradient(180deg,#fff8e8 0%,#fff0d0 68%,#f7d99a 100%);color:#693018;border-color:rgba(255,224,145,.92)}.teacher-result-card.show{display:block;animation:teacherResultIn .55s ease forwards}@keyframes teacherResultIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.teacher-loading{display:none;text-align:center;padding:20px 0}.teacher-loading.show{display:block}.teacher-loading span{display:inline-block;width:10px;height:10px;margin:0 4px;border-radius:50%;background:#b62912;animation:teacherDots 1s infinite ease-in-out}.teacher-loading span:nth-child(2){animation-delay:.16s}.teacher-loading span:nth-child(3){animation-delay:.32s}.teacher-loading p{margin-top:12px;color:#8d3b1c;font-weight:800}@keyframes teacherDots{0%,80%,100%{transform:scale(.6);opacity:.45}40%{transform:scale(1.15);opacity:1}}
+.teacher-result-badge{display:inline-block;padding:6px 12px;border-radius:999px;background:linear-gradient(180deg,#9e160d,#6f0a05);color:#fff4c8;font-size:13px;font-weight:900;margin-bottom:10px}.teacher-result-card h3{color:#a42310;font-size:23px;line-height:1.45;margin-bottom:12px}.teacher-result-card p{color:#683018;font-size:15px;line-height:1.92;margin-bottom:9px}.teacher-result-card strong{color:#8f1b0c}
+.bazi-pill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}.bazi-pill{text-align:center;border-radius:16px;padding:10px 4px;background:linear-gradient(180deg,#fff9e8,#ffe8b8);border:1px solid rgba(185,119,34,.34)}.bazi-pill small{display:block;color:#9a6840;font-size:11px;margin-bottom:5px}.bazi-pill strong{display:block;color:#8f180d;font-size:17px}.teacher-notice{margin-top:10px;padding-top:9px;border-top:1px dashed rgba(145,67,15,.25);color:#8d613a!important;font-size:13px!important}
+@media(max-width:380px){.teacher-title-wrap h1{font-size:26px}.bazi-pill-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+
+<style id="teacher-live-fortune-effect-style">
+/* ===== 八字命盤：老師現場算命特效 ===== */
+.teacher-bazi-bg {
+  isolation: isolate;
+}
+
+.teacher-live-effects {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.teacher-stage-light {
+  position: absolute;
+  left: 50%;
+  top: 70px;
+  width: 340px;
+  height: 340px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255,252,210,.72), rgba(255,210,90,.28) 34%, rgba(255,120,30,.08) 60%, transparent 78%);
+  filter: blur(2px);
+  mix-blend-mode: screen;
+  opacity: .72;
+  animation: teacherStagePulse 2.8s ease-in-out infinite;
+}
+
+@keyframes teacherStagePulse {
+  0%, 100% { transform: translateX(-50%) scale(.92); opacity: .48; }
+  50% { transform: translateX(-50%) scale(1.08); opacity: .92; }
+}
+
+.teacher-rotating-pan {
+  position: absolute;
+  left: 50%;
+  top: 92px;
+  width: 118px;
+  height: 118px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 239, 168, .92);
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  border: 2px solid rgba(255, 226, 150, .52);
+  background:
+    radial-gradient(circle, rgba(160,22,12,.88), rgba(88,8,4,.55)),
+    conic-gradient(from 0deg, rgba(255,220,120,.32), transparent 18%, rgba(255,220,120,.22), transparent 36%, rgba(255,220,120,.32));
+  box-shadow:
+    0 0 28px rgba(255,210,90,.38),
+    inset 0 0 18px rgba(255,230,160,.18);
+  opacity: .72;
+  animation: teacherPanRotate 8s linear infinite;
+}
+
+@keyframes teacherPanRotate {
+  from { transform: translateX(-50%) rotate(0deg); }
+  to { transform: translateX(-50%) rotate(360deg); }
+}
+
+.teacher-smoke {
+  position: absolute;
+  bottom: 38px;
+  width: 160px;
+  height: 240px;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 50% 70%, rgba(255, 235, 190, .26), transparent 64%);
+  filter: blur(10px);
+  opacity: .32;
+  animation: teacherSmokeRise 5.5s ease-in-out infinite;
+}
+
+.smoke-1 {
+  left: -20px;
+}
+
+.smoke-2 {
+  right: -18px;
+  animation-delay: 1.2s;
+}
+
+@keyframes teacherSmokeRise {
+  0% { transform: translateY(50px) scale(.85); opacity: 0; }
+  22% { opacity: .32; }
+  100% { transform: translateY(-190px) scale(1.35); opacity: 0; }
+}
+
+.teacher-talisman {
+  position: absolute;
+  width: 44px;
+  height: 78px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: #8d1208;
+  font-size: 22px;
+  font-weight: 900;
+  background: linear-gradient(180deg, #ffe6a6, #e39b3e);
+  border: 1.5px solid rgba(255,239,180,.72);
+  box-shadow: 0 10px 20px rgba(42,4,2,.22), 0 0 16px rgba(255,206,90,.22);
+  opacity: .62;
+  animation: teacherTalismanFloat 4.2s ease-in-out infinite;
+}
+
+.talisman-1 { left: 24px; top: 170px; transform: rotate(-8deg); }
+.talisman-2 { right: 24px; top: 185px; transform: rotate(8deg); animation-delay: .7s; }
+.talisman-3 { left: 38px; top: 390px; transform: rotate(7deg); animation-delay: 1.15s; }
+.talisman-4 { right: 40px; top: 420px; transform: rotate(-7deg); animation-delay: 1.65s; }
+
+@keyframes teacherTalismanFloat {
+  0%, 100% { margin-top: 0; opacity: .45; filter: brightness(1); }
+  50% { margin-top: -18px; opacity: .86; filter: brightness(1.16); }
+}
+
+/* 老師頭像升級：像現場開壇 */
+.teacher-avatar {
+  animation: teacherAvatarBreath 2.4s ease-in-out infinite;
+}
+
+@keyframes teacherAvatarBreath {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.025); }
+}
+
+.teacher-face::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 235, 160, .52);
+  box-shadow: 0 0 22px rgba(255, 215, 100, .55);
+  animation: teacherAuraRing 2s ease-in-out infinite;
+}
+
+@keyframes teacherAuraRing {
+  0% { opacity: 0; transform: scale(.88); }
+  45% { opacity: .85; }
+  100% { opacity: 0; transform: scale(1.22); }
+}
+
+/* 進入八字命盤頁的開壇彈幕 */
+.teacher-opening-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 215, 100, .28), transparent 32%),
+    rgba(35, 3, 1, .74);
+  backdrop-filter: blur(3px);
+}
+
+.teacher-opening-overlay.show {
+  display: flex;
+  animation: teacherOpeningFade .28s ease forwards;
+}
+
+.teacher-opening-card {
+  position: relative;
+  width: min(88vw, 340px);
+  border-radius: 28px;
+  padding: 30px 20px 26px;
+  text-align: center;
+  overflow: hidden;
+  color: #fff2c6;
+  border: 2px solid rgba(255, 224, 145, .84);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,220,.34), transparent 32%),
+    linear-gradient(180deg, #ad2010, #5f0803);
+  box-shadow:
+    0 22px 50px rgba(0,0,0,.44),
+    0 0 36px rgba(255, 205, 85, .36),
+    inset 0 0 22px rgba(255, 245, 185, .12);
+  transform: scale(.86) translateY(18px);
+  animation: teacherOpeningPop .52s cubic-bezier(.15,.8,.22,1) forwards;
+}
+
+.teacher-opening-card::before {
+  content: "";
+  position: absolute;
+  inset: -60px;
+  background:
+    conic-gradient(from 0deg, transparent, rgba(255, 230, 150, .28), transparent, rgba(255, 230, 150, .18), transparent);
+  animation: teacherOpeningSpin 3.8s linear infinite;
+}
+
+.teacher-opening-card h2,
+.teacher-opening-card p,
+.teacher-opening-orb {
+  position: relative;
+  z-index: 2;
+}
+
+.teacher-opening-card h2 {
+  font-size: 28px;
+  letter-spacing: 4px;
+  text-shadow: 0 3px 0 rgba(70, 8, 3, .62), 0 0 18px rgba(255, 214, 92, .6);
+  margin-bottom: 10px;
+}
+
+.teacher-opening-card p {
+  color: #ffe0a8;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.7;
+}
+
+.teacher-opening-orb {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 38%, #fff8d8, #ffd05c 36%, #bb240f 70%);
+  border: 2px solid rgba(255, 236, 168, .88);
+  box-shadow:
+    0 0 22px rgba(255, 224, 120, .9),
+    0 0 46px rgba(255, 169, 45, .55);
+  animation: teacherOrbPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes teacherOpeningFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes teacherOpeningPop {
+  0% { opacity: 0; transform: scale(.82) translateY(24px); }
+  62% { opacity: 1; transform: scale(1.04) translateY(-4px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes teacherOpeningSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes teacherOrbPulse {
+  0%,100% { transform: scale(.94); filter: brightness(1); }
+  50% { transform: scale(1.06); filter: brightness(1.2); }
+}
+
+/* 按下老師算命後，卡片和老師會像現場推算 */
+.teacher-bazi-page.calculating .teacher-avatar {
+  animation: teacherAvatarCalculating .72s ease-in-out infinite;
+}
+
+.teacher-bazi-page.calculating .teacher-rotating-pan {
+  animation: teacherPanRotate .95s linear infinite;
+  opacity: 1;
+}
+
+.teacher-bazi-page.calculating .teacher-talisman {
+  animation-duration: 1.05s;
+  opacity: .95;
+}
+
+.teacher-bazi-page.calculating .teacher-oracle-card {
+  animation: teacherCardGlow .8s ease-in-out infinite;
+}
+
+@keyframes teacherAvatarCalculating {
+  0%,100% { transform: translateY(0) rotate(0deg) scale(1.02); }
+  25% { transform: translateY(-3px) rotate(-2deg) scale(1.035); }
+  75% { transform: translateY(-3px) rotate(2deg) scale(1.035); }
+}
+
+@keyframes teacherCardGlow {
+  0%,100% { box-shadow: 0 18px 38px rgba(22,2,1,.38), 0 0 18px rgba(255,205,80,.08); }
+  50% { box-shadow: 0 18px 38px rgba(22,2,1,.38), 0 0 38px rgba(255,205,80,.38); }
+}
+
+/* 算命結果出現時更有儀式感 */
+.teacher-result-card.show {
+  animation: teacherResultIn .55s ease forwards, teacherResultShine 1.1s ease .15s forwards;
+}
+
+@keyframes teacherResultShine {
+  0% { filter: brightness(1); }
+  40% { filter: brightness(1.18); }
+  100% { filter: brightness(1); }
+}
+
+@media(max-width:380px) {
+  .teacher-rotating-pan {
+    width: 96px;
+    height: 96px;
+    top: 96px;
+    font-size: 18px;
+  }
+
+  .teacher-talisman {
+    width: 38px;
+    height: 68px;
+    font-size: 19px;
+  }
+}
+</style>
+
+
+<style id="teacher-ritual-real-scene-style">
+/* ===== 八字命盤：老師人物 + 開壇實物特效 ===== */
+
+/* 讓表單卡片往下，前面保留老師開壇舞台 */
+.teacher-oracle-card {
+  margin-top: 330px !important;
+}
+
+.teacher-ritual-stage {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 76px;
+  height: 340px;
+  z-index: 2;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.ritual-back-halo {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 310px;
+  height: 310px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255,255,220,.95), rgba(255,214,100,.42) 30%, rgba(255,126,30,.10) 62%, transparent 78%);
+  filter: blur(2px);
+  mix-blend-mode: screen;
+  animation: ritualHaloPulse 2.6s ease-in-out infinite;
+}
+
+@keyframes ritualHaloPulse {
+  0%,100% { opacity: .56; transform: translateX(-50%) scale(.94); }
+  50% { opacity: .96; transform: translateX(-50%) scale(1.08); }
+}
+
+/* 老師人物 */
+.ritual-teacher {
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  width: 168px;
+  height: 230px;
+  transform: translateX(-50%);
+  z-index: 8;
+  animation: ritualTeacherFloat 2.4s ease-in-out infinite;
+}
+
+@keyframes ritualTeacherFloat {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-5px); }
+}
+
+.teacher-hat {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 92px;
+  height: 46px;
+  transform: translateX(-50%);
+  border-radius: 46px 46px 18px 18px;
+  background:
+    radial-gradient(circle at 50% 12%, #ffe88a, transparent 20%),
+    linear-gradient(180deg, #d8a443, #7c220f);
+  border: 2px solid rgba(255, 225, 150, .9);
+  box-shadow: 0 0 16px rgba(255, 210, 90, .42);
+}
+
+.teacher-hat::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -13px;
+  width: 24px;
+  height: 24px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff, #45d38a 42%, #0b6b38 72%);
+  border: 2px solid #f6d27a;
+}
+
+.teacher-head {
+  position: absolute;
+  left: 50%;
+  top: 35px;
+  width: 96px;
+  height: 96px;
+  transform: translateX(-50%);
+  border-radius: 46% 46% 50% 50%;
+  background:
+    radial-gradient(circle at 50% 28%, rgba(255,255,255,.45), transparent 24%),
+    linear-gradient(180deg, #ffd3a0, #e09a62);
+  border: 3px solid rgba(145, 68, 22, .75);
+  box-shadow:
+    inset 0 8px 12px rgba(255,255,255,.26),
+    0 0 22px rgba(255, 210, 90, .35);
+  z-index: 3;
+}
+
+.teacher-eyes {
+  position: absolute;
+  left: 22px;
+  top: 38px;
+  width: 52px;
+  height: 10px;
+  border-radius: 999px;
+  border-top: 4px solid #6a250d;
+}
+
+.teacher-eyes::before,
+.teacher-eyes::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  width: 11px;
+  height: 6px;
+  border-radius: 50%;
+  background: #5e1d0c;
+}
+
+.teacher-eyes::before { left: 6px; }
+.teacher-eyes::after { right: 6px; }
+
+.teacher-beard {
+  position: absolute;
+  left: 50%;
+  top: 62px;
+  width: 58px;
+  height: 76px;
+  transform: translateX(-50%);
+  border-radius: 18px 18px 42px 42px;
+  background:
+    linear-gradient(90deg, transparent 0 8%, rgba(255,255,255,.88) 14% 20%, transparent 25% 32%, rgba(255,255,255,.92) 38% 62%, transparent 68% 75%, rgba(255,255,255,.86) 82% 88%, transparent 94%),
+    linear-gradient(180deg, #fff8df, #e8d8b4);
+  box-shadow: 0 8px 12px rgba(68, 20, 6, .22);
+}
+
+.teacher-body {
+  position: absolute;
+  left: 50%;
+  top: 112px;
+  width: 128px;
+  height: 116px;
+  transform: translateX(-50%);
+  border-radius: 38px 38px 20px 20px;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255,235,150,.35), transparent 24%),
+    linear-gradient(180deg, #d52e18, #7e0d07);
+  border: 3px solid rgba(255, 213, 112, .86);
+  box-shadow:
+    inset 0 10px 18px rgba(255,255,255,.14),
+    0 18px 24px rgba(35,4,2,.34);
+  z-index: 2;
+}
+
+.teacher-robe-symbol {
+  position: absolute;
+  left: 50%;
+  top: 26px;
+  transform: translateX(-50%);
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffeaa0, #ba6b16);
+  color: #7f0f08;
+  font-size: 28px;
+  font-weight: 900;
+  border: 2px solid rgba(255, 235, 158, .85);
+}
+
+.teacher-hand {
+  position: absolute;
+  top: 143px;
+  width: 36px;
+  height: 26px;
+  border-radius: 999px;
+  background: #efad79;
+  border: 2px solid rgba(120, 54, 18, .5);
+  z-index: 5;
+}
+
+.left-hand {
+  left: 6px;
+  transform: rotate(-18deg);
+}
+
+.right-hand {
+  right: 6px;
+  transform: rotate(18deg);
+}
+
+/* 開壇桌與實物 */
+.ritual-table {
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 340px;
+  height: 142px;
+  transform: translateX(-50%);
+  z-index: 12;
+}
+
+.ritual-table-top {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16px;
+  height: 80px;
+  border-radius: 22px 22px 28px 28px;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(255, 225, 140, .22), transparent 35%),
+    linear-gradient(180deg, #b32413, #741008 72%, #4b0703);
+  border: 2px solid rgba(255, 211, 110, .72);
+  box-shadow:
+    inset 0 8px 14px rgba(255,255,255,.10),
+    0 18px 26px rgba(29,2,1,.34);
+}
+
+.ritual-table-top::after {
+  content: "";
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 12px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 220, 130, .72), transparent);
+}
+
+.ritual-incense-burner {
+  position: absolute;
+  left: 50%;
+  top: 22px;
+  width: 94px;
+  height: 66px;
+  transform: translateX(-50%);
+  border-radius: 20px 20px 28px 28px;
+  background:
+    radial-gradient(circle at 50% 16%, rgba(255,255,255,.32), transparent 22%),
+    linear-gradient(180deg, #d8a64a, #6f2e0c);
+  border: 2px solid rgba(255, 224, 142, .84);
+  box-shadow: 0 8px 14px rgba(37,4,2,.28), inset 0 6px 10px rgba(255,255,255,.15);
+  z-index: 8;
+}
+
+.ritual-incense-burner::after {
+  content: "爐";
+  position: absolute;
+  left: 50%;
+  top: 21px;
+  transform: translateX(-50%);
+  color: #fff0b8;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.incense-stick {
+  position: absolute;
+  bottom: 54px;
+  width: 5px;
+  height: 76px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffdf80, #8b2a0e);
+  box-shadow: 0 0 8px rgba(255, 200, 95, .45);
+}
+
+.i1 { left: 35px; transform: rotate(-5deg); }
+.i2 { left: 45px; height: 88px; }
+.i3 { left: 55px; transform: rotate(5deg); }
+
+.incense-smoke {
+  position: absolute;
+  bottom: 116px;
+  width: 26px;
+  height: 82px;
+  border-radius: 50%;
+  border-left: 3px solid rgba(255, 240, 200, .5);
+  filter: blur(.5px);
+  opacity: 0;
+  animation: ritualSmokeCurl 3.2s ease-in-out infinite;
+}
+
+.s1 { left: 26px; animation-delay: 0s; }
+.s2 { left: 43px; animation-delay: .45s; }
+.s3 { left: 60px; animation-delay: .9s; }
+
+@keyframes ritualSmokeCurl {
+  0% { opacity: 0; transform: translateY(20px) scale(.8) rotate(0deg); }
+  22% { opacity: .7; }
+  100% { opacity: 0; transform: translateY(-70px) scale(1.2) rotate(18deg); }
+}
+
+.ritual-candle {
+  position: absolute;
+  bottom: 68px;
+  width: 28px;
+  height: 62px;
+  border-radius: 12px 12px 6px 6px;
+  background: linear-gradient(180deg, #e93a1e, #8b1108);
+  border: 2px solid rgba(255, 215, 120, .7);
+  box-shadow: 0 8px 14px rgba(38,4,2,.25);
+}
+
+.candle-left { left: 58px; }
+.candle-right { right: 58px; }
+
+.ritual-candle span {
+  position: absolute;
+  left: 50%;
+  top: -24px;
+  width: 18px;
+  height: 28px;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 50% 50%;
+  background: radial-gradient(circle at 50% 65%, #fff8d2, #ffcc48 42%, #ff6f1e 72%, transparent 82%);
+  filter: drop-shadow(0 0 10px rgba(255, 210, 80, .85));
+  animation: candleFlicker .7s ease-in-out infinite;
+}
+
+@keyframes candleFlicker {
+  0%,100% { transform: translateX(-50%) scale(1) rotate(-2deg); opacity: .9; }
+  50% { transform: translateX(-50%) scale(1.12) rotate(3deg); opacity: 1; }
+}
+
+.ritual-jiaobei {
+  position: absolute;
+  bottom: 20px;
+  width: 62px;
+  height: 28px;
+  border-radius: 50% 50% 18px 18px;
+  background: linear-gradient(180deg, #ffd36c, #b85b16);
+  color: #8b1208;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  font-weight: 900;
+  border: 1.5px solid rgba(255, 235, 170, .82);
+  box-shadow: 0 6px 12px rgba(48,5,2,.25);
+}
+
+.jb-left {
+  left: 74px;
+  transform: rotate(-10deg);
+}
+
+.jb-right {
+  right: 74px;
+  transform: rotate(10deg);
+}
+
+.ritual-scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 38px;
+  width: 112px;
+  height: 34px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: #7d1208;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  background: linear-gradient(180deg, #fff2c6, #d99538);
+  border: 1.5px solid rgba(255, 238, 170, .85);
+  box-shadow: 0 0 12px rgba(255, 215, 100, .28);
+}
+
+/* 點進頁面時，老師與實物一起開場 */
+.teacher-bazi-page.stage-opening .ritual-teacher {
+  animation: ritualTeacherEnter 1.15s cubic-bezier(.17,.82,.22,1) forwards, ritualTeacherFloat 2.4s ease-in-out 1.15s infinite;
+}
+
+.teacher-bazi-page.stage-opening .ritual-table {
+  animation: ritualTableEnter 1.05s cubic-bezier(.17,.82,.22,1) forwards;
+}
+
+.teacher-bazi-page.stage-opening .ritual-candle span {
+  animation: candleFlicker .7s ease-in-out infinite, candleIgnite .8s ease-out forwards;
+}
+
+@keyframes ritualTeacherEnter {
+  0% { opacity: 0; transform: translateX(-50%) translateY(40px) scale(.82); filter: blur(3px); }
+  70% { opacity: 1; transform: translateX(-50%) translateY(-6px) scale(1.04); filter: blur(0); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+@keyframes ritualTableEnter {
+  0% { opacity: 0; transform: translateX(-50%) translateY(44px) scale(.9); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+@keyframes candleIgnite {
+  0% { opacity: 0; filter: drop-shadow(0 0 0 rgba(255, 210, 80, 0)); }
+  100% { opacity: 1; filter: drop-shadow(0 0 10px rgba(255, 210, 80, .85)); }
+}
+
+/* 老師推算時，人物、香爐、筊杯一起動 */
+.teacher-bazi-page.calculating .ritual-teacher {
+  animation: teacherRitualCalculating .72s ease-in-out infinite !important;
+}
+
+.teacher-bazi-page.calculating .ritual-back-halo {
+  animation: ritualHaloFast .7s ease-in-out infinite;
+}
+
+.teacher-bazi-page.calculating .ritual-jiaobei {
+  animation: jiaobeiShake .55s ease-in-out infinite;
+}
+
+.teacher-bazi-page.calculating .ritual-incense-burner {
+  animation: burnerGlow .75s ease-in-out infinite;
+}
+
+@keyframes teacherRitualCalculating {
+  0%,100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+  25% { transform: translateX(-50%) translateY(-4px) rotate(-2deg); }
+  75% { transform: translateX(-50%) translateY(-4px) rotate(2deg); }
+}
+
+@keyframes ritualHaloFast {
+  0%,100% { opacity: .62; transform: translateX(-50%) scale(.94); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.13); }
+}
+
+@keyframes jiaobeiShake {
+  0%,100% { margin-bottom: 0; }
+  50% { margin-bottom: 9px; }
+}
+
+@keyframes burnerGlow {
+  0%,100% { filter: brightness(1); box-shadow: 0 8px 14px rgba(37,4,2,.28), inset 0 6px 10px rgba(255,255,255,.15); }
+  50% { filter: brightness(1.22); box-shadow: 0 8px 14px rgba(37,4,2,.28), 0 0 26px rgba(255, 210, 90, .5), inset 0 6px 10px rgba(255,255,255,.22); }
+}
+
+@media(max-width:380px) {
+  .teacher-oracle-card {
+    margin-top: 318px !important;
+  }
+
+  .teacher-ritual-stage {
+    top: 78px;
+    height: 322px;
+    transform: scale(.94);
+    transform-origin: top center;
+  }
+}
+</style>
+
+
+<style id="bazi-magical-background-motion-style">
+/* ===== 八字命盤頁：Q版老師開壇背景圖 + 人物動態特效 ===== */
+
+/* 使用新生成的 Q版老師開壇圖當作八字命盤背景 */
+.teacher-bazi-page {
+  min-height: 100vh !important;
+  background: #4d0703 !important;
+  overflow-x: hidden !important;
+}
+
+.teacher-bazi-bg {
+  position: relative !important;
+  min-height: 1180px !important;
+  padding: 18px 16px 90px !important;
+  overflow: hidden !important;
+  background:
+    linear-gradient(180deg, rgba(50, 5, 2, .04) 0%, rgba(50, 5, 2, .10) 48%, rgba(56, 4, 1, .72) 100%),
+    url("magical_fortune_teller_in_a_golden_temple.png") center top / 100% auto no-repeat !important;
+}
+
+/* 關閉前面用 CSS 畫的老師與桌子，改用背景圖裡的Q版老師 */
+.teacher-ritual-stage,
+.teacher-live-effects {
+  display: none !important;
+}
+
+/* 表單往下，避免擋住 Q版老師人物 */
+.teacher-oracle-card {
+  margin-top: 710px !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.04)),
+    rgba(88, 8, 4, .72) !important;
+  backdrop-filter: blur(2px);
+}
+
+/* 頁面上方標題區 */
+.teacher-header {
+  z-index: 20 !important;
+}
+
+/* ===== 人物動態：用透明特效層疊在背景人物位置 ===== */
+.bazi-motion-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* 老師人物周圍呼吸金光 */
+.bazi-teacher-aura {
+  position: absolute;
+  left: 50%;
+  top: 190px;
+  width: 310px;
+  height: 360px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 247, 190, .36), rgba(255, 204, 72, .18) 36%, rgba(255, 120, 28, .05) 62%, transparent 78%);
+  mix-blend-mode: screen;
+  filter: blur(3px);
+  animation: baziTeacherAuraPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes baziTeacherAuraPulse {
+  0%, 100% {
+    opacity: .45;
+    transform: translateX(-50%) scale(.94);
+  }
+  50% {
+    opacity: .95;
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
+/* 背後八卦盤旋轉光輪 */
+.bazi-rotating-wheel {
+  position: absolute;
+  left: 50%;
+  top: 78px;
+  width: 330px;
+  height: 330px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 226, 135, .30);
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(255, 225, 125, .26) 0deg 4deg,
+      transparent 4deg 12deg
+    );
+  box-shadow:
+    0 0 28px rgba(255, 210, 90, .30),
+    inset 0 0 34px rgba(255, 210, 90, .16);
+  mix-blend-mode: screen;
+  opacity: .46;
+  animation: baziWheelSpin 13s linear infinite;
+}
+
+@keyframes baziWheelSpin {
+  from { transform: translateX(-50%) rotate(0deg); }
+  to { transform: translateX(-50%) rotate(360deg); }
+}
+
+/* 右手法光：疊在人物伸手位置 */
+.bazi-hand-magic {
+  position: absolute;
+  left: 292px;
+  top: 330px;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255,255,230,.96), rgba(255,218,85,.62) 28%, rgba(255,144,34,.18) 58%, transparent 78%);
+  box-shadow:
+    0 0 18px rgba(255, 240, 160, .9),
+    0 0 42px rgba(255, 180, 55, .55);
+  mix-blend-mode: screen;
+  animation: baziHandMagicPulse 1.05s ease-in-out infinite;
+}
+
+@keyframes baziHandMagicPulse {
+  0%, 100% {
+    opacity: .62;
+    transform: scale(.82) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(18deg);
+  }
+}
+
+/* 香爐煙霧 */
+.bazi-incense-smoke {
+  position: absolute;
+  left: 50%;
+  top: 524px;
+  width: 80px;
+  height: 180px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: .0;
+}
+
+.bazi-incense-smoke::before,
+.bazi-incense-smoke::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 46px;
+  height: 150px;
+  border-radius: 50%;
+  border-left: 4px solid rgba(255, 238, 198, .45);
+  filter: blur(1px);
+  animation: baziSmokeCurl 3.2s ease-in-out infinite;
+}
+
+.bazi-incense-smoke::before {
+  left: 7px;
+}
+
+.bazi-incense-smoke::after {
+  left: 32px;
+  animation-delay: .7s;
+}
+
+@keyframes baziSmokeCurl {
+  0% {
+    opacity: 0;
+    transform: translateY(45px) rotate(0deg) scale(.72);
+  }
+  22% {
+    opacity: .9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120px) rotate(22deg) scale(1.18);
+  }
+}
+
+/* 飄動符紙 */
+.bazi-floating-talisman {
+  position: absolute;
+  width: 42px;
+  height: 70px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: #8c1208;
+  font-size: 19px;
+  font-weight: 900;
+  background: linear-gradient(180deg, #ffe79e, #dc9638);
+  border: 1.5px solid rgba(255, 238, 172, .85);
+  box-shadow: 0 10px 20px rgba(40, 4, 2, .20), 0 0 18px rgba(255, 203, 78, .25);
+  opacity: .78;
+  animation: baziTalismanFloat 4s ease-in-out infinite;
+}
+
+.talisman-a { left: 42px; top: 250px; transform: rotate(-9deg); }
+.talisman-b { right: 42px; top: 260px; transform: rotate(9deg); animation-delay: .8s; }
+.talisman-c { right: 78px; top: 410px; transform: rotate(-12deg); animation-delay: 1.35s; }
+
+@keyframes baziTalismanFloat {
+  0%, 100% {
+    margin-top: 0;
+    opacity: .58;
+    filter: brightness(1);
+  }
+  50% {
+    margin-top: -22px;
+    opacity: .96;
+    filter: brightness(1.18);
+  }
+}
+
+/* 星光粒子 */
+.bazi-star {
+  position: absolute;
+  width: var(--size, 7px);
+  height: var(--size, 7px);
+  border-radius: 50%;
+  background: radial-gradient(circle, #fffbe0, #ffd463 55%, transparent 78%);
+  box-shadow: 0 0 12px rgba(255, 220, 110, .9), 0 0 24px rgba(255, 170, 45, .45);
+  animation: baziStarFloat var(--dur, 2.6s) ease-in-out infinite;
+  opacity: .75;
+}
+
+@keyframes baziStarFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(.7);
+    opacity: .26;
+  }
+  50% {
+    transform: translate(var(--dx, 12px), var(--dy, -28px)) scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* 點擊請老師算命時，人物整體更生動 */
+.teacher-bazi-page.calculating .bazi-teacher-aura {
+  animation: baziTeacherAuraPulse .58s ease-in-out infinite;
+}
+
+.teacher-bazi-page.calculating .bazi-rotating-wheel {
+  animation: baziWheelSpin 1.2s linear infinite;
+  opacity: .78;
+}
+
+.teacher-bazi-page.calculating .bazi-hand-magic {
+  animation: baziHandMagicCasting .48s ease-in-out infinite;
+}
+
+.teacher-bazi-page.calculating .teacher-oracle-card {
+  animation: teacherCardGlow .8s ease-in-out infinite;
+}
+
+@keyframes baziHandMagicCasting {
+  0%, 100% {
+    opacity: .75;
+    transform: scale(.92) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.28) rotate(28deg);
+  }
+}
+
+@media(max-width: 380px) {
+  .teacher-bazi-bg {
+    min-height: 1130px !important;
+  }
+
+  .teacher-oracle-card {
+    margin-top: 660px !important;
+  }
+
+  .bazi-teacher-aura {
+    top: 175px;
+    width: 286px;
+    height: 340px;
+  }
+
+  .bazi-rotating-wheel {
+    top: 74px;
+    width: 300px;
+    height: 300px;
+  }
+
+  .bazi-hand-magic {
+    left: 266px;
+    top: 308px;
+    width: 82px;
+    height: 82px;
+  }
+
+  .bazi-floating-talisman {
+    width: 36px;
+    height: 62px;
+    font-size: 17px;
+  }
+}
+</style>
+
+
+<style id="bazi-heaven-book-luxury-style">
+/* ===== 八字命盤：天書翻開 + 豪華特效 ===== */
+.bazi-luxury-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bazi-god-rays {
+  position: absolute;
+  left: 50%;
+  top: -60px;
+  width: 430px;
+  height: 760px;
+  transform: translateX(-50%);
+  background:
+    conic-gradient(
+      from 180deg at 50% 0%,
+      transparent 0deg,
+      rgba(255, 235, 150, .18) 12deg,
+      transparent 26deg,
+      rgba(255, 210, 95, .12) 44deg,
+      transparent 64deg,
+      rgba(255, 240, 185, .16) 80deg,
+      transparent 108deg,
+      rgba(255, 206, 70, .12) 132deg,
+      transparent 160deg,
+      rgba(255, 235, 150, .18) 180deg,
+      transparent 210deg,
+      rgba(255, 210, 95, .12) 242deg,
+      transparent 280deg,
+      rgba(255, 240, 185, .16) 318deg,
+      transparent 360deg
+    );
+  opacity: .42;
+  mix-blend-mode: screen;
+  animation: baziGodRaysSpin 12s linear infinite;
+}
+
+@keyframes baziGodRaysSpin {
+  from { transform: translateX(-50%) rotate(0deg); }
+  to { transform: translateX(-50%) rotate(360deg); }
+}
+
+.bazi-light-ring {
+  position: absolute;
+  left: 50%;
+  top: 292px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(255, 230, 150, .34);
+  box-shadow:
+    0 0 24px rgba(255, 208, 80, .30),
+    inset 0 0 22px rgba(255, 230, 150, .16);
+  opacity: .42;
+  mix-blend-mode: screen;
+}
+
+.ring-1 {
+  animation: baziRingPulse 2.6s ease-in-out infinite, baziRingRotate 9s linear infinite;
+}
+
+.ring-2 {
+  width: 318px;
+  height: 318px;
+  opacity: .28;
+  animation: baziRingPulse 3.2s ease-in-out infinite reverse, baziRingRotate 13s linear infinite reverse;
+}
+
+@keyframes baziRingPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(.88); opacity: .22; }
+  50% { transform: translate(-50%, -50%) scale(1.08); opacity: .72; }
+}
+
+@keyframes baziRingRotate {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+/* 金粉雨 */
+.bazi-golden-rain {
+  position: absolute;
+  inset: 0;
+  opacity: .8;
+}
+
+.bazi-golden-rain::before,
+.bazi-golden-rain::after {
+  content: "";
+  position: absolute;
+  inset: -120px 0 0 0;
+  background-image:
+    radial-gradient(circle, rgba(255, 243, 177, .95) 0 2px, transparent 3px),
+    radial-gradient(circle, rgba(255, 190, 55, .80) 0 1.5px, transparent 3px),
+    radial-gradient(circle, rgba(255, 255, 220, .70) 0 1px, transparent 2px);
+  background-size: 72px 92px, 94px 116px, 58px 74px;
+  background-position: 0 0, 30px 20px, 18px 40px;
+  animation: baziGoldenRain 8.5s linear infinite;
+  mix-blend-mode: screen;
+}
+
+.bazi-golden-rain::after {
+  opacity: .55;
+  filter: blur(.5px);
+  animation-duration: 11s;
+  animation-delay: -3s;
+}
+
+@keyframes baziGoldenRain {
+  from { transform: translateY(-120px); }
+  to { transform: translateY(520px); }
+}
+
+
+/* 立體書本翻開 */
+.heaven-book {
+  position: absolute;
+  left: 50%;
+  top: 470px;
+  width: 228px;
+  height: 146px;
+  transform: translateX(-50%) translateY(22px) scale(.72);
+  opacity: 0;
+  perspective: 1600px;
+  transform-style: preserve-3d;
+  z-index: 18;
+  filter: drop-shadow(0 18px 26px rgba(50, 8, 0, .28));
+}
+
+.book-glow {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: 310px;
+  height: 210px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,248,214,.98), rgba(255,212,97,.40) 36%, rgba(255,132,28,.10) 68%, transparent 82%);
+  filter: blur(4px);
+  mix-blend-mode: screen;
+  opacity: .9;
+}
+
+.book-spine {
+  position: absolute;
+  left: 50%;
+  top: 14px;
+  width: 18px;
+  height: 116px;
+  transform: translateX(-50%) translateZ(10px);
+  border-radius: 12px;
+  background:
+    linear-gradient(90deg, #8d4a17 0%, #ffefba 18%, #c67827 34%, #fff0b7 50%, #b45f1d 68%, #784012 100%);
+  box-shadow:
+    0 0 18px rgba(255, 218, 118, .70),
+    inset 0 0 8px rgba(255,255,255,.25);
+  z-index: 5;
+}
+
+.book-page {
+  position: absolute;
+  top: 12px;
+  width: 104px;
+  height: 118px;
+  overflow: visible;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.book-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px 14px 14px 18px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,0) 18%),
+    linear-gradient(135deg, #fff8ea 0%, #f6dfaf 58%, #e5b968 100%);
+  border: 2px solid rgba(255, 232, 170, .92);
+  box-shadow:
+    inset 0 0 16px rgba(129, 59, 11, .10),
+    inset 0 -14px 18px rgba(187, 104, 28, .12),
+    0 12px 24px rgba(56, 6, 2, .22),
+    0 0 18px rgba(255, 210, 100, .22);
+}
+
+.book-page::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 14px 10px 10px 14px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.58), rgba(255,255,255,0) 15%),
+    repeating-linear-gradient(
+      180deg,
+      rgba(164, 118, 55, .00) 0px,
+      rgba(164, 118, 55, .00) 10px,
+      rgba(164, 118, 55, .12) 10px,
+      rgba(164, 118, 55, .12) 11px
+    ),
+    linear-gradient(180deg, #fffdf3 0%, #f8e8bd 100%);
+  border: 1px solid rgba(174, 100, 29, .18);
+  box-shadow: inset 0 0 10px rgba(125, 66, 24, .08);
+}
+
+.book-page .page-edge,
+.book-page .page-edge::before,
+.book-page .page-edge::after {
+  position: absolute;
+  content: "";
+  display: block;
+  border-radius: 10px;
+}
+
+.book-page .page-edge {
+  top: 10px;
+  bottom: 10px;
+  width: 9px;
+  background: linear-gradient(180deg, #ffefbf, #da9f46 55%, #b56c1d);
+  box-shadow: 0 0 10px rgba(255, 212, 109, .38);
+}
+
+.book-page .page-edge::before {
+  inset: 3px 1px;
+  background: linear-gradient(180deg, #fffdf3, #eec46b);
+  opacity: .9;
+}
+
+.book-page .page-edge::after {
+  inset: 0;
+  background: repeating-linear-gradient(180deg, rgba(255,255,255,.22) 0 2px, rgba(0,0,0,.04) 2px 4px);
+  mix-blend-mode: overlay;
+  opacity: .45;
+}
+
+.book-page .page-highlight {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 20px;
+  height: 34px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,.45), transparent 72%);
+  filter: blur(3px);
+  opacity: .7;
+}
+
+.left-page {
+  left: 10px;
+  transform-origin: right center;
+  transform: rotateY(88deg) rotateZ(-8deg) translateX(6px);
+}
+
+.left-page .page-edge {
+  right: -4px;
+}
+
+.right-page {
+  right: 10px;
+  transform-origin: left center;
+  transform: rotateY(-88deg) rotateZ(8deg) translateX(-6px);
+}
+
+.right-page::before,
+.right-page::after {
+  border-radius: 14px 18px 18px 14px;
+}
+
+.right-page .page-edge {
+  left: -4px;
+}
+
+.book-spark {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff, #ffd966 55%, transparent 76%);
+  box-shadow: 0 0 14px rgba(255, 224, 120, .9), 0 0 28px rgba(255, 150, 35, .55);
+  opacity: 0;
+}
+
+.s-a { left: 18px; top: 16px; }
+.s-b { right: 18px; top: 18px; }
+.s-c { left: 50%; bottom: 6px; }
+
+/* 進入八字頁時書本自動翻開 */
+.teacher-bazi-page.stage-opening .heaven-book,
+.teacher-bazi-page.book-opening .heaven-book {
+  animation: heavenBookAppear 1.9s cubic-bezier(.15,.85,.22,1) forwards;
+}
+
+.teacher-bazi-page.stage-opening .left-page,
+.teacher-bazi-page.book-opening .left-page {
+  animation: leftBookOpen3D 1.6s cubic-bezier(.18,.88,.22,1) .22s forwards;
+}
+
+.teacher-bazi-page.stage-opening .right-page,
+.teacher-bazi-page.book-opening .right-page {
+  animation: rightBookOpen3D 1.6s cubic-bezier(.18,.88,.22,1) .22s forwards;
+}
+
+.teacher-bazi-page.stage-opening .book-spark,
+.teacher-bazi-page.book-opening .book-spark {
+  animation: bookSparkPop 1.4s ease forwards;
+}
+
+.teacher-bazi-page.stage-opening .s-b,
+.teacher-bazi-page.book-opening .s-b { animation-delay: .25s; }
+
+.teacher-bazi-page.stage-opening .s-c,
+.teacher-bazi-page.book-opening .s-c { animation-delay: .46s; }
+
+@keyframes heavenBookAppear {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(56px) scale(.42) rotateX(28deg) rotateZ(-4deg);
+    filter: blur(4px);
+  }
+  42% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px) scale(1.10) rotateX(4deg) rotateZ(0deg);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1) rotateX(0deg);
+  }
+}
+
+@keyframes leftBookOpen3D {
+  0% { transform: rotateY(88deg) rotateZ(-8deg) translateX(6px); }
+  58% { transform: rotateY(4deg) rotateZ(-5deg) translateX(0); }
+  100% { transform: rotateY(18deg) rotateZ(-6deg) translateX(0); }
+}
+
+@keyframes rightBookOpen3D {
+  0% { transform: rotateY(-88deg) rotateZ(8deg) translateX(-6px); }
+  58% { transform: rotateY(-4deg) rotateZ(5deg) translateX(0); }
+  100% { transform: rotateY(-18deg) rotateZ(6deg) translateX(0); }
+}
+
+@keyframes bookSparkPop {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(.4);
+  }
+  24% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translateY(-64px) scale(1.35);
+  }
+}
+
+/* 老師推算時書本更亮、光效更強 */
+.teacher-bazi-page.calculating .heaven-book {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+  animation: heavenBookCasting .72s ease-in-out infinite !important;
+}
+
+.teacher-bazi-page.calculating .left-page {
+  transform: rotateY(16deg) rotateZ(-5deg) !important;
+}
+
+.teacher-bazi-page.calculating .right-page {
+  transform: rotateY(-16deg) rotateZ(5deg) !important;
+}
+
+.teacher-bazi-page.calculating .book-glow {
+  animation: bookGlowCasting .55s ease-in-out infinite;
+}
+
+.teacher-bazi-page.calculating .bazi-golden-rain::before {
+  animation-duration: 3.5s;
+}
+
+.teacher-bazi-page.calculating .bazi-golden-rain::after {
+  animation-duration: 4.5s;
+}
+
+.teacher-bazi-page.calculating .bazi-god-rays {
+  opacity: .78;
+  animation-duration: 3.2s;
+}
+
+@keyframes heavenBookCasting {
+  0%,100% { filter: brightness(1); transform: translateX(-50%) translateY(0) scale(1); }
+  50% { filter: brightness(1.24); transform: translateX(-50%) translateY(-5px) scale(1.04); }
+}
+
+@keyframes bookGlowCasting {
+  0%,100% { opacity: .62; transform: translate(-50%, -50%) scale(.92); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+}
+
+@media(max-width: 380px) {
+  .heaven-book {
+    top: 442px;
+    width: 204px;
+    height: 132px;
+  }
+
+  .book-page {
+    width: 94px;
+    height: 108px;
+  }
+
+  .bazi-light-ring {
+    top: 268px;
+  }
+}
+
+
+</style>
+
+
+<style id="book-open-toward-teacher-final">
+/* ===== 最終修正：書本翻開方向朝向背景人物 ===== */
+
+/* 書本放在老師前方桌面位置，視角改成朝老師方向翻開 */
+.heaven-book {
+  left: 50% !important;
+  top: 560px !important;
+  width: 250px !important;
+  height: 150px !important;
+  perspective: 1800px !important;
+  transform-style: preserve-3d !important;
+  transform-origin: 50% 88% !important;
+}
+
+/* 書本整體像放在桌面上，往背景人物方向傾斜 */
+.teacher-bazi-page.stage-opening .heaven-book,
+.teacher-bazi-page.book-opening .heaven-book {
+  animation: bookTowardTeacherAppear 1.9s cubic-bezier(.15,.85,.22,1) forwards !important;
+}
+
+@keyframes bookTowardTeacherAppear {
+  0% {
+    opacity: 0;
+    transform:
+      translateX(-50%)
+      translateY(48px)
+      rotateX(72deg)
+      rotateZ(-2deg)
+      scale(.48);
+    filter: blur(4px) brightness(.9);
+  }
+  42% {
+    opacity: 1;
+    transform:
+      translateX(-50%)
+      translateY(-8px)
+      rotateX(54deg)
+      rotateZ(0deg)
+      scale(1.08);
+    filter: blur(0) brightness(1.15);
+  }
+  100% {
+    opacity: 1;
+    transform:
+      translateX(-50%)
+      translateY(0)
+      rotateX(58deg)
+      rotateZ(0deg)
+      scale(1);
+    filter: brightness(1);
+  }
+}
+
+/* 書頁改成桌面書本角度 */
+.book-page {
+  top: 15px !important;
+  width: 114px !important;
+  height: 124px !important;
+  transform-style: preserve-3d !important;
+  backface-visibility: hidden !important;
+}
+
+/* 書脊在桌面中央，厚一點更像立體書 */
+.book-spine {
+  top: 15px !important;
+  height: 124px !important;
+  width: 20px !important;
+  transform: translateX(-50%) translateZ(18px) !important;
+  box-shadow:
+    0 0 16px rgba(255, 220, 120, .72),
+    0 10px 16px rgba(66, 14, 2, .28),
+    inset 0 0 8px rgba(255,255,255,.28) !important;
+}
+
+/* 初始合起來：書頁像向內關起 */
+.left-page {
+  left: 12px !important;
+  transform-origin: right center !important;
+  transform:
+    rotateY(92deg)
+    rotateX(-8deg)
+    rotateZ(-4deg)
+    translateX(8px)
+    translateZ(8px) !important;
+}
+
+.right-page {
+  right: 12px !important;
+  transform-origin: left center !important;
+  transform:
+    rotateY(-92deg)
+    rotateX(-8deg)
+    rotateZ(4deg)
+    translateX(-8px)
+    translateZ(8px) !important;
+}
+
+/* 打開後：左右頁往外展開，但整本書面朝老師方向 */
+.teacher-bazi-page.stage-opening .left-page,
+.teacher-bazi-page.book-opening .left-page {
+  animation: leftPageOpenTowardTeacher 1.65s cubic-bezier(.18,.88,.22,1) .25s forwards !important;
+}
+
+.teacher-bazi-page.stage-opening .right-page,
+.teacher-bazi-page.book-opening .right-page {
+  animation: rightPageOpenTowardTeacher 1.65s cubic-bezier(.18,.88,.22,1) .25s forwards !important;
+}
+
+@keyframes leftPageOpenTowardTeacher {
+  0% {
+    transform:
+      rotateY(92deg)
+      rotateX(-10deg)
+      rotateZ(-6deg)
+      translateX(8px)
+      translateZ(10px);
+  }
+  58% {
+    transform:
+      rotateY(-8deg)
+      rotateX(-16deg)
+      rotateZ(-7deg)
+      translateX(0)
+      translateZ(22px);
+  }
+  100% {
+    transform:
+      rotateY(20deg)
+      rotateX(-18deg)
+      rotateZ(-8deg)
+      translateX(0)
+      translateZ(18px);
+  }
+}
+
+@keyframes rightPageOpenTowardTeacher {
+  0% {
+    transform:
+      rotateY(-92deg)
+      rotateX(-10deg)
+      rotateZ(6deg)
+      translateX(-8px)
+      translateZ(10px);
+  }
+  58% {
+    transform:
+      rotateY(8deg)
+      rotateX(-16deg)
+      rotateZ(7deg)
+      translateX(0)
+      translateZ(22px);
+  }
+  100% {
+    transform:
+      rotateY(-20deg)
+      rotateX(-18deg)
+      rotateZ(8deg)
+      translateX(0)
+      translateZ(18px);
+  }
+}
+
+/* 加一道朝老師方向飛出的光，強化「對著人物翻開」 */
+.heaven-book::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -92px;
+  width: 190px;
+  height: 170px;
+  transform: translateX(-50%) rotateX(-58deg);
+  transform-origin: bottom center;
+  background:
+    radial-gradient(ellipse at 50% 100%,
+      rgba(255,255,224,.86) 0%,
+      rgba(255,216,88,.38) 34%,
+      rgba(255,156,42,.12) 62%,
+      transparent 78%);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  opacity: 0;
+  mix-blend-mode: screen;
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.teacher-bazi-page.stage-opening .heaven-book::after,
+.teacher-bazi-page.book-opening .heaven-book::after,
+.teacher-bazi-page.calculating .heaven-book::after {
+  animation: bookLightTowardTeacher 1.55s ease-out forwards;
+}
+
+@keyframes bookLightTowardTeacher {
+  0% { opacity: 0; transform: translateX(-50%) rotateX(-58deg) scaleY(.2); }
+  28% { opacity: .92; transform: translateX(-50%) rotateX(-58deg) scaleY(1); }
+  100% { opacity: .16; transform: translateX(-50%) rotateX(-58deg) scaleY(1.15); }
+}
+
+/* 推算中：書本維持朝人物翻開，輕微浮動與發光 */
+.teacher-bazi-page.calculating .heaven-book {
+  opacity: 1 !important;
+  animation: bookTowardTeacherCasting .78s ease-in-out infinite !important;
+}
+
+.teacher-bazi-page.calculating .left-page {
+  transform:
+    rotateY(20deg)
+    rotateX(-18deg)
+    rotateZ(-8deg)
+    translateX(0)
+    translateZ(18px) !important;
+}
+
+.teacher-bazi-page.calculating .right-page {
+  transform:
+    rotateY(-20deg)
+    rotateX(-18deg)
+    rotateZ(8deg)
+    translateX(0)
+    translateZ(18px) !important;
+}
+
+@keyframes bookTowardTeacherCasting {
+  0%, 100% {
+    transform:
+      translateX(-50%)
+      translateY(0)
+      rotateX(58deg)
+      rotateZ(0deg)
+      scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform:
+      translateX(-50%)
+      translateY(-5px)
+      rotateX(56deg)
+      rotateZ(0deg)
+      scale(1.04);
+    filter: brightness(1.25);
+  }
+}
+
+/* 書頁線條更像厚紙，打開時更立體 */
+.book-page::after {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.36), transparent 20%, rgba(137,67,18,.08) 92%, rgba(100,45,8,.16)),
+    repeating-linear-gradient(
+      180deg,
+      rgba(164, 118, 55, .00) 0px,
+      rgba(164, 118, 55, .00) 10px,
+      rgba(164, 118, 55, .14) 10px,
+      rgba(164, 118, 55, .14) 11px
+    ),
+    linear-gradient(180deg, #fffdf3 0%, #f8e8bd 100%) !important;
+}
+
+/* 手機版位置微調 */
+@media(max-width: 380px) {
+  .heaven-book {
+    top: 520px !important;
+    width: 220px !important;
+    height: 136px !important;
+  }
+
+  .book-page {
+    width: 100px !important;
+    height: 112px !important;
+  }
+
+  .heaven-book::after {
+    top: -82px;
+    width: 170px;
+    height: 150px;
+  }
+}
+</style>
+
+
+
+
+
+<style id="book-front-closed-then-open-override">
+/* ===== 最終修正：書本先闔上出現，再緩慢打開 ===== */
+
+/* 書本在老師面前 */
+.heaven-book {
+  left: 50% !important;
+  top: 440px !important;
+  width: 238px !important;
+  height: 148px !important;
+  z-index: 22 !important;
+  perspective: 2000px !important;
+  transform-style: preserve-3d !important;
+  transform-origin: 50% 80% !important;
+  filter: drop-shadow(0 18px 28px rgba(48, 8, 2, .34)) !important;
+}
+
+.book-glow {
+  width: 280px !important;
+  height: 180px !important;
+  top: 50% !important;
+}
+
+.book-spine {
+  top: 13px !important;
+  height: 120px !important;
+  width: 18px !important;
+}
+
+.book-page {
+  top: 13px !important;
+  width: 108px !important;
+  height: 122px !important;
+}
+
+.left-page { left: 10px !important; }
+.right-page { right: 10px !important; }
+
+/* 書本先以「闔上」狀態出現 */
+.teacher-bazi-page.stage-opening .heaven-book,
+.teacher-bazi-page.book-opening .heaven-book {
+  animation: closedBookAppear 1.45s cubic-bezier(.18,.78,.22,1) forwards !important;
+}
+
+@keyframes closedBookAppear {
+  0% {
+    opacity: 0;
+    transform:
+      translateX(-50%)
+      translateY(72px)
+      rotateX(68deg)
+      rotateZ(0deg)
+      scale(.52);
+    filter: blur(4px) brightness(.85);
+  }
+  42% {
+    opacity: .84;
+    transform:
+      translateX(-50%)
+      translateY(26px)
+      rotateX(62deg)
+      rotateZ(0deg)
+      scale(.82);
+    filter: blur(1px) brightness(1);
+  }
+  75% {
+    opacity: 1;
+    transform:
+      translateX(-50%)
+      translateY(0)
+      rotateX(57deg)
+      rotateZ(0deg)
+      scale(1.03);
+    filter: blur(0) brightness(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform:
+      translateX(-50%)
+      translateY(0)
+      rotateX(56deg)
+      rotateZ(0deg)
+      scale(1);
+    filter: blur(0) brightness(1);
+  }
+}
+
+/* 闔上狀態：兩頁幾乎貼近書脊 */
+.teacher-bazi-page.stage-opening .left-page,
+.teacher-bazi-page.book-opening .left-page {
+  animation: closedThenSlowLeftOpen 3.2s cubic-bezier(.18,.82,.22,1) .95s forwards !important;
+}
+
+.teacher-bazi-page.stage-opening .right-page,
+.teacher-bazi-page.book-opening .right-page {
+  animation: closedThenSlowRightOpen 3.2s cubic-bezier(.18,.82,.22,1) .95s forwards !important;
+}
+
+@keyframes closedThenSlowLeftOpen {
+  0% {
+    transform:
+      rotateY(92deg)
+      rotateX(-10deg)
+      rotateZ(-4deg)
+      translateX(8px)
+      translateZ(10px);
+  }
+  20% {
+    transform:
+      rotateY(92deg)
+      rotateX(-10deg)
+      rotateZ(-4deg)
+      translateX(8px)
+      translateZ(10px);
+  }
+  46% {
+    transform:
+      rotateY(72deg)
+      rotateX(-12deg)
+      rotateZ(-5deg)
+      translateX(6px)
+      translateZ(12px);
+  }
+  74% {
+    transform:
+      rotateY(40deg)
+      rotateX(-15deg)
+      rotateZ(-7deg)
+      translateX(2px)
+      translateZ(17px);
+  }
+  100% {
+    transform:
+      rotateY(16deg)
+      rotateX(-18deg)
+      rotateZ(-8deg)
+      translateX(0)
+      translateZ(18px);
+  }
+}
+
+@keyframes closedThenSlowRightOpen {
+  0% {
+    transform:
+      rotateY(-92deg)
+      rotateX(-10deg)
+      rotateZ(4deg)
+      translateX(-8px)
+      translateZ(10px);
+  }
+  20% {
+    transform:
+      rotateY(-92deg)
+      rotateX(-10deg)
+      rotateZ(4deg)
+      translateX(-8px)
+      translateZ(10px);
+  }
+  46% {
+    transform:
+      rotateY(-72deg)
+      rotateX(-12deg)
+      rotateZ(5deg)
+      translateX(-6px)
+      translateZ(12px);
+  }
+  74% {
+    transform:
+      rotateY(-40deg)
+      rotateX(-15deg)
+      rotateZ(7deg)
+      translateX(-2px)
+      translateZ(17px);
+  }
+  100% {
+    transform:
+      rotateY(-16deg)
+      rotateX(-18deg)
+      rotateZ(8deg)
+      translateX(0)
+      translateZ(18px);
+  }
+}
+
+/* 金光也延後一點，等書開始打開才更明顯 */
+.teacher-bazi-page.stage-opening .heaven-book::after,
+.teacher-bazi-page.book-opening .heaven-book::after,
+.teacher-bazi-page.calculating .heaven-book::after {
+  animation: closedBookLightThenOpen 3.1s ease-out forwards !important;
+}
+
+@keyframes closedBookLightThenOpen {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) rotateX(-58deg) scaleY(.10);
+  }
+  28% {
+    opacity: 0;
+    transform: translateX(-50%) rotateX(-58deg) scaleY(.10);
+  }
+  52% {
+    opacity: .56;
+    transform: translateX(-50%) rotateX(-58deg) scaleY(.55);
+  }
+  100% {
+    opacity: .18;
+    transform: translateX(-50%) rotateX(-58deg) scaleY(1.05);
+  }
+}
+
+/* 推算時保持已打開狀態，輕微浮動 */
+.teacher-bazi-page.calculating .heaven-book {
+  animation: bookFrontFloatOpened 1.8s ease-in-out infinite !important;
+}
+
+.teacher-bazi-page.calculating .left-page {
+  transform:
+    rotateY(16deg)
+    rotateX(-18deg)
+    rotateZ(-8deg)
+    translateX(0)
+    translateZ(18px) !important;
+}
+
+.teacher-bazi-page.calculating .right-page {
+  transform:
+    rotateY(-16deg)
+    rotateX(-18deg)
+    rotateZ(8deg)
+    translateX(0)
+    translateZ(18px) !important;
+}
+
+@keyframes bookFrontFloatOpened {
+  0%, 100% {
+    transform:
+      translateX(-50%)
+      translateY(0)
+      rotateX(56deg)
+      rotateZ(0deg)
+      scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform:
+      translateX(-50%)
+      translateY(-4px)
+      rotateX(55deg)
+      rotateZ(0deg)
+      scale(1.02);
+    filter: brightness(1.16);
+  }
+}
+
+@media (max-width: 380px) {
+  .heaven-book {
+    top: 418px !important;
+    width: 214px !important;
+    height: 136px !important;
+  }
+
+  .book-page {
+    width: 97px !important;
+    height: 112px !important;
+  }
+
+  .book-glow {
+    width: 250px !important;
+    height: 164px !important;
+  }
+}
+</style>
+
+
+<style id="book-closed-look-then-open-v2">
+/* ===== 書本再修正：先以完全未翻開的闔上狀態出現，再緩慢翻開 ===== */
+
+.heaven-book {
+  left: 50% !important;
+  top: 440px !important;
+  width: 244px !important;
+  height: 154px !important;
+  z-index: 24 !important;
+  perspective: 2200px !important;
+  transform-style: preserve-3d !important;
+  transform-origin: 50% 82% !important;
+}
+
+.book-spine {
+  top: 13px !important;
+  width: 22px !important;
+  height: 126px !important;
+  transform: translateX(-50%) translateZ(18px) !important;
+}
+
+.book-page {
+  top: 13px !important;
+  width: 110px !important;
+  height: 126px !important;
+}
+
+.left-page { left: 11px !important; }
+.right-page { right: 11px !important; }
+
+/* 讓書頁正面在闔上時更像封面 */
+.book-page::before {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,0) 18%),
+    linear-gradient(135deg, #fff6dc 0%, #efcf88 52%, #cb7e24 100%) !important;
+  border: 2px solid rgba(255, 231, 166, .92) !important;
+  box-shadow:
+    inset 0 0 16px rgba(129, 59, 11, .10),
+    inset 0 -14px 18px rgba(187, 104, 28, .14),
+    0 12px 24px rgba(56, 6, 2, .24),
+    0 0 18px rgba(255, 210, 100, .22) !important;
+}
+
+.book-page::after {
+  inset: 10px !important;
+  border-radius: 12px !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,0) 18%),
+    linear-gradient(180deg, #fff7df 0%, #f0d69b 100%) !important;
+  border: 1px solid rgba(174, 100, 29, .14) !important;
+  opacity: .95 !important;
+}
+
+/* 初始出場：整本書先闔上出現 */
+.teacher-bazi-page.stage-opening .heaven-book,
+.teacher-bazi-page.book-opening .heaven-book {
+  animation: bookClosedAppearV2 1.6s cubic-bezier(.18,.78,.22,1) forwards !important;
+}
+
+@keyframes bookClosedAppearV2 {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(78px) rotateX(68deg) scale(.48);
+    filter: blur(4px) brightness(.84);
+  }
+  45% {
+    opacity: .88;
+    transform: translateX(-50%) translateY(28px) rotateX(61deg) scale(.82);
+    filter: blur(1px) brightness(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) rotateX(56deg) scale(1);
+    filter: blur(0) brightness(1);
+  }
+}
+
+/* 先維持完全闔上，再慢慢翻開 */
+.teacher-bazi-page.stage-opening .left-page,
+.teacher-bazi-page.book-opening .left-page {
+  animation: leftClosedThenOpenV2 3.6s cubic-bezier(.18,.82,.22,1) .10s forwards !important;
+}
+
+.teacher-bazi-page.stage-opening .right-page,
+.teacher-bazi-page.book-opening .right-page {
+  animation: rightClosedThenOpenV2 3.6s cubic-bezier(.18,.82,.22,1) .10s forwards !important;
+}
+
+@keyframes leftClosedThenOpenV2 {
+  0% {
+    transform: rotateY(0deg) rotateX(-11deg) rotateZ(-2deg) translateX(0) translateZ(24px);
+  }
+  28% {
+    transform: rotateY(0deg) rotateX(-11deg) rotateZ(-2deg) translateX(0) translateZ(24px);
+  }
+  52% {
+    transform: rotateY(18deg) rotateX(-12deg) rotateZ(-4deg) translateX(0) translateZ(24px);
+  }
+  76% {
+    transform: rotateY(44deg) rotateX(-14deg) rotateZ(-6deg) translateX(0) translateZ(22px);
+  }
+  100% {
+    transform: rotateY(70deg) rotateX(-18deg) rotateZ(-8deg) translateX(-1px) translateZ(18px);
+  }
+}
+
+@keyframes rightClosedThenOpenV2 {
+  0% {
+    transform: rotateY(0deg) rotateX(-11deg) rotateZ(2deg) translateX(0) translateZ(24px);
+  }
+  28% {
+    transform: rotateY(0deg) rotateX(-11deg) rotateZ(2deg) translateX(0) translateZ(24px);
+  }
+  52% {
+    transform: rotateY(-18deg) rotateX(-12deg) rotateZ(4deg) translateX(0) translateZ(24px);
+  }
+  76% {
+    transform: rotateY(-44deg) rotateX(-14deg) rotateZ(6deg) translateX(0) translateZ(22px);
+  }
+  100% {
+    transform: rotateY(-70deg) rotateX(-18deg) rotateZ(8deg) translateX(1px) translateZ(18px);
+  }
+}
+
+/* 金光延後，等到書真正開始翻開時才出現 */
+.teacher-bazi-page.stage-opening .heaven-book::after,
+.teacher-bazi-page.book-opening .heaven-book::after,
+.teacher-bazi-page.calculating .heaven-book::after {
+  animation: bookOpenLightV2 3.2s ease-out forwards !important;
+}
+
+@keyframes bookOpenLightV2 {
+  0%, 32% {
+    opacity: 0;
+    transform: translateX(-50%) rotateX(-58deg) scaleY(.08);
+  }
+  58% {
+    opacity: .70;
+    transform: translateX(-50%) rotateX(-58deg) scaleY(.56);
+  }
+  100% {
+    opacity: .20;
+    transform: translateX(-50%) rotateX(-58deg) scaleY(1.06);
+  }
+}
+
+/* 推算中維持已打開樣子 */
+.teacher-bazi-page.calculating .heaven-book {
+  animation: bookOpenedFloatV2 1.8s ease-in-out infinite !important;
+}
+
+.teacher-bazi-page.calculating .left-page {
+  transform: rotateY(70deg) rotateX(-18deg) rotateZ(-8deg) translateX(-1px) translateZ(18px) !important;
+}
+
+.teacher-bazi-page.calculating .right-page {
+  transform: rotateY(-70deg) rotateX(-18deg) rotateZ(8deg) translateX(1px) translateZ(18px) !important;
+}
+
+@keyframes bookOpenedFloatV2 {
+  0%,100% {
+    transform: translateX(-50%) translateY(0) rotateX(56deg) scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-4px) rotateX(55deg) scale(1.02);
+    filter: brightness(1.15);
+  }
+}
+
+@media (max-width: 380px) {
+  .heaven-book {
+    top: 418px !important;
+    width: 220px !important;
+    height: 142px !important;
+  }
+  .book-page {
+    width: 98px !important;
+    height: 114px !important;
+  }
+  .book-spine {
+    height: 114px !important;
+  }
+}
+</style>
+
+
+<style id="book-obvious-open-effect-v3">
+/* ===== 明确翻书视觉：先阖上出现，再明显翻开 ===== */
+.heaven-book {
+  left: 50% !important;
+  top: 438px !important;
+  width: 252px !important;
+  height: 160px !important;
+  z-index: 26 !important;
+  perspective: 2400px !important;
+  transform-style: preserve-3d !important;
+  transform-origin: 50% 84% !important;
+  filter: drop-shadow(0 22px 30px rgba(42, 8, 2, .38)) !important;
+}
+
+/* 书脊更明显 */
+.book-spine {
+  top: 12px !important;
+  width: 24px !important;
+  height: 132px !important;
+  transform: translateX(-50%) translateZ(22px) !important;
+  background: linear-gradient(90deg, #7d3a10 0%, #fce7a8 20%, #c97422 38%, #fff2bc 50%, #b9621c 66%, #783b0e 100%) !important;
+  box-shadow: 0 0 18px rgba(255, 219, 116, .78), 0 10px 18px rgba(62, 11, 2, .34), inset 0 0 10px rgba(255,255,255,.25) !important;
+}
+
+.book-page {
+  top: 12px !important;
+  width: 114px !important;
+  height: 132px !important;
+  transform-style: preserve-3d !important;
+  backface-visibility: hidden !important;
+}
+
+.left-page { left: 11px !important; }
+.right-page { right: 11px !important; }
+
+.book-page::before {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,0) 18%),
+    linear-gradient(135deg, #fff7e2 0%, #efd089 52%, #cb7b22 100%) !important;
+  border: 2px solid rgba(255, 233, 170, .95) !important;
+  box-shadow:
+    inset 0 0 16px rgba(129, 59, 11, .10),
+    inset 0 -14px 18px rgba(187, 104, 28, .14),
+    0 14px 24px rgba(56, 6, 2, .26),
+    0 0 18px rgba(255, 210, 100, .22) !important;
+}
+
+.book-page::after {
+  inset: 10px !important;
+  border-radius: 12px !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0) 18%),
+    repeating-linear-gradient(180deg, rgba(170, 115, 44, 0) 0 11px, rgba(170, 115, 44, .14) 11px 12px),
+    linear-gradient(180deg, #fff9ea 0%, #f0d59a 100%) !important;
+  border: 1px solid rgba(174, 100, 29, .14) !important;
+  opacity: .98 !important;
+}
+
+/* 中央缝隙阴影，打开时更明显 */
+.heaven-book::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  width: 52px;
+  height: 118px;
+  transform: translateX(-50%) translateZ(2px);
+  background: radial-gradient(ellipse at center, rgba(90, 39, 10, .40) 0%, rgba(90,39,10,.18) 28%, rgba(90,39,10,0) 74%);
+  filter: blur(4px);
+  opacity: 0;
+  z-index: 3;
+}
+
+/* 整本书先以未翻开的阖上状态出现 */
+.teacher-bazi-page.stage-opening .heaven-book,
+.teacher-bazi-page.book-opening .heaven-book {
+  animation: bookClosedAppearObvious 1.55s cubic-bezier(.18,.78,.22,1) forwards !important;
+}
+
+@keyframes bookClosedAppearObvious {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(82px) rotateX(68deg) scale(.46);
+    filter: blur(4px) brightness(.84);
+  }
+  42% {
+    opacity: .90;
+    transform: translateX(-50%) translateY(30px) rotateX(61deg) scale(.82);
+    filter: blur(1px) brightness(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) rotateX(56deg) scale(1);
+    filter: blur(0) brightness(1);
+  }
+}
+
+/* 书本一开始完全没翻开，接着慢慢翻开到明显角度 */
+.teacher-bazi-page.stage-opening .left-page,
+.teacher-bazi-page.book-opening .left-page {
+  animation: obviousLeftBookOpen 4.2s cubic-bezier(.18,.84,.22,1) .05s forwards !important;
+}
+
+.teacher-bazi-page.stage-opening .right-page,
+.teacher-bazi-page.book-opening .right-page {
+  animation: obviousRightBookOpen 4.2s cubic-bezier(.18,.84,.22,1) .05s forwards !important;
+}
+
+@keyframes obviousLeftBookOpen {
+  0% { transform: rotateY(0deg) rotateX(-10deg) rotateZ(-2deg) translateX(0) translateZ(26px); }
+  24% { transform: rotateY(0deg) rotateX(-10deg) rotateZ(-2deg) translateX(0) translateZ(26px); }
+  42% { transform: rotateY(12deg) rotateX(-12deg) rotateZ(-3deg) translateX(0) translateZ(26px); }
+  62% { transform: rotateY(34deg) rotateX(-14deg) rotateZ(-5deg) translateX(0) translateZ(24px); }
+  82% { transform: rotateY(58deg) rotateX(-16deg) rotateZ(-7deg) translateX(-1px) translateZ(21px); }
+  100% { transform: rotateY(82deg) rotateX(-18deg) rotateZ(-8deg) translateX(-2px) translateZ(18px); }
+}
+
+@keyframes obviousRightBookOpen {
+  0% { transform: rotateY(0deg) rotateX(-10deg) rotateZ(2deg) translateX(0) translateZ(26px); }
+  24% { transform: rotateY(0deg) rotateX(-10deg) rotateZ(2deg) translateX(0) translateZ(26px); }
+  42% { transform: rotateY(-12deg) rotateX(-12deg) rotateZ(3deg) translateX(0) translateZ(26px); }
+  62% { transform: rotateY(-34deg) rotateX(-14deg) rotateZ(5deg) translateX(0) translateZ(24px); }
+  82% { transform: rotateY(-58deg) rotateX(-16deg) rotateZ(7deg) translateX(1px) translateZ(21px); }
+  100% { transform: rotateY(-82deg) rotateX(-18deg) rotateZ(8deg) translateX(2px) translateZ(18px); }
+}
+
+/* 打开到中段后，中央缝隙与金光变明显，更清楚看到“翻开书” */
+.teacher-bazi-page.stage-opening .heaven-book::before,
+.teacher-bazi-page.book-opening .heaven-book::before {
+  animation: bookCenterGapShow 4.2s ease-out forwards !important;
+}
+
+@keyframes bookCenterGapShow {
+  0%, 36% { opacity: 0; }
+  68% { opacity: .48; }
+  100% { opacity: .62; }
+}
+
+.teacher-bazi-page.stage-opening .heaven-book::after,
+.teacher-bazi-page.book-opening .heaven-book::after,
+.teacher-bazi-page.calculating .heaven-book::after {
+  animation: bookOpenLightObvious 3.9s ease-out forwards !important;
+}
+
+@keyframes bookOpenLightObvious {
+  0%, 34% {
+    opacity: 0;
+    transform: translateX(-50%) rotateX(-58deg) scaleY(.06);
+  }
+  58% {
+    opacity: .76;
+    transform: translateX(-50%) rotateX(-58deg) scaleY(.58);
+  }
+  100% {
+    opacity: .22;
+    transform: translateX(-50%) rotateX(-58deg) scaleY(1.10);
+  }
+}
+
+/* 推算时维持明显打开状态 */
+.teacher-bazi-page.calculating .heaven-book {
+  animation: bookOpenedFloatObvious 1.8s ease-in-out infinite !important;
+}
+
+.teacher-bazi-page.calculating .left-page {
+  transform: rotateY(82deg) rotateX(-18deg) rotateZ(-8deg) translateX(-2px) translateZ(18px) !important;
+}
+
+.teacher-bazi-page.calculating .right-page {
+  transform: rotateY(-82deg) rotateX(-18deg) rotateZ(8deg) translateX(2px) translateZ(18px) !important;
+}
+
+@keyframes bookOpenedFloatObvious {
+  0%,100% {
+    transform: translateX(-50%) translateY(0) rotateX(56deg) scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-4px) rotateX(55deg) scale(1.02);
+    filter: brightness(1.15);
+  }
+}
+
+@media (max-width: 380px) {
+  .heaven-book {
+    top: 416px !important;
+    width: 224px !important;
+    height: 144px !important;
+  }
+  .book-page {
+    width: 100px !important;
+    height: 116px !important;
+  }
+  .book-spine { height: 116px !important; }
+}
+</style>
+
+
+<style id="book-page-turn-golden-open-v4">
+/* ===== 明确翻开书 + 翻页 + 开书金光 ===== */
+.heaven-book {
+  left: 50% !important;
+  top: 438px !important;
+  width: 258px !important;
+  height: 166px !important;
+  z-index: 28 !important;
+  perspective: 2600px !important;
+  transform-style: preserve-3d !important;
+  transform-origin: 50% 84% !important;
+  filter: drop-shadow(0 22px 30px rgba(42, 8, 2, .38)) !important;
+}
+
+.book-gold-burst {
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  width: 340px;
+  height: 220px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,250,220,.98) 0%, rgba(255,223,116,.75) 22%, rgba(255,180,45,.32) 44%, rgba(255,120,20,.10) 62%, transparent 78%);
+  filter: blur(6px);
+  mix-blend-mode: screen;
+  opacity: 0;
+  z-index: 0;
+}
+
+.book-open-rays {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: 300px;
+  height: 240px;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(from 0deg, transparent 0 14deg, rgba(255,240,185,.55) 14deg 18deg, transparent 18deg 30deg, rgba(255,211,86,.45) 30deg 35deg, transparent 35deg 50deg, rgba(255,239,180,.42) 50deg 55deg, transparent 55deg 72deg, rgba(255,198,62,.38) 72deg 78deg, transparent 78deg 100deg, rgba(255,240,185,.55) 100deg 106deg, transparent 106deg 126deg, rgba(255,211,86,.45) 126deg 132deg, transparent 132deg 154deg, rgba(255,239,180,.42) 154deg 160deg, transparent 160deg 180deg, rgba(255,240,185,.55) 180deg 186deg, transparent 186deg 210deg, rgba(255,211,86,.45) 210deg 216deg, transparent 216deg 246deg, rgba(255,239,180,.42) 246deg 252deg, transparent 252deg 288deg, rgba(255,198,62,.38) 288deg 294deg, transparent 294deg 360deg);
+  opacity: 0;
+  filter: blur(2px);
+  mix-blend-mode: screen;
+  z-index: 0;
+}
+
+.book-glow {
+  width: 300px !important;
+  height: 198px !important;
+  top: 52% !important;
+  opacity: .25 !important;
+}
+
+.book-spine {
+  top: 12px !important;
+  width: 24px !important;
+  height: 136px !important;
+  transform: translateX(-50%) translateZ(22px) !important;
+  z-index: 7 !important;
+}
+
+.book-page {
+  top: 12px !important;
+  width: 116px !important;
+  height: 136px !important;
+  z-index: 6 !important;
+  transform-style: preserve-3d !important;
+  backface-visibility: hidden !important;
+}
+.left-page { left: 11px !important; }
+.right-page { right: 11px !important; }
+
+.book-page::before {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.74), rgba(255,255,255,0) 18%),
+    linear-gradient(135deg, #fff7e2 0%, #efd089 52%, #cb7b22 100%) !important;
+}
+.book-page::after {
+  inset: 10px !important;
+  border-radius: 12px !important;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,0) 18%),
+    repeating-linear-gradient(180deg, rgba(170,115,44,0) 0 11px, rgba(170,115,44,.14) 11px 12px),
+    linear-gradient(180deg, #fff9ea 0%, #f0d59a 100%) !important;
+  opacity: .98 !important;
+}
+
+/* 翻页纸张 */
+.book-page-turn {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  width: 92px;
+  height: 124px;
+  margin-left: -2px;
+  border-radius: 8px 12px 12px 8px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.72), rgba(255,255,255,0) 16%),
+    repeating-linear-gradient(180deg, rgba(172,114,39,0) 0 11px, rgba(172,114,39,.10) 11px 12px),
+    linear-gradient(180deg, #fffdf4 0%, #f7e6bc 100%);
+  border: 1.5px solid rgba(230, 194, 112, .92);
+  box-shadow: 0 8px 16px rgba(55, 8, 2, .18), inset 0 0 8px rgba(155, 90, 31, .08);
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  opacity: 0;
+  z-index: 8;
+  pointer-events: none;
+}
+.book-page-turn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(255,255,255,.4), rgba(255,255,255,0) 24%, rgba(120,70,24,.10) 96%);
+}
+.book-page-turn::after {
+  content: "";
+  position: absolute;
+  right: -5px;
+  top: 8px;
+  bottom: 8px;
+  width: 8px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #fff3c8, #d7983d 55%, #b66e1b);
+  opacity: .65;
+}
+.turn-1 { z-index: 10; }
+.turn-2 { z-index: 9; }
+.turn-3 { z-index: 8; }
+
+/* 先阖上出现 */
+.teacher-bazi-page.stage-opening .heaven-book,
+.teacher-bazi-page.book-opening .heaven-book {
+  animation: bookAppearOpenV4 1.5s cubic-bezier(.18,.78,.22,1) forwards !important;
+}
+@keyframes bookAppearOpenV4 {
+  0% { opacity: 0; transform: translateX(-50%) translateY(84px) rotateX(68deg) scale(.46); filter: blur(4px) brightness(.84); }
+  44% { opacity: .92; transform: translateX(-50%) translateY(30px) rotateX(61deg) scale(.82); filter: blur(1px) brightness(1); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0) rotateX(56deg) scale(1); filter: blur(0) brightness(1); }
+}
+
+/* 左右封面/书页打开 */
+.teacher-bazi-page.stage-opening .left-page,
+.teacher-bazi-page.book-opening .left-page {
+  animation: leftBookOpenV4 4.25s cubic-bezier(.18,.84,.22,1) .06s forwards !important;
+}
+.teacher-bazi-page.stage-opening .right-page,
+.teacher-bazi-page.book-opening .right-page {
+  animation: rightBookOpenV4 4.25s cubic-bezier(.18,.84,.22,1) .06s forwards !important;
+}
+@keyframes leftBookOpenV4 {
+  0%,24% { transform: rotateY(0deg) rotateX(-10deg) rotateZ(-2deg) translateX(0) translateZ(28px); }
+  42% { transform: rotateY(16deg) rotateX(-12deg) rotateZ(-3deg) translateX(0) translateZ(28px); }
+  62% { transform: rotateY(38deg) rotateX(-14deg) rotateZ(-5deg) translateX(0) translateZ(24px); }
+  82% { transform: rotateY(62deg) rotateX(-16deg) rotateZ(-7deg) translateX(-1px) translateZ(21px); }
+  100% { transform: rotateY(84deg) rotateX(-18deg) rotateZ(-8deg) translateX(-2px) translateZ(18px); }
+}
+@keyframes rightBookOpenV4 {
+  0%,24% { transform: rotateY(0deg) rotateX(-10deg) rotateZ(2deg) translateX(0) translateZ(28px); }
+  42% { transform: rotateY(-16deg) rotateX(-12deg) rotateZ(3deg) translateX(0) translateZ(28px); }
+  62% { transform: rotateY(-38deg) rotateX(-14deg) rotateZ(5deg) translateX(0) translateZ(24px); }
+  82% { transform: rotateY(-62deg) rotateX(-16deg) rotateZ(7deg) translateX(1px) translateZ(21px); }
+  100% { transform: rotateY(-84deg) rotateX(-18deg) rotateZ(8deg) translateX(2px) translateZ(18px); }
+}
+
+/* 翻页效果：3张纸依序翻动 */
+.teacher-bazi-page.stage-opening .turn-1,
+.teacher-bazi-page.book-opening .turn-1 {
+  animation: pageFlip1 2.1s ease-in-out 1.35s forwards !important;
+}
+.teacher-bazi-page.stage-opening .turn-2,
+.teacher-bazi-page.book-opening .turn-2 {
+  animation: pageFlip2 1.9s ease-in-out 1.85s forwards !important;
+}
+.teacher-bazi-page.stage-opening .turn-3,
+.teacher-bazi-page.book-opening .turn-3 {
+  animation: pageFlip3 1.7s ease-in-out 2.25s forwards !important;
+}
+@keyframes pageFlip1 {
+  0% { opacity: 0; transform: translateX(-8px) translateZ(30px) rotateY(0deg) rotateX(-12deg); }
+  10% { opacity: 1; }
+  45% { opacity: .98; transform: translateX(-4px) translateZ(26px) rotateY(-70deg) rotateX(-14deg); }
+  100% { opacity: 0; transform: translateX(-18px) translateZ(18px) rotateY(-164deg) rotateX(-18deg); }
+}
+@keyframes pageFlip2 {
+  0% { opacity: 0; transform: translateX(-4px) translateZ(29px) rotateY(0deg) rotateX(-12deg) scale(.98); }
+  12% { opacity: .96; }
+  46% { opacity: .95; transform: translateX(0) translateZ(24px) rotateY(-78deg) rotateX(-15deg); }
+  100% { opacity: 0; transform: translateX(-14px) translateZ(18px) rotateY(-170deg) rotateX(-18deg); }
+}
+@keyframes pageFlip3 {
+  0% { opacity: 0; transform: translateX(0) translateZ(28px) rotateY(0deg) rotateX(-12deg) scale(.96); }
+  12% { opacity: .92; }
+  48% { opacity: .92; transform: translateX(2px) translateZ(23px) rotateY(-84deg) rotateX(-15deg); }
+  100% { opacity: 0; transform: translateX(-10px) translateZ(18px) rotateY(-175deg) rotateX(-18deg); }
+}
+
+/* 打开时发出金光 */
+.teacher-bazi-page.stage-opening .book-gold-burst,
+.teacher-bazi-page.book-opening .book-gold-burst {
+  animation: goldBurstOpen 3.6s ease-out 1.1s forwards !important;
+}
+.teacher-bazi-page.stage-opening .book-open-rays,
+.teacher-bazi-page.book-opening .book-open-rays {
+  animation: openRaysSpin 3.8s ease-out 1.15s forwards !important;
+}
+.teacher-bazi-page.stage-opening .book-glow,
+.teacher-bazi-page.book-opening .book-glow {
+  animation: bookGlowOpenV4 3.4s ease-out 1.0s forwards !important;
+}
+@keyframes goldBurstOpen {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.28); }
+  30% { opacity: .22; transform: translate(-50%, -50%) scale(.52); }
+  58% { opacity: .92; transform: translate(-50%, -50%) scale(1.0); }
+  100% { opacity: .34; transform: translate(-50%, -50%) scale(1.18); }
+}
+@keyframes openRaysSpin {
+  0% { opacity: 0; transform: translate(-50%, -50%) rotate(0deg) scale(.42); }
+  55% { opacity: .75; transform: translate(-50%, -50%) rotate(26deg) scale(1.0); }
+  100% { opacity: .28; transform: translate(-50%, -50%) rotate(48deg) scale(1.12); }
+}
+@keyframes bookGlowOpenV4 {
+  0% { opacity: .06; transform: translate(-50%, -50%) scale(.6); }
+  58% { opacity: .96; transform: translate(-50%, -50%) scale(1.0); }
+  100% { opacity: .52; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* 现有金光三角保留，并延后到打开时出现 */
+.teacher-bazi-page.stage-opening .heaven-book::after,
+.teacher-bazi-page.book-opening .heaven-book::after,
+.teacher-bazi-page.calculating .heaven-book::after {
+  animation: bookOpenLightV4 3.8s ease-out forwards !important;
+}
+@keyframes bookOpenLightV4 {
+  0%,34% { opacity: 0; transform: translateX(-50%) rotateX(-58deg) scaleY(.06); }
+  58% { opacity: .82; transform: translateX(-50%) rotateX(-58deg) scaleY(.58); }
+  100% { opacity: .24; transform: translateX(-50%) rotateX(-58deg) scaleY(1.12); }
+}
+
+/* 计算中保持打开、轻微翻页闪动与发光 */
+.teacher-bazi-page.calculating .heaven-book { animation: bookOpenedFloatV4 1.8s ease-in-out infinite !important; }
+.teacher-bazi-page.calculating .left-page { transform: rotateY(84deg) rotateX(-18deg) rotateZ(-8deg) translateX(-2px) translateZ(18px) !important; }
+.teacher-bazi-page.calculating .right-page { transform: rotateY(-84deg) rotateX(-18deg) rotateZ(8deg) translateX(2px) translateZ(18px) !important; }
+.teacher-bazi-page.calculating .book-gold-burst { opacity: .34; animation: calcGoldPulse 1.0s ease-in-out infinite !important; }
+.teacher-bazi-page.calculating .book-open-rays { opacity: .30; animation: calcRaySpin 2.4s linear infinite !important; }
+.teacher-bazi-page.calculating .book-glow { opacity: .55 !important; animation: calcGlowPulse 1.0s ease-in-out infinite !important; }
+.teacher-bazi-page.calculating .turn-1,
+.teacher-bazi-page.calculating .turn-2,
+.teacher-bazi-page.calculating .turn-3 { opacity: 0; }
+@keyframes bookOpenedFloatV4 {
+  0%,100% { transform: translateX(-50%) translateY(0) rotateX(56deg) scale(1); filter: brightness(1); }
+  50% { transform: translateX(-50%) translateY(-4px) rotateX(55deg) scale(1.02); filter: brightness(1.16); }
+}
+@keyframes calcGoldPulse { 0%,100% { transform: translate(-50%,-50%) scale(1.0); } 50% { transform: translate(-50%,-50%) scale(1.08); } }
+@keyframes calcRaySpin { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
+@keyframes calcGlowPulse { 0%,100% { transform: translate(-50%,-50%) scale(1.02); } 50% { transform: translate(-50%,-50%) scale(1.14); } }
+
+@media (max-width: 380px) {
+  .heaven-book { top: 416px !important; width: 226px !important; height: 146px !important; }
+  .book-page { width: 101px !important; height: 118px !important; }
+  .book-spine { height: 118px !important; }
+  .book-page-turn { width: 82px; height: 110px; }
+  .book-gold-burst { width: 290px; height: 190px; }
+  .book-open-rays { width: 258px; height: 210px; }
+}
+</style>
+
+
+<style id="book-extra-pages-gold-bazi-v5">
+/* ===== 更多翻页 + 更震撼金光 + 打开后显示八字命盘内容 ===== */
+
+.heaven-book {
+  width: 266px !important;
+  height: 172px !important;
+  z-index: 30 !important;
+}
+.book-glow {
+  width: 330px !important;
+  height: 220px !important;
+  opacity: .18 !important;
+}
+.book-gold-burst {
+  width: 420px !important;
+  height: 280px !important;
+  top: 52% !important;
+  background: radial-gradient(circle, rgba(255,255,242,1) 0%, rgba(255,236,158,.95) 15%, rgba(255,214,79,.80) 30%, rgba(255,164,34,.46) 48%, rgba(255,122,18,.18) 64%, transparent 79%) !important;
+  filter: blur(7px) saturate(1.1) !important;
+}
+.book-gold-burst::before,
+.book-gold-burst::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+.book-gold-burst::before {
+  background: radial-gradient(circle, rgba(255,255,255,.95), rgba(255,233,150,.0) 68%);
+  transform: scale(.42);
+  filter: blur(8px);
+}
+.book-gold-burst::after {
+  background: radial-gradient(circle, rgba(255,205,88,.35), transparent 70%);
+  transform: scale(1.22);
+  filter: blur(14px);
+}
+.book-open-rays {
+  width: 360px !important;
+  height: 300px !important;
+  top: 50% !important;
+  filter: blur(1px) !important;
+}
+.book-open-rays::before,
+.book-open-rays::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, rgba(255,245,193,.0) 0deg 7deg, rgba(255,240,180,.65) 7deg 9deg, rgba(255,220,110,.0) 9deg 18deg);
+  mix-blend-mode: screen;
+  opacity: .65;
+}
+.book-open-rays::after {
+  transform: rotate(15deg) scale(1.08);
+  opacity: .32;
+  filter: blur(2px);
+}
+
+.book-page {
+  width: 120px !important;
+  height: 140px !important;
+}
+.book-spine {
+  height: 140px !important;
+}
+.book-page-turn {
+  width: 94px !important;
+  height: 128px !important;
+}
+.turn-4 { z-index: 7; }
+.turn-5 { z-index: 6; }
+.turn-6 { z-index: 5; }
+
+/* 更丰富的翻页 */
+.teacher-bazi-page.stage-opening .turn-4,
+.teacher-bazi-page.book-opening .turn-4 { animation: pageFlip4 1.6s ease-in-out 2.55s forwards !important; }
+.teacher-bazi-page.stage-opening .turn-5,
+.teacher-bazi-page.book-opening .turn-5 { animation: pageFlip5 1.5s ease-in-out 2.85s forwards !important; }
+.teacher-bazi-page.stage-opening .turn-6,
+.teacher-bazi-page.book-opening .turn-6 { animation: pageFlip6 1.4s ease-in-out 3.10s forwards !important; }
+
+@keyframes pageFlip4 {
+  0% { opacity: 0; transform: translateX(2px) translateZ(27px) rotateY(0deg) rotateX(-12deg) scale(.96); }
+  12% { opacity: .90; }
+  48% { opacity: .94; transform: translateX(4px) translateZ(22px) rotateY(-90deg) rotateX(-15deg); }
+  100% { opacity: 0; transform: translateX(-8px) translateZ(17px) rotateY(-176deg) rotateX(-18deg); }
+}
+@keyframes pageFlip5 {
+  0% { opacity: 0; transform: translateX(4px) translateZ(26px) rotateY(0deg) rotateX(-12deg) scale(.94); }
+  12% { opacity: .88; }
+  50% { opacity: .92; transform: translateX(6px) translateZ(21px) rotateY(-96deg) rotateX(-15deg); }
+  100% { opacity: 0; transform: translateX(-6px) translateZ(17px) rotateY(-178deg) rotateX(-18deg); }
+}
+@keyframes pageFlip6 {
+  0% { opacity: 0; transform: translateX(6px) translateZ(25px) rotateY(0deg) rotateX(-12deg) scale(.92); }
+  12% { opacity: .86; }
+  52% { opacity: .90; transform: translateX(8px) translateZ(20px) rotateY(-104deg) rotateX(-15deg); }
+  100% { opacity: 0; transform: translateX(-4px) translateZ(17px) rotateY(-180deg) rotateX(-18deg); }
+}
+
+/* 更震撼的开书金光 */
+.teacher-bazi-page.stage-opening .book-gold-burst,
+.teacher-bazi-page.book-opening .book-gold-burst {
+  animation: megaGoldBurstOpen 4.1s ease-out 1.0s forwards !important;
+}
+.teacher-bazi-page.stage-opening .book-open-rays,
+.teacher-bazi-page.book-opening .book-open-rays {
+  animation: megaOpenRaysSpin 4.3s ease-out 1.0s forwards !important;
+}
+.teacher-bazi-page.stage-opening .book-glow,
+.teacher-bazi-page.book-opening .book-glow {
+  animation: megaBookGlowOpen 4.0s ease-out 1.0s forwards !important;
+}
+@keyframes megaGoldBurstOpen {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.20); }
+  24% { opacity: .10; transform: translate(-50%, -50%) scale(.42); }
+  48% { opacity: .48; transform: translate(-50%, -50%) scale(.78); }
+  64% { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+  100% { opacity: .46; transform: translate(-50%, -50%) scale(1.34); }
+}
+@keyframes megaOpenRaysSpin {
+  0% { opacity: 0; transform: translate(-50%, -50%) rotate(0deg) scale(.38); }
+  56% { opacity: .88; transform: translate(-50%, -50%) rotate(38deg) scale(1.05); }
+  100% { opacity: .34; transform: translate(-50%, -50%) rotate(76deg) scale(1.24); }
+}
+@keyframes megaBookGlowOpen {
+  0% { opacity: .04; transform: translate(-50%, -50%) scale(.56); }
+  56% { opacity: 1; transform: translate(-50%, -50%) scale(1.04); }
+  100% { opacity: .64; transform: translate(-50%, -50%) scale(1.20); }
+}
+
+/* 书页内容 */
+.book-content {
+  position: absolute;
+  inset: 16px 16px 14px 16px;
+  z-index: 12;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 6px;
+  opacity: 0;
+  transform: translateY(6px) scale(.97);
+  color: #7b3e14;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+  pointer-events: none;
+}
+.book-title {
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #a84f16;
+  text-align: center;
+}
+.book-title.small { margin-bottom: 2px; }
+.book-watermark {
+  position: absolute;
+  inset: 28px 4px auto 4px;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 8px;
+  color: rgba(180, 120, 32, .09);
+  text-align: center;
+  transform: rotate(-18deg);
+  white-space: nowrap;
+}
+.wm-right {
+  transform: rotate(16deg);
+  font-size: 20px;
+  letter-spacing: 5px;
+}
+.bazi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  margin-top: 4px;
+}
+.bazi-col {
+  background: linear-gradient(180deg, rgba(255,247,221,.96), rgba(243,216,151,.92));
+  border: 1px solid rgba(195, 137, 47, .42);
+  border-radius: 10px;
+  padding: 4px 2px 5px;
+  text-align: center;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+}
+.col-head {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  color: #9d5c20;
+  margin-bottom: 3px;
+}
+.col-main {
+  display: block;
+  font-size: 21px;
+  line-height: 1;
+  font-weight: 900;
+  color: #8a3e13;
+}
+.col-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #b15f1d;
+}
+.book-note {
+  margin-top: 4px;
+  font-size: 10px;
+  line-height: 1.35;
+  font-weight: 700;
+  color: #a06026;
+  text-align: center;
+}
+.wuxing-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+.wx-row {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #94511b;
+}
+.bar {
+  display: block;
+  height: 9px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #f0b64d, #f8e1a2);
+  box-shadow: inset 0 0 0 1px rgba(184,120,29,.28), 0 1px 3px rgba(86,39,8,.12);
+}
+.bar-2 { width: 42%; }
+.bar-3 { width: 58%; }
+.bar-4 { width: 75%; }
+.bar-5 { width: 92%; }
+.lucky-panel {
+  margin-top: 6px;
+  padding: 6px 7px;
+  border-radius: 10px;
+  font-size: 10px;
+  line-height: 1.45;
+  font-weight: 700;
+  color: #9b5822;
+  background: rgba(255,248,228,.72);
+  border: 1px solid rgba(194,133,47,.24);
+}
+
+/* 内容在打开后浮现 */
+.teacher-bazi-page.stage-opening .book-content,
+.teacher-bazi-page.book-opening .book-content {
+  animation: revealBookContentV5 1.35s ease-out 3.15s forwards !important;
+}
+@keyframes revealBookContentV5 {
+  0% { opacity: 0; transform: translateY(10px) scale(.96); filter: blur(2px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+/* 计算时内容微微发亮 */
+.teacher-bazi-page.calculating .book-content {
+  opacity: 1 !important;
+  animation: contentGoldenPulseV5 1.4s ease-in-out infinite !important;
+}
+@keyframes contentGoldenPulseV5 {
+  0%,100% { filter: brightness(1); }
+  50% { filter: brightness(1.12); }
+}
+
+@media (max-width: 380px) {
+  .heaven-book { width: 230px !important; height: 150px !important; }
+  .book-page { width: 103px !important; height: 120px !important; }
+  .book-spine { height: 120px !important; }
+  .book-page-turn { width: 82px !important; height: 108px !important; }
+  .book-title { font-size: 14px; }
+  .col-main { font-size: 18px; }
+  .book-watermark { font-size: 20px; }
+}
+</style>
+
+
+<style id="book-to-edict-only-override">
+/* ===== 只修改原本書本特效：書本改成聖旨方式呈現，其餘頁面保留 ===== */
+#baziPage .imperial-edict-wrap.heaven-book{
+  position:absolute !important;
+  left:50% !important;
+  top:438px !important;
+  width:342px !important;
+  height:188px !important;
+  z-index:34 !important;
+  perspective:none !important;
+  transform-style:flat !important;
+  transform-origin:50% 50% !important;
+  opacity:0;
+  transform:translateX(-50%) translateY(26px) scale(.72) !important;
+  filter:drop-shadow(0 22px 30px rgba(42,8,2,.38)) !important;
+}
+#baziPage.stage-opening .imperial-edict-wrap,
+#baziPage.book-opening .imperial-edict-wrap,
+#baziPage.calculating .imperial-edict-wrap{
+  animation: edictWrapAppearOnly 1.15s cubic-bezier(.18,.78,.22,1) forwards !important;
+}
+@keyframes edictWrapAppearOnly{
+  0%{opacity:0;transform:translateX(-50%) translateY(56px) scale(.52)!important;filter:blur(4px) brightness(.88)}
+  58%{opacity:1;transform:translateX(-50%) translateY(-4px) scale(1.04)!important;filter:blur(0) brightness(1.08)}
+  100%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)!important;filter:blur(0) brightness(1)}
+}
+#baziPage .imperial-edict{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:336px;
+  height:174px;
+  transform:translate(-50%,-50%);
+}
+#baziPage .edict-gold-burst,
+#baziPage .edict-open-rays,
+#baziPage .edict-glow{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  mix-blend-mode:screen;
+}
+#baziPage .edict-gold-burst{
+  width:430px;
+  height:280px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,242,1) 0%,rgba(255,236,158,.95) 15%,rgba(255,214,79,.80) 30%,rgba(255,164,34,.46) 48%,rgba(255,122,18,.18) 64%,transparent 79%);
+  filter:blur(8px) saturate(1.1);
+  opacity:0;
+}
+#baziPage .edict-open-rays{
+  width:390px;
+  height:310px;
+  border-radius:50%;
+  background:repeating-conic-gradient(from 0deg,rgba(255,245,193,0) 0deg 7deg,rgba(255,240,180,.70) 7deg 9deg,rgba(255,220,110,0) 9deg 18deg);
+  opacity:0;
+  filter:blur(1.5px);
+}
+#baziPage .edict-glow{
+  width:360px;
+  height:210px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,248,212,.95),rgba(255,205,70,.40) 46%,transparent 76%);
+  filter:blur(9px);
+  opacity:0;
+}
+#baziPage .edict-seal{
+  position:absolute;
+  left:50%;
+  top:-14px;
+  width:90px;
+  height:34px;
+  transform:translateX(-50%);
+  border-radius:999px;
+  background:linear-gradient(180deg,#d92e1d,#8f1209);
+  border:2px solid rgba(255,225,135,.82);
+  color:#ffe9a6;
+  font-weight:900;
+  font-size:18px;
+  letter-spacing:4px;
+  display:grid;
+  place-items:center;
+  z-index:8;
+  box-shadow:0 8px 18px rgba(45,4,2,.32),0 0 16px rgba(255,212,80,.28);
+}
+#baziPage .edict-roller{
+  position:absolute;
+  top:42px;
+  width:30px;
+  height:94px;
+  border-radius:18px;
+  background:linear-gradient(180deg,#f4d785,#c38822,#8b4f10);
+  box-shadow:inset 0 0 10px rgba(255,255,255,.25),0 6px 16px rgba(0,0,0,.22);
+  z-index:5;
+}
+#baziPage .edict-roller.left{left:8px}
+#baziPage .edict-roller.right{right:8px}
+#baziPage .edict-roller::before,
+#baziPage .edict-roller::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  width:20px;
+  height:20px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:radial-gradient(circle,#ffe8a2,#c78721 65%,#8f5512);
+  box-shadow:0 0 8px rgba(255,220,110,.45);
+}
+#baziPage .edict-roller::before{top:-8px}
+#baziPage .edict-roller::after{bottom:-8px}
+#baziPage .edict-paper{
+  position:absolute;
+  left:50%;
+  top:29px;
+  width:8px;
+  height:126px;
+  transform:translateX(-50%);
+  overflow:hidden;
+  border-radius:16px;
+  background:linear-gradient(180deg,rgba(255,255,255,.36),transparent 16%),linear-gradient(180deg,#f5e7bd,#e6d19a 48%,#d9bf81);
+  border:2px solid rgba(174,113,25,.60);
+  box-shadow:0 10px 26px rgba(30,3,2,.22),inset 0 0 18px rgba(255,255,255,.20);
+  z-index:4;
+}
+#baziPage .edict-paper::before{
+  content:"";
+  position:absolute;
+  left:0;right:0;top:10px;bottom:10px;
+  border:1px solid rgba(177,111,24,.25);
+  border-radius:12px;
+}
+#baziPage .edict-paper-inner{
+  opacity:0;
+  min-width:264px;
+  padding:14px 18px 10px;
+  color:#7c2611;
+}
+#baziPage .edict-title{
+  text-align:center;
+  color:#8f180d;
+  font-size:21px;
+  font-weight:900;
+  letter-spacing:4px;
+  margin-bottom:6px;
+}
+#baziPage .edict-subtitle{
+  text-align:center;
+  color:#9a6840;
+  font-size:12px;
+  margin-bottom:8px;
+}
+#baziPage .edict-pillars{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+  margin-bottom:8px;
+}
+#baziPage .edict-pillar{
+  text-align:center;
+  padding:5px 2px;
+  border-radius:11px;
+  background:rgba(255,255,255,.34);
+  border:1px solid rgba(177,111,24,.22);
+}
+#baziPage .edict-pillar small{display:block;font-size:10px;color:#9a6840;margin-bottom:3px}
+#baziPage .edict-pillar strong{display:block;color:#8f180d;font-size:16px}
+#baziPage .edict-summary{
+  font-size:11px;
+  line-height:1.58;
+  color:#7a391b;
+  text-align:center;
+}
+#baziPage .edict-particles{
+  position:absolute;
+  inset:0;
+  z-index:10;
+}
+#baziPage .edict-particles span{
+  position:absolute;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:radial-gradient(circle,#fffbe8,#ffd768 55%,rgba(255,180,30,.1));
+  opacity:0;
+  box-shadow:0 0 12px rgba(255,220,110,.8);
+}
+#baziPage .edict-particles span:nth-child(1){left:42px;top:30px;--mx:-32px;--my:-38px}
+#baziPage .edict-particles span:nth-child(2){left:92px;top:140px;--mx:-18px;--my:28px}
+#baziPage .edict-particles span:nth-child(3){right:86px;top:34px;--mx:28px;--my:-34px}
+#baziPage .edict-particles span:nth-child(4){right:38px;top:130px;--mx:32px;--my:24px}
+#baziPage .edict-particles span:nth-child(5){left:50%;top:10px;--mx:0px;--my:-40px}
+#baziPage .edict-particles span:nth-child(6){left:50%;bottom:8px;--mx:0px;--my:30px}
+#baziPage.stage-opening .edict-paper,
+#baziPage.book-opening .edict-paper,
+#baziPage.calculating .edict-paper{
+  animation:edictUnrollOnly 2.25s cubic-bezier(.2,.82,.18,1) .35s forwards !important;
+}
+@keyframes edictUnrollOnly{
+  0%{width:8px;opacity:.35}
+  18%{width:26px;opacity:.62}
+  44%{width:116px;opacity:.9}
+  72%{width:218px;opacity:1}
+  100%{width:268px;opacity:1}
+}
+#baziPage.stage-opening .edict-paper-inner,
+#baziPage.book-opening .edict-paper-inner,
+#baziPage.calculating .edict-paper-inner{
+  animation:edictContentInOnly .9s ease 1.72s forwards !important;
+}
+@keyframes edictContentInOnly{
+  0%{opacity:0;transform:translateY(10px);filter:blur(2px)}
+  100%{opacity:1;transform:translateY(0);filter:blur(0)}
+}
+#baziPage.stage-opening .edict-gold-burst,
+#baziPage.book-opening .edict-gold-burst,
+#baziPage.calculating .edict-gold-burst{
+  animation:edictMegaGoldOnly 3.4s ease-out .45s forwards !important;
+}
+@keyframes edictMegaGoldOnly{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.22)}
+  45%{opacity:.96;transform:translate(-50%,-50%) scale(1.12)}
+  100%{opacity:.36;transform:translate(-50%,-50%) scale(1.34)}
+}
+#baziPage.stage-opening .edict-open-rays,
+#baziPage.book-opening .edict-open-rays,
+#baziPage.calculating .edict-open-rays{
+  animation:edictRaysOnly 3.6s ease-out .45s forwards !important;
+}
+@keyframes edictRaysOnly{
+  0%{opacity:0;transform:translate(-50%,-50%) rotate(0deg) scale(.42)}
+  55%{opacity:.82;transform:translate(-50%,-50%) rotate(45deg) scale(1.05)}
+  100%{opacity:.24;transform:translate(-50%,-50%) rotate(88deg) scale(1.22)}
+}
+#baziPage.stage-opening .edict-glow,
+#baziPage.book-opening .edict-glow,
+#baziPage.calculating .edict-glow{
+  animation:edictGlowOnly 2.5s ease-out .35s forwards !important;
+}
+@keyframes edictGlowOnly{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}
+  38%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}
+  100%{opacity:.68;transform:translate(-50%,-50%) scale(1)}
+}
+#baziPage.stage-opening .edict-particles span,
+#baziPage.book-opening .edict-particles span,
+#baziPage.calculating .edict-particles span{
+  animation:edictSparkOnly 1.65s ease-out forwards;
+}
+#baziPage .edict-particles span:nth-child(2){animation-delay:.14s}
+#baziPage .edict-particles span:nth-child(3){animation-delay:.26s}
+#baziPage .edict-particles span:nth-child(4){animation-delay:.38s}
+#baziPage .edict-particles span:nth-child(5){animation-delay:.18s}
+#baziPage .edict-particles span:nth-child(6){animation-delay:.5s}
+@keyframes edictSparkOnly{
+  0%{opacity:0;transform:translate(0,0) scale(.4)}
+  25%{opacity:1}
+  100%{opacity:0;transform:translate(var(--mx,0),var(--my,-34px)) scale(1.8)}
+}
+#baziPage.calculating .imperial-edict-wrap{
+  animation:edictWrapPulseOnly 1.4s ease-in-out infinite !important;
+  opacity:1 !important;
+}
+@keyframes edictWrapPulseOnly{
+  0%,100%{transform:translateX(-50%) translateY(0) scale(1)!important;filter:brightness(1)}
+  50%{transform:translateX(-50%) translateY(-4px) scale(1.02)!important;filter:brightness(1.14)}
+}
+@media(max-width:380px){
+  #baziPage .imperial-edict-wrap.heaven-book{top:416px!important;width:316px!important;height:190px!important}
+  #baziPage .imperial-edict{width:310px!important}
+  #baziPage .edict-paper{height:140px!important}
+  #baziPage.stage-opening .edict-paper,
+  #baziPage.book-opening .edict-paper,
+  #baziPage.calculating .edict-paper{animation-name:edictUnrollMobileOnly!important}
+  @keyframes edictUnrollMobileOnly{0%{width:8px}100%{width:236px}}
+  #baziPage .edict-pillars{grid-template-columns:repeat(2,1fr)}
+  #baziPage .edict-paper-inner{min-width:236px;padding:14px 15px 10px}
+}
+</style>
+
+
+<style id="remove-edict-seal-text-final">
+/* 最終覆蓋：去除聖旨特效上的「聖旨／圣旨」文字 */
+.edict-seal {
+  font-size: 0 !important;
+  color: transparent !important;
+  letter-spacing: 0 !important;
+}
+.edict-seal::before,
+.edict-seal::after {
+  content: "" !important;
+}
+</style>
+
 </head>
 <body>
 <main class="app">
-<section id="homePage" class="page active"><div class="home-screen"><button class="hotspot draw" onclick="changePage('drawPage')"></button><button class="hotspot bazi" onclick="changePage('baziPage')"></button><button class="hotspot daily" onclick="showDailyLuck()"></button><button class="hotspot money" onclick="changePage('moneyPage')"></button><button class="hotspot date" onclick="showMessage('良辰吉日','今日宜穩定規劃，重要決定可先整理方向。')"></button><button class="hotspot light" onclick="changePage('lightPage')"></button><button class="hotspot start" onclick="changePage('drawPage')"></button><button class="hotspot today" onclick="showDailyLuck()"></button><button class="hotspot nav-home" onclick="changePage('homePage')"></button><button class="hotspot nav-draw" onclick="changePage('drawPage')"></button><button class="hotspot nav-bazi" onclick="changePage('baziPage')"></button><button class="hotspot nav-me" onclick="changePage('recordPage')"></button></div></section>
+<section id="homePage" class="page active"><div class="home-screen"><button class="hotspot draw" onclick="changePage('drawPage')"></button><button class="hotspot bazi" type="button" onclick="openBaziPage()" aria-label="八字命盤"></button><button class="hotspot daily" onclick="showDailyLuck()"></button><button class="hotspot money" onclick="changePage('moneyPage')"></button><button class="hotspot date" onclick="showMessage('良辰吉日','今日宜穩定規劃，重要決定可先整理方向。')"></button><button class="hotspot light" onclick="changePage('lightPage')"></button><button class="hotspot start" onclick="changePage('drawPage')"></button><button class="hotspot today" onclick="showDailyLuck()"></button><button class="hotspot nav-home" onclick="changePage('homePage')"></button><button class="hotspot nav-draw" onclick="changePage('drawPage')"></button><button class="hotspot nav-bazi" onclick="changePage('baziPage')"></button><button class="hotspot nav-me" onclick="changePage('recordPage')"></button></div></section>
 
 <section id="drawPage" class="page">
   <div class="draw-bg-page">
@@ -2970,7 +6271,181 @@
   </div>
 </section>
 
-<section id="baziPage" class="page"><div class="sub-page"><div class="header"><button class="back-btn" onclick="changePage('homePage')">返回首頁</button><div class="title">命盤</div></div><div class="card"><label>姓名</label><input id="userName" type="text" placeholder="例如：小明"><div class="form-row"><div><label>性別</label><select id="gender"><option value="不指定">不指定</option><option value="男">男</option><option value="女">女</option></select></div><div><label>出生日期</label><input id="birthDate" type="date"></div></div><label>出生時辰</label><select id="birthHour"><option value="0">子時 23:00－00:59</option><option value="1">丑時 01:00－02:59</option><option value="2">寅時 03:00－04:59</option><option value="3">卯時 05:00－06:59</option><option value="4">辰時 07:00－08:59</option><option value="5">巳時 09:00－10:59</option><option value="6">午時 11:00－12:59</option><option value="7">未時 13:00－14:59</option><option value="8">申時 15:00－16:59</option><option value="9">酉時 17:00－18:59</option><option value="10">戌時 19:00－20:59</option><option value="11">亥時 21:00－22:59</option></select><button class="main-btn" onclick="calculateBazi()">產生命盤</button></div><div class="card" id="baziResult"><h3>尚未產生命盤</h3><p>請輸入出生日期與出生時辰。</p></div></div></section>
+
+<!-- ===== 八字命盤：老師算命頁 ===== -->
+<section id="baziPage" class="page teacher-bazi-page">
+  <div class="teacher-bazi-bg">
+
+    <!-- 天書翻開與豪華神光特效 -->
+    <div class="bazi-luxury-layer" aria-hidden="true">
+      <div class="bazi-golden-rain"></div>
+      <div class="bazi-light-ring ring-1"></div>
+      <div class="bazi-light-ring ring-2"></div>
+      <div class="bazi-god-rays"></div>
+
+            <div class="heaven-book imperial-edict-wrap" id="heavenBook">
+        <div class="edict-gold-burst"></div>
+        <div class="edict-open-rays"></div>
+        <div class="edict-glow"></div>
+        <div class="imperial-edict" id="imperialEdict">
+          <div class="edict-seal"></div>
+          <div class="edict-roller left"></div>
+          <div class="edict-roller right"></div>
+          <div class="edict-paper">
+            <div class="edict-paper-inner" id="edictPaperContent">
+              <div class="edict-title">八字命盤</div>
+              <div class="edict-subtitle">老師正在開示中</div>
+              <div class="edict-pillars">
+                <div class="edict-pillar"><small>年柱</small><strong>—</strong></div>
+                <div class="edict-pillar"><small>月柱</small><strong>—</strong></div>
+                <div class="edict-pillar"><small>日柱</small><strong>—</strong></div>
+                <div class="edict-pillar"><small>時柱</small><strong>—</strong></div>
+              </div>
+              <div class="edict-summary">請輸入出生資料後點擊「請老師算命」，聖旨將展開顯示命盤內容。</div>
+            </div>
+          </div>
+          <div class="edict-particles"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Q版老師背景動態特效 -->
+    <div class="bazi-motion-layer" aria-hidden="true">
+      <div class="bazi-rotating-wheel"></div>
+      <div class="bazi-teacher-aura"></div>
+      <div class="bazi-hand-magic"></div>
+      <div class="bazi-incense-smoke"></div>
+      <div class="bazi-floating-talisman talisman-a">命</div>
+      <div class="bazi-floating-talisman talisman-b">運</div>
+      <div class="bazi-floating-talisman talisman-c">福</div>
+      <span class="bazi-star" style="left:22%;top:22%;--dx:18px;--dy:-34px;--dur:2.8s;--size:7px"></span>
+      <span class="bazi-star" style="left:76%;top:24%;--dx:-16px;--dy:-30px;--dur:2.4s;--size:6px"></span>
+      <span class="bazi-star" style="left:18%;top:44%;--dx:22px;--dy:-26px;--dur:3.1s;--size:8px"></span>
+      <span class="bazi-star" style="left:82%;top:47%;--dx:-20px;--dy:-32px;--dur:2.7s;--size:7px"></span>
+      <span class="bazi-star" style="left:48%;top:18%;--dx:12px;--dy:-36px;--dur:2.9s;--size:6px"></span>
+      <span class="bazi-star" style="left:58%;top:40%;--dx:-14px;--dy:-24px;--dur:2.5s;--size:8px"></span>
+    </div>
+
+
+    <!-- 老師人物與開壇實物場景 -->
+    <div class="teacher-ritual-stage" aria-hidden="true">
+      <div class="ritual-back-halo"></div>
+
+      <div class="ritual-teacher">
+        <div class="teacher-hat"></div>
+        <div class="teacher-head">
+          <div class="teacher-eyes"></div>
+          <div class="teacher-beard"></div>
+        </div>
+        <div class="teacher-body">
+          <span class="teacher-robe-symbol">命</span>
+        </div>
+        <div class="teacher-hand left-hand"></div>
+        <div class="teacher-hand right-hand"></div>
+      </div>
+
+      <div class="ritual-table">
+        <div class="ritual-table-top"></div>
+        <div class="ritual-incense-burner">
+          <span class="incense-stick i1"></span>
+          <span class="incense-stick i2"></span>
+          <span class="incense-stick i3"></span>
+          <span class="incense-smoke s1"></span>
+          <span class="incense-smoke s2"></span>
+          <span class="incense-smoke s3"></span>
+        </div>
+        <div class="ritual-candle candle-left"><span></span></div>
+        <div class="ritual-candle candle-right"><span></span></div>
+        <div class="ritual-jiaobei jb-left">聖</div>
+        <div class="ritual-jiaobei jb-right">筊</div>
+        <div class="ritual-scroll">八字開盤</div>
+      </div>
+    </div>
+
+
+    <!-- 老師現場算命特效層 -->
+    <div class="teacher-live-effects" aria-hidden="true">
+      <div class="teacher-stage-light"></div>
+      <div class="teacher-rotating-pan">八卦</div>
+      <div class="teacher-smoke smoke-1"></div>
+      <div class="teacher-smoke smoke-2"></div>
+      <div class="teacher-talisman talisman-1">命</div>
+      <div class="teacher-talisman talisman-2">運</div>
+      <div class="teacher-talisman talisman-3">福</div>
+      <div class="teacher-talisman talisman-4">吉</div>
+    </div>
+
+    <div class="teacher-opening-overlay" id="teacherOpeningOverlay" aria-hidden="true">
+      <div class="teacher-opening-card">
+        <div class="teacher-opening-orb"></div>
+        <h2>老師開壇算命中</h2>
+        <p id="teacherOpeningText">焚香請示・排盤推命・靈光啟動</p>
+      </div>
+    </div>
+
+    <div class="teacher-header">
+      <button class="teacher-back-btn" onclick="changePage('homePage')">← 返回首頁</button>
+      <div class="teacher-title-wrap">
+        <h1>老師算命</h1>
+        <p>八字命盤・流年指引・性格解析</p>
+      </div>
+    </div>
+
+    <div class="teacher-oracle-card">
+      <div class="teacher-avatar">
+        <div class="teacher-face">師</div>
+        <div class="teacher-glow"></div>
+      </div>
+
+      <h2>請輸入出生資料</h2>
+      <p class="teacher-desc">依照你的出生年、月、日、時，老師會為你產生一份簡易八字命盤與白話分析。</p>
+
+      <div class="teacher-form">
+        <label>出生日期</label>
+        <input id="baziDate" type="date" />
+
+        <label>出生時間</label>
+        <select id="baziHour">
+          <option value="">不知道時辰</option>
+          <option value="子時">子時 23:00 - 00:59</option>
+          <option value="丑時">丑時 01:00 - 02:59</option>
+          <option value="寅時">寅時 03:00 - 04:59</option>
+          <option value="卯時">卯時 05:00 - 06:59</option>
+          <option value="辰時">辰時 07:00 - 08:59</option>
+          <option value="巳時">巳時 09:00 - 10:59</option>
+          <option value="午時">午時 11:00 - 12:59</option>
+          <option value="未時">未時 13:00 - 14:59</option>
+          <option value="申時">申時 15:00 - 16:59</option>
+          <option value="酉時">酉時 17:00 - 18:59</option>
+          <option value="戌時">戌時 19:00 - 20:59</option>
+          <option value="亥時">亥時 21:00 - 22:59</option>
+        </select>
+
+        <label>想問的方向</label>
+        <select id="baziQuestion">
+          <option value="整體運勢">整體運勢</option>
+          <option value="感情人際">感情人際</option>
+          <option value="事業工作">事業工作</option>
+          <option value="財運財庫">財運財庫</option>
+          <option value="學業考試">學業考試</option>
+          <option value="健康平安">健康平安</option>
+        </select>
+
+        <button class="teacher-main-btn" onclick="teacherTellFortune()">請老師算命</button>
+      </div>
+    </div>
+
+    <div id="teacherResult" class="teacher-result-card">
+      <div class="teacher-loading" id="teacherLoading">
+        <span></span><span></span><span></span>
+        <p>老師正在排盤中...</p>
+      </div>
+      <div id="teacherResultContent"></div>
+    </div>
+  </div>
+</section>
+
 <section id="recordPage" class="page"><div class="sub-page"><div class="header"><button class="back-btn" onclick="changePage('homePage')">返回首頁</button><div class="title">我的</div></div><div class="card"><button class="main-btn" onclick="clearRecords()">清除紀錄</button></div><div id="recordList"></div></div></section>
 </main>
 <script>
@@ -4423,6 +7898,364 @@ document.addEventListener("keydown", function(event) {
     } else if (btn) {
       btn.disabled = false;
     }
+  };
+})();
+</script>
+
+
+
+
+
+<script id="bazi-click-fix-script">
+/* ===== 修復：八字命盤點擊後沒有反應 ===== */
+function changePage(id) {
+  document.querySelectorAll(".page").forEach(page => page.classList.remove("active"));
+  const target = document.getElementById(id);
+  if (target) target.classList.add("active");
+
+  if (id === "drawPage" && typeof resetDrawPage === "function") resetDrawPage();
+  if (id === "moneyPage" && typeof resetMoneyPage === "function") resetMoneyPage();
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function openBaziPage() {
+  changePage("baziPage");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const baziBtn = document.querySelector(".hotspot.bazi");
+  if (baziBtn) {
+    baziBtn.setAttribute("type", "button");
+    baziBtn.onclick = function (e) {
+      e.preventDefault();
+      openBaziPage();
+    };
+  }
+});
+
+function teacherTellFortune(){
+  const dateInput=document.getElementById("baziDate");
+  const hourInput=document.getElementById("baziHour");
+  const qInput=document.getElementById("baziQuestion");
+  const card=document.getElementById("teacherResult");
+  const loading=document.getElementById("teacherLoading");
+  const content=document.getElementById("teacherResultContent");
+  if(!dateInput||!hourInput||!qInput||!card||!loading||!content)return;
+  const date=dateInput.value;
+  const hour=hourInput.value||"未定時辰";
+  const question=qInput.value||"整體運勢";
+  if(!date){alert("請先選擇出生日期");return;}
+  card.classList.add("show");
+  loading.classList.add("show");
+  content.innerHTML="";
+  setTimeout(()=>{
+    const d=new Date(date+"T00:00:00");
+    const y=d.getFullYear(),m=d.getMonth()+1,day=d.getDate();
+    const stems=["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
+    const branches=["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
+    const elements=["木","火","土","金","水"];
+    const yearPillar=stems[((y-4)%10+10)%10]+branches[((y-4)%12+12)%12];
+    const monthPillar=stems[(y+m)%10]+branches[(m+1)%12];
+    const dayPillar=stems[(y+m+day)%10]+branches[(y+day)%12];
+    const hourList=["子時","丑時","寅時","卯時","辰時","巳時","午時","未時","申時","酉時","戌時","亥時"];
+    const hourIndex=hour==="未定時辰"?(day%12):hourList.indexOf(hour);
+    const safeHourIndex=hourIndex<0?day%12:hourIndex;
+    const hourPillar=stems[(day+safeHourIndex)%10]+branches[safeHourIndex];
+    const mainElement=elements[(y+m+day+safeHourIndex)%5];
+    const personalityMap={
+      "木":"木氣重的人，個性多半重視成長、學習與規劃，適合一步一步累積實力。",
+      "火":"火氣重的人，行動力與表達力較強，但要留意急躁與情緒起伏。",
+      "土":"土氣重的人，重視穩定、責任與安全感，適合經營長期目標。",
+      "金":"金氣重的人，判斷力與原則感較強，適合整理制度、做出明確決策。",
+      "水":"水氣重的人，直覺與適應力較好，適合學習、溝通與流動型機會。"
+    };
+    const questionMap={
+      "整體運勢":"整體來看，近期重點是先穩住節奏，不要一次把所有事情推到極限。把生活、工作與人際慢慢整理好，運勢會比較順。",
+      "感情人際":"感情與人際方面，建議少用猜測，多用溫和確認。願意主動說清楚、也願意聽對方想法，關係會比較容易修復或靠近。",
+      "事業工作":"事業工作方面，適合先把手邊責任做好，再等待更好的機會。若想轉換方向，先準備能力與作品，不宜衝動離開。",
+      "財運財庫":"財運方面以正財與穩定累積為主，不宜貪快或投機。整理收支、減少衝動消費，會比追求暴利更有幫助。",
+      "學業考試":"學業考試方面，適合用固定節奏累積。先補弱點、整理筆記、規律複習，成績會比臨時硬衝更穩。",
+      "健康平安":"健康平安方面，提醒你注意作息與壓力。若身體有不舒服，建議及早休息，必要時尋求專業協助。"
+    };
+    loading.classList.remove("show");
+    content.innerHTML=`
+      <span class="teacher-result-badge">老師命盤解析</span>
+      <h3>${question}｜${mainElement}氣為主</h3>
+      <div class="bazi-pill-grid">
+        <div class="bazi-pill"><small>年柱</small><strong>${yearPillar}</strong></div>
+        <div class="bazi-pill"><small>月柱</small><strong>${monthPillar}</strong></div>
+        <div class="bazi-pill"><small>日柱</small><strong>${dayPillar}</strong></div>
+        <div class="bazi-pill"><small>時柱</small><strong>${hour==="未定時辰"?"暫估":hourPillar}</strong></div>
+      </div>
+      <p><strong>出生資料：</strong>${y}年 ${m}月 ${day}日，${hour}。</p>
+      <p><strong>命盤性格：</strong>${personalityMap[mainElement]}</p>
+      <p><strong>老師白話解析：</strong>${questionMap[question]}</p>
+      <p><strong>行動建議：</strong>今天適合做整理、規劃、確認方向的事。不要急著一次定生死，先把能做的部分做好，後面的運勢才會慢慢打開。</p>
+      <p class="teacher-notice">此為娛樂與自我提醒用的簡易命盤分析，非專業命理服務或人生決策保證。</p>
+    `;
+    if(typeof saveRecord==="function"){
+      saveRecord("八字命盤",`${question}｜${mainElement}氣為主｜${yearPillar}${monthPillar}${dayPillar}${hour==="未定時辰"?"":hourPillar}`);
+    }
+  },1200);
+}
+</script>
+
+
+<script id="teacher-live-fortune-effect-script">
+/* ===== 八字命盤：老師現場算命特效控制 ===== */
+function showTeacherOpeningEffect() {
+  const overlay = document.getElementById("teacherOpeningOverlay");
+  const text = document.getElementById("teacherOpeningText");
+  if (!overlay) return;
+
+  const steps = ["焚香請示・排盤推命・靈光啟動", "老師掐指推算中", "命盤開啟・請稍候"];
+  let index = 0;
+
+  overlay.classList.add("show");
+  overlay.setAttribute("aria-hidden", "false");
+
+  const timer = setInterval(() => {
+    index = (index + 1) % steps.length;
+    if (text) text.textContent = steps[index];
+  }, 520);
+
+  setTimeout(() => {
+    clearInterval(timer);
+    overlay.classList.remove("show");
+    overlay.setAttribute("aria-hidden", "true");
+  }, 1700);
+}
+
+/* 覆蓋八字入口：先切頁，再出現老師開壇特效 */
+function openBaziPage() {
+  changePage("baziPage");
+  setTimeout(showTeacherOpeningEffect, 80);
+}
+
+/* 若原本首頁按鈕還沒有正確綁定，這裡再保險綁一次 */
+document.addEventListener("DOMContentLoaded", function () {
+  const baziBtn = document.querySelector(".hotspot.bazi");
+  if (baziBtn) {
+    baziBtn.setAttribute("type", "button");
+    baziBtn.onclick = function (e) {
+      e.preventDefault();
+      openBaziPage();
+    };
+  }
+});
+
+/* 包住原本老師算命功能：按下後加入現場推算特效 */
+(function () {
+  const oldTeacherTellFortune = window.teacherTellFortune;
+
+  window.teacherTellFortune = function () {
+    const page = document.getElementById("baziPage");
+    if (page) {
+      page.classList.remove("calculating");
+      void page.offsetWidth;
+      page.classList.add("calculating");
+      setTimeout(() => page.classList.remove("calculating"), 1650);
+    }
+
+    if (typeof oldTeacherTellFortune === "function") {
+      oldTeacherTellFortune();
+    }
+  };
+})();
+</script>
+
+
+<script id="teacher-ritual-real-scene-script">
+/* ===== 八字命盤：老師人物與開壇實物特效控制 ===== */
+(function(){
+  const oldOpenBaziPage = window.openBaziPage;
+  window.openBaziPage = function(){
+    if (typeof oldOpenBaziPage === "function") {
+      oldOpenBaziPage();
+    } else if (typeof changePage === "function") {
+      changePage("baziPage");
+    }
+
+    const page = document.getElementById("baziPage");
+    if (page) {
+      page.classList.remove("stage-opening");
+      void page.offsetWidth;
+      page.classList.add("stage-opening");
+      setTimeout(() => page.classList.remove("stage-opening"), 1700);
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", function(){
+    const baziBtn = document.querySelector(".hotspot.bazi");
+    if (baziBtn) {
+      baziBtn.setAttribute("type", "button");
+      baziBtn.onclick = function(e){
+        e.preventDefault();
+        window.openBaziPage();
+      };
+    }
+  });
+
+  const oldTeacherTellFortune = window.teacherTellFortune;
+  window.teacherTellFortune = function(){
+    const page = document.getElementById("baziPage");
+    if (page) {
+      page.classList.remove("calculating");
+      void page.offsetWidth;
+      page.classList.add("calculating");
+      setTimeout(() => page.classList.remove("calculating"), 1700);
+    }
+
+    if (typeof oldTeacherTellFortune === "function") {
+      oldTeacherTellFortune();
+    }
+  };
+})();
+</script>
+
+
+<script id="bazi-magical-background-motion-script">
+/* ===== 八字命盤背景圖人物動態控制 ===== */
+(function(){
+  const oldOpenBaziPage = window.openBaziPage;
+  window.openBaziPage = function(){
+    if (typeof oldOpenBaziPage === "function") {
+      oldOpenBaziPage();
+    } else if (typeof changePage === "function") {
+      changePage("baziPage");
+    }
+
+    const page = document.getElementById("baziPage");
+    if (page) {
+      page.classList.remove("stage-opening");
+      void page.offsetWidth;
+      page.classList.add("stage-opening");
+      setTimeout(() => page.classList.remove("stage-opening"), 1700);
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", function(){
+    const baziBtn = document.querySelector(".hotspot.bazi");
+    if (baziBtn) {
+      baziBtn.setAttribute("type", "button");
+      baziBtn.onclick = function(e){
+        e.preventDefault();
+        window.openBaziPage();
+      };
+    }
+  });
+
+  const oldTeacherTellFortune = window.teacherTellFortune;
+  window.teacherTellFortune = function(){
+    const page = document.getElementById("baziPage");
+    if (page) {
+      page.classList.remove("calculating");
+      void page.offsetWidth;
+      page.classList.add("calculating");
+      setTimeout(() => page.classList.remove("calculating"), 1800);
+    }
+
+    if (typeof oldTeacherTellFortune === "function") {
+      oldTeacherTellFortune();
+    }
+  };
+})();
+</script>
+
+
+<script id="bazi-heaven-book-luxury-script">
+/* ===== 天書翻開與豪華特效控制 ===== */
+(function(){
+  const oldOpenBaziPage = window.openBaziPage;
+
+  window.openBaziPage = function(){
+    if (typeof oldOpenBaziPage === "function") {
+      oldOpenBaziPage();
+    } else if (typeof changePage === "function") {
+      changePage("baziPage");
+    }
+
+    const page = document.getElementById("baziPage");
+    if (page) {
+      page.classList.remove("book-opening");
+      void page.offsetWidth;
+      page.classList.add("book-opening");
+      setTimeout(() => page.classList.remove("book-opening"), 2100);
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", function(){
+    const baziBtn = document.querySelector(".hotspot.bazi");
+    if (baziBtn) {
+      baziBtn.setAttribute("type", "button");
+      baziBtn.onclick = function(e){
+        e.preventDefault();
+        window.openBaziPage();
+      };
+    }
+  });
+
+  const oldTeacherTellFortune = window.teacherTellFortune;
+  window.teacherTellFortune = function(){
+    const page = document.getElementById("baziPage");
+    if (page) {
+      page.classList.remove("calculating", "book-opening");
+      void page.offsetWidth;
+      page.classList.add("calculating", "book-opening");
+      setTimeout(() => page.classList.remove("calculating"), 2100);
+      setTimeout(() => page.classList.remove("book-opening"), 2300);
+    }
+
+    if (typeof oldTeacherTellFortune === "function") {
+      oldTeacherTellFortune();
+    }
+  };
+})();
+</script>
+
+
+<script id="book-to-edict-only-script">
+/* ===== 只補強聖旨內容更新；其他功能不改 ===== */
+(function(){
+  const oldTeacherTellFortune = window.teacherTellFortune;
+  function calcBaziForEdict(){
+    const dateInput=document.getElementById('baziDate');
+    const hourInput=document.getElementById('baziHour');
+    const qInput=document.getElementById('baziQuestion');
+    const edict=document.getElementById('edictPaperContent');
+    if(!dateInput||!hourInput||!qInput||!edict||!dateInput.value)return;
+    const date=dateInput.value;
+    const hour=hourInput.value||'未定時辰';
+    const question=qInput.value||'整體運勢';
+    const d=new Date(date+'T00:00:00');
+    const y=d.getFullYear(),m=d.getMonth()+1,day=d.getDate();
+    const stems=['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+    const branches=['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+    const elements=['木','火','土','金','水'];
+    const yearPillar=stems[((y-4)%10+10)%10]+branches[((y-4)%12+12)%12];
+    const monthPillar=stems[(y+m)%10]+branches[(m+1)%12];
+    const dayPillar=stems[(y+m+day)%10]+branches[(y+day)%12];
+    const hourList=['子時','丑時','寅時','卯時','辰時','巳時','午時','未時','申時','酉時','戌時','亥時'];
+    const hourIndex=hour==='未定時辰'?(day%12):hourList.indexOf(hour);
+    const safeHourIndex=hourIndex<0?day%12:hourIndex;
+    const hourPillar=stems[(day+safeHourIndex)%10]+branches[safeHourIndex];
+    const mainElement=elements[(y+m+day+safeHourIndex)%5];
+    edict.innerHTML=`
+      <div class="edict-title">八字命盤</div>
+      <div class="edict-subtitle">${question}・${mainElement}氣為主</div>
+      <div class="edict-pillars">
+        <div class="edict-pillar"><small>年柱</small><strong>${yearPillar}</strong></div>
+        <div class="edict-pillar"><small>月柱</small><strong>${monthPillar}</strong></div>
+        <div class="edict-pillar"><small>日柱</small><strong>${dayPillar}</strong></div>
+        <div class="edict-pillar"><small>時柱</small><strong>${hour==='未定時辰'?'暫估':hourPillar}</strong></div>
+      </div>
+      <div class="edict-summary">聖旨開示：${question}以穩定為先，守正前行，福氣漸開。</div>`;
+  }
+  window.teacherTellFortune=function(){
+    if(typeof oldTeacherTellFortune==='function') oldTeacherTellFortune();
+    setTimeout(calcBaziForEdict, 1150);
+    setTimeout(calcBaziForEdict, 1900);
   };
 })();
 </script>
